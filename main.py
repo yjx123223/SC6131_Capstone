@@ -12,6 +12,10 @@ FinDKG + Claude 资产配置建议系统 — 端到端入口
   python main.py --rolling "Apple Inc."             # 滚动回测
   python main.py --history                          # 查看历史建议记录
   python main.py --report                           # 信号准确率报告
+
+Multi-Agent 模式（需设置 FRED_API_KEY）：
+  python main.py --multi-agent --entity "Apple Inc."
+  python main.py --multi-agent --compare "Apple Inc." "Microsoft Corporation"
 """
 
 import argparse
@@ -232,6 +236,63 @@ def interactive_mode(graph, advisor, store):
 
 # ── CLI 入口 ─────────────────────────────────────────────────────
 
+def cmd_multi_agent(entity: str, weeks: int):
+    """Multi-Agent 模式：Macro Agent + News Agent → Orchestrator → 报告"""
+    _check_api_key()
+
+    from kg_query import FinDKGGraph
+    from kg_predictor import KGPredictor
+    from llm_advisor import AssetAdvisor
+    from macro_agent import MacroAgent
+    from orchestrator import OrchestratorAgent
+
+    graph       = FinDKGGraph()
+    predictor   = KGPredictor()
+    news_agent  = AssetAdvisor(predictor=predictor)
+    macro_agent = MacroAgent()
+    orch        = OrchestratorAgent()
+
+    print(f"\n{'='*60}")
+    print(f"  Multi-Agent 投资建议报告：{entity}")
+    print(f"{'='*60}\n")
+
+    news_signal  = news_agent.get_news_signal(entity, graph, n_recent_weeks=weeks)
+    macro_signal = macro_agent.analyze()
+    report       = orch.generate_report(entity, news_signal, macro_signal)
+
+    print("\n" + report)
+
+
+def cmd_multi_agent_compare(entities: list[str], weeks: int):
+    """Multi-Agent 多实体对比报告"""
+    _check_api_key()
+
+    from kg_query import FinDKGGraph
+    from kg_predictor import KGPredictor
+    from llm_advisor import AssetAdvisor
+    from macro_agent import MacroAgent
+    from orchestrator import OrchestratorAgent
+
+    graph       = FinDKGGraph()
+    predictor   = KGPredictor()
+    news_agent  = AssetAdvisor(predictor=predictor)
+    macro_agent = MacroAgent()
+    orch        = OrchestratorAgent()
+
+    print(f"\n{'='*60}")
+    print(f"  Multi-Agent 多实体对比报告")
+    print(f"{'='*60}\n")
+
+    news_signals = [
+        news_agent.get_news_signal(e, graph, n_recent_weeks=weeks)
+        for e in entities
+    ]
+    macro_signal = macro_agent.analyze()
+    report = orch.generate_comparison_report(entities, news_signals, macro_signal)
+
+    print("\n" + report)
+
+
 def main():
     parser = argparse.ArgumentParser(description="FinDKG + Claude 资产配置建议系统")
     parser.add_argument("--entity", type=str)
@@ -247,9 +308,23 @@ def main():
     parser.add_argument("--forward", type=int, default=8, help="回测验证周数")
     parser.add_argument("--windows", type=int, default=10, help="滚动回测窗口数")
     parser.add_argument("--data-dir", type=str, default=None)
+    parser.add_argument("--multi-agent", action="store_true",
+                        help="启用 Multi-Agent 模式（需设置 FRED_API_KEY）")
     args = parser.parse_args()
 
-    # 无 LLM 的操作：search / query-only / backtest / rolling / history / report
+    # ── Multi-Agent 模式 ──────────────────────────────────────────
+    if args.multi_agent:
+        if args.entity:
+            cmd_multi_agent(args.entity, args.weeks)
+        elif args.compare:
+            cmd_multi_agent_compare(args.compare, args.weeks)
+        else:
+            print("Multi-Agent 模式用法：")
+            print("  python main.py --multi-agent --entity \"Apple Inc.\"")
+            print("  python main.py --multi-agent --compare \"Apple Inc.\" \"Microsoft Corporation\"")
+        return
+
+    # ── 无 LLM 的操作 ─────────────────────────────────────────────
     no_llm_mode = (
         args.search or
         (args.query_only and args.entity) or
@@ -282,7 +357,7 @@ def main():
             cmd_report(store)
         return
 
-    # 需要 LLM 的操作
+    # ── 需要 LLM 的操作 ───────────────────────────────────────────
     graph, predictor, store, advisor = _init_components(with_llm=True)
 
     if args.entity:
