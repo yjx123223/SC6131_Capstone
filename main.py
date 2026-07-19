@@ -237,29 +237,29 @@ def interactive_mode(graph, advisor, store):
 # ── CLI 入口 ─────────────────────────────────────────────────────
 
 def cmd_multi_agent(entity: str, weeks: int):
-    """Multi-Agent 模式：Macro Agent + News Agent → Orchestrator → 报告"""
+    """Multi-Agent 模式（Tool Use 架构）：Orchestrator 自主编排工具调用 → Critic 审查 → 报告"""
     _check_api_key()
 
     from kg_query import FinDKGGraph
     from kg_predictor import KGPredictor
-    from llm_advisor import AssetAdvisor
-    from macro_agent import MacroAgent
+    from feedback_store import FeedbackStore
     from orchestrator import OrchestratorAgent
 
-    graph       = FinDKGGraph()
-    predictor   = KGPredictor()
-    news_agent  = AssetAdvisor(predictor=predictor)
-    macro_agent = MacroAgent()
-    orch        = OrchestratorAgent()
+    graph     = FinDKGGraph()
+    predictor = KGPredictor()
+    store     = FeedbackStore()
+    orch      = OrchestratorAgent()
 
     print(f"\n{'='*60}")
-    print(f"  Multi-Agent 投资建议报告：{entity}")
+    print(f"  Multi-Agent 投资建议报告（Tool Use）：{entity}")
     print(f"{'='*60}\n")
 
-    news_signal  = news_agent.get_news_signal(entity, graph, n_recent_weeks=weeks)
-    macro_signal = macro_agent.analyze()
-    report       = orch.generate_report(entity, news_signal, macro_signal)
-
+    report = orch.generate_report(
+        entity, graph,
+        predictor=predictor,
+        feedback_store=store,
+        weeks=weeks,
+    )
     print("\n" + report)
 
 
@@ -269,27 +269,24 @@ def cmd_multi_agent_compare(entities: list[str], weeks: int):
 
     from kg_query import FinDKGGraph
     from kg_predictor import KGPredictor
-    from llm_advisor import AssetAdvisor
-    from macro_agent import MacroAgent
+    from feedback_store import FeedbackStore
     from orchestrator import OrchestratorAgent
 
-    graph       = FinDKGGraph()
-    predictor   = KGPredictor()
-    news_agent  = AssetAdvisor(predictor=predictor)
-    macro_agent = MacroAgent()
-    orch        = OrchestratorAgent()
+    graph     = FinDKGGraph()
+    predictor = KGPredictor()
+    store     = FeedbackStore()
+    orch      = OrchestratorAgent()
 
     print(f"\n{'='*60}")
     print(f"  Multi-Agent 多实体对比报告")
     print(f"{'='*60}\n")
 
-    news_signals = [
-        news_agent.get_news_signal(e, graph, n_recent_weeks=weeks)
-        for e in entities
-    ]
-    macro_signal = macro_agent.analyze()
-    report = orch.generate_comparison_report(entities, news_signals, macro_signal)
-
+    report = orch.generate_comparison_report(
+        entities, graph,
+        predictor=predictor,
+        feedback_store=store,
+        weeks=weeks,
+    )
     print("\n" + report)
 
 

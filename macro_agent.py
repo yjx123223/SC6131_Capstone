@@ -39,6 +39,10 @@ def _fetch_fred_indicators(fred_api_key: str) -> dict:
     使用 fredapi 拉取最新宏观指标。
     返回 {key: {"value": float, "date": str, "label": str}} 的字典。
     """
+    # macOS SSL 证书修复（Python 官方安装包不自带系统证书链）
+    import ssl
+    ssl._create_default_https_context = ssl._create_unverified_context
+
     try:
         from fredapi import Fred
     except ImportError:

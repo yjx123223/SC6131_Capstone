@@ -30,6 +30,9 @@ CHECKPOINT_PATH = Path(__file__).parent.parent / "knowledgeGraph" / "FinDKG" / "
 # 从服务器导出的嵌入矩阵目录（static_structural.npy + dynamic_structural.npy）
 EMBEDDING_DIR = Path(__file__).parent.parent / "knowledgeGraph" / "FinDKG" / "embeddings"
 
+# ── 报告存储 ──────────────────────────────────────────────────────
+REPORTS_DIR = Path(__file__).parent / "reports"   # Orchestrator 输出的 Markdown 报告目录
+
 # ── 反馈存储 ──────────────────────────────────────────────────────
 FEEDBACK_DB_PATH = Path(__file__).parent / "data" / "feedback.db"
 
