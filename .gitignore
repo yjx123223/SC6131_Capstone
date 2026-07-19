@@ -12,6 +12,9 @@ build/
 # 反馈数据库（本地运行产生的数据，不上传）
 data/feedback.db
 
+# 生成的报告（本地存档，不上传）
+reports/
+
 # 嵌入文件（体积大，从服务器生成）
 embeddings/
 *.npy

@@ -211,6 +211,55 @@ class AssetAdvisor:
 
         return session_id, advice_text + footer
 
+    # ── News Agent 接口（供 Orchestrator 使用）────────────────────
+
+    def get_news_signal(
+        self,
+        entity: str,
+        graph,
+        n_recent_weeks: int = 12,
+    ) -> dict:
+        """
+        News Agent 标准输出接口：返回结构化信号 dict，供 Orchestrator 消费。
+
+        Returns
+        -------
+        {
+            "entity":           str,
+            "period":           str,
+            "total_events":     int,
+            "positive_impacts": list[dict],
+            "negative_impacts": list[dict],
+            "other_relations":  list[dict],
+            "predictions":      list[dict] | None,
+            "has_predictions":  bool,
+            "kg_summary":       dict,       # 原始 KG 摘要
+        }
+        若实体在 KG 中无数据，返回 {"entity": entity, "error": str}
+        """
+        print(f"[NewsAgent] 查询知识图谱：{entity}（最近{n_recent_weeks}周）...")
+        summary = graph.get_impact_summary(entity, n_recent_weeks=n_recent_weeks)
+
+        if summary.get("total_events", 0) == 0:
+            return {"entity": entity, "error": f"KG 中未找到 '{entity}' 的近期数据"}
+
+        predictions = None
+        if self.predictor and self.predictor.available:
+            print(f"[NewsAgent] 运行 KGTransformer 预测...")
+            predictions = self.predictor.predict_next(entity, graph, top_k=10)
+
+        return {
+            "entity":           entity,
+            "period":           summary.get("period", "未知"),
+            "total_events":     summary.get("total_events", 0),
+            "positive_impacts": summary.get("positive_impacts", []),
+            "negative_impacts": summary.get("negative_impacts", []),
+            "other_relations":  summary.get("other_relations", []),
+            "predictions":      predictions,
+            "has_predictions":  predictions is not None,
+            "kg_summary":       summary,
+        }
+
     def feedback(self, session_id: int, rating: int, note: str = ""):
         """
         对某次建议评分（需要初始化时传入 feedback_store）。
