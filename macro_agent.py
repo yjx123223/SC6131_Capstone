@@ -18,10 +18,11 @@ FRED API Key 申请：https://fred.stlouisfed.org/docs/api/api_key.html
 设置环境变量：export FRED_API_KEY='your-key'
 """
 
-import os
 import json
 from typing import Optional
 import anthropic
+
+import config
 
 
 # FRED 数据系列定义
@@ -109,18 +110,18 @@ class MacroAgent:
         self,
         anthropic_api_key: Optional[str] = None,
         fred_api_key: Optional[str] = None,
-        model: str = "claude-haiku-4-5",
-        max_tokens: int = 512,
+        model: str = config.MACRO_MODEL,
+        max_tokens: int = config.MACRO_MAX_TOKENS,
     ):
         """
         Parameters
         ----------
         anthropic_api_key : Anthropic API Key（未传则读 ANTHROPIC_API_KEY 环境变量）
         fred_api_key      : FRED API Key（未传则读 FRED_API_KEY 环境变量）
-        model             : 使用的 Claude 模型
-        max_tokens        : 回复最大 token 数（宏观摘要较短，512 够用）
+        model             : 使用的 Claude 模型，默认取 config.MACRO_MODEL
+        max_tokens        : 回复最大 token 数，默认取 config.MACRO_MAX_TOKENS
         """
-        ant_key = anthropic_api_key or os.environ.get("ANTHROPIC_API_KEY")
+        ant_key = config.get_anthropic_api_key(anthropic_api_key)
         if not ant_key:
             raise ValueError(
                 "未找到 Anthropic API Key。\n"
@@ -130,7 +131,7 @@ class MacroAgent:
         self.model = model
         self.max_tokens = max_tokens
 
-        self.fred_api_key = fred_api_key or os.environ.get("FRED_API_KEY")
+        self.fred_api_key = config.get_fred_api_key(fred_api_key)
         if not self.fred_api_key:
             raise ValueError(
                 "未找到 FRED API Key。\n"

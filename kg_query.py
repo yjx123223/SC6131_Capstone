@@ -3,19 +3,14 @@ kg_query.py
 -----------
 FinDKG-full 知识图谱查询模块
 加载数据集，支持按实体名/时间窗口查询关系三元组
+
+数据集路径的候选/探测逻辑统一在 config.py 的 DATA_DIR 里计算，
+这里不再重复维护一份候选路径列表。
 """
 
-import os
 import pandas as pd
 from pathlib import Path
 from typing import Optional
-
-
-# ── 数据集路径（相对本文件的位置）──────────────────────────────
-_DEFAULT_DATA_DIR = Path(__file__).parent.parent / "knowledgeGraph" / "FinDKG" / "FinDKG_dataset" / "FinDKG-full"
-
-# 备用路径（如 Claude_capstone 与 FinDKG 同级时）
-_FALLBACK_DATA_DIR = Path(__file__).parent.parent / "FinDKG" / "FinDKG_dataset" / "FinDKG-full"
 
 
 class FinDKGGraph:
@@ -32,15 +27,14 @@ class FinDKGGraph:
     def __init__(self, data_dir: Optional[str | Path] = None):
         if data_dir:
             self.data_dir = Path(data_dir)
-        elif _DEFAULT_DATA_DIR.exists():
-            self.data_dir = _DEFAULT_DATA_DIR
-        elif _FALLBACK_DATA_DIR.exists():
-            self.data_dir = _FALLBACK_DATA_DIR
         else:
-            raise FileNotFoundError(
-                f"找不到 FinDKG-full 数据集，请通过 data_dir 参数手动指定路径。\n"
-                f"尝试过：\n  {_DEFAULT_DATA_DIR}\n  {_FALLBACK_DATA_DIR}"
-            )
+            from config import DATA_DIR
+            if not DATA_DIR.exists():
+                raise FileNotFoundError(
+                    f"找不到 FinDKG-full 数据集，请通过 data_dir 参数手动指定路径。\n"
+                    f"config.py 中探测到的路径（不存在）：{DATA_DIR}"
+                )
+            self.data_dir = DATA_DIR
         self._load()
 
     # ── 数据加载 ─────────────────────────────────────────────────

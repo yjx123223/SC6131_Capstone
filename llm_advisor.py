@@ -5,9 +5,10 @@ llm_advisor.py
 支持可选接入 KGTransformer 预测信号和 FeedbackStore 反馈存储。
 """
 
-import os
 from typing import Optional
 import anthropic
+
+import config
 
 
 class AssetAdvisor:
@@ -29,8 +30,8 @@ class AssetAdvisor:
     def __init__(
         self,
         api_key: Optional[str] = None,
-        model: str = "claude-haiku-4-5",
-        max_tokens: int = 2048,
+        model: str = config.ADVISOR_MODEL,
+        max_tokens: int = config.ADVISOR_MAX_TOKENS,
         predictor=None,       # KGPredictor 实例（可选）
         feedback_store=None,  # FeedbackStore 实例（可选）
     ):
@@ -38,12 +39,12 @@ class AssetAdvisor:
         Parameters
         ----------
         api_key        : Anthropic API Key。未传入则从环境变量 ANTHROPIC_API_KEY 读取。
-        model          : 使用的 Claude 模型。
-        max_tokens     : 回复最大 token 数。
+        model          : 使用的 Claude 模型，默认取 config.ADVISOR_MODEL。
+        max_tokens     : 回复最大 token 数，默认取 config.ADVISOR_MAX_TOKENS。
         predictor      : KGPredictor 实例。传入后会将预测信号追加到 prompt。
         feedback_store : FeedbackStore 实例。传入后每次建议自动写入记录。
         """
-        key = api_key or os.environ.get("ANTHROPIC_API_KEY")
+        key = config.get_anthropic_api_key(api_key)
         if not key:
             raise ValueError(
                 "未找到 Anthropic API Key。\n"
@@ -76,7 +77,7 @@ class AssetAdvisor:
                 return "（无）"
             lines = [
                 f"  - {e['subject']} --[{e['relation']}]--> {e['object']}  (出现{e['count']}次)"
-                for e in events[:8]
+                for e in events[:config.MAX_EVENTS_IN_PROMPT]
             ]
             return "\n".join(lines)
 
@@ -85,7 +86,7 @@ class AssetAdvisor:
                 return "（无预测数据，KGTransformer 尚未训练）"
             lines = [
                 f"  - {p['subject']} → {p['object']}  (置信度 {p['score']:.3f})"
-                for p in preds[:8]
+                for p in preds[:config.MAX_EVENTS_IN_PROMPT]
             ]
             return "\n".join(lines)
 
@@ -138,7 +139,7 @@ class AssetAdvisor:
         self,
         entity: str,
         graph,
-        n_recent_weeks: int = 12,
+        n_recent_weeks: int = config.DEFAULT_WEEKS,
         user_question: Optional[str] = None,
     ) -> tuple[Optional[int], str]:
         """
@@ -217,7 +218,7 @@ class AssetAdvisor:
         self,
         entity: str,
         graph,
-        n_recent_weeks: int = 12,
+        n_recent_weeks: int = config.DEFAULT_WEEKS,
     ) -> dict:
         """
         News Agent 标准输出接口：返回结构化信号 dict，供 Orchestrator 消费。
@@ -282,7 +283,7 @@ class AssetAdvisor:
         self,
         entities: list[str],
         graph,
-        n_recent_weeks: int = 12,
+        n_recent_weeks: int = config.DEFAULT_WEEKS,
     ) -> str:
         """对多个实体做对比分析"""
         summaries = {}

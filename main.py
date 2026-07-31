@@ -20,11 +20,12 @@ Multi-Agent 模式（需设置 FRED_API_KEY）：
 
 import argparse
 import sys
-import os
+
+import config
 
 
 def _check_api_key():
-    key = os.environ.get("ANTHROPIC_API_KEY")
+    key = config.get_anthropic_api_key()
     if not key:
         print("⚠️  未设置 ANTHROPIC_API_KEY 环境变量")
         print("    请运行：export ANTHROPIC_API_KEY='your-key-here'")
@@ -193,21 +194,21 @@ def interactive_mode(graph, advisor, store):
             cmd_search(graph, arg) if arg else print("用法：search <关键词>")
 
         elif cmd == "query":
-            cmd_query(graph, arg, 12) if arg else print("用法：query <实体名>")
+            cmd_query(graph, arg, config.DEFAULT_WEEKS) if arg else print("用法：query <实体名>")
 
         elif cmd == "advise":
             if not arg:
                 print("用法：advise <实体名>")
             else:
                 custom_q = input("  自定义问题（直接回车跳过）：").strip() or None
-                cmd_advise(advisor, graph, arg, 12, custom_q)
+                cmd_advise(advisor, graph, arg, config.DEFAULT_WEEKS, custom_q)
 
         elif cmd == "compare":
             entities = [e.strip() for e in arg.split("|") if e.strip()]
             if len(entities) < 2:
                 print("用法：compare <实体1> | <实体2> [| <实体3>]")
             else:
-                cmd_compare(advisor, graph, entities, 12)
+                cmd_compare(advisor, graph, entities, config.DEFAULT_WEEKS)
 
         elif cmd == "backtest":
             sub_parts = arg.split() if arg else []
@@ -217,11 +218,11 @@ def interactive_mode(graph, advisor, store):
                 # 最后一个词当日期，其余为实体名
                 date = sub_parts[-1]
                 entity = " ".join(sub_parts[:-1]).strip("'\"")
-                cmd_backtest(graph, entity, date, 12, 8)
+                cmd_backtest(graph, entity, date, config.DEFAULT_WEEKS, config.BACKTEST_FORWARD_WEEKS)
 
         elif cmd == "rolling":
             entity = arg.strip("'\"")
-            cmd_rolling(graph, entity, 12, 8, 10) if entity else print("用法：rolling <实体名>")
+            cmd_rolling(graph, entity, config.DEFAULT_WEEKS, config.BACKTEST_FORWARD_WEEKS, config.BACKTEST_N_WINDOWS) if entity else print("用法：rolling <实体名>")
 
         elif cmd == "history":
             entity = arg.strip("'\"") or None
@@ -241,14 +242,12 @@ def cmd_multi_agent(entity: str, weeks: int):
     _check_api_key()
 
     from kg_query import FinDKGGraph
-    from kg_predictor import KGPredictor
     from feedback_store import FeedbackStore
     from orchestrator import OrchestratorAgent
 
-    graph     = FinDKGGraph()
-    predictor = KGPredictor()
-    store     = FeedbackStore()
-    orch      = OrchestratorAgent()
+    graph = FinDKGGraph()
+    store = FeedbackStore()
+    orch  = OrchestratorAgent()
 
     print(f"\n{'='*60}")
     print(f"  Multi-Agent 投资建议报告（Tool Use）：{entity}")
@@ -256,7 +255,6 @@ def cmd_multi_agent(entity: str, weeks: int):
 
     report = orch.generate_report(
         entity, graph,
-        predictor=predictor,
         feedback_store=store,
         weeks=weeks,
     )
@@ -268,14 +266,12 @@ def cmd_multi_agent_compare(entities: list[str], weeks: int):
     _check_api_key()
 
     from kg_query import FinDKGGraph
-    from kg_predictor import KGPredictor
     from feedback_store import FeedbackStore
     from orchestrator import OrchestratorAgent
 
-    graph     = FinDKGGraph()
-    predictor = KGPredictor()
-    store     = FeedbackStore()
-    orch      = OrchestratorAgent()
+    graph = FinDKGGraph()
+    store = FeedbackStore()
+    orch  = OrchestratorAgent()
 
     print(f"\n{'='*60}")
     print(f"  Multi-Agent 多实体对比报告")
@@ -283,7 +279,6 @@ def cmd_multi_agent_compare(entities: list[str], weeks: int):
 
     report = orch.generate_comparison_report(
         entities, graph,
-        predictor=predictor,
         feedback_store=store,
         weeks=weeks,
     )
@@ -301,9 +296,9 @@ def main():
     parser.add_argument("--date", type=str, default=None, help="回测决策时间点 YYYY-MM-DD")
     parser.add_argument("--history", action="store_true")
     parser.add_argument("--report", action="store_true")
-    parser.add_argument("--weeks", type=int, default=12)
-    parser.add_argument("--forward", type=int, default=8, help="回测验证周数")
-    parser.add_argument("--windows", type=int, default=10, help="滚动回测窗口数")
+    parser.add_argument("--weeks", type=int, default=config.DEFAULT_WEEKS)
+    parser.add_argument("--forward", type=int, default=config.BACKTEST_FORWARD_WEEKS, help="回测验证周数")
+    parser.add_argument("--windows", type=int, default=config.BACKTEST_N_WINDOWS, help="滚动回测窗口数")
     parser.add_argument("--data-dir", type=str, default=None)
     parser.add_argument("--multi-agent", action="store_true",
                         help="启用 Multi-Agent 模式（需设置 FRED_API_KEY）")

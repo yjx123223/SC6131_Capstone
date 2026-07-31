@@ -17,6 +17,8 @@ import pandas as pd
 from typing import Optional
 from dataclasses import dataclass, field
 
+import config
+
 
 @dataclass
 class BacktestResult:
@@ -91,8 +93,8 @@ class Backtester:
         self,
         entity: str,
         decision_date: str,
-        n_recent_weeks: int = 12,
-        n_forward_weeks: int = 8,
+        n_recent_weeks: int = config.DEFAULT_WEEKS,
+        n_forward_weeks: int = config.BACKTEST_FORWARD_WEEKS,
     ) -> BacktestResult:
         """
         单点回测。
@@ -172,9 +174,9 @@ class Backtester:
     def rolling_backtest(
         self,
         entity: str,
-        n_windows: int = 10,
-        n_recent_weeks: int = 12,
-        n_forward_weeks: int = 8,
+        n_windows: int = config.BACKTEST_N_WINDOWS,
+        n_recent_weeks: int = config.DEFAULT_WEEKS,
+        n_forward_weeks: int = config.BACKTEST_FORWARD_WEEKS,
         step_weeks: int = 4,
     ) -> dict:
         """

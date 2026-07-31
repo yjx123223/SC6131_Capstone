@@ -3,146 +3,34 @@ kg_predictor.py
 ---------------
 KGTransformer 推断模块（DGL-free 版本）
 
-不依赖 DGL，直接从 checkpoint 中提取实体嵌入，
-用余弦相似度对目标实体做近似链接预测。
+不依赖 DGL，直接从导出的嵌入矩阵（static_structural.npy +
+dynamic_structural.npy）计算实体表示，用余弦相似度对目标实体做
+近似链接预测。
 
 原理：
-  checkpoint 里存有训练/验证完毕的实体嵌入向量
-  (static_entity_emb + val_dynamic_entity_emb)。
-  将二者拼接得到每个实体的综合表示，
+  拼接 static + dynamic 嵌入得到每个实体的综合表示，
   再计算目标实体与其余所有实体的余弦相似度，
   取 top-k 作为"预测的关联实体"。
 
   精度略低于完整 KGTransformer（缺少图结构信息），
   但对资产配置建议场景足够用，且无需 DGL/CUDA。
 
-依赖：torch（已安装），numpy（已安装）
+依赖：numpy（已安装）
+
+注：早期版本还支持直接从训练 checkpoint（.pt）反序列化提取嵌入，
+为此写了一套绕开 DGL/torchdata 依赖的 import mock 和安全 pickle
+逻辑。现在统一改为消费导出好的 .npy 嵌入文件（config.EMBEDDING_DIR），
+那套 checkpoint 相关的 hack 代码已不再被调用，随本次重构一并移除。
 """
 
-import sys
-import pickle
-import types
 import numpy as np
 from pathlib import Path
 from typing import Optional
 
 
-def _install_import_mocks():
-    """
-    两步走：
-    1. 把已安装但有缺失子模块的真实包（torchdata、dgl.graphbolt）
-       从 sys.modules 中清除，换成空 mock，防止它们触发连锁 import。
-    2. 安装 meta_path finder，拦截后续任何对这些包的 import。
-    """
-    import importlib.abc
-    import importlib.machinery
-
-    # 需要完全替换为 mock 的前缀（包括已安装但不完整的）
-    MOCK_PREFIXES = ("torchdata", "dgl.graphbolt", "torch_scatter",
-                     "setuptools.extern")
-
-    def _make_mod(name: str) -> types.ModuleType:
-        mod = types.ModuleType(name)
-        mod.__path__    = []
-        mod.__package__ = name
-        mod.__spec__    = None
-        return mod
-
-    # Step 1: 强制清除 sys.modules 中已存在的不完整包，替换为 mock
-    for key in list(sys.modules.keys()):
-        if any(key == p or key.startswith(p + ".") for p in MOCK_PREFIXES):
-            sys.modules[key] = _make_mod(key)
-
-    # Step 2: 安装 finder 拦截未来的 import
-    class _Loader(importlib.abc.Loader):
-        def create_module(self, spec):
-            return _make_mod(spec.name)
-
-        def exec_module(self, module):
-            sys.modules[module.__name__] = module
-            if "." in module.__name__:
-                parent_name, attr = module.__name__.rsplit(".", 1)
-                parent = sys.modules.get(parent_name)
-                if parent and not hasattr(parent, attr):
-                    setattr(parent, attr, module)
-
-    class _Finder(importlib.abc.MetaPathFinder):
-        def find_spec(self, fullname, path, target=None):
-            if any(fullname == p or fullname.startswith(p + ".")
-                   for p in MOCK_PREFIXES):
-                if fullname not in sys.modules:
-                    return importlib.machinery.ModuleSpec(
-                        fullname, _Loader(), is_package=True)
-            return None
-
-    if not any(type(f).__name__ == "_Finder" for f in sys.meta_path):
-        sys.meta_path.insert(0, _Finder())
-
-
-def _make_dummy(module_name: str = "", name: str = "Dummy"):
-    """
-    创建一个通用占位类：
-    - 接受任意构造参数
-    - __getattr__ 返回自身（可以无限链式调用，不会 NoneType 报错）
-    - 支持迭代、长度查询
-    - 支持 namedtuple 协议（_fields / _make）
-    """
-    def _getattr(self, k):
-        # 返回一个 lambda，调用它也返回 self（避免 NoneType is not callable）
-        return lambda *a, **kw: self
-
-    cls = type(name, (), {
-        "__init__":    lambda self, *a, **kw: None,
-        "__repr__":    lambda self: f"<Dummy {module_name}.{name}>",
-        "__iter__":    lambda self: iter([]),
-        "__len__":     lambda self: 0,
-        "__getattr__": _getattr,
-        "__call__":    lambda self, *a, **kw: self,
-        "_fields":     (),
-        "_make":       classmethod(lambda cls, *a, **kw: cls()),
-    })
-    return cls
-
-
-def _make_safe_pickle():
-    """
-    返回一个自定义 pickle 模块，其 Unpickler 在遇到无法导入的类时，
-    自动用 Dummy 对象替代，而不是抛出 ImportError。
-    供 torch.load(pickle_module=...) 使用。
-    """
-
-    class _SafeUnpickler(pickle.Unpickler):
-        def find_class(self, module_name: str, name: str):
-            try:
-                return super().find_class(module_name, name)
-            except (ImportError, AttributeError, ModuleNotFoundError):
-                return _make_dummy(module_name, name)
-
-    safe_pkl = types.ModuleType("_safe_pickle")
-    safe_pkl.Unpickler        = _SafeUnpickler
-    safe_pkl.load             = lambda f, **kw: _SafeUnpickler(f).load()
-    safe_pkl.loads            = pickle.loads
-    safe_pkl.UnpicklingError  = pickle.UnpicklingError
-    safe_pkl.PicklingError    = pickle.PicklingError
-    safe_pkl.HIGHEST_PROTOCOL = pickle.HIGHEST_PROTOCOL
-    return safe_pkl
-
-_FINDKG_ROOT_CANDIDATES = [
-    Path(__file__).parent.parent / "knowledgeGraph" / "FinDKG",
-    Path(__file__).parent.parent / "FinDKG",
-]
-
-
-def _find_findkg_root() -> Optional[Path]:
-    for p in _FINDKG_ROOT_CANDIDATES:
-        if (p / "DKG").exists():
-            return p
-    return None
-
-
 class KGPredictor:
     """
-    基于 KGTransformer checkpoint 的实体嵌入做近似链接预测。
+    基于导出的 KGTransformer 实体嵌入做近似链接预测。
 
     使用示例
     --------
@@ -170,7 +58,13 @@ class KGPredictor:
     # ── 初始化 ───────────────────────────────────────────────────
 
     def _resolve_embedding_dir(self, explicit) -> Optional[Path]:
-        """按优先级查找嵌入目录：手动指定 > config.py > 默认路径"""
+        """
+        按优先级查找嵌入目录：手动指定 > config.EMBEDDING_DIR。
+
+        config.EMBEDDING_DIR 本身已经包含了
+        "knowledgeGraph/FinDKG/embeddings 优先，同级 FinDKG/embeddings
+        兜底"的候选逻辑（见 config.py），这里不再重复维护第二份候选列表。
+        """
         if explicit:
             p = Path(explicit)
             if (p / "static_structural.npy").exists():
@@ -183,14 +77,6 @@ class KGPredictor:
                 return p
         except Exception:
             pass
-
-        # 默认路径
-        for candidate in [
-            Path(__file__).parent.parent / "knowledgeGraph" / "FinDKG" / "embeddings",
-            Path(__file__).parent.parent / "FinDKG" / "embeddings",
-        ]:
-            if (candidate / "static_structural.npy").exists():
-                return candidate
 
         return None
 
@@ -231,36 +117,6 @@ class KGPredictor:
         n, dim = self._entity_emb.shape
         print(f"[KGPredictor] ✅ 嵌入加载成功（{n} 个实体，维度 {dim}）")
         self.available = True
-
-    @staticmethod
-    def _extract_tensor(emb_obj, attr: str):
-        """
-        从 MultiAspectEmbedding（namedtuple）中提取张量。
-        MultiAspectEmbedding.structural 是 nn.Parameter（tensor 子类），
-        可直接当 tensor 使用。
-        """
-        import torch
-        if emb_obj is None:
-            return None
-        # 直接就是 tensor / Parameter
-        if isinstance(emb_obj, torch.Tensor):
-            return emb_obj.detach()
-        # namedtuple / 有属性的对象
-        if hasattr(emb_obj, attr):
-            val = getattr(emb_obj, attr)
-            if val is None:
-                return None
-            if isinstance(val, torch.Tensor):
-                return val.detach()
-            # nn.Embedding（兼容旧格式）
-            if isinstance(val, torch.nn.Embedding):
-                return val.weight.detach()
-        # dict 格式
-        if isinstance(emb_obj, dict) and attr in emb_obj:
-            v = emb_obj[attr]
-            if isinstance(v, torch.Tensor):
-                return v.detach()
-        return None
 
     # ── 核心预测 ─────────────────────────────────────────────────
 
