@@ -3,7 +3,8 @@ feedback_store.py
 -----------------
 SQLite 反馈存储：记录每次建议会话，支持用户事后评分。
 
-数据库自动创建于 Claude_capstone/data/feedback.db
+数据库默认路径由 config.FEEDBACK_DB_PATH 统一定义
+（Claude_capstone/data/feedback.db），不在本文件重复维护一份路径。
 """
 
 import sqlite3
@@ -12,9 +13,6 @@ import time
 from pathlib import Path
 from typing import Optional
 from datetime import datetime
-
-
-_DB_PATH = Path(__file__).parent / "data" / "feedback.db"
 
 
 class FeedbackStore:
@@ -30,7 +28,11 @@ class FeedbackStore:
     """
 
     def __init__(self, db_path: Optional[str | Path] = None):
-        self.db_path = Path(db_path) if db_path else _DB_PATH
+        if db_path:
+            self.db_path = Path(db_path)
+        else:
+            from config import FEEDBACK_DB_PATH
+            self.db_path = Path(FEEDBACK_DB_PATH)
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
         self._init_db()
 
