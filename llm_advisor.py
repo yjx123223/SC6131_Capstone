@@ -1,5 +1,5 @@
 """
-llm_advisor.py
+llm_advisor.py 不用看，好像是单体建议版本
 --------------
 将 KG 查询结果构建为 prompt，调用 Claude API 生成资产配置建议。
 支持可选接入 KGTransformer 预测信号和 FeedbackStore 反馈存储。
