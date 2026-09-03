@@ -1,5 +1,5 @@
 """
-macro_agent.py
+macro_agent.py 好像现在用不到了，现在是用tool
 --------------
 Macro Agent：从 FRED 拉取宏观经济指标，调用 Claude 生成宏观环境判断。
 

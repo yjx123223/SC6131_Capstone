@@ -17,7 +17,7 @@ data/feedback.db
 reports/
 
 #FinDKG(知识图谱，不上传)
-knowledgeGraph/
+#knowledgeGraph/
 
 # 嵌入文件（体积大，从服务器生成）
 embeddings/
