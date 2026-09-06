@@ -210,6 +210,128 @@ class FinDKGGraph:
             "total_events": len(df),
         }
 
+    # ── 多跳推理 ─────────────────────────────────────────────────
+
+    def get_multihop_context(
+        self,
+        entity_name: str,
+        max_hops: int = 2,
+        weeks: int = 12,
+        max_width: int = 15,
+    ) -> dict:
+        """
+        从 entity_name 出发，BFS 扩展 max_hops 跳，收集间接关联路径。
+
+        用途：发现"未直接出现但通过中间节点传导"的风险与机会链，
+        例如：Fed → Raise → interest_rate → Negative_Impact_On → Tech sector → ... → Apple Inc.
+
+        Parameters
+        ----------
+        entity_name : 起点实体
+        max_hops    : 最大跳数，默认 2（3跳以上噪声过大）
+        weeks       : 时间窗口（与 query_entity 相同）
+        max_width   : 每跳最多扩展的新邻居数（防止组合爆炸）
+
+        Returns
+        -------
+        {
+            "entity": str,
+            "hops": [
+                {
+                    "hop": 1,
+                    "paths": [
+                        {"subject": str, "relation": str, "object": str, "neighbor": str}
+                    ]
+                },
+                {"hop": 2, "paths": [...]}
+            ],
+            "all_neighbors": list[str],   # 所有发现的邻居实体（去重）
+            "total_paths": int,
+        }
+        """
+        visited: set[str] = {entity_name}
+        frontier: list[str] = [entity_name]
+        hop_results: list[dict] = []
+        all_neighbors: list[str] = []
+
+        min_t = max(0, self.max_time_id - weeks + 1)
+        # 预先过滤时间窗口内的三元组，避免每次重复过滤
+        recent = self.triples[self.triples["t"] >= min_t]
+
+        for hop in range(1, max_hops + 1):
+            paths_this_hop: list[dict] = []
+            next_frontier: list[str] = []
+
+            for node in frontier:
+                eid = self.entity2id.get(node)
+                if eid is None:
+                    continue
+
+                # 找到该节点参与的所有三元组（主语或宾语）
+                mask = (recent["s"] == eid) | (recent["o"] == eid)
+                node_triples = recent[mask]
+
+                for _, row in node_triples.iterrows():
+                    subj = self.id2entity.get(row["s"], str(row["s"]))
+                    rel  = self.id2relation.get(row["r"], str(row["r"]))
+                    obj  = self.id2entity.get(row["o"], str(row["o"]))
+
+                    # 找到新邻居
+                    neighbor = obj if subj == node else subj
+                    if neighbor not in visited:
+                        paths_this_hop.append({
+                            "subject":  subj,
+                            "relation": rel,
+                            "object":   obj,
+                            "neighbor": neighbor,
+                        })
+
+            # 对本跳路径按邻居去重（每个邻居只保留一条代表路径）
+            seen_neighbors: set[str] = set()
+            deduped: list[dict] = []
+            for p in paths_this_hop:
+                if p["neighbor"] not in seen_neighbors:
+                    seen_neighbors.add(p["neighbor"])
+                    deduped.append(p)
+
+            # 限制宽度：取前 max_width 个新邻居
+            deduped = deduped[:max_width]
+            for p in deduped:
+                nb = p["neighbor"]
+                if nb not in visited:
+                    visited.add(nb)
+                    next_frontier.append(nb)
+                    all_neighbors.append(nb)
+
+            hop_results.append({"hop": hop, "paths": deduped})
+            frontier = next_frontier
+
+            if not frontier:
+                break
+
+        total_paths = sum(len(h["paths"]) for h in hop_results)
+        return {
+            "entity":        entity_name,
+            "hops":          hop_results,
+            "all_neighbors": all_neighbors,
+            "total_paths":   total_paths,
+        }
+
+    def format_multihop_for_prompt(self, multihop: dict) -> str:
+        """
+        将 get_multihop_context 的输出格式化为可插入 prompt 的文本块。
+        """
+        lines = [f"【多跳关联路径 — {multihop['entity']}】"]
+        for hop_data in multihop["hops"]:
+            hop = hop_data["hop"]
+            paths = hop_data["paths"]
+            lines.append(f"\n第 {hop} 跳（{len(paths)} 条路径）：")
+            for p in paths:
+                lines.append(f"  {p['subject']} --[{p['relation']}]--> {p['object']}")
+        lines.append(f"\n共发现 {multihop['total_paths']} 条间接关联路径，"
+                     f"涉及 {len(multihop['all_neighbors'])} 个邻居实体。")
+        return "\n".join(lines)
+
     # ── 辅助工具 ─────────────────────────────────────────────────
 
     def fuzzy_search(self, keyword: str, top_k: int = 10) -> list[str]:
@@ -246,3 +368,7 @@ if __name__ == "__main__":
     import json
     summary = g.get_impact_summary("Apple Inc.", n_recent_weeks=12)
     print(json.dumps(summary, indent=2, ensure_ascii=False))
+
+    print("\n=== 多跳关联（2跳）===")
+    multihop = g.get_multihop_context("Apple Inc.", max_hops=2, weeks=12, max_width=10)
+    print(g.format_multihop_for_prompt(multihop))

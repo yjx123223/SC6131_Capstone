@@ -20,17 +20,20 @@ def query_kg_signals(
     entity: str,
     weeks: int = 12,
     graph=None,
+    include_multihop: bool = True,
 ) -> dict:
     """
     查询目标实体在 FinDKG 知识图谱中的历史事件信号，
     包括正面影响事件（Positive_Impact_On / Raise / Invests_In）、
-    负面影响事件（Negative_Impact_On / Decrease）、其他关联事件。
+    负面影响事件（Negative_Impact_On / Decrease）、其他关联事件，
+    以及 2 跳 BFS 间接关联路径（可选）。
 
     Parameters
     ----------
-    entity : 实体名称，如 "Apple Inc."
-    weeks  : 查询最近 N 周，默认 12
-    graph  : 已有的 FinDKGGraph 实例；不传则使用 resources 共享单例
+    entity           : 实体名称，如 "Apple Inc."
+    weeks            : 查询最近 N 周，默认 12
+    graph            : 已有的 FinDKGGraph 实例；不传则使用 resources 共享单例
+    include_multihop : 是否附带 2 跳间接关联路径，默认 True
 
     Returns
     -------
@@ -39,6 +42,7 @@ def query_kg_signals(
             "entity": str, "period": str, "total_events": int,
             "positive_impacts": [...], "negative_impacts": [...],
             "other_relations": [...],
+            "multihop_context": str,   # 仅 include_multihop=True 时存在
         }
     失败：{"error": str}
     """
@@ -60,7 +64,7 @@ def query_kg_signals(
             for e in events[:6]
         ]
 
-    return {
+    result = {
         "entity":           entity,
         "period":           summary.get("period", "未知"),
         "total_events":     summary.get("total_events", 0),
@@ -68,3 +72,14 @@ def query_kg_signals(
         "negative_impacts": _fmt(summary.get("negative_impacts", [])),
         "other_relations":  _fmt(summary.get("other_relations", [])),
     }
+
+    if include_multihop:
+        try:
+            multihop = graph.get_multihop_context(
+                entity, max_hops=2, weeks=weeks, max_width=10
+            )
+            result["multihop_context"] = graph.format_multihop_for_prompt(multihop)
+        except Exception as e:
+            result["multihop_context"] = f"（多跳查询失败：{e}）"
+
+    return result
