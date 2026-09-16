@@ -69,13 +69,15 @@ ADVISOR_MODEL = "claude-haiku-4-5"
 ADVISOR_MAX_TOKENS = 2048
 
 # orchestrator.OrchestratorAgent 的 agentic loop（生成报告草稿）
+# emit_report 有 12 个字段且以中文为主，一次输出常超过 2k token；
+# 2048 时会被 max_tokens 截断导致拿不到草稿，因此调大到 8192
 ORCHESTRATOR_MODEL = "claude-haiku-4-5"
-ORCHESTRATOR_MAX_TOKENS = 2048
+ORCHESTRATOR_MAX_TOKENS = 8192
 
 # orchestrator.OrchestratorAgent 的 Critic 审查环节
 # 独立配置，方便以后换成更便宜/更严格的模型而不影响草稿生成
 CRITIC_MODEL = "claude-haiku-4-5"
-CRITIC_MAX_TOKENS = 1024
+CRITIC_MAX_TOKENS = 2048
 
 # macro_agent.MacroAgent 宏观判断
 MACRO_MODEL = "claude-haiku-4-5"

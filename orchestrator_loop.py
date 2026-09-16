@@ -283,7 +283,14 @@ SYSTEM_PROMPT = """你是一位专业的金融研究员 Agent。
 - 某个工具返回 error 时，不要反复重试同一调用；在报告对应部分写明"数据不可用"及原因，并相应降低置信度
 - 宏观信号决定整体仓位方向，公司基本面/技术面/新闻决定个股判断
 - 若各类信号方向相反（如基本面强但技术面走弱、宏观偏空），在报告中明确标注冲突并说明如何取舍
-- emit_report 的 confidence 需真实反映数据完整度与信号一致性，不要过度自信"""
+- emit_report 的 confidence 需真实反映数据完整度与信号一致性，不要过度自信
+- emit_report 每个文本字段控制在 150 字以内，key_signals 3-5 条，保持简洁"""
+
+FORCE_EMIT_PROMPT = (
+    "数据收集阶段已结束。现在请直接调用 emit_report 输出完整报告："
+    "每个文本字段控制在 150 字以内；只使用上面工具返回的数据；"
+    "数据不可用的部分写明'数据不可用'及原因。"
+)
 
 
 class OrchestratorLoop:
@@ -305,6 +312,7 @@ class OrchestratorLoop:
         self.model = model
         self.max_tokens = max_tokens
         self.fred_api_key = fred_api_key
+        self.last_stop_reason: Optional[str] = None   # 最近一次模型调用的 stop_reason，便于排查
 
     # ── 主入口 ──────────────────────────────────────────────────────
 
@@ -317,6 +325,10 @@ class OrchestratorLoop:
     ) -> tuple[Optional[dict], list]:
         """
         跑一次完整的 agentic loop，直到调用 emit_report 或耗尽 MAX_ITERATIONS。
+
+        兜底：循环结束仍未拿到草稿、但已经调用过数据工具时（输出被 max_tokens
+        截断 / 模型用纯文本作答 / 迭代耗尽），用 tool_choice 强制再调用一次
+        emit_report，避免已收集的数据白白浪费。
 
         weeks / graph 是 FinDKG 图谱工具的参数，图谱工具停用后不再使用，
         保留参数只为兼容现有调用方（恢复图谱工具时无需改签名）。
@@ -355,6 +367,8 @@ class OrchestratorLoop:
                 messages=messages,
             )
 
+            self.last_stop_reason = response.stop_reason
+
             # 将 assistant 响应加入历史
             messages.append({"role": "assistant", "content": response.content})
 
@@ -364,6 +378,13 @@ class OrchestratorLoop:
                 break
 
             if response.stop_reason != "tool_use":
+                # 典型情况是 max_tokens：输出被截断，最后的 tool_use 块不完整，
+                # 这条 assistant 消息不能留在历史里（其 tool_use 没有对应的 tool_result）
+                print(
+                    f"[Orchestrator] ⚠️  本轮以 stop_reason={response.stop_reason} 结束"
+                    + ("（输出超过 max_tokens 被截断）" if response.stop_reason == "max_tokens" else "")
+                )
+                messages.pop()
                 break
 
             # 处理所有 tool_use 块
@@ -416,7 +437,45 @@ class OrchestratorLoop:
             if emit_called:
                 break
 
+        if draft is None and tool_log:
+            draft = self._force_emit(system_prompt, messages)
+
         return draft, tool_log
+
+    def _force_emit(self, system_prompt: str, messages: list) -> Optional[dict]:
+        """用 tool_choice 强制模型基于已有对话调用一次 emit_report"""
+        print("[Orchestrator] 未拿到 emit_report，基于已收集的数据强制生成报告草稿...")
+        nudge = {"type": "text", "text": FORCE_EMIT_PROMPT}
+        msgs = list(messages)
+        if msgs and msgs[-1]["role"] == "user" and isinstance(msgs[-1]["content"], list):
+            # 最后一条是 tool_result 消息：把提示追加到同一条 user 消息里，避免连续两条 user
+            msgs[-1] = {"role": "user", "content": list(msgs[-1]["content"]) + [nudge]}
+        else:
+            msgs.append({"role": "user", "content": [nudge]})
+
+        try:
+            response = self.client.messages.create(
+                model=self.model,
+                max_tokens=self.max_tokens,
+                system=system_prompt,
+                tools=TOOL_DEFINITIONS,
+                tool_choice={"type": "tool", "name": "emit_report"},
+                messages=msgs,
+            )
+        except Exception as e:
+            print(f"[Orchestrator] 强制生成失败：{e}")
+            return None
+
+        self.last_stop_reason = response.stop_reason
+        if response.stop_reason == "max_tokens":
+            print("[Orchestrator] ⚠️  强制生成仍被 max_tokens 截断，请调大 config.ORCHESTRATOR_MAX_TOKENS")
+            return None
+        for block in response.content:
+            if block.type == "tool_use" and block.name == "emit_report":
+                print("[Orchestrator] emit_report（强制）→ 草稿已捕获")
+                return block.input
+        print("[Orchestrator] 强制生成未返回 emit_report")
+        return None
 
     # ── 工具执行器 ───────────────────────────────────────────────────
 

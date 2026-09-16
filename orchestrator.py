@@ -120,7 +120,12 @@ class OrchestratorAgent:
         )
 
         if draft is None:
-            return None, f"[Orchestrator] ⚠️ Agent 未能生成报告草稿（超出最大迭代次数或异常退出）"
+            reason = getattr(self.loop, "last_stop_reason", None)
+            return None, (
+                "[Orchestrator] ⚠️ Agent 未能生成报告草稿"
+                f"（最后一次 stop_reason={reason}；max_tokens 表示输出被截断，"
+                "可调大 config.ORCHESTRATOR_MAX_TOKENS）"
+            )
 
         # 2. Critic Agent 审查
         print(f"\n[Critic] 审查草稿报告...")

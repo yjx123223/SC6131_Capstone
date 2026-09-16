@@ -163,6 +163,15 @@ def test_failed_draft_returns_none_session(orch, store, monkeypatch, tmp_path):
     assert store.get_history("Apple Inc.") == []
 
 
+def test_failed_draft_message_includes_stop_reason(orch, monkeypatch, tmp_path):
+    _reports_dir(monkeypatch, tmp_path)
+    orch.loop = _FakeLoop(draft=None)
+    orch.loop.last_stop_reason = "max_tokens"
+
+    _, message = orch.generate_report("Apple Inc.")
+    assert "stop_reason=max_tokens" in message
+
+
 def test_revise_is_called_when_critic_rejects(orch, monkeypatch, tmp_path):
     _reports_dir(monkeypatch, tmp_path)
     revised = {**_DRAFT, "confidence": "low", "executive_summary": "修订后的摘要"}

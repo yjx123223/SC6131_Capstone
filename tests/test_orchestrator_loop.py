@@ -194,7 +194,7 @@ def test_run_stops_on_end_turn_without_emit_report():
     assert tool_log == []
 
 
-def test_run_respects_max_iterations_when_model_never_emits():
+def test_run_respects_max_iterations_then_forces_emit():
     # 每一轮都调用一个非 emit_report 的工具（未配置 FRED key，返回 error），永远不结束
     responses = [
         _FakeResponse(
@@ -203,13 +203,15 @@ def test_run_respects_max_iterations_when_model_never_emits():
         )
         for i in range(OrchestratorLoop.MAX_ITERATIONS)
     ]
+    responses.append(_FakeResponse(content=[_FakeToolUseBlock("emit_report", _EMIT_INPUT, "forced")], stop_reason="tool_use"))
     client = _FakeClient(responses)
     loop = OrchestratorLoop(client, model="m", max_tokens=100)
 
     draft, tool_log = loop.run("Apple Inc.")
 
-    assert draft is None
-    assert client.messages.call_count == OrchestratorLoop.MAX_ITERATIONS
+    assert draft == _EMIT_INPUT
+    assert client.messages.call_count == OrchestratorLoop.MAX_ITERATIONS + 1
+    assert client.messages.calls[-1]["tool_choice"] == {"type": "tool", "name": "emit_report"}
 
 
 def test_query_macro_tool_uses_configured_fred_key():
@@ -272,3 +274,96 @@ def test_revise_falls_back_to_original_draft():
 
     loop = OrchestratorLoop(_FakeClient([RuntimeError("API down")]), model="m", max_tokens=100)
     assert loop.revise("Apple Inc.", _EMIT_INPUT, {}, []) == _EMIT_INPUT
+
+
+# ── max_tokens 截断 / 强制 emit 兜底 ─────────────────────────────
+
+def _truncated_emit_response():
+    """模拟 emit_report 输出到一半被 max_tokens 截断"""
+    return _FakeResponse(
+        content=[_FakeToolUseBlock("emit_report", {"executive_summary": "写到一半"}, "cut")],
+        stop_reason="max_tokens",
+    )
+
+
+def test_max_tokens_truncation_falls_back_to_forced_emit(fake_tools):
+    responses = [
+        _FakeResponse(content=[_FakeToolUseBlock("query_market_data", {"entity": "AAPL"}, "t1")], stop_reason="tool_use"),
+        _truncated_emit_response(),
+        _FakeResponse(content=[_FakeToolUseBlock("emit_report", _EMIT_INPUT, "forced")], stop_reason="tool_use"),
+    ]
+    client = _FakeClient(responses)
+    loop = OrchestratorLoop(client, model="m", max_tokens=100)
+
+    draft, tool_log = loop.run("AAPL")
+
+    assert draft == _EMIT_INPUT                         # 用的是强制调用的完整草稿，不是截断的半截
+    assert len(tool_log) == 1
+    forced = client.messages.calls[-1]
+    assert forced["tool_choice"] == {"type": "tool", "name": "emit_report"}
+
+    msgs = forced["messages"]
+    # 截断的 assistant 消息已移除：最后一条是 tool_result + 提示合并后的 user 消息
+    assert [m["role"] for m in msgs] == ["user", "assistant", "user"]
+    last = msgs[-1]["content"]
+    assert last[0]["type"] == "tool_result" and last[0]["tool_use_id"] == "t1"
+    assert last[-1]["type"] == "text" and "emit_report" in last[-1]["text"]
+    assert not any(b.id == "cut" for m in msgs if m["role"] == "assistant"
+                   for b in m["content"] if hasattr(b, "id"))
+
+
+def test_end_turn_with_collected_data_falls_back_to_forced_emit(fake_tools):
+    text_block = type("T", (), {"type": "text", "text": "这是我的分析……"})()
+    responses = [
+        _FakeResponse(content=[_FakeToolUseBlock("query_market_data", {"entity": "AAPL"}, "t1")], stop_reason="tool_use"),
+        _FakeResponse(content=[text_block], stop_reason="end_turn"),
+        _FakeResponse(content=[_FakeToolUseBlock("emit_report", _EMIT_INPUT, "forced")], stop_reason="tool_use"),
+    ]
+    client = _FakeClient(responses)
+    draft, _ = OrchestratorLoop(client, model="m", max_tokens=100).run("AAPL")
+
+    assert draft == _EMIT_INPUT
+    msgs = client.messages.calls[-1]["messages"]
+    # 最后一条是 assistant 文本 → 提示作为新的 user 消息追加
+    assert [m["role"] for m in msgs] == ["user", "assistant", "user", "assistant", "user"]
+    assert msgs[-1]["content"][0]["type"] == "text"
+
+
+def test_forced_emit_also_truncated_returns_none(fake_tools):
+    responses = [
+        _FakeResponse(content=[_FakeToolUseBlock("query_market_data", {"entity": "AAPL"}, "t1")], stop_reason="tool_use"),
+        _truncated_emit_response(),
+        _truncated_emit_response(),
+    ]
+    loop = OrchestratorLoop(_FakeClient(responses), model="m", max_tokens=100)
+
+    draft, _ = loop.run("AAPL")
+
+    assert draft is None
+    assert loop.last_stop_reason == "max_tokens"
+
+
+def test_forced_emit_api_error_returns_none(fake_tools):
+    responses = [
+        _FakeResponse(content=[_FakeToolUseBlock("query_market_data", {"entity": "AAPL"}, "t1")], stop_reason="tool_use"),
+        _truncated_emit_response(),
+        RuntimeError("overloaded"),
+    ]
+    draft, _ = OrchestratorLoop(_FakeClient(responses), model="m", max_tokens=100).run("AAPL")
+    assert draft is None
+
+
+def test_no_forced_emit_when_no_data_collected():
+    client = _FakeClient([_truncated_emit_response()])
+    loop = OrchestratorLoop(client, model="m", max_tokens=100)
+
+    draft, tool_log = loop.run("AAPL")
+
+    assert draft is None and tool_log == []
+    assert client.messages.call_count == 1
+    assert loop.last_stop_reason == "max_tokens"
+
+
+def test_orchestrator_default_max_tokens_fits_long_report():
+    import config
+    assert config.ORCHESTRATOR_MAX_TOKENS >= 8192
