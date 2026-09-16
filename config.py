@@ -106,6 +106,18 @@ SEC_DEFAULT_FORMS = ("10-K", "10-Q", "8-K", "20-F", "6-K")
 HTTP_TIMEOUT_SECONDS = 20
 
 
+# ── 实时知识图谱（live_kg/ 与 tools/kg_live_tools.py）──────────────
+KG_SEED_PATH = Path(__file__).parent / "live_kg" / "seed_relations.csv"   # 人工种子关系
+KG_MAX_HOP1 = 5                # 1 跳邻居最多几家（供应商 > 客户 > 合作 > 竞争 的优先级截断）
+KG_MAX_HOP2 = 3                # 2 跳（供应商的供应商）最多几家
+KG_HOP_DECAY = {1: 1.0, 2: 0.5}   # 风险分数的跳数衰减
+KG_NEWS_PER_COMPANY = 5        # 每家邻居公司拉取的新闻条数
+KG_EXTRACT_MODEL = "claude-haiku-4-5"
+KG_EXTRACT_MAX_TOKENS = 2048
+KG_MAX_WORKERS = 6             # 邻居新闻拉取 / 事件抽取的并行线程数
+KG_MAX_EVENTS_PER_COMPANY_IN_DIAGRAM = 3   # Mermaid 图中每家公司最多画几个事件
+
+
 # ── 报告存储 ──────────────────────────────────────────────────────
 REPORTS_DIR = Path(__file__).parent / "reports"   # Orchestrator 输出的 Markdown 报告目录
 
