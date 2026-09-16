@@ -43,7 +43,12 @@ _ENTITY_TO_TICKER = {
     "qualcomm": "QCOM",
     "broadcom": "AVGO",
     "taiwan semiconductor manufacturing": "TSM",
+    "taiwan semiconductor": "TSM",
     "tsmc": "TSM",
+    "asml": "ASML",
+    "amazon web services": "AMZN",
+    "aws": "AMZN",
+    "ford": "F",
     "goldman sachs": "GS",
     "jpmorgan chase": "JPM",
     "jpmorgan": "JPM",
@@ -81,7 +86,7 @@ _ENTITY_TO_TICKER = {
 # 规范化时去掉的公司后缀（只去掉末尾的，避免误删名称中间的词）
 _SUFFIXES = {
     "inc", "incorporated", "corp", "corporation", "co", "company",
-    "ltd", "limited", "plc", "group", "holdings", "the", "nv", "sa", "ag",
+    "ltd", "limited", "plc", "group", "holding", "holdings", "the", "nv", "sa", "ag",
 }
 
 _TICKER_PATTERN = re.compile(r"^[A-Z]{1,5}([.\-][A-Z]{1,2})?$")
