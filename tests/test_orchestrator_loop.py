@@ -195,10 +195,10 @@ def test_run_stops_on_end_turn_without_emit_report():
 
 
 def test_run_respects_max_iterations_when_model_never_emits():
-    # 每一轮都调用一个无关工具，永远不调 emit_report
+    # 每一轮都调用一个非 emit_report 的工具（未配置 FRED key，返回 error），永远不结束
     responses = [
         _FakeResponse(
-            content=[_FakeToolUseBlock("get_feedback_stats", {}, f"tool_{i}")],
+            content=[_FakeToolUseBlock("query_macro", {}, f"tool_{i}")],
             stop_reason="tool_use",
         )
         for i in range(OrchestratorLoop.MAX_ITERATIONS)
@@ -218,17 +218,18 @@ def test_query_macro_tool_uses_configured_fred_key():
     assert "error" in result  # 没配置 FRED_API_KEY，应该报错而不是抛异常
 
 
-def test_feedback_stats_tool_without_store_returns_error():
+@pytest.mark.parametrize("disabled_tool", ["query_kg_signals", "get_feedback_stats"])
+def test_disabled_tools_return_unknown_tool_error(disabled_tool):
     loop = OrchestratorLoop(_FakeClient([]), model="m", max_tokens=100)
-    result = loop._tool_feedback_stats({}, context={})
-    assert "error" in result
+    result = loop._execute_tool(disabled_tool, {}, context={"feedback_store": object()})
+    assert "未知工具" in result["error"]
 
 
-def test_tool_definitions_expose_realtime_tools_without_kg():
+def test_tool_definitions_expose_realtime_tools_only():
     names = {t["name"] for t in TOOL_DEFINITIONS}
     assert names == {
         "query_market_data", "query_news", "query_sec_filings",
-        "query_macro", "get_feedback_stats", "emit_report",
+        "query_macro", "emit_report",
     }
 
 

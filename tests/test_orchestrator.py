@@ -187,6 +187,31 @@ def test_revise_is_called_when_critic_rejects(orch, monkeypatch, tmp_path):
     assert "置信度过高" in report_md
 
 
+def test_generate_report_applies_compliance_confidence_cap(orch, store, monkeypatch, tmp_path):
+    """宏观数据失败（_TOOL_LOG 中 query_macro 报错）→ 置信度最高 medium；原稿 high 应被下调"""
+    _reports_dir(monkeypatch, tmp_path)
+    orch.loop = _FakeLoop(draft={**_DRAFT, "confidence": "high"})
+
+    session_id, report_md = orch.generate_report("Apple Inc.", feedback_store=store)
+
+    assert "## 合规检查" in report_md
+    assert "原为高，已按审查/合规规则下调" in report_md
+    assert "## 免责声明" in report_md
+    snap = store.get_history("Apple Inc.")[0]["kg_summary"]
+    assert snap["confidence"] == "medium"
+    assert snap["confidence_original"] == "high"
+    assert isinstance(snap["compliance_score"], int)
+    assert "is_compliant" in snap
+
+
+def test_saved_report_matches_returned_markdown(orch, monkeypatch, tmp_path):
+    _reports_dir(monkeypatch, tmp_path)
+    _, report_md = orch.generate_report("Apple Inc.")
+    saved = list((tmp_path / "reports").glob("Apple_Inc*.md"))
+    assert len(saved) == 1
+    assert saved[0].read_text(encoding="utf-8") == report_md
+
+
 def test_extract_signal_snapshot_collects_key_fields():
     snap = OrchestratorAgent._extract_signal_snapshot(_TOOL_LOG, _DRAFT)
 

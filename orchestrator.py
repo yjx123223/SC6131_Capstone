@@ -15,6 +15,7 @@ Orchestrator Agent（改法 A：Tool Use 架构）—— 协调层
 模块划分（本文件只做编排，具体实现拆到各自模块）：
   - orchestrator_loop.OrchestratorLoop  agentic tool-use 循环 + 修订
   - critic.CriticAgent                  独立审查草稿
+  - compliance.ComplianceChecker        确定性合规检查 + 置信度兜底
   - report_renderer.render_report       草稿 → Markdown（纯函数）
   - report_store.save_report            保存 Markdown 到本地文件
   - tools/*  各工具的实际业务逻辑
@@ -22,7 +23,7 @@ Orchestrator Agent（改法 A：Tool Use 架构）—— 协调层
 
 OrchestratorAgent 只负责把上面这些部件组装起来，按顺序跑一遍：
   loop.run() → critic.review() → (可选) loop.revise() →
-  render_report() → save_report()
+  compliance.check() → render_report() → ensure_disclaimer() → save_report()
 """
 
 from datetime import datetime
@@ -33,6 +34,7 @@ import anthropic
 import config
 from orchestrator_loop import OrchestratorLoop
 from critic import CriticAgent
+from compliance import ComplianceChecker, ensure_disclaimer
 from report_renderer import render_report
 from report_store import save_report
 
@@ -78,6 +80,7 @@ class OrchestratorAgent:
             fred_api_key=config.get_fred_api_key(fred_api_key),
         )
         self.critic = CriticAgent(self.client, critic_model, critic_max_tokens)
+        self.compliance = ComplianceChecker()
 
     # ── 主入口 ──────────────────────────────────────────────────────
 
@@ -90,8 +93,8 @@ class OrchestratorAgent:
     ) -> tuple[Optional[int], str]:
         """
         完整 Multi-Agent 流程：
-          Orchestrator loop (tool use) → Critic 审查 → (可选)修订 → 渲染报告
-          → 保存 → 写入反馈存储
+          Orchestrator loop (tool use) → Critic 审查 → (可选)修订
+          → 合规检查与置信度兜底 → 渲染报告 → 保存 → 写入反馈存储
 
         Parameters
         ----------
@@ -130,24 +133,40 @@ class OrchestratorAgent:
         else:
             print(f"[Critic] 审查通过，无信号冲突")
 
+        original_confidence = draft.get("confidence")
+
         # 3. 若 Critic 不通过，进行一轮修订
         if not approved and critique.get("suggestions"):
             print(f"[Orchestrator] 根据 Critic 建议修订报告...")
             draft = self.loop.revise(entity, draft, critique, tool_log)
 
-        # 4. 渲染为 Markdown
-        report_md = render_report(entity, draft, critique, tool_log, self.model)
+        # 4. 合规检查 + 置信度兜底（确定性规则，不调用 LLM）
+        compliance = self.compliance.check(draft, critique, tool_log, original_confidence)
+        draft = compliance["draft"]
+        conf = compliance["confidence"]
+        if conf["original"] != conf["final"]:
+            print(f"[Compliance] 置信度 {conf['original']} → {conf['final']}：{'；'.join(conf['reasons'])}")
+        print(
+            f"[Compliance] {'通过' if compliance['is_compliant'] else '未通过'}，"
+            f"评分 {compliance['score']}/100，问题 {len(compliance['issues'])} 条"
+        )
 
-        # 5. 保存到本地
+        # 5. 渲染为 Markdown（兜底确认免责声明存在）
+        report_md = render_report(entity, draft, critique, tool_log, self.model, compliance=compliance)
+        report_md, added = ensure_disclaimer(report_md)
+        if added:
+            print("[Compliance] ⚠️ 报告缺少免责声明，已自动补充")
+
+        # 6. 保存到本地
         save_report(entity, report_md)
 
-        # 6. 写入反馈存储（可选），供用户事后评分
+        # 7. 写入反馈存储（可选），供用户事后评分
         session_id = None
         if feedback_store is not None:
             try:
                 session_id = feedback_store.log_advice(
                     entity=entity,
-                    kg_summary=self._extract_signal_snapshot(tool_log, draft),
+                    kg_summary=self._extract_signal_snapshot(tool_log, draft, compliance),
                     advice_text=report_md,
                     model=self.model,
                     time_window=weeks,
@@ -159,7 +178,7 @@ class OrchestratorAgent:
         return session_id, report_md
 
     @staticmethod
-    def _extract_signal_snapshot(tool_log: list, draft: dict) -> dict:
+    def _extract_signal_snapshot(tool_log: list, draft: dict, compliance: Optional[dict] = None) -> dict:
         """
         把本次建议依据的数据快照存档，供事后评分时回看。
 
@@ -177,6 +196,10 @@ class OrchestratorAgent:
             "tools_ok": [],
             "tools_failed": [],
         }
+        if compliance:
+            snapshot["compliance_score"] = compliance.get("score")
+            snapshot["is_compliant"] = compliance.get("is_compliant")
+            snapshot["confidence_original"] = compliance.get("confidence", {}).get("original")
         for entry in tool_log:
             tool = entry.get("tool")
             result = entry.get("result") or {}

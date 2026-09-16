@@ -5,7 +5,7 @@ OrchestratorLoop：Orchestrator Agent 的 agentic tool-use 循环。
 
 职责：
   - 持有工具的 Anthropic tool_use schema 定义（实时行情 / 新闻 / SEC 申报 /
-    宏观 / 历史评分 / emit_report）
+    宏观 / emit_report）
   - 驱动"Claude 自主决定调用哪些工具、调用顺序和参数"的多轮循环，
     直到调用 emit_report 结束
   - 把工具调用分发到 tools/ 下的各工具模块（实际业务逻辑在那边，
@@ -19,6 +19,9 @@ feat/market 变更：
     存在时间错位。tools/kg_tools.py 本身保留未删除，需要恢复时取消下方
     注释即可
   - emit_report 字段改为基本面 / 技术面 / 新闻舆情 / 监管申报（见 report_fields.py）
+  - get_feedback_stats 已注释停用：它按 KG 关系类型聚合历史评分，图谱工具
+    停用后新报告不再含关系类型，统计结果只会反映旧的 KG 信号，容易误导模型。
+    评分仍照常写入 FeedbackStore，待按新维度重新设计统计后再接回
 
 不包含：Critic 审查逻辑（见 critic.CriticAgent）、报告渲染
 （见 report_renderer.render_report）、报告保存（见 report_store.save_report）。
@@ -32,7 +35,8 @@ from typing import Optional
 import config
 from report_fields import CONFIDENCE_ENUM, RECOMMENDATION_ENUM, SENTIMENT_ENUM, format_draft
 from tool_log_summary import summarize_tool_log
-from tools import macro_tools, feedback_tools, market_tools, news_tools, sec_tools
+from tools import macro_tools, market_tools, news_tools, sec_tools
+# from tools import feedback_tools   # 历史评分工具已停用，见模块说明
 # from tools import kg_tools   # FinDKG 图谱工具已停用，见模块说明
 
 
@@ -154,27 +158,28 @@ TOOL_DEFINITIONS = [
             "required": [],
         },
     },
-    {
-        "name": "get_feedback_stats",
-        "description": (
-            "获取历史建议的用户评分统计，了解哪类 KG 信号关系类型"
-            "在过去的建议中表现更好（平均评分更高）。"
-            "可按具体关系类型过滤，或不传参数获取全部统计。"
-        ),
-        "input_schema": {
-            "type": "object",
-            "properties": {
-                "relation_type": {
-                    "type": "string",
-                    "description": (
-                        "关系类型，如 'Positive_Impact_On'，"
-                        "留空则返回所有关系类型的统计"
-                    ),
-                },
-            },
-            "required": [],
-        },
-    },
+    # ── 历史评分工具（已停用：按 KG 关系类型统计，图谱停用后会误导模型）──
+    # {
+    #     "name": "get_feedback_stats",
+    #     "description": (
+    #         "获取历史建议的用户评分统计，了解哪类 KG 信号关系类型"
+    #         "在过去的建议中表现更好（平均评分更高）。"
+    #         "可按具体关系类型过滤，或不传参数获取全部统计。"
+    #     ),
+    #     "input_schema": {
+    #         "type": "object",
+    #         "properties": {
+    #             "relation_type": {
+    #                 "type": "string",
+    #                 "description": (
+    #                     "关系类型，如 'Positive_Impact_On'，"
+    #                     "留空则返回所有关系类型的统计"
+    #                 ),
+    #             },
+    #         },
+    #         "required": [],
+    #     },
+    # },
     {
         "name": "emit_report",
         "description": (
@@ -265,7 +270,6 @@ SYSTEM_PROMPT = """你是一位专业的金融研究员 Agent。
 - query_news：近两周的公司新闻
 - query_sec_filings：近一年的 SEC 监管申报（10-K / 10-Q / 8-K 等）
 - query_macro：当前宏观经济指标（利率、通胀、失业率、VIX）
-- get_feedback_stats：历史建议的用户评分统计（可选）
 
 工作流程建议（你可以根据情况调整，可以在同一轮并行调用多个工具）：
 1. 查询市场数据，掌握基本面、估值与技术面
@@ -429,7 +433,7 @@ class OrchestratorLoop:
             "query_news":         lambda: self._tool_query_news(tool_input),
             "query_sec_filings":  lambda: self._tool_query_sec(tool_input),
             "query_macro":        lambda: self._tool_query_macro(tool_input),
-            "get_feedback_stats": lambda: self._tool_feedback_stats(tool_input, context),
+            # "get_feedback_stats": lambda: self._tool_feedback_stats(tool_input, context),   # 已停用
         }
         handler = handlers.get(name)
         if handler is None:
@@ -473,14 +477,15 @@ class OrchestratorLoop:
     def _tool_query_macro(self, tool_input: dict) -> dict:
         return macro_tools.query_macro(self.fred_api_key, indicators=tool_input.get("indicators"))
 
-    def _tool_feedback_stats(self, tool_input: dict, context: dict) -> dict:
-        store = context.get("feedback_store")
-        if store is None:
-            return {"error": "未配置 FeedbackStore，历史评分不可用"}
-
-        return feedback_tools.get_feedback_stats(
-            relation_type=tool_input.get("relation_type", ""), store=store
-        )
+    # 历史评分工具已停用（按 KG 关系类型统计，图谱停用后会误导模型）
+    # def _tool_feedback_stats(self, tool_input: dict, context: dict) -> dict:
+    #     store = context.get("feedback_store")
+    #     if store is None:
+    #         return {"error": "未配置 FeedbackStore，历史评分不可用"}
+    #
+    #     return feedback_tools.get_feedback_stats(
+    #         relation_type=tool_input.get("relation_type", ""), store=store
+    #     )
 
     # ── 修订（以 Orchestrator/金融研究员人格进行）────────────────────
 

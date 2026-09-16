@@ -116,3 +116,36 @@ def test_render_report_unknown_sentiment_placeholder():
     draft.pop("news_sentiment")
     md = render_report("Apple Inc.", draft, critique={}, tool_log=[], model_name="m")
     assert "整体情绪：未标注" in md
+
+
+def test_render_report_always_contains_disclaimer():
+    md = render_report("Apple Inc.", _DRAFT, critique={}, tool_log=[], model_name="m")
+    assert "## 免责声明 / Disclaimer" in md
+
+
+def test_render_report_without_compliance_has_no_compliance_section():
+    md = render_report("Apple Inc.", _DRAFT, critique={}, tool_log=[], model_name="m")
+    assert "## 合规检查" not in md
+
+
+def test_render_report_shows_compliance_and_confidence_downgrade():
+    compliance = {
+        "is_compliant": False,
+        "score": 70,
+        "issues": [{"severity": "critical", "category": "regulatory",
+                    "description": "出现违规表述「稳赚」| 测试", "field": "risk_warnings"}],
+        "confidence": {"original": "high", "final": "medium", "reasons": ["x"]},
+    }
+    md = render_report("Apple Inc.", _DRAFT, critique={}, tool_log=[], model_name="m", compliance=compliance)
+
+    assert "## 合规检查" in md
+    assert "⚠️ 未通过" in md and "70/100" in md
+    assert "🔴 critical | regulatory | risk_warnings |" in md
+    assert "稳赚」\\| 测试" in md                  # 表格内的 | 需转义
+    assert "置信度：中 ⚠️（原为高，已按审查/合规规则下调）" in md
+
+
+def test_render_compliance_without_issues():
+    from report_renderer import render_compliance
+    md = render_compliance({"is_compliant": True, "score": 100, "issues": []})
+    assert "✅ 通过" in md and "未发现问题" in md

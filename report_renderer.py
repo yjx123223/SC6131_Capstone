@@ -17,6 +17,9 @@ feat/market：正文改为基本面 / 技术面 / 新闻舆情 / 监管申报四
 
 import json
 from datetime import datetime
+from typing import Optional
+
+from compliance import disclaimer_block
 
 
 def render_report(
@@ -25,6 +28,7 @@ def render_report(
     critique: dict,
     tool_log: list,
     model_name: str,
+    compliance: Optional[dict] = None,
 ) -> str:
     """
     将 emit_report dict 渲染为 Markdown 格式报告。
@@ -36,6 +40,8 @@ def render_report(
     critique   : CriticAgent.review() 的审查结果
     tool_log   : OrchestratorLoop 的工具调用记录（用于展示调用轨迹）
     model_name : 用于报告头部展示的模型名（Orchestrator 使用的模型）
+    compliance : ComplianceChecker.check() 的结果（可选）；传入时展示合规检查
+                 段落，并在头部注明置信度是否被规则下调
     """
     recommendation = draft.get("recommendation", "观望")
     confidence     = draft.get("confidence", "low")
@@ -60,6 +66,14 @@ def render_report(
         )
 
     sources_md = render_data_sources(tool_log)
+    compliance_md = render_compliance(compliance) if compliance else ""
+
+    conf_note = ""
+    if compliance:
+        c = compliance.get("confidence", {})
+        if c.get("original") and c.get("final") and c["original"] != c["final"]:
+            orig_zh = {"high": "高", "medium": "中", "low": "低"}.get(c["original"], c["original"])
+            conf_note = f"（原为{orig_zh}，已按审查/合规规则下调）"
     sentiment_zh = {
         "positive": "偏正面", "neutral": "中性", "negative": "偏负面", "unavailable": "数据不可用",
     }.get(draft.get("news_sentiment", ""), draft.get("news_sentiment", "") or "未标注")
@@ -74,7 +88,7 @@ def render_report(
 
     return f"""# 投资建议报告：{entity}
 
-> 生成时间：{now} | 模型：{model_name} | 配置建议：**{recommendation}** | 置信度：{conf_zh}
+> 生成时间：{now} | 模型：{model_name} | 配置建议：**{recommendation}** | 置信度：{conf_zh}{conf_note}
 
 ---
 
@@ -138,7 +152,7 @@ def render_report(
 {sources_md}
 
 ---
-
+{compliance_md}
 <details>
 <summary>Agent 工具调用轨迹（Tool Call Trajectory）</summary>
 
@@ -148,7 +162,8 @@ def render_report(
 
 ---
 
-*本报告由 Multi-Agent 系统自动生成（Orchestrator tool use + Critic reflection），仅供参考，不构成投资建议。*
+{disclaimer_block(now)}
+*本报告由 Multi-Agent 系统自动生成（Orchestrator tool use + Critic reflection + 规则合规检查），仅供参考，不构成投资建议。*
 """
 
 
@@ -186,3 +201,31 @@ def render_data_sources(tool_log: list) -> str:
             span = f"，指标日期 {dates[0]} ~ {dates[-1]}" if dates else ""
             lines.append(f"- 宏观指标：FRED（美联储经济数据库）{span}")
     return "\n".join(lines) or "（本次未调用任何数据工具）"
+
+
+_SEVERITY_ICON = {"critical": "🔴", "warning": "🟡", "info": "🔵"}
+
+
+def render_compliance(compliance: dict) -> str:
+    """合规检查段落（纯函数）"""
+    status = "✅ 通过" if compliance.get("is_compliant") else "⚠️ 未通过"
+    lines = [
+        "",
+        "## 合规检查",
+        "",
+        f"**状态**：{status} | **评分**：{compliance.get('score', 0)}/100",
+        "",
+    ]
+    issues = compliance.get("issues", [])
+    if issues:
+        lines += ["| 级别 | 类别 | 位置 | 说明 |", "|---|---|---|---|"]
+        for i in issues:
+            desc = str(i.get("description", "")).replace("|", "\\|")
+            lines.append(
+                f"| {_SEVERITY_ICON.get(i.get('severity'), '')} {i.get('severity')} "
+                f"| {i.get('category')} | {i.get('field') or '-'} | {desc} |"
+            )
+    else:
+        lines.append("未发现问题。")
+    lines += ["", "---", ""]
+    return "\n".join(lines)
