@@ -5,7 +5,7 @@ OrchestratorLoop：Orchestrator Agent 的 agentic tool-use 循环。
 
 职责：
   - 持有工具的 Anthropic tool_use schema 定义（实时行情 / 新闻 / SEC 申报 /
-    宏观 / emit_report）
+    宏观 / 知识图谱 / emit_report）
   - 驱动"Claude 自主决定调用哪些工具、调用顺序和参数"的多轮循环，
     直到调用 emit_report 结束
   - 把工具调用分发到 tools/ 下的各工具模块（实际业务逻辑在那边，
@@ -19,6 +19,9 @@ feat/market 变更：
     存在时间错位。tools/kg_tools.py 本身保留未删除，需要恢复时取消下方
     注释即可
   - emit_report 字段改为基本面 / 技术面 / 新闻舆情 / 监管申报（见 report_fields.py）
+  - 新增 query_company_graph：现场构建实时知识图谱并做风险传导推理
+    （live_kg/ + tools/kg_live_tools.py）。工具结果中以 "_" 开头的字段
+    （完整图谱等）只保留在 tool_log 里，发给模型前剔除
   - get_feedback_stats 已注释停用：它按 KG 关系类型聚合历史评分，图谱工具
     停用后新报告不再含关系类型，统计结果只会反映旧的 KG 信号，容易误导模型。
     评分仍照常写入 FeedbackStore，待按新维度重新设计统计后再接回
@@ -35,7 +38,8 @@ from typing import Optional
 import config
 from report_fields import CONFIDENCE_ENUM, RECOMMENDATION_ENUM, SENTIMENT_ENUM, format_draft
 from tool_log_summary import summarize_tool_log
-from tools import macro_tools, market_tools, news_tools, sec_tools
+from tools import macro_tools, market_tools, news_tools, sec_tools, kg_live_tools
+from live_kg.event_extractor import EventExtractor
 # from tools import feedback_tools   # 历史评分工具已停用，见模块说明
 # from tools import kg_tools   # FinDKG 图谱工具已停用，见模块说明
 
@@ -136,6 +140,25 @@ TOOL_DEFINITIONS = [
         },
     },
     {
+        "name": "query_company_graph",
+        "description": (
+            "为目标公司现场构建实时知识图谱：基于人工整理的供应链/竞争/合作关系找出相关公司"
+            "（1 跳邻居 + 2 跳上游供应商），抽取这些公司近期新闻中的事件（编号 E1、E2…），"
+            "并按规则推理对目标公司的风险传导（如供应商的负面事件 → 供应风险）。"
+            "会复用本轮已获取的目标公司行情、新闻与申报数据，建议在这些工具之后调用。"
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "entity": {
+                    "type": "string",
+                    "description": "公司名或股票代码",
+                },
+            },
+            "required": ["entity"],
+        },
+    },
+    {
         "name": "query_macro",
         "description": (
             "从 FRED（美联储经济数据库）获取最新宏观经济指标，"
@@ -219,6 +242,15 @@ TOOL_DEFINITIONS = [
                     "type": "string",
                     "description": "近期 SEC 申报要点（有哪些申报、时间、可能含义）",
                 },
+                "supply_chain_analysis": {
+                    "type": "string",
+                    "description": "基于知识图谱的产业链与竞争格局分析（引用事件编号与传导路径）；图谱不可用时写明原因",
+                },
+                "cited_event_ids": {
+                    "type": "array",
+                    "items": {"type": "string"},
+                    "description": "报告中引用的知识图谱事件编号，如 ['E1', 'E3']；未引用时为空数组",
+                },
                 "recommendation": {
                     "type": "string",
                     "enum": RECOMMENDATION_ENUM,
@@ -251,6 +283,8 @@ TOOL_DEFINITIONS = [
                 "news_sentiment_analysis",
                 "news_sentiment",
                 "filings_analysis",
+                "supply_chain_analysis",
+                "cited_event_ids",
                 "recommendation",
                 "recommendation_rationale",
                 "risk_warnings",
@@ -270,13 +304,15 @@ SYSTEM_PROMPT = """你是一位专业的金融研究员 Agent。
 - query_news：近两周的公司新闻
 - query_sec_filings：近一年的 SEC 监管申报（10-K / 10-Q / 8-K 等）
 - query_macro：当前宏观经济指标（利率、通胀、失业率、VIX）
+- query_company_graph：实时知识图谱，发现供应商/客户/竞争对手/合作伙伴上的事件及其对目标公司的风险传导
 
 工作流程建议（你可以根据情况调整，可以在同一轮并行调用多个工具）：
 1. 查询市场数据，掌握基本面、估值与技术面
 2. 查询近期新闻，自行判断新闻情绪，并关注重大事件
 3. 查询 SEC 申报，确认近期财报 / 重大事项披露
 4. 查询宏观指标，判断整体市场环境
-5. 信息足够时，调用 emit_report 输出结构化报告
+5. 以上数据收集完后，调用 query_company_graph 分析产业链上下游与竞争格局
+6. 信息足够时，调用 emit_report 输出结构化报告
 
 注意：
 - 只使用工具返回的数据，引用数值时注明数据截至日期；不要编造数字、新闻或申报
@@ -284,6 +320,8 @@ SYSTEM_PROMPT = """你是一位专业的金融研究员 Agent。
 - 宏观信号决定整体仓位方向，公司基本面/技术面/新闻决定个股判断
 - 若各类信号方向相反（如基本面强但技术面走弱、宏观偏空），在报告中明确标注冲突并说明如何取舍
 - emit_report 的 confidence 需真实反映数据完整度与信号一致性，不要过度自信
+- 引用知识图谱中的事件时写明事件编号（如 E3），并把引用过的编号填入 cited_event_ids；不要编造编号
+- 图谱中的公司间关系来自人工整理的种子数据，传导风险是基于规则的推断，表述时注意分寸
 - emit_report 每个文本字段控制在 150 字以内，key_signals 3-5 条，保持简洁"""
 
 FORCE_EMIT_PROMPT = (
@@ -291,6 +329,11 @@ FORCE_EMIT_PROMPT = (
     "每个文本字段控制在 150 字以内；只使用上面工具返回的数据；"
     "数据不可用的部分写明'数据不可用'及原因。"
 )
+
+
+def llm_view(result: dict) -> dict:
+    """发给模型的工具结果：剔除以 "_" 开头的内部字段（完整图谱等）"""
+    return {k: v for k, v in result.items() if not str(k).startswith("_")}
 
 
 class OrchestratorLoop:
@@ -313,6 +356,7 @@ class OrchestratorLoop:
         self.max_tokens = max_tokens
         self.fred_api_key = fred_api_key
         self.last_stop_reason: Optional[str] = None   # 最近一次模型调用的 stop_reason，便于排查
+        self.extractor = EventExtractor(client)        # 知识图谱事件抽取与 Orchestrator 共用 client
 
     # ── 主入口 ──────────────────────────────────────────────────────
 
@@ -337,10 +381,12 @@ class OrchestratorLoop:
         -------
         (draft_dict_or_None, tool_call_log)
         """
+        tool_log = []
         context = {
             "graph": graph,
             "feedback_store": feedback_store,
             "default_weeks": weeks,
+            "tool_log": tool_log,     # 供知识图谱工具复用本轮已获取的数据
         }
 
         print(f"\n[Orchestrator] 启动 Agent Loop — 目标实体：{entity}")
@@ -353,7 +399,6 @@ class OrchestratorLoop:
         )
 
         messages = [{"role": "user", "content": initial_message}]
-        tool_log = []
         draft = None
 
         for iteration in range(self.MAX_ITERATIONS):
@@ -417,7 +462,7 @@ class OrchestratorLoop:
                     })
                     tool_results.append({
                         "_id": tool_id,
-                        "_content": json.dumps(result, ensure_ascii=False, default=str),
+                        "_content": json.dumps(llm_view(result), ensure_ascii=False, default=str),
                         "_is_error": "error" in result,
                     })
 
@@ -492,6 +537,7 @@ class OrchestratorLoop:
             "query_news":         lambda: self._tool_query_news(tool_input),
             "query_sec_filings":  lambda: self._tool_query_sec(tool_input),
             "query_macro":        lambda: self._tool_query_macro(tool_input),
+            "query_company_graph": lambda: self._tool_query_graph(tool_input, context),
             # "get_feedback_stats": lambda: self._tool_feedback_stats(tool_input, context),   # 已停用
         }
         handler = handlers.get(name)
@@ -531,6 +577,19 @@ class OrchestratorLoop:
         return sec_tools.query_sec_filings(
             tool_input.get("entity", ""),
             form_types=tool_input.get("form_types"),
+        )
+
+    def _tool_query_graph(self, tool_input: dict, context: dict) -> dict:
+        prior = {}
+        for entry in context.get("tool_log", []):      # 后出现的成功结果覆盖先前的
+            result = entry.get("result") or {}
+            if entry.get("tool") in ("query_market_data", "query_news", "query_sec_filings") \
+                    and "error" not in result:
+                prior[entry["tool"]] = result
+        return kg_live_tools.query_company_graph(
+            tool_input.get("entity", ""),
+            extractor=self.extractor,
+            prior_results=prior,
         )
 
     def _tool_query_macro(self, tool_input: dict) -> dict:

@@ -87,6 +87,8 @@ _EMIT_INPUT = {
     "news_sentiment_analysis": "news",
     "news_sentiment": "neutral",
     "filings_analysis": "filings",
+    "supply_chain_analysis": "supply chain",
+    "cited_event_ids": [],
     "recommendation": "增持",
     "recommendation_rationale": "理由",
     "risk_warnings": "风险",
@@ -231,7 +233,7 @@ def test_tool_definitions_expose_realtime_tools_only():
     names = {t["name"] for t in TOOL_DEFINITIONS}
     assert names == {
         "query_market_data", "query_news", "query_sec_filings",
-        "query_macro", "emit_report",
+        "query_macro", "query_company_graph", "emit_report",
     }
 
 
@@ -367,3 +369,54 @@ def test_no_forced_emit_when_no_data_collected():
 def test_orchestrator_default_max_tokens_fits_long_report():
     import config
     assert config.ORCHESTRATOR_MAX_TOKENS >= 8192
+
+
+# ── 知识图谱工具集成 ────────────────────────────────────────────
+
+def test_graph_tool_reuses_prior_results_and_hides_internal_fields(fake_tools, monkeypatch):
+    captured = {}
+
+    def fake_graph(entity, extractor, prior_results=None, **kw):
+        captured["entity"] = entity
+        captured["extractor"] = extractor
+        captured["prior"] = prior_results
+        return {"ticker": "AAPL", "propagated_risks": [], "_graph": {"nodes": ["huge"]}, "_mermaid": "graph LR"}
+
+    monkeypatch.setattr(orchestrator_loop.kg_live_tools, "query_company_graph", fake_graph)
+    responses = [
+        _FakeResponse(content=[
+            _FakeToolUseBlock("query_market_data", {"entity": "AAPL"}, "t1"),
+            _FakeToolUseBlock("query_news", {"entity": "AAPL"}, "t2"),       # 假实现返回 error
+            _FakeToolUseBlock("query_sec_filings", {"entity": "AAPL"}, "t3"),
+        ], stop_reason="tool_use"),
+        _FakeResponse(content=[_FakeToolUseBlock("query_company_graph", {"entity": "AAPL"}, "t4")], stop_reason="tool_use"),
+        _FakeResponse(content=[_FakeToolUseBlock("emit_report", _EMIT_INPUT, "t5")], stop_reason="tool_use"),
+    ]
+    client = _FakeClient(responses)
+    loop = OrchestratorLoop(client, model="m", max_tokens=100)
+
+    draft, tool_log = loop.run("AAPL")
+
+    assert captured["entity"] == "AAPL"
+    assert captured["extractor"] is loop.extractor
+    assert captured["extractor"].client is client
+    # 只复用成功的结果（新闻失败了，不传）
+    assert set(captured["prior"]) == {"query_market_data", "query_sec_filings"}
+    assert captured["prior"]["query_market_data"]["ticker"] == "AAPL"
+
+    # tool_log 保留完整结果，发给模型的内容剔除了 "_" 字段
+    assert tool_log[-1]["result"]["_mermaid"] == "graph LR"
+    graph_msg = client.messages.calls[-1]["messages"][4]["content"][0]
+    assert graph_msg["tool_use_id"] == "t4"
+    assert "_graph" not in graph_msg["content"] and "huge" not in graph_msg["content"]
+    assert '"ticker": "AAPL"' in graph_msg["content"]
+
+
+def test_llm_view_strips_private_keys():
+    from orchestrator_loop import llm_view
+    assert llm_view({"a": 1, "_b": 2, "error": "x"}) == {"a": 1, "error": "x"}
+
+
+def test_system_prompt_mentions_graph_workflow_and_event_ids():
+    assert "query_company_graph" in SYSTEM_PROMPT
+    assert "cited_event_ids" in SYSTEM_PROMPT

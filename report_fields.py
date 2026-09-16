@@ -16,6 +16,7 @@ DRAFT_FIELDS = [
     ("technical_analysis",       "技术面分析"),
     ("news_sentiment_analysis",  "新闻舆情分析"),
     ("filings_analysis",         "监管申报分析"),
+    ("supply_chain_analysis",    "产业链与竞争格局（知识图谱）"),
     ("recommendation",           "配置建议"),
     ("confidence",               "置信度"),
     ("recommendation_rationale", "建议理由"),
@@ -32,4 +33,5 @@ def format_draft(draft: dict) -> str:
     lines = [f"- {label}：{draft.get(key, '')}" for key, label in DRAFT_FIELDS]
     lines.append(f"- 新闻情绪：{draft.get('news_sentiment', '')}")
     lines.append(f"- 关键信号：{'; '.join(draft.get('key_signals', []))}")
+    lines.append(f"- 引用的图谱事件：{', '.join(draft.get('cited_event_ids', [])) or '无'}")
     return "\n".join(lines)
