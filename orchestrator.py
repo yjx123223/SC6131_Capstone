@@ -50,8 +50,9 @@ class OrchestratorAgent:
     >>> store = FeedbackStore()
     >>> orch  = OrchestratorAgent()
     >>>
-    >>> report = orch.generate_report("Apple Inc.", graph, feedback_store=store)
+    >>> session_id, report = orch.generate_report("Apple Inc.", graph, feedback_store=store)
     >>> print(report)
+    >>> store.rate(session_id, rating=1, note="信号准确")   # 事后评分
     """
 
     def __init__(
@@ -87,21 +88,29 @@ class OrchestratorAgent:
         graph,
         feedback_store=None,
         weeks: int = config.DEFAULT_WEEKS,
-    ) -> str:
+    ) -> tuple[Optional[int], str]:
         """
         完整 Multi-Agent 流程：
-          Orchestrator loop (tool use) → Critic 审查 → (可选)修订 → 渲染报告 → 保存
+          Orchestrator loop (tool use) → Critic 审查 → (可选)修订 → 渲染报告
+          → 保存 → 写入反馈存储
 
         Parameters
         ----------
         entity         : 目标实体名
         graph          : FinDKGGraph 实例
-        feedback_store : FeedbackStore 实例（可选）
+        feedback_store : FeedbackStore 实例（可选）。传入时会记录本次建议，
+                         返回的 session_id 可用于事后评分
         weeks          : 查询最近多少周
 
         Returns
         -------
-        Markdown 格式的最终投资建议报告
+        (session_id, report_md)
+          session_id : 供 FeedbackStore.rate() 事后评分；未传 feedback_store
+                       或草稿生成失败时为 None
+          report_md  : Markdown 格式的最终投资建议报告
+
+        说明：返回值格式与单 Agent 链路的 AssetAdvisor.advise() 保持一致，
+        两条链路的评分入口因此可以复用同一套交互逻辑。
         """
         # 1. Orchestrator agentic loop
         draft, tool_log = self.loop.run(
@@ -109,7 +118,7 @@ class OrchestratorAgent:
         )
 
         if draft is None:
-            return f"[Orchestrator] ⚠️ Agent 未能生成报告草稿（超出最大迭代次数或异常退出）"
+            return None, f"[Orchestrator] ⚠️ Agent 未能生成报告草稿（超出最大迭代次数或异常退出）"
 
         # 2. Critic Agent 审查
         print(f"\n[Critic] 审查草稿报告...")
@@ -133,7 +142,41 @@ class OrchestratorAgent:
         # 5. 保存到本地
         save_report(entity, report_md)
 
-        return report_md
+        # 6. 写入反馈存储（可选），供用户事后评分
+        session_id = None
+        if feedback_store is not None:
+            try:
+                session_id = feedback_store.log_advice(
+                    entity=entity,
+                    kg_summary=self._extract_kg_summary(tool_log),
+                    advice_text=report_md,
+                    model=self.model,
+                    time_window=weeks,
+                )
+                print(f"[Orchestrator] 建议已记录（session #{session_id}），可事后评分")
+            except Exception as e:
+                print(f"[Orchestrator] ⚠️  写入反馈存储失败（不影响报告）：{e}")
+
+        return session_id, report_md
+
+    @staticmethod
+    def _extract_kg_summary(tool_log: list) -> dict:
+        """
+        从工具调用记录里取出 KG 信号快照，作为本次建议的依据存档。
+
+        FeedbackStore.signal_accuracy_report() 依赖 kg_summary 里的
+        positive_impacts / negative_impacts（每条含 relation 字段）来按
+        关系类型聚合历史评分，因此这里必须存 query_kg_signals 的原始结果。
+        多跳上下文（multihop_context）体积较大且不参与关系类型统计，剔除。
+        """
+        for entry in tool_log:
+            if entry.get("tool") != "query_kg_signals":
+                continue
+            result = entry.get("result") or {}
+            if "error" in result:
+                continue
+            return {k: v for k, v in result.items() if k != "multihop_context"}
+        return {}
 
     # ── 多实体对比（保持兼容）──────────────────────────────────────
 
@@ -151,7 +194,7 @@ class OrchestratorAgent:
         for entity in entities:
             print(f"\n{'='*50}\n处理：{entity}\n{'='*50}")
             try:
-                report = self.generate_report(
+                _session_id, report = self.generate_report(
                     entity, graph,
                     feedback_store=feedback_store,
                     weeks=weeks,
@@ -192,9 +235,10 @@ if __name__ == "__main__":
     orch  = OrchestratorAgent()
 
     print("\n=== Multi-Agent Tool Use 报告：Apple Inc. ===\n")
-    report = orch.generate_report(
+    session_id, report = orch.generate_report(
         "Apple Inc.", graph,
         feedback_store=store,
         weeks=config.DEFAULT_WEEKS,
     )
     print(report)
+    print(f"\n(session #{session_id} 已记录，可用 store.rate({session_id}, +1/0/-1) 评分)")

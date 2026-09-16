@@ -73,26 +73,38 @@ def cmd_query(graph, entity: str, weeks: int):
         print(f"错误：{e}")
 
 
+def _prompt_for_rating(rate_fn, session_id):
+    """
+    交互式评分提示，单 Agent 与 Multi-Agent 两条链路共用。
+
+    Parameters
+    ----------
+    rate_fn    : 实际写入评分的函数，签名 (session_id, rating, note)
+    session_id : 本次建议的记录 id；为 None 时直接跳过
+    """
+    if not session_id:
+        return
+    try:
+        raw = input("\n对这次建议评分？(+1/0/-1，回车跳过): ").strip()
+        if raw in ("+1", "1"):
+            note = input("备注（可选）：").strip()
+            rate_fn(session_id, 1, note)
+        elif raw == "0":
+            rate_fn(session_id, 0, "")
+        elif raw == "-1":
+            note = input("备注（可选）：").strip()
+            rate_fn(session_id, -1, note)
+    except (KeyboardInterrupt, EOFError):
+        pass
+
+
 def cmd_advise(advisor, graph, entity: str, weeks: int, question: str = None):
     try:
         session_id, advice = advisor.advise(entity, graph, n_recent_weeks=weeks, user_question=question)
         print(f"\n{'='*60}\n  资产配置建议：{entity}\n{'='*60}\n")
         print(advice)
 
-        # 交互式评分
-        if session_id:
-            try:
-                raw = input("\n对这次建议评分？(+1/0/-1，回车跳过): ").strip()
-                if raw in ("+1", "1"):
-                    note = input("备注（可选）：").strip()
-                    advisor.feedback(session_id, 1, note)
-                elif raw == "0":
-                    advisor.feedback(session_id, 0)
-                elif raw == "-1":
-                    note = input("备注（可选）：").strip()
-                    advisor.feedback(session_id, -1, note)
-            except (KeyboardInterrupt, EOFError):
-                pass
+        _prompt_for_rating(advisor.feedback, session_id)
     except ValueError as e:
         print(f"错误：{e}")
 
@@ -253,12 +265,14 @@ def cmd_multi_agent(entity: str, weeks: int):
     print(f"  Multi-Agent 投资建议报告（Tool Use）：{entity}")
     print(f"{'='*60}\n")
 
-    report = orch.generate_report(
+    session_id, report = orch.generate_report(
         entity, graph,
         feedback_store=store,
         weeks=weeks,
     )
     print("\n" + report)
+
+    _prompt_for_rating(store.rate, session_id)
 
 
 def cmd_multi_agent_compare(entities: list[str], weeks: int):
