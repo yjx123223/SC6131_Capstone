@@ -6,13 +6,17 @@ OrchestratorAgent._render_report），给定同样的 draft/critique/tool_log
 输入，断言输出的 Markdown 包含预期的段落。
 """
 
-from report_renderer import render_report
+from report_renderer import render_report, render_data_sources
 
 
 _DRAFT = {
     "executive_summary": "苹果近期正面信号占优，建议适度增持。",
     "macro_analysis": "利率见顶，宏观环境偏中性。",
-    "entity_analysis": "近12周正面事件多于负面事件。",
+    "fundamental_analysis": "PE 33 倍，利润率 24%。",
+    "technical_analysis": "股价站上 MA20，RSI 61。",
+    "news_sentiment_analysis": "近两周新品发布新闻偏正面。",
+    "news_sentiment": "positive",
+    "filings_analysis": "7 月底提交 10-Q。",
     "recommendation": "增持",
     "recommendation_rationale": "正面信号强度高于负面信号。",
     "risk_warnings": "宏观不确定性仍存。",
@@ -47,6 +51,8 @@ def test_render_report_shows_critic_conflicts_when_present():
     assert "Critic Agent 审查备注" in md
     assert "宏观信号与个股信号方向相反" in md
     assert "已下调" in md
+    # 备注行与分隔线之间必须有空行，否则 Markdown 会把它渲染成标题
+    assert "*置信度调整：已下调*\n\n---" in md
 
 
 def test_render_report_shows_tool_call_trajectory():
@@ -65,3 +71,48 @@ def test_render_report_empty_key_signals_shows_placeholder():
     draft = {**_DRAFT, "key_signals": []}
     md = render_report("Apple Inc.", draft, critique={}, tool_log=[], model_name="m")
     assert "（无）" in md
+
+
+def test_render_report_includes_new_analysis_sections():
+    md = render_report("Apple Inc.", _DRAFT, critique={}, tool_log=[], model_name="m")
+    assert "## 基本面与估值" in md and "PE 33 倍" in md
+    assert "## 技术面" in md and "RSI 61" in md
+    assert "## 新闻舆情（整体情绪：偏正面）" in md
+    assert "## 监管申报（SEC EDGAR）" in md and "10-Q" in md
+    assert "个股信号分析（FinDKG" not in md
+    assert "（本次未调用任何数据工具）" in md
+
+
+def test_render_data_sources_is_built_from_tool_log():
+    tool_log = [
+        {"tool": "query_market_data", "input": {}, "result": {
+            "source": "Yahoo Finance (yfinance)", "ticker": "AAPL", "data_as_of": "2026-09-15",
+            "period": "3mo", "warnings": ["公司信息/财务指标为空"]}},
+        {"tool": "query_news", "input": {}, "result": {
+            "source": "Yahoo Finance News (yfinance)", "lookback_days": 14, "article_count": 1,
+            "articles": [{"title": "Apple launches iPhone", "publisher": "Reuters",
+                          "published_at": "2026-09-10T10:00+00:00", "url": "https://n.example/1"}]}},
+        {"tool": "query_sec_filings", "input": {}, "result": {
+            "source": "SEC EDGAR", "company": "Apple Inc.", "cik": 320193,
+            "filings": [{"form": "10-Q", "filing_date": "2026-07-31", "url": "https://sec.example/q"}]}},
+        {"tool": "query_macro", "input": {}, "result": {"indicators": {
+            "vix": {"value": 15.0, "date": "2026-09-15"},
+            "cpi_yoy": {"value": 2.9, "date": "2026-08-01"},
+            "unemployment": {"value": None, "date": "N/A"}}}},
+        {"tool": "query_news", "input": {}, "result": {"error": "新闻源不可用"}},
+    ]
+    md = render_data_sources(tool_log)
+
+    assert "行情截至 **2026-09-15**" in md
+    assert "⚠️ 公司信息/财务指标为空" in md
+    assert "[Apple launches iPhone](https://n.example/1)" in md
+    assert "[10-Q 2026-07-31](https://sec.example/q)" in md
+    assert "指标日期 2026-08-01 ~ 2026-09-15" in md
+    assert "❌ `query_news` 数据不可用：新闻源不可用" in md
+
+
+def test_render_report_unknown_sentiment_placeholder():
+    draft = {**_DRAFT}
+    draft.pop("news_sentiment")
+    md = render_report("Apple Inc.", draft, critique={}, tool_log=[], model_name="m")
+    assert "整体情绪：未标注" in md

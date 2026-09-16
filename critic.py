@@ -11,6 +11,9 @@ orchestrator_loop.OrchestratorLoop.revise()。
 
 import json
 
+from report_fields import format_draft
+from tool_log_summary import summarize_tool_log
+
 
 class CriticAgent:
     """
@@ -48,15 +51,16 @@ class CriticAgent:
         approved=False + confidence_adjustment="lower"，让下游至少
         知道这次审查不可信。目前保留原有行为，未改动。
         """
-        context_summary = self._summarize_tool_log(tool_log)
+        context_summary = summarize_tool_log(tool_log)
 
         system_prompt = """你是一位严格的风险审查员（Critic Agent）。
 你将收到一份投资建议报告草稿和生成该报告所用的原始数据摘要。
 
-检查以下三点：
-1. 信号冲突：KG信号方向与宏观信号方向是否矛盾？若有冲突，报告是否正确处理？
-2. 过度自信：置信度（high/medium/low）是否与数据质量匹配？数据稀少时不应标为 high。
-3. 引用准确性：报告结论是否有对应的原始数据支撑？是否存在无依据的推断？
+检查以下四点：
+1. 信号冲突：宏观、基本面/估值、技术面、新闻情绪之间方向是否矛盾？若有冲突，报告是否明确标注并说明取舍？
+2. 过度自信：置信度（high/medium/low）是否与数据完整度匹配？有工具返回"数据不可用"时不应标为 high。
+3. 引用准确性：报告中的数值、新闻、申报是否都能在原始数据摘要中找到？是否存在编造或无依据的推断？
+4. 数据时效：报告是否基于摘要中的最新数据日期，有没有把旧信息当成最新情况？
 
 输出严格的 JSON 格式，不要输出其他内容：
 {
@@ -70,13 +74,7 @@ class CriticAgent:
 {context_summary}
 
 报告草稿（{entity}）：
-- 执行摘要：{draft.get('executive_summary', '')}
-- 宏观分析：{draft.get('macro_analysis', '')}
-- 个股分析：{draft.get('entity_analysis', '')}
-- 配置建议：{draft.get('recommendation', '')}（置信度：{draft.get('confidence', '')}）
-- 建议理由：{draft.get('recommendation_rationale', '')}
-- 风险提示：{draft.get('risk_warnings', '')}
-- 关键信号：{', '.join(draft.get('key_signals', []))}
+{format_draft(draft)}
 
 请输出 JSON 格式的审查结果。"""
 
@@ -105,25 +103,5 @@ class CriticAgent:
 
     @staticmethod
     def _summarize_tool_log(tool_log: list) -> str:
-        """把 OrchestratorLoop 的工具调用记录压缩成给 Critic 看的文字摘要"""
-        context_parts = []
-        for entry in tool_log:
-            tool = entry["tool"]
-            result = entry["result"]
-            if tool == "query_kg_signals":
-                pos = len(result.get("positive_impacts", []))
-                neg = len(result.get("negative_impacts", []))
-                context_parts.append(
-                    f"KG信号 [{result.get('entity')}]：总事件{result.get('total_events', 0)}条，"
-                    f"正面{pos}类，负面{neg}类"
-                )
-            elif tool == "query_macro":
-                context_parts.append(
-                    f"宏观指标：{result.get('summary_text', '无数据')}"
-                )
-            elif tool == "get_feedback_stats":
-                context_parts.append(
-                    f"历史评分：已评{result.get('total_rated', 0)}次，"
-                    f"正面率{result.get('positive_rate', 0):.1%}"
-                )
-        return "\n".join(context_parts) if context_parts else "（无工具调用记录）"
+        """兼容旧调用方：实现已移至 tool_log_summary.summarize_tool_log"""
+        return summarize_tool_log(tool_log)

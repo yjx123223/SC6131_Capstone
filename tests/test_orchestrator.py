@@ -1,9 +1,10 @@
 """
 tests/test_orchestrator.py
 ----------------------------
-OrchestratorAgent 协调层的行为测试，重点覆盖新增的反馈存储写入：
-Multi-Agent 链路生成报告后应记录 session 并返回 session_id，
-使其与单 Agent 链路一样支持事后评分。
+OrchestratorAgent 协调层的行为测试：
+  - 生成报告后记录 session 并返回 session_id（支持事后评分）
+  - 反馈存储里保存的是实时数据快照（图谱工具已停用）
+  - Critic 不通过时触发修订
 
 用假的 loop / critic 替身注入，不发真实 API 请求。
 """
@@ -17,7 +18,11 @@ from orchestrator import OrchestratorAgent
 _DRAFT = {
     "executive_summary": "summary",
     "macro_analysis": "macro",
-    "entity_analysis": "entity",
+    "fundamental_analysis": "fundamentals",
+    "technical_analysis": "technicals",
+    "news_sentiment_analysis": "news",
+    "news_sentiment": "positive",
+    "filings_analysis": "filings",
     "recommendation": "增持",
     "recommendation_rationale": "理由",
     "risk_warnings": "风险",
@@ -25,19 +30,32 @@ _DRAFT = {
     "key_signals": ["signal1"],
 }
 
-_KG_TOOL_RESULT = {
-    "entity": "Apple Inc.",
-    "period": "2022-10-23 ~ 2022-12-25",
-    "total_events": 86,
-    "positive_impacts": [{"subject": "Goldman Sachs Group", "relation": "Invests_In", "object": "Apple Inc.", "count": 2}],
-    "negative_impacts": [{"subject": "Meta Platforms", "relation": "Decrease", "object": "Apple Inc.", "count": 1}],
-    "other_relations": [],
-    "multihop_context": "（很长的多跳文本，不应写进反馈存储）",
+_MARKET_RESULT = {
+    "ticker": "AAPL",
+    "data_as_of": "2026-09-15",
+    "technicals": {"last_close": 229.0, "rsi14": 61.2},
+    "fundamentals": {"trailing_pe": 33.5, "forward_pe": 29.0, "profit_margin_pct": 24.3,
+                     "revenue_growth_pct": 6.1, "analyst_target_mean": 250.0, "beta": 1.2},
+    "recent_closes": [{"date": "2026-09-15", "close": 229.0}],
+    "warnings": [],
+}
+
+_NEWS_RESULT = {
+    "ticker": "AAPL",
+    "article_count": 3,
+    "articles": [{"title": "t", "publisher": "p", "published_at": "2026-09-15T10:00", "summary": "", "url": ""}] * 3,
+}
+
+_SEC_RESULT = {
+    "ticker": "AAPL",
+    "filings": [{"form": "10-Q", "filing_date": "2026-07-31", "url": "u"}],
 }
 
 _TOOL_LOG = [
-    {"tool": "query_kg_signals", "input": {"entity": "Apple Inc."}, "result": _KG_TOOL_RESULT},
-    {"tool": "query_macro", "input": {}, "result": {"summary_text": "VIX 20.6"}},
+    {"tool": "query_market_data", "input": {"entity": "Apple Inc."}, "result": _MARKET_RESULT},
+    {"tool": "query_news", "input": {"entity": "Apple Inc."}, "result": _NEWS_RESULT},
+    {"tool": "query_sec_filings", "input": {"entity": "Apple Inc."}, "result": _SEC_RESULT},
+    {"tool": "query_macro", "input": {}, "result": {"error": "未配置 FRED_API_KEY"}},
 ]
 
 
@@ -47,7 +65,7 @@ class _FakeLoop:
         self._tool_log = _TOOL_LOG if tool_log is None else tool_log
         self.model = "fake-model"
 
-    def run(self, entity, weeks, graph, feedback_store=None):
+    def run(self, entity, weeks=12, graph=None, feedback_store=None):
         return self._draft, self._tool_log
 
     def revise(self, entity, draft, critique, tool_log):
@@ -85,7 +103,7 @@ def _reports_dir(monkeypatch, tmp_path):
 def test_generate_report_returns_session_id_and_markdown(orch, store, monkeypatch, tmp_path):
     _reports_dir(monkeypatch, tmp_path)
 
-    session_id, report_md = orch.generate_report("Apple Inc.", graph=None, feedback_store=store)
+    session_id, report_md = orch.generate_report("Apple Inc.", feedback_store=store)
 
     assert isinstance(session_id, int)
     assert "投资建议报告：Apple Inc." in report_md
@@ -94,59 +112,103 @@ def test_generate_report_returns_session_id_and_markdown(orch, store, monkeypatc
 def test_generate_report_logs_advice_into_store(orch, store, monkeypatch, tmp_path):
     _reports_dir(monkeypatch, tmp_path)
 
-    session_id, report_md = orch.generate_report("Apple Inc.", graph=None, feedback_store=store)
+    session_id, report_md = orch.generate_report("Apple Inc.", feedback_store=store)
 
     history = store.get_history("Apple Inc.")
     assert len(history) == 1
     assert history[0]["id"] == session_id
-    assert history[0]["total_events"] == 86
-    assert history[0]["period"] == "2022-10-23 ~ 2022-12-25"
+    assert history[0]["period"] == "行情截至 2026-09-15"   # period 列存行情截至日期
+    assert history[0]["total_events"] == 3                 # total_events 列存新闻条数
+    assert history[0]["kg_summary"]["ticker"] == "AAPL"
     assert history[0]["rating"] is None    # 尚未评分
 
 
-def test_logged_session_feeds_signal_accuracy_report(orch, store, monkeypatch, tmp_path):
-    """评分后应能按关系类型聚合——这是反馈闭环回灌给 Agent 的数据来源"""
+def test_rating_new_style_session_does_not_break_accuracy_report(orch, store, monkeypatch, tmp_path):
+    """新快照里没有 KG 关系字段，signal_accuracy_report 应正常返回而不是报错"""
     _reports_dir(monkeypatch, tmp_path)
 
-    session_id, _ = orch.generate_report("Apple Inc.", graph=None, feedback_store=store)
-    store.rate(session_id, rating=1, note="信号准确")
+    session_id, _ = orch.generate_report("Apple Inc.", feedback_store=store)
+    store.rate(session_id, rating=1, note="判断准确")
 
     report = store.signal_accuracy_report()
     assert report["total_rated"] == 1
-    assert report["signal_stats"]["Invests_In"]["avg_rating"] == 1.0
-    assert report["signal_stats"]["Decrease"]["avg_rating"] == 1.0
+    assert report["positive_rate"] == 1.0
+    assert report["signal_stats"] == {}
 
 
 def test_generate_report_without_store_returns_none_session(orch, monkeypatch, tmp_path):
     _reports_dir(monkeypatch, tmp_path)
 
-    session_id, report_md = orch.generate_report("Apple Inc.", graph=None, feedback_store=None)
+    session_id, report_md = orch.generate_report("Apple Inc.", feedback_store=None)
 
     assert session_id is None
     assert "投资建议报告" in report_md
+
+
+def test_generate_report_graph_is_optional(orch, monkeypatch, tmp_path):
+    """图谱工具停用后，generate_report 不再要求传入 graph"""
+    _reports_dir(monkeypatch, tmp_path)
+    session_id, report_md = orch.generate_report("Apple Inc.")
+    assert "投资建议报告：Apple Inc." in report_md
 
 
 def test_failed_draft_returns_none_session(orch, store, monkeypatch, tmp_path):
     _reports_dir(monkeypatch, tmp_path)
     orch.loop = _FakeLoop(draft=None)
 
-    session_id, message = orch.generate_report("Apple Inc.", graph=None, feedback_store=store)
+    session_id, message = orch.generate_report("Apple Inc.", feedback_store=store)
 
     assert session_id is None
     assert "未能生成报告草稿" in message
     assert store.get_history("Apple Inc.") == []
 
 
-def test_extract_kg_summary_drops_multihop_and_skips_errors():
-    tool_log = [
-        {"tool": "query_kg_signals", "input": {}, "result": {"error": "未找到数据"}},
-        {"tool": "query_kg_signals", "input": {}, "result": _KG_TOOL_RESULT},
-    ]
-    summary = OrchestratorAgent._extract_kg_summary(tool_log)
+def test_revise_is_called_when_critic_rejects(orch, monkeypatch, tmp_path):
+    _reports_dir(monkeypatch, tmp_path)
+    revised = {**_DRAFT, "confidence": "low", "executive_summary": "修订后的摘要"}
+    calls = []
 
-    assert summary["total_events"] == 86
-    assert "multihop_context" not in summary   # 体积大且不参与统计，应剔除
+    class RejectingCritic:
+        def review(self, entity, draft, tool_log):
+            return {"approved": False, "conflicts": ["置信度过高"],
+                    "confidence_adjustment": "lower", "suggestions": "降低置信度"}
+
+    def fake_revise(entity, draft, critique, tool_log):
+        calls.append(critique)
+        return revised
+
+    orch.critic = RejectingCritic()
+    monkeypatch.setattr(orch.loop, "revise", fake_revise)
+
+    _, report_md = orch.generate_report("Apple Inc.")
+
+    assert len(calls) == 1
+    assert "修订后的摘要" in report_md
+    assert "置信度过高" in report_md
 
 
-def test_extract_kg_summary_empty_when_no_kg_tool_called():
-    assert OrchestratorAgent._extract_kg_summary([{"tool": "query_macro", "input": {}, "result": {}}]) == {}
+def test_extract_signal_snapshot_collects_key_fields():
+    snap = OrchestratorAgent._extract_signal_snapshot(_TOOL_LOG, _DRAFT)
+
+    assert snap["ticker"] == "AAPL"
+    assert snap["period"] == "行情截至 2026-09-15"
+    assert snap["total_events"] == 3
+    assert snap["recommendation"] == "增持"
+    assert snap["news_sentiment"] == "positive"
+    assert snap["sec_forms"] == ["10-Q 2026-07-31"]
+    assert snap["tools_ok"] == ["query_market_data", "query_news", "query_sec_filings"]
+    assert snap["tools_failed"] == ["query_macro"]
+    # 只存关键财务数值，不存全部字段
+    assert "beta" not in snap["fundamentals"]
+    # 新闻正文等大字段不应进入快照
+    assert "articles" not in snap
+
+
+def test_extract_signal_snapshot_when_all_tools_failed():
+    tool_log = [{"tool": "query_market_data", "input": {}, "result": {"error": "403"}}]
+    snap = OrchestratorAgent._extract_signal_snapshot(tool_log, _DRAFT)
+
+    assert snap["period"] == ""
+    assert snap["total_events"] == 0
+    assert snap["tools_failed"] == ["query_market_data"]
+    assert "ticker" not in snap

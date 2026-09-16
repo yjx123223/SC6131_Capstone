@@ -4,7 +4,8 @@ orchestrator.py
 Orchestrator Agent（改法 A：Tool Use 架构）—— 协调层
 
 架构说明：
-  Orchestrator 是一个真正的 Agent——它持有4个工具定义，
+  Orchestrator 是一个真正的 Agent——它持有多个工具定义
+  （实时行情 / 新闻 / SEC 申报 / 宏观 / 历史评分 / emit_report），
   由 Claude 自主决定调用哪些工具、调用顺序和参数，
   直到调用 emit_report 输出结构化草稿。
 
@@ -16,8 +17,8 @@ Orchestrator Agent（改法 A：Tool Use 架构）—— 协调层
   - critic.CriticAgent                  独立审查草稿
   - report_renderer.render_report       草稿 → Markdown（纯函数）
   - report_store.save_report            保存 Markdown 到本地文件
-  - tools.kg_tools / tools.macro_tools / tools.feedback_tools
-    三个工具的实际业务逻辑，与 mcp_servers/*.py 共用同一份实现
+  - tools/*  各工具的实际业务逻辑
+    （FinDKG 图谱工具 tools.kg_tools 已停用，见 orchestrator_loop.py 说明）
 
 OrchestratorAgent 只负责把上面这些部件组装起来，按顺序跑一遍：
   loop.run() → critic.review() → (可选) loop.revise() →
@@ -42,15 +43,13 @@ class OrchestratorAgent:
 
     使用示例
     --------
-    >>> from kg_query import FinDKGGraph
     >>> from feedback_store import FeedbackStore
     >>> from orchestrator import OrchestratorAgent
     >>>
-    >>> graph = FinDKGGraph()
     >>> store = FeedbackStore()
     >>> orch  = OrchestratorAgent()
     >>>
-    >>> session_id, report = orch.generate_report("Apple Inc.", graph, feedback_store=store)
+    >>> session_id, report = orch.generate_report("Apple Inc.", feedback_store=store)
     >>> print(report)
     >>> store.rate(session_id, rating=1, note="信号准确")   # 事后评分
     """
@@ -85,7 +84,7 @@ class OrchestratorAgent:
     def generate_report(
         self,
         entity: str,
-        graph,
+        graph=None,
         feedback_store=None,
         weeks: int = config.DEFAULT_WEEKS,
     ) -> tuple[Optional[int], str]:
@@ -97,10 +96,10 @@ class OrchestratorAgent:
         Parameters
         ----------
         entity         : 目标实体名
-        graph          : FinDKGGraph 实例
+        graph          : FinDKGGraph 实例（图谱工具已停用，可不传；保留参数用于兼容）
         feedback_store : FeedbackStore 实例（可选）。传入时会记录本次建议，
                          返回的 session_id 可用于事后评分
-        weeks          : 查询最近多少周
+        weeks          : 图谱工具的查询周数（已停用，仅记录到反馈存储的 time_window）
 
         Returns
         -------
@@ -148,7 +147,7 @@ class OrchestratorAgent:
             try:
                 session_id = feedback_store.log_advice(
                     entity=entity,
-                    kg_summary=self._extract_kg_summary(tool_log),
+                    kg_summary=self._extract_signal_snapshot(tool_log, draft),
                     advice_text=report_md,
                     model=self.model,
                     time_window=weeks,
@@ -160,30 +159,54 @@ class OrchestratorAgent:
         return session_id, report_md
 
     @staticmethod
-    def _extract_kg_summary(tool_log: list) -> dict:
+    def _extract_signal_snapshot(tool_log: list, draft: dict) -> dict:
         """
-        从工具调用记录里取出 KG 信号快照，作为本次建议的依据存档。
+        把本次建议依据的数据快照存档，供事后评分时回看。
 
-        FeedbackStore.signal_accuracy_report() 依赖 kg_summary 里的
-        positive_impacts / negative_impacts（每条含 relation 字段）来按
-        关系类型聚合历史评分，因此这里必须存 query_kg_signals 的原始结果。
-        多跳上下文（multihop_context）体积较大且不参与关系类型统计，剔除。
+        写入 FeedbackStore.log_advice 的 kg_summary 字段（字段名沿用旧表结构）：
+          - period       → 行情数据截至日期（advice_sessions.period 列）
+          - total_events → 本次成功拿到的新闻条数（advice_sessions.total_events 列）
+        新闻全文、SEC 链接等体积较大的内容不存，只存结论相关的关键数值。
         """
+        snapshot = {
+            "period": "",
+            "total_events": 0,
+            "recommendation": draft.get("recommendation"),
+            "confidence": draft.get("confidence"),
+            "news_sentiment": draft.get("news_sentiment"),
+            "tools_ok": [],
+            "tools_failed": [],
+        }
         for entry in tool_log:
-            if entry.get("tool") != "query_kg_signals":
-                continue
+            tool = entry.get("tool")
             result = entry.get("result") or {}
             if "error" in result:
+                snapshot["tools_failed"].append(tool)
                 continue
-            return {k: v for k, v in result.items() if k != "multihop_context"}
-        return {}
+            snapshot["tools_ok"].append(tool)
+            if tool == "query_market_data":
+                snapshot["ticker"] = result.get("ticker")
+                snapshot["period"] = f"行情截至 {result.get('data_as_of')}"
+                snapshot["technicals"] = result.get("technicals", {})
+                f = result.get("fundamentals", {})
+                snapshot["fundamentals"] = {
+                    k: f.get(k) for k in ("trailing_pe", "forward_pe", "profit_margin_pct",
+                                          "revenue_growth_pct", "analyst_target_mean")
+                }
+            elif tool == "query_news":
+                snapshot["total_events"] = result.get("article_count", 0)
+            elif tool == "query_sec_filings":
+                snapshot["sec_forms"] = [
+                    f"{x.get('form')} {x.get('filing_date')}" for x in result.get("filings", [])
+                ]
+        return snapshot
 
     # ── 多实体对比（保持兼容）──────────────────────────────────────
 
     def generate_comparison_report(
         self,
         entities: list[str],
-        graph,
+        graph=None,
         feedback_store=None,
         weeks: int = config.DEFAULT_WEEKS,
     ) -> str:
@@ -227,18 +250,12 @@ class OrchestratorAgent:
 
 # ── 快速测试 ─────────────────────────────────────────────────────
 if __name__ == "__main__":
-    from kg_query import FinDKGGraph
     from feedback_store import FeedbackStore
 
-    graph = FinDKGGraph()
     store = FeedbackStore()
     orch  = OrchestratorAgent()
 
     print("\n=== Multi-Agent Tool Use 报告：Apple Inc. ===\n")
-    session_id, report = orch.generate_report(
-        "Apple Inc.", graph,
-        feedback_store=store,
-        weeks=config.DEFAULT_WEEKS,
-    )
+    session_id, report = orch.generate_report("Apple Inc.", feedback_store=store)
     print(report)
     print(f"\n(session #{session_id} 已记录，可用 store.rate({session_id}, +1/0/-1) 评分)")

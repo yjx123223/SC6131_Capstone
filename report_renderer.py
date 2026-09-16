@@ -8,6 +8,11 @@ report_renderer.py
 断言输出的 Markdown 包含哪些段落）。
 
 从 orchestrator.py 的 OrchestratorAgent._render_report 拆分出来。
+
+feat/market：正文改为基本面 / 技术面 / 新闻舆情 / 监管申报四块；
+新增"数据来源与时效"段落——直接从 tool_log 确定性生成（行情截至日期、
+新闻条目与链接、SEC 申报链接、失败的数据源），不经过 LLM，
+保证引用可追溯、不会被模型改写或编造。
 """
 
 import json
@@ -51,8 +56,13 @@ def render_report(
         critic_section = (
             f"\n## ⚠️ Critic Agent 审查备注\n"
             f"{conflicts_md}\n\n"
-            f"*置信度调整：{adj_zh}*\n"
+            f"*置信度调整：{adj_zh}*\n\n"   # 末尾空行：避免紧跟的 --- 把这一行变成 setext 标题
         )
+
+    sources_md = render_data_sources(tool_log)
+    sentiment_zh = {
+        "positive": "偏正面", "neutral": "中性", "negative": "偏负面", "unavailable": "数据不可用",
+    }.get(draft.get("news_sentiment", ""), draft.get("news_sentiment", "") or "未标注")
 
     # 工具调用轨迹（可观测性）
     trajectory_lines = []
@@ -80,9 +90,27 @@ def render_report(
 
 ---
 
-## 个股信号分析（FinDKG / WSJ）
+## 基本面与估值
 
-{draft.get('entity_analysis', '')}
+{draft.get('fundamental_analysis', '')}
+
+---
+
+## 技术面
+
+{draft.get('technical_analysis', '')}
+
+---
+
+## 新闻舆情（整体情绪：{sentiment_zh}）
+
+{draft.get('news_sentiment_analysis', '')}
+
+---
+
+## 监管申报（SEC EDGAR）
+
+{draft.get('filings_analysis', '')}
 
 ---
 
@@ -105,6 +133,12 @@ def render_report(
 {draft.get('risk_warnings', '')}
 {critic_section}---
 
+## 数据来源与时效
+
+{sources_md}
+
+---
+
 <details>
 <summary>Agent 工具调用轨迹（Tool Call Trajectory）</summary>
 
@@ -116,3 +150,39 @@ def render_report(
 
 *本报告由 Multi-Agent 系统自动生成（Orchestrator tool use + Critic reflection），仅供参考，不构成投资建议。*
 """
+
+
+def render_data_sources(tool_log: list) -> str:
+    """根据工具调用结果生成数据来源段落（纯函数，不经过 LLM）"""
+    lines = []
+    for entry in tool_log:
+        tool = entry.get("tool", "")
+        r = entry.get("result") or {}
+        if "error" in r:
+            lines.append(f"- ❌ `{tool}` 数据不可用：{r['error']}")
+            continue
+        if tool == "query_market_data":
+            lines.append(
+                f"- 行情与财务指标：{r.get('source')}，{r.get('ticker')} 行情截至 **{r.get('data_as_of')}**"
+                f"（回看 {r.get('period')}）"
+            )
+            for w in r.get("warnings", []):
+                lines.append(f"  - ⚠️ {w}")
+        elif tool == "query_news":
+            lines.append(f"- 新闻：{r.get('source')}，近 {r.get('lookback_days')} 天 {r.get('article_count', 0)} 条")
+            for a in r.get("articles", []):
+                title = a.get("title", "")
+                link = f"[{title}]({a['url']})" if a.get("url") else title
+                lines.append(f"  - {a.get('published_at', '')[:10]} · {a.get('publisher', '')} · {link}")
+        elif tool == "query_sec_filings":
+            lines.append(f"- 监管申报：{r.get('source')}，{r.get('company')}（CIK {r.get('cik')}）")
+            for f in r.get("filings", []):
+                name = f"{f.get('form')} {f.get('filing_date')}"
+                link = f"[{name}]({f['url']})" if f.get("url") else name
+                lines.append(f"  - {link}")
+        elif tool == "query_macro":
+            dates = sorted({v.get("date") for v in (r.get("indicators") or {}).values()
+                            if isinstance(v, dict) and v.get("date") not in (None, "N/A")})
+            span = f"，指标日期 {dates[0]} ~ {dates[-1]}" if dates else ""
+            lines.append(f"- 宏观指标：FRED（美联储经济数据库）{span}")
+    return "\n".join(lines) or "（本次未调用任何数据工具）"
