@@ -18,8 +18,8 @@ config.py
     feedback_store.py 直接消费算好的结果，不再自己探测。
   - 每个 Agent 的 model / max_tokens 都有独立配置项，互不影响，
     可以按需要给 Critic 换更便宜的模型而不影响其他 Agent。
-  - ANTHROPIC_API_KEY / FRED_API_KEY 的读取统一走本文件的两个
-    get_xxx_api_key() 函数，其他模块不再各自 os.environ.get()。
+  - ANTHROPIC_API_KEY / FRED_API_KEY / SEC_EDGAR_USER_AGENT 的读取统一走
+    本文件的 get_xxx() 函数，其他模块不再各自 os.environ.get()。
 """
 
 import os
@@ -87,6 +87,23 @@ DEFAULT_WEEKS = 12          # 默认查询最近多少周
 MAX_EVENTS_IN_PROMPT = 8    # prompt 中每类事件最多显示几条
 
 
+# ── 实时市场数据工具（tools/market_tools.py / news_tools.py / sec_tools.py）──
+# 所有实时数据工具都做"新鲜度"校验：数据比阈值更旧时返回 error，
+# 避免把过期数据当成"最新"喂给 Orchestrator。
+MARKET_ALLOWED_PERIODS = ("1mo", "3mo", "6mo", "1y")   # 行情回看窗口上限 1 年
+MARKET_DEFAULT_PERIOD = "3mo"
+MARKET_MAX_STALENESS_DAYS = 7      # 最新一根 K 线距今超过 N 天视为过期（覆盖长周末/节假日）
+MARKET_RECENT_CLOSES = 10          # 返回给 LLM 的最近收盘价条数
+
+NEWS_LOOKBACK_DAYS = 14            # 只保留最近 N 天的新闻
+NEWS_MAX_ITEMS = 8
+
+SEC_LOOKBACK_DAYS = 365            # 只保留最近 N 天的 SEC 申报
+SEC_MAX_FILINGS = 6
+SEC_DEFAULT_FORMS = ("10-K", "10-Q", "8-K", "20-F", "6-K")
+HTTP_TIMEOUT_SECONDS = 20
+
+
 # ── 报告存储 ──────────────────────────────────────────────────────
 REPORTS_DIR = Path(__file__).parent / "reports"   # Orchestrator 输出的 Markdown 报告目录
 
@@ -108,3 +125,13 @@ def get_anthropic_api_key(explicit: str | None = None) -> str | None:
 def get_fred_api_key(explicit: str | None = None) -> str | None:
     """优先级：显式传入 > 环境变量 FRED_API_KEY"""
     return explicit or os.environ.get("FRED_API_KEY")
+
+
+def get_sec_user_agent(explicit: str | None = None) -> str | None:
+    """
+    优先级：显式传入 > 环境变量 SEC_EDGAR_USER_AGENT
+
+    SEC 要求请求头 User-Agent 声明身份和联系邮箱，
+    格式如 "Your Name your.email@example.com"，否则会返回 403。
+    """
+    return explicit or os.environ.get("SEC_EDGAR_USER_AGENT")
