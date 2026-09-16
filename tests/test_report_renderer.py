@@ -149,3 +149,77 @@ def test_render_compliance_without_issues():
     from report_renderer import render_compliance
     md = render_compliance({"is_compliant": True, "score": 100, "issues": []})
     assert "✅ 通过" in md and "未发现问题" in md
+
+
+# ── 知识图谱段落 ────────────────────────────────────────────────
+
+_GRAPH_RESULT = {
+    "ticker": "AAPL",
+    "source": "实时知识图谱",
+    "neighbors": [
+        {"ticker": "TSM", "hop": 1, "roles": ["供应商"], "via": None, "path": "TSM ─SUPPLIES_TO→ AAPL"},
+        {"ticker": "ASML", "hop": 2, "roles": ["上游供应商"], "via": "TSM",
+         "path": "ASML ─SUPPLIES_TO→ TSM ─SUPPLIES_TO→ AAPL"},
+    ],
+    "stats": {"node_count": 9, "edge_count": 11, "rejected_count": 0,
+              "extraction": {"companies_ok": ["AAPL", "TSM"], "companies_failed": ["ASML"],
+                             "events_extracted": 2, "dropped": {"公司无法链接": 2}}},
+    "warnings": ["抽取失败 ASML"],
+    "_mermaid": "graph LR\n  n0[\"AAPL\"]",
+    "_risks": [{
+        "event_id": "E2", "neighbor": "TSM", "hop": 1, "role_zh": "供应商", "impact": "供应风险",
+        "score": 0.8, "event_type": "SUPPLY_CHAIN", "date": "2026-09-12", "summary": "产能|受限",
+        "path": "TSM ─SUPPLIES_TO→ AAPL",
+        "sources": [{"title": "TSMC capacity", "url": "https://n/2", "publisher": "Bloomberg"}],
+    }],
+    "_opportunities": [{"event_id": "E3", "neighbor": "MSFT", "date": "2026-09-11", "summary": "对手承压"}],
+    "_target_events": [{
+        "id": "E1", "event_type": "PRODUCT", "polarity": "positive", "date": "2026-09-10",
+        "summary": "iPhone 18 发布", "confidence": 0.9,
+        "sources": [{"title": "Apple unveils", "url": "", "publisher": "Reuters"}],
+    }],
+}
+
+
+def test_render_knowledge_graph_full():
+    from report_renderer import render_knowledge_graph
+    md = render_knowledge_graph(_GRAPH_RESULT, cited_event_ids=["e2"])
+
+    assert "```mermaid\ngraph LR" in md
+    assert "| ASML | 2 | 上游供应商 | ASML ─SUPPLIES_TO→ TSM ─SUPPLIES_TO→ AAPL |" in md
+    assert "| ★E2 | 供应风险 | 0.80 | TSM（供应商） | 2026-09-12 | 供应链：产能\\|受限 |" in md
+    assert "[TSMC capacity](https://n/2)" in md
+    assert "- E3 MSFT（2026-09-11）：对手承压" in md
+    assert "| E1 | 2026-09-10 | 产品 | 正面 | iPhone 18 发布 | Apple unveils |" in md
+    assert "失败 1 家" in md and "公司无法链接 2" in md
+    assert "人工整理的种子数据" in md
+    assert md.startswith("<details open>") and md.rstrip().endswith("</details>")
+
+
+def test_render_knowledge_graph_unavailable_and_empty():
+    from report_renderer import render_knowledge_graph
+    assert "知识图谱不可用" in render_knowledge_graph(None)
+    md = render_knowledge_graph({"stats": {}, "neighbors": []})
+    assert "未发现相关公司的风险传导事件" in md
+    assert "```mermaid" not in md
+
+
+def test_render_report_includes_supply_chain_and_graph_sections():
+    draft = {**_DRAFT, "supply_chain_analysis": "供应商台积电产能受限（E2）。", "cited_event_ids": ["E2"]}
+    tool_log = [{"tool": "query_company_graph", "input": {"entity": "AAPL"}, "result": _GRAPH_RESULT}]
+    md = render_report("Apple Inc.", draft, critique={}, tool_log=tool_log, model_name="m")
+
+    assert "## 产业链与竞争格局（知识图谱）\n\n供应商台积电产能受限（E2）。" in md
+    assert "★E2" in md
+    assert "- 知识图谱：实时知识图谱，9 个节点 / 11 条边，抽取事件 2 个" in md
+    assert "  - ⚠️ 抽取失败 ASML" in md
+    assert "实时知识图谱 + Critic reflection" in md
+    # 图谱段落位于"综合配置建议"之前
+    assert md.index("## 产业链与竞争格局") < md.index("```mermaid") < md.index("## 综合配置建议")
+
+
+def test_render_report_graph_failed():
+    tool_log = [{"tool": "query_company_graph", "input": {}, "result": {"error": "boom"}}]
+    md = render_report("Apple Inc.", _DRAFT, critique={}, tool_log=tool_log, model_name="m")
+    assert "知识图谱不可用（本次未成功构建）" in md
+    assert "❌ `query_company_graph` 数据不可用：boom" in md

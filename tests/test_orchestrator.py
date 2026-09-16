@@ -246,3 +246,47 @@ def test_extract_signal_snapshot_when_all_tools_failed():
     assert snap["total_events"] == 0
     assert snap["tools_failed"] == ["query_market_data"]
     assert "ticker" not in snap
+
+
+_GRAPH_TOOL_RESULT = {
+    "ticker": "AAPL",
+    "neighbors": [{"ticker": "TSM", "hop": 1, "roles": ["供应商"], "via": None, "path": "p"}],
+    "propagated_risks": [{"event_id": "E2", "neighbor": "TSM", "impact": "供应风险", "score": 0.8,
+                          "hop": 1, "role_zh": "供应商", "polarity": "negative", "date": "d",
+                          "summary": "s", "path": "p"}],
+    "stats": {"node_count": 3, "edge_count": 2},
+    "_graph": {"nodes": [{"id": "company:AAPL"}], "edges": []},
+    "_event_ids": ["E1", "E2"],
+    "_risks": [],
+    "_mermaid": "graph LR",
+}
+
+
+def test_graph_json_saved_and_snapshot_includes_graph(orch, store, monkeypatch, tmp_path):
+    import json
+    _reports_dir(monkeypatch, tmp_path)
+    tool_log = _TOOL_LOG + [{"tool": "query_company_graph", "input": {}, "result": _GRAPH_TOOL_RESULT}]
+    orch.loop = _FakeLoop(draft={**_DRAFT, "cited_event_ids": ["E2"]}, tool_log=tool_log)
+
+    orch.generate_report("Apple Inc.", feedback_store=store)
+
+    graphs = list((tmp_path / "reports").glob("*_graph.json"))
+    assert len(graphs) == 1
+    assert json.loads(graphs[0].read_text(encoding="utf-8"))["nodes"][0]["id"] == "company:AAPL"
+
+    kg = store.get_history("Apple Inc.")[0]["kg_summary"]["knowledge_graph"]
+    assert kg == {
+        "neighbors": ["TSM"],
+        "event_count": 2,
+        "top_risks": [{"event_id": "E2", "neighbor": "TSM", "impact": "供应风险", "score": 0.8}],
+        "cited_event_ids": ["E2"],
+    }
+    # 完整图谱不应写进反馈库
+    dumped = json.dumps(store.get_history("Apple Inc.")[0]["kg_summary"])
+    assert '"_graph"' not in dumped and '"_mermaid"' not in dumped
+
+
+def test_no_graph_json_when_graph_tool_not_used(orch, monkeypatch, tmp_path):
+    _reports_dir(monkeypatch, tmp_path)
+    orch.generate_report("Apple Inc.")
+    assert list((tmp_path / "reports").glob("*_graph.json")) == []

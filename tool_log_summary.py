@@ -44,6 +44,29 @@ def _fmt_sec(r: dict) -> str:
     return f"SEC 申报[{r.get('ticker')}]：" + ("、".join(items) or "无")
 
 
+def _fmt_graph(r: dict) -> str:
+    stats = r.get("stats", {})
+    lines = [
+        f"知识图谱[{r.get('ticker')}]：{stats.get('node_count', 0)} 个节点、{stats.get('edge_count', 0)} 条边；"
+        f"邻居 " + (", ".join(
+            f"{n['ticker']}({'/'.join(n.get('roles', []))}{', 经 ' + n['via'] if n.get('via') else ''})"
+            for n in r.get("neighbors", [])
+        ) or "无"),
+    ]
+    for e in r.get("target_events", []):
+        lines.append(f"  · 目标事件 {e['id']} {e['date']} {e['polarity']} {e['event_type']}：{e['summary']}")
+    for x in r.get("propagated_risks", []):
+        lines.append(
+            f"  · 传导风险 {x['event_id']} {x['impact']}（分数 {x['score']}）{x['date']} "
+            f"{x['neighbor']}：{x['summary']}｜路径 {x['path']}"
+        )
+    for x in r.get("opportunities", []):
+        lines.append(f"  · 潜在利好 {x['event_id']} {x['impact']} {x['neighbor']}：{x['summary']}")
+    if r.get("warnings"):
+        lines.append(f"  · 图谱警告：{'; '.join(r['warnings'])}")
+    return "\n".join(lines)
+
+
 def _fmt_kg(r: dict) -> str:   # 图谱工具已停用，保留以兼容历史 tool_log
     return (
         f"KG信号 [{r.get('entity')}]：总事件{r.get('total_events', 0)}条，"
@@ -59,8 +82,18 @@ _FORMATTERS = {
     "get_feedback_stats": lambda r: (
         f"历史评分：已评{r.get('total_rated', 0)}次，正面率{r.get('positive_rate', 0):.1%}"
     ),
+    "query_company_graph": _fmt_graph,
     "query_kg_signals":   _fmt_kg,
 }
+
+
+def latest_result(tool_log: list, tool: str) -> dict | None:
+    """某个工具最后一次成功的结果；没有则返回 None"""
+    for entry in reversed(tool_log):
+        result = entry.get("result") or {}
+        if entry.get("tool") == tool and "error" not in result:
+            return result
+    return None
 
 
 def summarize_tool_log(tool_log: list) -> str:

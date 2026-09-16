@@ -17,6 +17,8 @@ _GOOD_DRAFT = {
     "news_sentiment_analysis": "近两周新品发布新闻偏正面。",
     "news_sentiment": "positive",
     "filings_analysis": "7 月底提交 10-Q。",
+    "supply_chain_analysis": "供应商台积电产能受限（E1），存在供应风险。",
+    "cited_event_ids": ["E1"],
     "recommendation": "持有",
     "recommendation_rationale": "估值已反映增长预期。",
     "risk_warnings": "估值回调风险、宏观利率风险、监管风险。",
@@ -28,7 +30,11 @@ _MARKET_OK = {"tool": "query_market_data", "input": {}, "result": {"ticker": "AA
 _NEWS_OK = {"tool": "query_news", "input": {}, "result": {"articles": []}}
 _SEC_OK = {"tool": "query_sec_filings", "input": {}, "result": {"filings": []}}
 _MACRO_OK = {"tool": "query_macro", "input": {}, "result": {"summary_text": "..."}}
-_ALL_OK = [_MARKET_OK, _NEWS_OK, _SEC_OK, _MACRO_OK]
+_GRAPH_OK = {"tool": "query_company_graph", "input": {}, "result": {
+    "ticker": "AAPL", "_event_ids": ["E1", "E2", "E3"],
+    "_risks": [{"event_id": "E1", "score": 0.8}, {"event_id": "E2", "score": 0.3}],
+}}
+_ALL_OK = [_MARKET_OK, _NEWS_OK, _SEC_OK, _MACRO_OK, _GRAPH_OK]
 
 
 def _fail(tool):
@@ -51,6 +57,7 @@ def test_clean_report_passes_with_full_score(checker):
     assert result["draft"]["confidence"] == "high"
     assert result["data_status"] == {
         "query_market_data": "ok", "query_news": "ok", "query_sec_filings": "ok", "query_macro": "ok",
+        "query_company_graph": "ok",
     }
 
 
@@ -165,7 +172,7 @@ def test_short_risk_warning_and_empty_signals_are_warnings(checker):
 # ── 数据缺失披露 ────────────────────────────────────────────────
 
 def test_failed_source_must_be_disclosed_in_section(checker):
-    tool_log = [_MARKET_OK, _fail("query_news"), _SEC_OK, _MACRO_OK]
+    tool_log = [_MARKET_OK, _fail("query_news"), _SEC_OK, _MACRO_OK, _GRAPH_OK]
     result = checker.check(_GOOD_DRAFT, {}, tool_log, "high")
 
     warnings = [i for i in result["issues"] if i["severity"] == "warning"]
@@ -174,7 +181,7 @@ def test_failed_source_must_be_disclosed_in_section(checker):
 
 def test_disclosed_failure_passes(checker):
     draft = {**_GOOD_DRAFT, "news_sentiment_analysis": "新闻数据不可用（数据源报错）。", "news_sentiment": "unavailable"}
-    tool_log = [_MARKET_OK, _fail("query_news"), _SEC_OK, _MACRO_OK]
+    tool_log = [_MARKET_OK, _fail("query_news"), _SEC_OK, _MACRO_OK, _GRAPH_OK]
     result = checker.check(draft, {}, tool_log, "medium")
 
     assert [i for i in result["issues"] if i["severity"] != "info"] == []
@@ -234,3 +241,65 @@ def test_ensure_disclaimer_appends_when_missing():
 def test_ensure_disclaimer_noop_when_present():
     md, added = ensure_disclaimer(f"# 报告\n## {DISCLAIMER_MARKER}\n...")
     assert added is False
+
+
+# ── 知识图谱引用 ────────────────────────────────────────────────
+
+def test_graph_tool_missing_does_not_cap_confidence_but_needs_disclosure(checker):
+    tool_log = [_MARKET_OK, _NEWS_OK, _SEC_OK, _MACRO_OK]           # 没调用图谱
+    draft = {**_GOOD_DRAFT, "cited_event_ids": [], "supply_chain_analysis": "产业链分析"}
+    result = checker.check(draft, {}, tool_log, "high")
+
+    assert result["draft"]["confidence"] == "high"
+    assert result["data_status"]["query_company_graph"] == "not_called"
+    assert [i["field"] for i in result["issues"]] == ["supply_chain_analysis"]
+
+
+def test_graph_unavailable_disclosed_passes(checker):
+    tool_log = [_MARKET_OK, _NEWS_OK, _SEC_OK, _MACRO_OK, _fail("query_company_graph")]
+    draft = {**_GOOD_DRAFT, "cited_event_ids": [], "supply_chain_analysis": "知识图谱不可用。"}
+    assert checker.check(draft, {}, tool_log, "high")["issues"] == []
+
+
+def test_unknown_cited_event_id_is_flagged(checker):
+    draft = {**_GOOD_DRAFT, "cited_event_ids": ["E1", "e9"]}
+    result = checker.check(draft, {}, _ALL_OK, "high")
+    assert [i["description"] for i in result["issues"]] == ["图谱中不存在事件编号：E9"]
+
+
+def test_event_id_mentioned_in_text_must_exist(checker):
+    draft = {**_GOOD_DRAFT, "risk_warnings": "关注事件E12 带来的供应风险以及估值回调。"}
+    result = checker.check(draft, {}, _ALL_OK, "high")
+    assert "E12" in result["issues"][0]["description"]
+
+
+def test_non_event_tokens_are_not_treated_as_ids(checker):
+    draft = {**_GOOD_DRAFT, "fundamental_analysis": "截至 2026-09-15，PE 33 倍，EPS 6.1，1E5 股。"}
+    assert checker.check(draft, {}, _ALL_OK, "high")["issues"] == []
+
+
+def test_citing_event_when_graph_unavailable(checker):
+    tool_log = [_MARKET_OK, _NEWS_OK, _SEC_OK, _MACRO_OK, _fail("query_company_graph")]
+    draft = {**_GOOD_DRAFT, "supply_chain_analysis": "图谱不可用", "risk_warnings": "关注 E1 的供应风险与估值风险"}
+    draft["cited_event_ids"] = []
+    result = checker.check(draft, {}, tool_log, "high")
+    assert result["issues"][0]["description"] == "知识图谱不可用，却引用了事件编号：E1"
+
+
+def test_material_graph_risk_must_be_mentioned(checker):
+    draft = {**_GOOD_DRAFT, "cited_event_ids": [], "supply_chain_analysis": "产业链整体稳定。"}
+    result = checker.check(draft, {}, _ALL_OK, "high")
+    issue = result["issues"][0]
+    assert issue["category"] == "risk_disclosure"
+    assert "E1" in issue["description"] and "E2" not in issue["description"]   # E2 分数低于阈值
+
+
+def test_material_risk_mentioned_only_in_text_is_enough(checker):
+    draft = {**_GOOD_DRAFT, "cited_event_ids": [], "risk_warnings": "供应商产能受限（E1）、估值回调风险。"}
+    assert checker.check(draft, {}, _ALL_OK, "high")["issues"] == []
+
+
+def test_supply_chain_text_is_scanned_for_prohibited_language(checker):
+    draft = {**_GOOD_DRAFT, "supply_chain_analysis": "供应链稳固，股价必涨（E1）。"}
+    result = checker.check(draft, {}, _ALL_OK, "high")
+    assert result["issues"][0]["field"] == "supply_chain_analysis"

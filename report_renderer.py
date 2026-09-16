@@ -20,6 +20,8 @@ from datetime import datetime
 from typing import Optional
 
 from compliance import disclaimer_block
+from live_kg.ontology import EVENT_TYPES, POLARITY_ZH
+from tool_log_summary import latest_result
 
 
 def render_report(
@@ -66,6 +68,8 @@ def render_report(
         )
 
     sources_md = render_data_sources(tool_log)
+    graph_md = render_knowledge_graph(latest_result(tool_log, "query_company_graph"),
+                                      draft.get("cited_event_ids", []))
     compliance_md = render_compliance(compliance) if compliance else ""
 
     conf_note = ""
@@ -128,6 +132,13 @@ def render_report(
 
 ---
 
+## 产业链与竞争格局（知识图谱）
+
+{draft.get('supply_chain_analysis', '')}
+
+{graph_md}
+---
+
 ## 综合配置建议
 
 **{recommendation}**
@@ -163,7 +174,7 @@ def render_report(
 ---
 
 {disclaimer_block(now)}
-*本报告由 Multi-Agent 系统自动生成（Orchestrator tool use + Critic reflection + 规则合规检查），仅供参考，不构成投资建议。*
+*本报告由 Multi-Agent 系统自动生成（Orchestrator tool use + 实时知识图谱 + Critic reflection + 规则合规检查），仅供参考，不构成投资建议。*
 """
 
 
@@ -195,6 +206,15 @@ def render_data_sources(tool_log: list) -> str:
                 name = f"{f.get('form')} {f.get('filing_date')}"
                 link = f"[{name}]({f['url']})" if f.get("url") else name
                 lines.append(f"  - {link}")
+        elif tool == "query_company_graph":
+            st = r.get("stats", {})
+            ext = st.get("extraction", {})
+            lines.append(
+                f"- 知识图谱：{r.get('source')}，{st.get('node_count', 0)} 个节点 / {st.get('edge_count', 0)} 条边，"
+                f"抽取事件 {ext.get('events_extracted', 0)} 个"
+            )
+            for w in r.get("warnings", []):
+                lines.append(f"  - ⚠️ {w}")
         elif tool == "query_macro":
             dates = sorted({v.get("date") for v in (r.get("indicators") or {}).values()
                             if isinstance(v, dict) and v.get("date") not in (None, "N/A")})
@@ -229,3 +249,88 @@ def render_compliance(compliance: dict) -> str:
         lines.append("未发现问题。")
     lines += ["", "---", ""]
     return "\n".join(lines)
+
+
+def _md_cell(text) -> str:
+    return str(text if text is not None else "").replace("|", "\\|").replace("\n", " ")
+
+
+def _link(title: str, url: str) -> str:
+    title = _md_cell(title)
+    return f"[{title}]({url})" if url else title
+
+
+def render_knowledge_graph(graph: Optional[dict], cited_event_ids=()) -> str:
+    """
+    知识图谱详情（纯函数）：Mermaid 关系图 + 风险传导表 + 潜在利好 + 目标公司事件 + 构建统计。
+    数据全部来自 query_company_graph 的结果（含不发给模型的 "_" 字段），不经过 LLM。
+    报告中引用过的事件编号用 ★ 标记。
+    """
+    if not graph:
+        return "*知识图谱不可用（本次未成功构建）。*\n"
+
+    cited = {str(x).upper() for x in (cited_event_ids or [])}
+    star = lambda eid: f"★{eid}" if eid in cited else eid
+    type_zh = lambda t: EVENT_TYPES.get(t, t)
+
+    parts = ["<details open>", "<summary>知识图谱详情（点击折叠）</summary>", ""]
+
+    if graph.get("_mermaid"):
+        parts += ["```mermaid", graph["_mermaid"], "```", ""]
+
+    neighbors = graph.get("neighbors", [])
+    if neighbors:
+        parts += ["**相关公司**", "", "| 公司 | 跳数 | 与目标的关系 | 关系路径 |", "|---|---|---|---|"]
+        for n in neighbors:
+            parts.append(f"| {n['ticker']} | {n['hop']} | {'、'.join(n['roles'])} | {_md_cell(n['path'])} |")
+        parts.append("")
+
+    risks = graph.get("_risks", [])
+    parts += ["**风险传导（规则推理）**", ""]
+    if risks:
+        parts += ["| 事件 | 影响 | 分数 | 来源公司 | 日期 | 事件内容 | 传导路径 | 新闻 |",
+                  "|---|---|---|---|---|---|---|---|"]
+        for r in risks:
+            src = r["sources"][0] if r.get("sources") else {}
+            parts.append(
+                f"| {star(r['event_id'])} | {r['impact']} | {r['score']:.2f} | {r['neighbor']}（{r['role_zh']}） "
+                f"| {r['date']} | {type_zh(r['event_type'])}：{_md_cell(r['summary'])} | {_md_cell(r['path'])} "
+                f"| {_link(src.get('title', ''), src.get('url', ''))} |"
+            )
+    else:
+        parts.append("未发现相关公司的风险传导事件。")
+    parts.append("")
+
+    opps = graph.get("_opportunities", [])
+    if opps:
+        parts += ["**潜在利好（竞争对手承压）**", ""]
+        for o in opps:
+            parts.append(f"- {star(o['event_id'])} {o['neighbor']}（{o['date']}）：{_md_cell(o['summary'])}")
+        parts.append("")
+
+    events = graph.get("_target_events", [])
+    if events:
+        parts += ["**目标公司自身事件**", "", "| 事件 | 日期 | 类型 | 方向 | 内容 | 新闻 |", "|---|---|---|---|---|---|"]
+        for e in events:
+            src = e["sources"][0] if e.get("sources") else {}
+            parts.append(
+                f"| {star(e['id'])} | {e['date']} | {type_zh(e['event_type'])} | {POLARITY_ZH.get(e['polarity'], e['polarity'])} "
+                f"| {_md_cell(e['summary'])} | {_link(src.get('title', ''), src.get('url', ''))} |"
+            )
+        parts.append("")
+
+    st = graph.get("stats", {})
+    ext = st.get("extraction", {})
+    dropped = "、".join(f"{k} {v}" for k, v in ext.get("dropped", {}).items()) or "无"
+    parts += [
+        f"*构建统计：节点 {st.get('node_count', 0)}，边 {st.get('edge_count', 0)}；"
+        f"事件抽取成功 {len(ext.get('companies_ok', []))} 家、失败 {len(ext.get('companies_failed', []))} 家；"
+        f"抽取结果被过滤：{dropped}；本体校验拒绝 {st.get('rejected_count', 0)} 条。*",
+        "",
+        "*说明：公司间的供应/竞争/合作关系来自人工整理的种子数据；事件由 LLM 从近期新闻中抽取；"
+        "风险传导为基于规则的推断，分数 = 关系权重 × 跳数衰减 × 事件置信度，仅供参考。*",
+        "",
+        "</details>",
+        "",
+    ]
+    return "\n".join(parts)

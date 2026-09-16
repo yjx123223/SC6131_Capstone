@@ -127,3 +127,5 @@ def test_review_prompt_contains_new_draft_fields_and_tool_errors():
     assert "技术面分析：technicals" in prompt
     assert "新闻源不可用" in prompt
     assert "数据时效" in client.messages.last_call_kwargs["system"]
+    assert "知识图谱引用" in client.messages.last_call_kwargs["system"]
+    assert "引用的图谱事件：无" in prompt

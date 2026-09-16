@@ -36,7 +36,8 @@ from orchestrator_loop import OrchestratorLoop
 from critic import CriticAgent
 from compliance import ComplianceChecker, ensure_disclaimer
 from report_renderer import render_report
-from report_store import save_report
+from report_store import save_report, save_graph_json
+from tool_log_summary import latest_result
 
 
 class OrchestratorAgent:
@@ -162,8 +163,14 @@ class OrchestratorAgent:
         if added:
             print("[Compliance] ⚠️ 报告缺少免责声明，已自动补充")
 
-        # 6. 保存到本地
-        save_report(entity, report_md)
+        # 6. 保存到本地（报告 + 知识图谱 JSON）
+        report_path = save_report(entity, report_md)
+        graph_result = latest_result(tool_log, "query_company_graph")
+        if graph_result and graph_result.get("_graph"):
+            try:
+                save_graph_json(report_path, graph_result["_graph"])
+            except Exception as e:
+                print(f"[Orchestrator] ⚠️  知识图谱保存失败（不影响报告）：{e}")
 
         # 7. 写入反馈存储（可选），供用户事后评分
         session_id = None
@@ -227,6 +234,16 @@ class OrchestratorAgent:
                 snapshot["sec_forms"] = [
                     f"{x.get('form')} {x.get('filing_date')}" for x in result.get("filings", [])
                 ]
+            elif tool == "query_company_graph":
+                snapshot["knowledge_graph"] = {
+                    "neighbors": [n["ticker"] for n in result.get("neighbors", [])],
+                    "event_count": len(result.get("_event_ids", [])),
+                    "top_risks": [
+                        {k: r[k] for k in ("event_id", "neighbor", "impact", "score")}
+                        for r in result.get("propagated_risks", [])[:3]
+                    ],
+                    "cited_event_ids": draft.get("cited_event_ids", []),
+                }
         return snapshot
 
     # ── 多实体对比（保持兼容）──────────────────────────────────────

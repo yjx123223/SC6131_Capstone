@@ -26,6 +26,7 @@ ComplianceChecker：报告发布前的确定性合规检查 + 置信度兜底。
   - warning ：风险提示过短；缺少关键信号；数据源失败但对应章节没有说明；
               新闻工具失败但情绪没标 unavailable；分析里没有注明数据日期；
               低置信度却给出强方向建议
+              引用了图谱中不存在的事件编号；图谱发现的重大传导风险未被提及
   - info    ：置信度被下调 / 忽略上调请求等过程记录
 
   评分：100 - 30×critical - 10×warning；无 critical 且 ≥ 60 分视为合规。
@@ -57,6 +58,14 @@ _DATA_TOOLS = {
 }
 _SECONDARY_TOOLS = ("query_news", "query_sec_filings", "query_macro")
 
+# 辅助数据工具：不参与置信度封顶，但缺失时对应章节同样需要说明
+_AUX_TOOLS = {
+    "query_company_graph": ["supply_chain_analysis"],
+}
+GRAPH_TOOL = "query_company_graph"
+MATERIAL_RISK_SCORE = 0.7          # 图谱传导风险分数 ≥ 此值视为重大风险，报告必须提及
+_EVENT_ID = re.compile(r"(?<![A-Za-z0-9])E(\d{1,4})(?![A-Za-z0-9])")
+
 # 章节里用于说明"数据缺失"的关键词
 _UNAVAILABLE_WORDS = ("不可用", "缺失", "无法获取", "未能获取", "获取失败", "暂无", "无数据", "unavailable", "not available")
 
@@ -74,7 +83,8 @@ _PROHIBITED_PATTERNS = [
 
 _TEXT_FIELDS = [
     "executive_summary", "macro_analysis", "fundamental_analysis", "technical_analysis",
-    "news_sentiment_analysis", "filings_analysis", "recommendation_rationale", "risk_warnings",
+    "news_sentiment_analysis", "filings_analysis", "supply_chain_analysis",
+    "recommendation_rationale", "risk_warnings",
 ]
 
 _STRONG_RECOMMENDATIONS = {"增持", "减仓", "回避"}
@@ -159,6 +169,7 @@ class ComplianceChecker:
         issues += self._check_data_disclosure(draft, data_status)
         issues += self._check_date_citation(draft, tool_log)
         issues += self._check_strength_vs_confidence(draft)
+        issues += self._check_graph_citations(draft, tool_log)
 
         score = max(0, 100 - sum(_SEVERITY_PENALTY[i["severity"]] for i in issues))
         has_critical = any(i["severity"] == "critical" for i in issues)
@@ -184,7 +195,7 @@ class ComplianceChecker:
         每个数据工具的状态：只要有一次成功调用就算 ok；
         调用过但全部失败算 failed；从未调用算 not_called。
         """
-        status = {name: "not_called" for name in _DATA_TOOLS}
+        status = {name: "not_called" for name in list(_DATA_TOOLS) + list(_AUX_TOOLS)}
         for entry in tool_log:
             name = entry.get("tool")
             if name not in status:
@@ -263,7 +274,7 @@ class ComplianceChecker:
     def _check_data_disclosure(draft: dict, data_status: dict) -> list[dict]:
         """数据源失败 / 未调用时，对应章节必须说明数据缺失，避免"无数据却下结论" """
         issues = []
-        for tool, fields in _DATA_TOOLS.items():
+        for tool, fields in {**_DATA_TOOLS, **_AUX_TOOLS}.items():
             if data_status[tool] == "ok":
                 continue
             for field in fields:
@@ -309,6 +320,49 @@ class ComplianceChecker:
                 "recommendation",
             )]
         return []
+
+
+    @staticmethod
+    def _check_graph_citations(draft: dict, tool_log: list) -> list[dict]:
+        """
+        知识图谱引用检查：
+          - cited_event_ids 或正文中出现的事件编号必须存在于图谱中（防止编造）
+          - 图谱发现的重大传导风险（分数 ≥ MATERIAL_RISK_SCORE）必须在报告中被引用或提及
+        """
+        graph = next(
+            (e["result"] for e in reversed(tool_log)
+             if e.get("tool") == GRAPH_TOOL and "error" not in (e.get("result") or {})),
+            None,
+        )
+        valid = set(graph.get("_event_ids", [])) if graph else set()
+
+        cited = {str(x).strip().upper() for x in draft.get("cited_event_ids", []) or [] if str(x).strip()}
+        body = " ".join(str(draft.get(f, "")) for f in _TEXT_FIELDS)
+        body += " " + " ".join(draft.get("key_signals", []))
+        mentioned = {f"E{m}" for m in _EVENT_ID.findall(body)}
+
+        issues = []
+        unknown = sorted((cited | mentioned) - valid, key=lambda x: int(x[1:]) if x[1:].isdigit() else 0)
+        if unknown:
+            reason = "图谱中不存在" if graph else "知识图谱不可用，却引用了"
+            issues.append(_issue(
+                "warning", "data_citation",
+                f"{reason}事件编号：{', '.join(unknown)}", "cited_event_ids",
+            ))
+
+        if graph:
+            referenced = cited | mentioned
+            missed = sorted({
+                r["event_id"] for r in graph.get("_risks", [])
+                if r.get("score", 0) >= MATERIAL_RISK_SCORE and r["event_id"] not in referenced
+            }, key=lambda x: int(x[1:]))
+            if missed:
+                issues.append(_issue(
+                    "warning", "risk_disclosure",
+                    f"知识图谱发现的重大传导风险未在报告中提及：{', '.join(missed)}",
+                    "supply_chain_analysis",
+                ))
+        return issues
 
 
 def disclaimer_block(timestamp: Optional[str] = None) -> str:
