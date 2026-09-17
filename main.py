@@ -13,7 +13,9 @@ FinDKG + Claude 资产配置建议系统 — 端到端入口
   python main.py --history                          # 查看历史建议记录
   python main.py --report                           # 信号准确率报告
 
-Multi-Agent 模式（需设置 FRED_API_KEY）：
+Multi-Agent 模式（实时数据：yfinance 行情/新闻 + SEC EDGAR + FRED 宏观）：
+  需设置 ANTHROPIC_API_KEY；可选 FRED_API_KEY、SEC_EDGAR_USER_AGENT
+  --entity 可传公司名（映射表见 tools/ticker_map.py）或 ticker，如 "AAPL"
   python main.py --multi-agent --entity "Apple Inc."
   python main.py --multi-agent --compare "Apple Inc." "Microsoft Corporation"
 """
@@ -73,26 +75,38 @@ def cmd_query(graph, entity: str, weeks: int):
         print(f"错误：{e}")
 
 
+def _prompt_for_rating(rate_fn, session_id):
+    """
+    交互式评分提示，单 Agent 与 Multi-Agent 两条链路共用。
+
+    Parameters
+    ----------
+    rate_fn    : 实际写入评分的函数，签名 (session_id, rating, note)
+    session_id : 本次建议的记录 id；为 None 时直接跳过
+    """
+    if not session_id:
+        return
+    try:
+        raw = input("\n对这次建议评分？(+1/0/-1，回车跳过): ").strip()
+        if raw in ("+1", "1"):
+            note = input("备注（可选）：").strip()
+            rate_fn(session_id, 1, note)
+        elif raw == "0":
+            rate_fn(session_id, 0, "")
+        elif raw == "-1":
+            note = input("备注（可选）：").strip()
+            rate_fn(session_id, -1, note)
+    except (KeyboardInterrupt, EOFError):
+        pass
+
+
 def cmd_advise(advisor, graph, entity: str, weeks: int, question: str = None):
     try:
         session_id, advice = advisor.advise(entity, graph, n_recent_weeks=weeks, user_question=question)
         print(f"\n{'='*60}\n  资产配置建议：{entity}\n{'='*60}\n")
         print(advice)
 
-        # 交互式评分
-        if session_id:
-            try:
-                raw = input("\n对这次建议评分？(+1/0/-1，回车跳过): ").strip()
-                if raw in ("+1", "1"):
-                    note = input("备注（可选）：").strip()
-                    advisor.feedback(session_id, 1, note)
-                elif raw == "0":
-                    advisor.feedback(session_id, 0)
-                elif raw == "-1":
-                    note = input("备注（可选）：").strip()
-                    advisor.feedback(session_id, -1, note)
-            except (KeyboardInterrupt, EOFError):
-                pass
+        _prompt_for_rating(advisor.feedback, session_id)
     except ValueError as e:
         print(f"错误：{e}")
 
@@ -241,11 +255,11 @@ def cmd_multi_agent(entity: str, weeks: int):
     """Multi-Agent 模式（Tool Use 架构）：Orchestrator 自主编排工具调用 → Critic 审查 → 报告"""
     _check_api_key()
 
-    from kg_query import FinDKGGraph
     from feedback_store import FeedbackStore
     from orchestrator import OrchestratorAgent
 
-    graph = FinDKGGraph()
+    # FinDKG 图谱工具已从 Multi-Agent 链路停用，无需加载图谱（graph=None）
+    graph = None
     store = FeedbackStore()
     orch  = OrchestratorAgent()
 
@@ -253,23 +267,25 @@ def cmd_multi_agent(entity: str, weeks: int):
     print(f"  Multi-Agent 投资建议报告（Tool Use）：{entity}")
     print(f"{'='*60}\n")
 
-    report = orch.generate_report(
+    session_id, report = orch.generate_report(
         entity, graph,
         feedback_store=store,
         weeks=weeks,
     )
     print("\n" + report)
 
+    _prompt_for_rating(store.rate, session_id)
+
 
 def cmd_multi_agent_compare(entities: list[str], weeks: int):
     """Multi-Agent 多实体对比报告"""
     _check_api_key()
 
-    from kg_query import FinDKGGraph
     from feedback_store import FeedbackStore
     from orchestrator import OrchestratorAgent
 
-    graph = FinDKGGraph()
+    # FinDKG 图谱工具已从 Multi-Agent 链路停用，无需加载图谱（graph=None）
+    graph = None
     store = FeedbackStore()
     orch  = OrchestratorAgent()
 
@@ -301,7 +317,7 @@ def main():
     parser.add_argument("--windows", type=int, default=config.BACKTEST_N_WINDOWS, help="滚动回测窗口数")
     parser.add_argument("--data-dir", type=str, default=None)
     parser.add_argument("--multi-agent", action="store_true",
-                        help="启用 Multi-Agent 模式（需设置 FRED_API_KEY）")
+                        help="启用 Multi-Agent 模式（实时数据；可选 FRED_API_KEY / SEC_EDGAR_USER_AGENT）")
     args = parser.parse_args()
 
     # ── Multi-Agent 模式 ──────────────────────────────────────────

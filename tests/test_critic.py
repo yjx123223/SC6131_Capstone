@@ -37,7 +37,11 @@ class _FakeClient:
 _DRAFT = {
     "executive_summary": "summary",
     "macro_analysis": "macro",
-    "entity_analysis": "entity",
+    "fundamental_analysis": "fundamentals",
+    "technical_analysis": "technicals",
+    "news_sentiment_analysis": "news",
+    "news_sentiment": "neutral",
+    "filings_analysis": "filings",
     "recommendation": "增持",
     "recommendation_rationale": "理由",
     "risk_warnings": "风险",
@@ -109,3 +113,19 @@ def test_summarize_tool_log_includes_kg_and_macro_signals():
 
     assert "Apple Inc." in summary
     assert "VIX: 13.2" in summary
+
+
+def test_review_prompt_contains_new_draft_fields_and_tool_errors():
+    client = _FakeClient('{"approved": true, "conflicts": [], "confidence_adjustment": "maintain", "suggestions": ""}')
+    critic = CriticAgent(client, model="m", max_tokens=100)
+    tool_log = [{"tool": "query_news", "input": {}, "result": {"error": "新闻源不可用"}}]
+
+    critic.review("Apple Inc.", _DRAFT, tool_log)
+
+    prompt = client.messages.last_call_kwargs["messages"][0]["content"]
+    assert "基本面与估值分析：fundamentals" in prompt
+    assert "技术面分析：technicals" in prompt
+    assert "新闻源不可用" in prompt
+    assert "数据时效" in client.messages.last_call_kwargs["system"]
+    assert "知识图谱引用" in client.messages.last_call_kwargs["system"]
+    assert "引用的图谱事件：无" in prompt

@@ -1,5 +1,5 @@
 """
-kg_predictor.py
+kg_predictor.py //好像不用了
 ---------------
 KGTransformer 推断模块（DGL-free 版本）
 

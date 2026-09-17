@@ -32,3 +32,15 @@ def test_save_report_uses_config_reports_dir_by_default(tmp_path, monkeypatch):
 
     path = save_report("Apple Inc.", "内容")
     assert path.parent == tmp_path
+
+
+def test_save_graph_json_next_to_report(tmp_path):
+    import json
+    from report_store import save_graph_json
+
+    report = save_report("Apple Inc.", "内容", reports_dir=tmp_path)
+    out = save_graph_json(report, {"nodes": [{"id": "company:AAPL", "name": "苹果"}], "edges": []})
+
+    assert out.parent == tmp_path
+    assert out.name == report.stem + "_graph.json"
+    assert json.loads(out.read_text(encoding="utf-8"))["nodes"][0]["name"] == "苹果"
