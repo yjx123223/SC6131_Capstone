@@ -1,11 +1,11 @@
 """
 orchestrator.py
 ---------------
-Orchestrator Agent（改法 A：Tool Use 架构）—— 协调层
+Orchestrator Agent（Tool Use 架构）—— 协调层
 
 架构说明：
   Orchestrator 是一个真正的 Agent——它持有多个工具定义
-  （实时行情 / 新闻 / SEC 申报 / 宏观 / 历史评分 / emit_report），
+  （实时行情 / 新闻 / SEC 申报 / 宏观 / 知识图谱 / emit_report），
   由 Claude 自主决定调用哪些工具、调用顺序和参数，
   直到调用 emit_report 输出结构化草稿。
 
@@ -17,13 +17,13 @@ Orchestrator Agent（改法 A：Tool Use 架构）—— 协调层
   - critic.CriticAgent                  独立审查草稿
   - compliance.ComplianceChecker        确定性合规检查 + 置信度兜底
   - report_renderer.render_report       草稿 → Markdown（纯函数）
-  - report_store.save_report            保存 Markdown 到本地文件
-  - tools/*  各工具的实际业务逻辑
-    （FinDKG 图谱工具 tools.kg_tools 已停用，见 orchestrator_loop.py 说明）
+  - report_store                        保存 Markdown 报告与知识图谱 JSON
+  - tools/* 与 live_kg/*                 各工具与知识图谱的实际业务逻辑
 
 OrchestratorAgent 只负责把上面这些部件组装起来，按顺序跑一遍：
   loop.run() → critic.review() → (可选) loop.revise() →
   compliance.check() → render_report() → ensure_disclaimer() → save_report()
+  → (可选) feedback_store.log_advice()
 """
 
 from datetime import datetime
@@ -54,7 +54,7 @@ class OrchestratorAgent:
     >>>
     >>> session_id, report = orch.generate_report("Apple Inc.", feedback_store=store)
     >>> print(report)
-    >>> store.rate(session_id, rating=1, note="信号准确")   # 事后评分
+    >>> store.rate(session_id, rating=1, note="判断准确")   # 事后评分
     """
 
     def __init__(
@@ -85,13 +85,7 @@ class OrchestratorAgent:
 
     # ── 主入口 ──────────────────────────────────────────────────────
 
-    def generate_report(
-        self,
-        entity: str,
-        graph=None,
-        feedback_store=None,
-        weeks: int = config.DEFAULT_WEEKS,
-    ) -> tuple[Optional[int], str]:
+    def generate_report(self, entity: str, feedback_store=None) -> tuple[Optional[int], str]:
         """
         完整 Multi-Agent 流程：
           Orchestrator loop (tool use) → Critic 审查 → (可选)修订
@@ -99,26 +93,19 @@ class OrchestratorAgent:
 
         Parameters
         ----------
-        entity         : 目标实体名
-        graph          : FinDKGGraph 实例（图谱工具已停用，可不传；保留参数用于兼容）
-        feedback_store : FeedbackStore 实例（可选）。传入时会记录本次建议，
+        entity         : 公司名或 ticker
+        feedback_store : FeedbackStore 实例（可选）。传入时会记录本次报告，
                          返回的 session_id 可用于事后评分
-        weeks          : 图谱工具的查询周数（已停用，仅记录到反馈存储的 time_window）
 
         Returns
         -------
         (session_id, report_md)
           session_id : 供 FeedbackStore.rate() 事后评分；未传 feedback_store
                        或草稿生成失败时为 None
-          report_md  : Markdown 格式的最终投资建议报告
-
-        说明：返回值格式与单 Agent 链路的 AssetAdvisor.advise() 保持一致，
-        两条链路的评分入口因此可以复用同一套交互逻辑。
+          report_md  : Markdown 格式的最终报告（失败时为错误说明）
         """
         # 1. Orchestrator agentic loop
-        draft, tool_log = self.loop.run(
-            entity, weeks, graph, feedback_store=feedback_store
-        )
+        draft, tool_log = self.loop.run(entity)
 
         if draft is None:
             reason = getattr(self.loop, "last_stop_reason", None)
@@ -178,10 +165,9 @@ class OrchestratorAgent:
             try:
                 session_id = feedback_store.log_advice(
                     entity=entity,
-                    kg_summary=self._extract_signal_snapshot(tool_log, draft, compliance),
+                    snapshot=self._extract_signal_snapshot(tool_log, draft, compliance),
                     advice_text=report_md,
                     model=self.model,
-                    time_window=weeks,
                 )
                 print(f"[Orchestrator] 建议已记录（session #{session_id}），可事后评分")
             except Exception as e:
@@ -194,9 +180,8 @@ class OrchestratorAgent:
         """
         把本次建议依据的数据快照存档，供事后评分时回看。
 
-        写入 FeedbackStore.log_advice 的 kg_summary 字段（字段名沿用旧表结构）：
-          - period       → 行情数据截至日期（advice_sessions.period 列）
-          - total_events → 本次成功拿到的新闻条数（advice_sessions.total_events 列）
+        其中 period（行情截至日期）与 total_events（新闻条数）会同时写入
+        advice_sessions 表的同名列，方便直接查询。
         新闻全文、SEC 链接等体积较大的内容不存，只存结论相关的关键数值。
         """
         snapshot = {
@@ -246,15 +231,9 @@ class OrchestratorAgent:
                 }
         return snapshot
 
-    # ── 多实体对比（保持兼容）──────────────────────────────────────
+    # ── 多实体对比 ────────────────────────────────────────────────
 
-    def generate_comparison_report(
-        self,
-        entities: list[str],
-        graph=None,
-        feedback_store=None,
-        weeks: int = config.DEFAULT_WEEKS,
-    ) -> str:
+    def generate_comparison_report(self, entities: list[str], feedback_store=None) -> str:
         """
         多实体对比：分别为每个实体运行完整 Agent 流程，最后合并对比摘要。
         """
@@ -262,11 +241,7 @@ class OrchestratorAgent:
         for entity in entities:
             print(f"\n{'='*50}\n处理：{entity}\n{'='*50}")
             try:
-                _session_id, report = self.generate_report(
-                    entity, graph,
-                    feedback_store=feedback_store,
-                    weeks=weeks,
-                )
+                _session_id, report = self.generate_report(entity, feedback_store=feedback_store)
                 reports[entity] = report
             except Exception as e:
                 reports[entity] = f"[错误] {e}"
@@ -291,16 +266,3 @@ class OrchestratorAgent:
         combined = "\n".join(summary_parts)
         combined += "\n\n---\n*各实体详细报告已分别保存至 reports/ 目录*"
         return combined
-
-
-# ── 快速测试 ─────────────────────────────────────────────────────
-if __name__ == "__main__":
-    from feedback_store import FeedbackStore
-
-    store = FeedbackStore()
-    orch  = OrchestratorAgent()
-
-    print("\n=== Multi-Agent Tool Use 报告：Apple Inc. ===\n")
-    session_id, report = orch.generate_report("Apple Inc.", feedback_store=store)
-    print(report)
-    print(f"\n(session #{session_id} 已记录，可用 store.rate({session_id}, +1/0/-1) 评分)")

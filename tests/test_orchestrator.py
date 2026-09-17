@@ -3,7 +3,7 @@ tests/test_orchestrator.py
 ----------------------------
 OrchestratorAgent 协调层的行为测试：
   - 生成报告后记录 session 并返回 session_id（支持事后评分）
-  - 反馈存储里保存的是实时数据快照（图谱工具已停用）
+  - 反馈存储里保存的是实时数据快照
   - Critic 不通过时触发修订
 
 用假的 loop / critic 替身注入，不发真实 API 请求。
@@ -65,7 +65,7 @@ class _FakeLoop:
         self._tool_log = _TOOL_LOG if tool_log is None else tool_log
         self.model = "fake-model"
 
-    def run(self, entity, weeks=12, graph=None, feedback_store=None):
+    def run(self, entity):
         return self._draft, self._tool_log
 
     def revise(self, entity, draft, critique, tool_log):
@@ -119,21 +119,17 @@ def test_generate_report_logs_advice_into_store(orch, store, monkeypatch, tmp_pa
     assert history[0]["id"] == session_id
     assert history[0]["period"] == "行情截至 2026-09-15"   # period 列存行情截至日期
     assert history[0]["total_events"] == 3                 # total_events 列存新闻条数
-    assert history[0]["kg_summary"]["ticker"] == "AAPL"
+    assert history[0]["snapshot"]["ticker"] == "AAPL"
     assert history[0]["rating"] is None    # 尚未评分
 
 
-def test_rating_new_style_session_does_not_break_accuracy_report(orch, store, monkeypatch, tmp_path):
-    """新快照里没有 KG 关系字段，signal_accuracy_report 应正常返回而不是报错"""
+def test_rating_logged_session(orch, store, monkeypatch, tmp_path):
     _reports_dir(monkeypatch, tmp_path)
 
     session_id, _ = orch.generate_report("Apple Inc.", feedback_store=store)
     store.rate(session_id, rating=1, note="判断准确")
 
-    report = store.signal_accuracy_report()
-    assert report["total_rated"] == 1
-    assert report["positive_rate"] == 1.0
-    assert report["signal_stats"] == {}
+    assert store.get_history("Apple Inc.")[0]["rating"] == 1
 
 
 def test_generate_report_without_store_returns_none_session(orch, monkeypatch, tmp_path):
@@ -145,8 +141,7 @@ def test_generate_report_without_store_returns_none_session(orch, monkeypatch, t
     assert "投资建议报告" in report_md
 
 
-def test_generate_report_graph_is_optional(orch, monkeypatch, tmp_path):
-    """图谱工具停用后，generate_report 不再要求传入 graph"""
+def test_generate_report_without_arguments_besides_entity(orch, monkeypatch, tmp_path):
     _reports_dir(monkeypatch, tmp_path)
     session_id, report_md = orch.generate_report("Apple Inc.")
     assert "投资建议报告：Apple Inc." in report_md
@@ -206,7 +201,7 @@ def test_generate_report_applies_compliance_confidence_cap(orch, store, monkeypa
     assert "## 合规检查" in report_md
     assert "原为高，已按审查/合规规则下调" in report_md
     assert "## 免责声明" in report_md
-    snap = store.get_history("Apple Inc.")[0]["kg_summary"]
+    snap = store.get_history("Apple Inc.")[0]["snapshot"]
     assert snap["confidence"] == "medium"
     assert snap["confidence_original"] == "high"
     assert isinstance(snap["compliance_score"], int)
@@ -274,7 +269,7 @@ def test_graph_json_saved_and_snapshot_includes_graph(orch, store, monkeypatch, 
     assert len(graphs) == 1
     assert json.loads(graphs[0].read_text(encoding="utf-8"))["nodes"][0]["id"] == "company:AAPL"
 
-    kg = store.get_history("Apple Inc.")[0]["kg_summary"]["knowledge_graph"]
+    kg = store.get_history("Apple Inc.")[0]["snapshot"]["knowledge_graph"]
     assert kg == {
         "neighbors": ["TSM"],
         "event_count": 2,
@@ -282,7 +277,7 @@ def test_graph_json_saved_and_snapshot_includes_graph(orch, store, monkeypatch, 
         "cited_event_ids": ["E2"],
     }
     # 完整图谱不应写进反馈库
-    dumped = json.dumps(store.get_history("Apple Inc.")[0]["kg_summary"])
+    dumped = json.dumps(store.get_history("Apple Inc.")[0]["snapshot"])
     assert '"_graph"' not in dumped and '"_mermaid"' not in dumped
 
 

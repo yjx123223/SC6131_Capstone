@@ -1,8 +1,7 @@
 """
 tests/test_orchestrator_loop.py
 ----------------------------------
-OrchestratorLoop 的行为测试（拆分自 orchestrator.py 的
-OrchestratorAgent._run_orchestrator_loop / _execute_tool / revise）。
+OrchestratorLoop 的行为测试。
 
 多轮 tool-use 循环什么时候终止、工具调用怎么分发（含同轮并行调用、
 失败工具的 is_error 标记、已停用的图谱工具）、revise 修订。
@@ -153,10 +152,9 @@ def test_parallel_tool_calls_in_one_turn_and_error_flag(fake_tools):
     assert "is_error" not in blocks["t1"]
 
 
-def test_kg_tool_is_disabled_and_not_dispatched():
-    """图谱工具已停用：schema 中不再暴露，模型若仍调用则得到 error 而不是真的查询图谱"""
+def test_unknown_tool_returns_error():
     loop = OrchestratorLoop(_FakeClient([]), model="m", max_tokens=100)
-    result = loop._execute_tool("query_kg_signals", {"entity": "Apple Inc."}, context={"graph": object()})
+    result = loop._execute_tool("query_kg_signals", {"entity": "Apple Inc."}, tool_log=[])
     assert "未知工具" in result["error"]
 
 
@@ -167,7 +165,7 @@ def test_tool_exception_is_converted_to_error(monkeypatch):
     monkeypatch.setattr(orchestrator_loop.market_tools, "query_market_data", boom)
     loop = OrchestratorLoop(_FakeClient([]), model="m", max_tokens=100)
 
-    result = loop._execute_tool("query_market_data", {"entity": "AAPL"}, context={})
+    result = loop._execute_tool("query_market_data", {"entity": "AAPL"}, tool_log=[])
     assert "unexpected" in result["error"]
 
 
@@ -220,13 +218,6 @@ def test_query_macro_tool_uses_configured_fred_key():
     loop = OrchestratorLoop(_FakeClient([]), model="m", max_tokens=100, fred_api_key=None)
     result = loop._tool_query_macro({})
     assert "error" in result  # 没配置 FRED_API_KEY，应该报错而不是抛异常
-
-
-@pytest.mark.parametrize("disabled_tool", ["query_kg_signals", "get_feedback_stats"])
-def test_disabled_tools_return_unknown_tool_error(disabled_tool):
-    loop = OrchestratorLoop(_FakeClient([]), model="m", max_tokens=100)
-    result = loop._execute_tool(disabled_tool, {}, context={"feedback_store": object()})
-    assert "未知工具" in result["error"]
 
 
 def test_tool_definitions_expose_realtime_tools_only():

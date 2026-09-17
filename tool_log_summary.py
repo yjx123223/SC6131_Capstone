@@ -4,8 +4,7 @@ tool_log_summary.py
 把 OrchestratorLoop 的工具调用记录（tool_log）压缩成文字摘要，
 供 Critic 审查和 revise 修订时作为"原始数据依据"。
 
-从 critic.CriticAgent._summarize_tool_log 抽出来，因为 revise()
-也需要同一份摘要（让修订只能基于真实数据，而不是凭空改写）。
+Critic 和 revise() 共用同一份摘要（让修订只能基于真实数据，而不是凭空改写）。
 工具返回 error 时也要写进摘要——Critic 需要知道哪些数据缺失，
 才能判断报告有没有"无数据却下结论"。
 """
@@ -67,23 +66,12 @@ def _fmt_graph(r: dict) -> str:
     return "\n".join(lines)
 
 
-def _fmt_kg(r: dict) -> str:   # 图谱工具已停用，保留以兼容历史 tool_log
-    return (
-        f"KG信号 [{r.get('entity')}]：总事件{r.get('total_events', 0)}条，"
-        f"正面{len(r.get('positive_impacts', []))}类，负面{len(r.get('negative_impacts', []))}类"
-    )
-
-
 _FORMATTERS = {
     "query_market_data":  _fmt_market,
     "query_news":         _fmt_news,
     "query_sec_filings":  _fmt_sec,
     "query_macro":        lambda r: f"宏观指标：\n{r.get('summary_text', '无数据')}",
-    "get_feedback_stats": lambda r: (
-        f"历史评分：已评{r.get('total_rated', 0)}次，正面率{r.get('positive_rate', 0):.1%}"
-    ),
     "query_company_graph": _fmt_graph,
-    "query_kg_signals":   _fmt_kg,
 }
 
 

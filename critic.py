@@ -5,8 +5,6 @@ Critic Agent：独立审查 Orchestrator 生成的报告草稿，检查信号冲
 过度自信、引用准确性。只负责"挑错"，不负责改稿——根据审查意见
 修订草稿是 Orchestrator（金融研究员人格）的职责，见
 orchestrator_loop.OrchestratorLoop.revise()。
-
-从 orchestrator.py 的 OrchestratorAgent._run_critic 拆分出来。
 """
 
 import json
@@ -47,9 +45,7 @@ class CriticAgent:
 
         Claude 返回非 JSON 内容或调用异常时，当前策略是默认放行
         （approved=True, conflicts=[]）。这是一个已知的取舍：审查失败
-        约等于"没审查"，如果要收紧，可以把默认值改成
-        approved=False + confidence_adjustment="lower"，让下游至少
-        知道这次审查不可信。目前保留原有行为，未改动。
+        约等于"没审查"。置信度的最终兜底由 compliance.ComplianceChecker 负责。
         """
         context_summary = summarize_tool_log(tool_log)
 
@@ -101,8 +97,3 @@ class CriticAgent:
                 "confidence_adjustment": "maintain",
                 "suggestions": "",
             }
-
-    @staticmethod
-    def _summarize_tool_log(tool_log: list) -> str:
-        """兼容旧调用方：实现已移至 tool_log_summary.summarize_tool_log"""
-        return summarize_tool_log(tool_log)

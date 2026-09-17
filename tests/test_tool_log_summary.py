@@ -48,15 +48,13 @@ def test_errors_are_marked_unavailable():
     assert "数据不可用" in text and "SEC_EDGAR_USER_AGENT" in text
 
 
-def test_macro_and_feedback_and_unknown_tool():
+def test_macro_and_unknown_tool():
     log = [
         {"tool": "query_macro", "input": {}, "result": {"summary_text": "VIX：15.2"}},
-        {"tool": "get_feedback_stats", "input": {}, "result": {"total_rated": 4, "positive_rate": 0.5}},
         {"tool": "some_new_tool", "input": {}, "result": {}},
     ]
     text = summarize_tool_log(log)
     assert "VIX：15.2" in text
-    assert "已评4次" in text and "50.0%" in text
     assert "some_new_tool：已调用" in text
 
 
