@@ -129,3 +129,14 @@ def test_review_prompt_contains_new_draft_fields_and_tool_errors():
     assert "数据时效" in client.messages.last_call_kwargs["system"]
     assert "知识图谱引用" in client.messages.last_call_kwargs["system"]
     assert "引用的图谱事件：无" in prompt
+
+
+def test_temperature_is_optional_and_passed_through():
+    reply = '{"approved": true, "conflicts": [], "confidence_adjustment": "maintain", "suggestions": ""}'
+    client = _FakeClient(reply)
+    CriticAgent(client, model="m", max_tokens=100).review("Apple Inc.", _DRAFT, [])
+    assert "temperature" not in client.messages.last_call_kwargs
+
+    client = _FakeClient(reply)
+    CriticAgent(client, model="m", max_tokens=100, temperature=0).review("Apple Inc.", _DRAFT, [])
+    assert client.messages.last_call_kwargs["temperature"] == 0

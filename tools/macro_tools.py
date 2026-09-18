@@ -10,7 +10,7 @@ fred_api_key 作为显式参数传入，不在函数内部读环境变量，
 调用方（OrchestratorLoop）负责从 config 取得后传入，方便测试。
 """
 
-from typing import Optional
+from typing import Callable, Optional
 
 # 指标 key → (FRED 序列 ID, 中文标签)
 _FRED_SERIES = {
@@ -83,13 +83,16 @@ def _format_indicators(indicators: dict) -> str:
     return "\n".join(lines)
 
 
-def query_macro(fred_api_key: Optional[str], indicators: Optional[list[str]] = None) -> dict:
+def query_macro(fred_api_key: Optional[str], indicators: Optional[list[str]] = None,
+                fetcher: Optional[Callable] = None) -> dict:
     """
     Parameters
     ----------
     fred_api_key : FRED API Key，未配置时返回 error
     indicators   : 需要查询的指标（fed_funds_rate / treasury_10y / cpi_yoy /
                    unemployment / vix），不传则返回全部
+    fetcher      : 取数函数 (fred_api_key) -> indicators dict（测试 / 快照回放注入用），
+                   默认使用 _fetch_fred_indicators
 
     Returns
     -------
@@ -100,7 +103,7 @@ def query_macro(fred_api_key: Optional[str], indicators: Optional[list[str]] = N
         return {"error": "未配置 FRED_API_KEY，宏观数据不可用"}
 
     try:
-        all_indicators = _fetch_fred_indicators(fred_api_key)
+        all_indicators = (fetcher or _fetch_fred_indicators)(fred_api_key)
     except Exception as e:
         return {"error": f"FRED 数据拉取失败：{e}"}
 

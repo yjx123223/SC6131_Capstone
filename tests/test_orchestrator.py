@@ -285,3 +285,61 @@ def test_no_graph_json_when_graph_tool_not_used(orch, monkeypatch, tmp_path):
     _reports_dir(monkeypatch, tmp_path)
     orch.generate_report("Apple Inc.")
     assert list((tmp_path / "reports").glob("*_graph.json")) == []
+
+
+# ── usage 统计与可注入配置 ──────────────────────────────────────
+
+def _usage(i, o):
+    return type("U", (), {"input_tokens": i, "output_tokens": o})()
+
+
+def _record_during_run(orch, *pairs):
+    """让假 loop 在 run() 期间记账（generate_report 开头会先 reset）"""
+    original = orch.loop.run
+
+    def run(entity):
+        for i, o in pairs:
+            orch.usage.record("claude-haiku-4-5", _usage(i, o), 1.0)
+        return original(entity)
+
+    orch.loop.run = run
+
+
+def test_snapshot_includes_usage_totals(orch, store, monkeypatch, tmp_path):
+    _reports_dir(monkeypatch, tmp_path)
+    _record_during_run(orch, (1000, 200), (500, 100))
+
+    orch.generate_report("Apple Inc.", feedback_store=store)
+
+    usage = store.get_history("Apple Inc.")[0]["snapshot"]["usage"]
+    assert usage["calls"] == 2 and usage["failed_calls"] == 0
+    assert usage["input_tokens"] == 1500 and usage["output_tokens"] == 300
+
+
+def test_usage_is_reset_between_reports(orch, store, monkeypatch, tmp_path):
+    """第二份报告的统计不应累计第一份的调用"""
+    _reports_dir(monkeypatch, tmp_path)
+    _record_during_run(orch, (1000, 200))
+
+    orch.generate_report("Apple Inc.", feedback_store=store)
+    orch.generate_report("Apple Inc.", feedback_store=store)
+
+    history = store.get_history("Apple Inc.")
+    assert [h["snapshot"]["usage"]["input_tokens"] for h in history] == [1000, 1000]
+
+
+def test_agent_forwards_injections_to_loop(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "fake-key")
+    monkeypatch.setattr("anthropic.Anthropic", lambda **kwargs: object())
+    impls = {"query_news": lambda ti, tl: {"ok": True}}
+
+    agent = OrchestratorAgent(tool_definitions=[{"name": "emit_report"}],
+                              system_prompt="基线 prompt", tool_impls=impls, temperature=0)
+
+    assert agent.loop.tool_definitions == [{"name": "emit_report"}]
+    assert agent.loop.system_prompt == "基线 prompt"
+    assert agent.loop.tool_impls == impls
+    assert agent.loop.temperature == 0
+    assert agent.critic.temperature == 0
+    assert agent.loop.extractor.temperature == 0
+    assert agent.loop.client is agent.client and agent.client.usage is agent.usage

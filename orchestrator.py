@@ -37,6 +37,7 @@ from critic import CriticAgent
 from compliance import ComplianceChecker, ensure_disclaimer
 from report_renderer import render_report
 from report_store import save_report, save_graph_json
+from usage_tracker import TrackedClient
 from tool_log_summary import latest_result
 
 
@@ -65,22 +66,38 @@ class OrchestratorAgent:
         max_tokens: int = config.ORCHESTRATOR_MAX_TOKENS,
         critic_model: str = config.CRITIC_MODEL,
         critic_max_tokens: int = config.CRITIC_MAX_TOKENS,
+        *,
+        temperature: Optional[float] = None,
+        tool_definitions: Optional[list] = None,
+        system_prompt: Optional[str] = None,
+        tool_impls: Optional[dict] = None,
     ):
+        """
+        temperature / tool_definitions / system_prompt / tool_impls 为可选注入，
+        默认沿用生产配置；消融实验用它们切换变体与回放快照（见 docs/eval-design.md）。
+        """
         key = config.get_anthropic_api_key(api_key)
         if not key:
             raise ValueError(
                 "未找到 Anthropic API Key。\n"
                 "请设置：export ANTHROPIC_API_KEY='your-key'"
             )
-        self.client = anthropic.Anthropic(api_key=key)
+        # 包一层 TrackedClient：loop / critic / 事件抽取共用它，所有调用的
+        # 次数与 token 都记录在 self.usage 里
+        self.client = TrackedClient(anthropic.Anthropic(api_key=key))
+        self.usage = self.client.usage
         self.model = model
 
-        # loop 和 critic 共用同一个 anthropic client，各自独立配置模型/预算
+        # loop 和 critic 共用同一个 client，各自独立配置模型/预算
         self.loop = OrchestratorLoop(
             self.client, model, max_tokens,
             fred_api_key=config.get_fred_api_key(fred_api_key),
+            tool_definitions=tool_definitions,
+            system_prompt=system_prompt,
+            tool_impls=tool_impls,
+            temperature=temperature,
         )
-        self.critic = CriticAgent(self.client, critic_model, critic_max_tokens)
+        self.critic = CriticAgent(self.client, critic_model, critic_max_tokens, temperature=temperature)
         self.compliance = ComplianceChecker()
 
     # ── 主入口 ──────────────────────────────────────────────────────
@@ -104,6 +121,8 @@ class OrchestratorAgent:
                        或草稿生成失败时为 None
           report_md  : Markdown 格式的最终报告（失败时为错误说明）
         """
+        self.usage.reset()
+
         # 1. Orchestrator agentic loop
         draft, tool_log = self.loop.run(entity)
 
@@ -165,7 +184,8 @@ class OrchestratorAgent:
             try:
                 session_id = feedback_store.log_advice(
                     entity=entity,
-                    snapshot=self._extract_signal_snapshot(tool_log, draft, compliance),
+                    snapshot=self._extract_signal_snapshot(tool_log, draft, compliance,
+                                                          usage=self.usage.totals()),
                     advice_text=report_md,
                     model=self.model,
                 )
@@ -176,7 +196,8 @@ class OrchestratorAgent:
         return session_id, report_md
 
     @staticmethod
-    def _extract_signal_snapshot(tool_log: list, draft: dict, compliance: Optional[dict] = None) -> dict:
+    def _extract_signal_snapshot(tool_log: list, draft: dict, compliance: Optional[dict] = None,
+                                 usage: Optional[dict] = None) -> dict:
         """
         把本次建议依据的数据快照存档，供事后评分时回看。
 
@@ -193,6 +214,8 @@ class OrchestratorAgent:
             "tools_ok": [],
             "tools_failed": [],
         }
+        if usage:
+            snapshot["usage"] = usage
         if compliance:
             snapshot["compliance_score"] = compliance.get("score")
             snapshot["is_compliant"] = compliance.get("is_compliant")

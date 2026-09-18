@@ -25,10 +25,11 @@ class CriticAgent:
     >>> critique = critic.review(entity, draft, tool_log)
     """
 
-    def __init__(self, client, model: str, max_tokens: int):
+    def __init__(self, client, model: str, max_tokens: int, temperature=None):
         self.client = client
         self.model = model
         self.max_tokens = max_tokens
+        self.temperature = temperature    # None 表示不传，保持 API 默认
 
     def review(self, entity: str, draft: dict, tool_log: list) -> dict:
         """
@@ -76,12 +77,15 @@ class CriticAgent:
 请输出 JSON 格式的审查结果。"""
 
         try:
-            response = self.client.messages.create(
+            kwargs = dict(
                 model=self.model,
                 max_tokens=self.max_tokens,
                 system=system_prompt,
                 messages=[{"role": "user", "content": user_prompt}],
             )
+            if self.temperature is not None:
+                kwargs["temperature"] = self.temperature
+            response = self.client.messages.create(**kwargs)
             raw = response.content[0].text.strip()
             start = raw.find("{")
             end   = raw.rfind("}") + 1

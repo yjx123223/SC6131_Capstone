@@ -88,3 +88,23 @@ def test_fetch_fred_indicators_parses_series_and_cpi_yoy(monkeypatch):
     assert result["cpi_yoy"]["value"] == 3.0
     assert result["unemployment"]["value"] is None and result["unemployment"]["error"] == "timeout"
     assert result["vix"] == {"value": None, "date": "N/A", "label": "VIX 恐慌指数"}
+
+
+def test_injected_fetcher_replaces_fred_call():
+    calls = []
+
+    def fake_fetcher(key):
+        calls.append(key)
+        return _FAKE_INDICATORS
+
+    result = macro_tools.query_macro("fake-key", indicators=["vix"], fetcher=fake_fetcher)
+
+    assert calls == ["fake-key"]
+    assert list(result["indicators"]) == ["vix"]
+
+
+def test_injected_fetcher_failure_returns_error():
+    def boom(key):
+        raise RuntimeError("replay miss")
+
+    assert "replay miss" in macro_tools.query_macro("k", fetcher=boom)["error"]
