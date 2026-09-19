@@ -16,6 +16,11 @@ eval/snapshot.py
 申报按 form_types 过滤、宏观按 indicators 过滤；行情固定使用录制时的 period。
 快照中没有的公司返回 error，不会穿透到真实接口。
 
+**可见信息对齐**：非目标公司的新闻一律截断到 neighbor_max_items
+（默认 config.KG_NEWS_PER_COMPANY = 5）。否则 B 组可以自行索要 8 条，
+而 C 组的图谱工具固定取 5 条，两组看到的数据就不一样了，B↔C 的比较会失真。
+人工标注的候选池也按同一口径生成（见 eval/gold.py）。
+
 命令行：
   python -m eval.snapshot --out eval/snapshots/2026-09-20
   python -m eval.snapshot --inspect eval/snapshots/2026-09-20/snapshot.json
@@ -227,19 +232,32 @@ class SnapshotStore:
         """供 tools.kg_live_tools.query_company_graph 使用的取数函数"""
         return lambda ticker, max_items: self.replay_news(ticker, max_items=max_items)
 
+    def news_budget(self, entity: str, requested, target: Optional[str],
+                    neighbor_max_items: int) -> Optional[int]:
+        """非目标公司的新闻统一截断到 neighbor_max_items，保证各变体可见信息一致"""
+        resolved = resolve_ticker(entity or "")
+        ticker = resolved.get("ticker")
+        if target and ticker and ticker != target.upper():
+            return min(int(requested), neighbor_max_items) if requested else neighbor_max_items
+        return requested
+
     def tool_impls(self, target: Optional[str] = None, restrict_to: Optional[str] = None,
-                   extractor=None) -> dict:
+                   extractor=None, neighbor_max_items: Optional[int] = None) -> dict:
         """
         生成注入 OrchestratorLoop 的工具实现（签名统一为 (tool_input, tool_log)）。
 
-        restrict_to : 只允许查询该 ticker（A 组用，防止基线组"偷看"邻居）
-        extractor   : 知识图谱事件抽取器；为 None 时不提供 query_company_graph
+        restrict_to        : 只允许查询该 ticker（A 组用，防止基线组"偷看"邻居）
+        extractor          : 知识图谱事件抽取器；为 None 时不提供 query_company_graph
+        neighbor_max_items : 非目标公司最多返回几条新闻，默认 config.KG_NEWS_PER_COMPANY
         """
+        neighbor_max_items = neighbor_max_items or config.KG_NEWS_PER_COMPANY
         impls = {
             "query_market_data": lambda ti, tl: self.replay_market(
                 ti.get("entity", ""), ti.get("period"), restrict_to),
             "query_news": lambda ti, tl: self.replay_news(
-                ti.get("entity", ""), ti.get("max_items"), restrict_to),
+                ti.get("entity", ""),
+                self.news_budget(ti.get("entity", ""), ti.get("max_items"), target, neighbor_max_items),
+                restrict_to),
             "query_sec_filings": lambda ti, tl: self.replay_sec(
                 ti.get("entity", ""), ti.get("form_types"), restrict_to),
             "query_macro": lambda ti, tl: self.replay_macro(ti.get("indicators")),
@@ -256,7 +274,8 @@ class SnapshotStore:
                         prior[entry["tool"]] = result
                 return kg_live_tools.query_company_graph(
                     ti.get("entity", ""), extractor=extractor, prior_results=prior,
-                    news_fetcher=self.news_fetcher(),
+                    news_fetcher=lambda t, n: self.replay_news(
+                        t, self.news_budget(t, n, target, neighbor_max_items)),
                 )
 
             impls["query_company_graph"] = _graph

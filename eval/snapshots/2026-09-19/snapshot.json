@@ -1,0 +1,5159 @@
+{
+  "recorded_at": "2026-09-19T07:05:56+00:00",
+  "targets": [
+    "AAPL",
+    "MSFT",
+    "GOOGL",
+    "AMZN",
+    "NVDA",
+    "META",
+    "TSM",
+    "AMD",
+    "INTC",
+    "AVGO",
+    "QCOM",
+    "ASML",
+    "ORCL",
+    "TSLA",
+    "NFLX"
+  ],
+  "universe": [
+    "AAPL",
+    "AMD",
+    "AMZN",
+    "ASML",
+    "AVGO",
+    "DIS",
+    "F",
+    "GM",
+    "GOOGL",
+    "INTC",
+    "META",
+    "MSFT",
+    "NFLX",
+    "NVDA",
+    "ORCL",
+    "QCOM",
+    "TSLA",
+    "TSM"
+  ],
+  "neighbors": {
+    "AAPL": [
+      {
+        "ticker": "AVGO",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "AVGO",
+            "SUPPLIES_TO",
+            "AAPL"
+          ]
+        ]
+      },
+      {
+        "ticker": "QCOM",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "QCOM",
+            "SUPPLIES_TO",
+            "AAPL"
+          ]
+        ]
+      },
+      {
+        "ticker": "TSM",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "AAPL"
+          ]
+        ]
+      },
+      {
+        "ticker": "GOOGL",
+        "hop": 1,
+        "roles": [
+          "partner",
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "AAPL",
+            "COMPETES_WITH",
+            "GOOGL"
+          ],
+          [
+            "AAPL",
+            "PARTNERS_WITH",
+            "GOOGL"
+          ]
+        ]
+      },
+      {
+        "ticker": "MSFT",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "AAPL",
+            "COMPETES_WITH",
+            "MSFT"
+          ]
+        ]
+      },
+      {
+        "ticker": "ASML",
+        "hop": 2,
+        "roles": [
+          "supplier_of_supplier"
+        ],
+        "via": "TSM",
+        "path": [
+          [
+            "ASML",
+            "SUPPLIES_TO",
+            "TSM"
+          ],
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "AAPL"
+          ]
+        ]
+      }
+    ],
+    "MSFT": [
+      {
+        "ticker": "AMD",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "AMD",
+            "SUPPLIES_TO",
+            "MSFT"
+          ]
+        ]
+      },
+      {
+        "ticker": "NVDA",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "MSFT"
+          ]
+        ]
+      },
+      {
+        "ticker": "ORCL",
+        "hop": 1,
+        "roles": [
+          "partner",
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "ORCL",
+            "COMPETES_WITH",
+            "MSFT"
+          ],
+          [
+            "ORCL",
+            "PARTNERS_WITH",
+            "MSFT"
+          ]
+        ]
+      },
+      {
+        "ticker": "AAPL",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "AAPL",
+            "COMPETES_WITH",
+            "MSFT"
+          ]
+        ]
+      },
+      {
+        "ticker": "AMZN",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "MSFT",
+            "COMPETES_WITH",
+            "AMZN"
+          ]
+        ]
+      },
+      {
+        "ticker": "TSM",
+        "hop": 2,
+        "roles": [
+          "supplier_of_supplier"
+        ],
+        "via": "AMD",
+        "path": [
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "AMD"
+          ],
+          [
+            "AMD",
+            "SUPPLIES_TO",
+            "MSFT"
+          ]
+        ]
+      }
+    ],
+    "GOOGL": [
+      {
+        "ticker": "NVDA",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "GOOGL"
+          ]
+        ]
+      },
+      {
+        "ticker": "AAPL",
+        "hop": 1,
+        "roles": [
+          "partner",
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "AAPL",
+            "COMPETES_WITH",
+            "GOOGL"
+          ],
+          [
+            "AAPL",
+            "PARTNERS_WITH",
+            "GOOGL"
+          ]
+        ]
+      },
+      {
+        "ticker": "AMZN",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "AMZN",
+            "COMPETES_WITH",
+            "GOOGL"
+          ]
+        ]
+      },
+      {
+        "ticker": "META",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "META",
+            "COMPETES_WITH",
+            "GOOGL"
+          ]
+        ]
+      },
+      {
+        "ticker": "MSFT",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "MSFT",
+            "COMPETES_WITH",
+            "GOOGL"
+          ]
+        ]
+      },
+      {
+        "ticker": "TSM",
+        "hop": 2,
+        "roles": [
+          "supplier_of_supplier"
+        ],
+        "via": "NVDA",
+        "path": [
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "NVDA"
+          ],
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "GOOGL"
+          ]
+        ]
+      }
+    ],
+    "AMZN": [
+      {
+        "ticker": "NVDA",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "AMZN"
+          ]
+        ]
+      },
+      {
+        "ticker": "NFLX",
+        "hop": 1,
+        "roles": [
+          "customer",
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "AMZN",
+            "SUPPLIES_TO",
+            "NFLX"
+          ],
+          [
+            "NFLX",
+            "COMPETES_WITH",
+            "AMZN"
+          ]
+        ]
+      },
+      {
+        "ticker": "GOOGL",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "AMZN",
+            "COMPETES_WITH",
+            "GOOGL"
+          ]
+        ]
+      },
+      {
+        "ticker": "MSFT",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "MSFT",
+            "COMPETES_WITH",
+            "AMZN"
+          ]
+        ]
+      },
+      {
+        "ticker": "ORCL",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "ORCL",
+            "COMPETES_WITH",
+            "AMZN"
+          ]
+        ]
+      },
+      {
+        "ticker": "TSM",
+        "hop": 2,
+        "roles": [
+          "supplier_of_supplier"
+        ],
+        "via": "NVDA",
+        "path": [
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "NVDA"
+          ],
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "AMZN"
+          ]
+        ]
+      }
+    ],
+    "NVDA": [
+      {
+        "ticker": "TSM",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "NVDA"
+          ]
+        ]
+      },
+      {
+        "ticker": "AMZN",
+        "hop": 1,
+        "roles": [
+          "customer"
+        ],
+        "via": null,
+        "path": [
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "AMZN"
+          ]
+        ]
+      },
+      {
+        "ticker": "GOOGL",
+        "hop": 1,
+        "roles": [
+          "customer"
+        ],
+        "via": null,
+        "path": [
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "GOOGL"
+          ]
+        ]
+      },
+      {
+        "ticker": "META",
+        "hop": 1,
+        "roles": [
+          "customer"
+        ],
+        "via": null,
+        "path": [
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "META"
+          ]
+        ]
+      },
+      {
+        "ticker": "MSFT",
+        "hop": 1,
+        "roles": [
+          "customer"
+        ],
+        "via": null,
+        "path": [
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "MSFT"
+          ]
+        ]
+      },
+      {
+        "ticker": "ASML",
+        "hop": 2,
+        "roles": [
+          "supplier_of_supplier"
+        ],
+        "via": "TSM",
+        "path": [
+          [
+            "ASML",
+            "SUPPLIES_TO",
+            "TSM"
+          ],
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "NVDA"
+          ]
+        ]
+      }
+    ],
+    "META": [
+      {
+        "ticker": "NVDA",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "META"
+          ]
+        ]
+      },
+      {
+        "ticker": "GOOGL",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "META",
+            "COMPETES_WITH",
+            "GOOGL"
+          ]
+        ]
+      },
+      {
+        "ticker": "TSM",
+        "hop": 2,
+        "roles": [
+          "supplier_of_supplier"
+        ],
+        "via": "NVDA",
+        "path": [
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "NVDA"
+          ],
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "META"
+          ]
+        ]
+      }
+    ],
+    "TSM": [
+      {
+        "ticker": "ASML",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "ASML",
+            "SUPPLIES_TO",
+            "TSM"
+          ]
+        ]
+      },
+      {
+        "ticker": "AAPL",
+        "hop": 1,
+        "roles": [
+          "customer"
+        ],
+        "via": null,
+        "path": [
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "AAPL"
+          ]
+        ]
+      },
+      {
+        "ticker": "AMD",
+        "hop": 1,
+        "roles": [
+          "customer"
+        ],
+        "via": null,
+        "path": [
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "AMD"
+          ]
+        ]
+      },
+      {
+        "ticker": "AVGO",
+        "hop": 1,
+        "roles": [
+          "customer"
+        ],
+        "via": null,
+        "path": [
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "AVGO"
+          ]
+        ]
+      },
+      {
+        "ticker": "NVDA",
+        "hop": 1,
+        "roles": [
+          "customer"
+        ],
+        "via": null,
+        "path": [
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "NVDA"
+          ]
+        ]
+      }
+    ],
+    "AMD": [
+      {
+        "ticker": "TSM",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "AMD"
+          ]
+        ]
+      },
+      {
+        "ticker": "MSFT",
+        "hop": 1,
+        "roles": [
+          "customer"
+        ],
+        "via": null,
+        "path": [
+          [
+            "AMD",
+            "SUPPLIES_TO",
+            "MSFT"
+          ]
+        ]
+      },
+      {
+        "ticker": "INTC",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "AMD",
+            "COMPETES_WITH",
+            "INTC"
+          ]
+        ]
+      },
+      {
+        "ticker": "NVDA",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "NVDA",
+            "COMPETES_WITH",
+            "AMD"
+          ]
+        ]
+      },
+      {
+        "ticker": "ASML",
+        "hop": 2,
+        "roles": [
+          "supplier_of_supplier"
+        ],
+        "via": "TSM",
+        "path": [
+          [
+            "ASML",
+            "SUPPLIES_TO",
+            "TSM"
+          ],
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "AMD"
+          ]
+        ]
+      }
+    ],
+    "INTC": [
+      {
+        "ticker": "ASML",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "ASML",
+            "SUPPLIES_TO",
+            "INTC"
+          ]
+        ]
+      },
+      {
+        "ticker": "AMD",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "AMD",
+            "COMPETES_WITH",
+            "INTC"
+          ]
+        ]
+      },
+      {
+        "ticker": "NVDA",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "NVDA",
+            "COMPETES_WITH",
+            "INTC"
+          ]
+        ]
+      }
+    ],
+    "AVGO": [
+      {
+        "ticker": "TSM",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "AVGO"
+          ]
+        ]
+      },
+      {
+        "ticker": "AAPL",
+        "hop": 1,
+        "roles": [
+          "customer"
+        ],
+        "via": null,
+        "path": [
+          [
+            "AVGO",
+            "SUPPLIES_TO",
+            "AAPL"
+          ]
+        ]
+      },
+      {
+        "ticker": "ASML",
+        "hop": 2,
+        "roles": [
+          "supplier_of_supplier"
+        ],
+        "via": "TSM",
+        "path": [
+          [
+            "ASML",
+            "SUPPLIES_TO",
+            "TSM"
+          ],
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "AVGO"
+          ]
+        ]
+      }
+    ],
+    "QCOM": [
+      {
+        "ticker": "TSM",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "QCOM"
+          ]
+        ]
+      },
+      {
+        "ticker": "AAPL",
+        "hop": 1,
+        "roles": [
+          "customer"
+        ],
+        "via": null,
+        "path": [
+          [
+            "QCOM",
+            "SUPPLIES_TO",
+            "AAPL"
+          ]
+        ]
+      },
+      {
+        "ticker": "ASML",
+        "hop": 2,
+        "roles": [
+          "supplier_of_supplier"
+        ],
+        "via": "TSM",
+        "path": [
+          [
+            "ASML",
+            "SUPPLIES_TO",
+            "TSM"
+          ],
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "QCOM"
+          ]
+        ]
+      }
+    ],
+    "ASML": [
+      {
+        "ticker": "INTC",
+        "hop": 1,
+        "roles": [
+          "customer"
+        ],
+        "via": null,
+        "path": [
+          [
+            "ASML",
+            "SUPPLIES_TO",
+            "INTC"
+          ]
+        ]
+      },
+      {
+        "ticker": "TSM",
+        "hop": 1,
+        "roles": [
+          "customer"
+        ],
+        "via": null,
+        "path": [
+          [
+            "ASML",
+            "SUPPLIES_TO",
+            "TSM"
+          ]
+        ]
+      }
+    ],
+    "ORCL": [
+      {
+        "ticker": "NVDA",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "ORCL"
+          ]
+        ]
+      },
+      {
+        "ticker": "MSFT",
+        "hop": 1,
+        "roles": [
+          "partner",
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "ORCL",
+            "COMPETES_WITH",
+            "MSFT"
+          ],
+          [
+            "ORCL",
+            "PARTNERS_WITH",
+            "MSFT"
+          ]
+        ]
+      },
+      {
+        "ticker": "AMZN",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "ORCL",
+            "COMPETES_WITH",
+            "AMZN"
+          ]
+        ]
+      },
+      {
+        "ticker": "TSM",
+        "hop": 2,
+        "roles": [
+          "supplier_of_supplier"
+        ],
+        "via": "NVDA",
+        "path": [
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "NVDA"
+          ],
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "ORCL"
+          ]
+        ]
+      }
+    ],
+    "TSLA": [
+      {
+        "ticker": "NVDA",
+        "hop": 1,
+        "roles": [
+          "supplier"
+        ],
+        "via": null,
+        "path": [
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "TSLA"
+          ]
+        ]
+      },
+      {
+        "ticker": "F",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "TSLA",
+            "COMPETES_WITH",
+            "F"
+          ]
+        ]
+      },
+      {
+        "ticker": "GM",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "TSLA",
+            "COMPETES_WITH",
+            "GM"
+          ]
+        ]
+      },
+      {
+        "ticker": "TSM",
+        "hop": 2,
+        "roles": [
+          "supplier_of_supplier"
+        ],
+        "via": "NVDA",
+        "path": [
+          [
+            "TSM",
+            "SUPPLIES_TO",
+            "NVDA"
+          ],
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "TSLA"
+          ]
+        ]
+      }
+    ],
+    "NFLX": [
+      {
+        "ticker": "AMZN",
+        "hop": 1,
+        "roles": [
+          "supplier",
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "AMZN",
+            "SUPPLIES_TO",
+            "NFLX"
+          ],
+          [
+            "NFLX",
+            "COMPETES_WITH",
+            "AMZN"
+          ]
+        ]
+      },
+      {
+        "ticker": "DIS",
+        "hop": 1,
+        "roles": [
+          "competitor"
+        ],
+        "via": null,
+        "path": [
+          [
+            "NFLX",
+            "COMPETES_WITH",
+            "DIS"
+          ]
+        ]
+      },
+      {
+        "ticker": "NVDA",
+        "hop": 2,
+        "roles": [
+          "supplier_of_supplier"
+        ],
+        "via": "AMZN",
+        "path": [
+          [
+            "NVDA",
+            "SUPPLIES_TO",
+            "AMZN"
+          ],
+          [
+            "AMZN",
+            "SUPPLIES_TO",
+            "NFLX"
+          ]
+        ]
+      }
+    ]
+  },
+  "entries": {
+    "query_market_data:AAPL": {
+      "tool": "query_market_data",
+      "ticker": "AAPL",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "AAPL",
+        "entity": "AAPL",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "Apple Inc.",
+          "sector": "Technology",
+          "industry": "Consumer Electronics",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 150000,
+          "summary": "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. The company offers iPhone, a line of smartphones; Mac, a line of personal computers; iPad, a line of multi-purpose tablets; and wearables, home, and accessories comprising AirPods, Apple Vision Pro, Apple TV, Apple Watch, Beats products, and HomePod, as well as Apple brande"
+        },
+        "fundamentals": {
+          "market_cap": 4905541566464,
+          "trailing_pe": 38.59,
+          "forward_pe": 35.06,
+          "price_to_book": 45.67,
+          "dividend_yield_pct": 0.32,
+          "profit_margin_pct": 27.62,
+          "revenue_growth_pct": 16.4,
+          "earnings_growth_pct": 28.7,
+          "return_on_equity_pct": 148.75,
+          "debt_to_equity": 78.44,
+          "current_ratio": 1.0,
+          "total_revenue": 466822987776,
+          "net_income": 128929996800,
+          "free_cash_flow": 107721875456,
+          "beta": 1.08,
+          "fifty_two_week_high": 344.57,
+          "fifty_two_week_low": 240.21,
+          "analyst_target_mean": 327.84,
+          "analyst_recommendation": "buy",
+          "analyst_count": 39
+        },
+        "technicals": {
+          "last_close": 336.13,
+          "ma20": 322.64,
+          "ma50": 320.03,
+          "price_vs_ma20": "bullish",
+          "price_vs_ma50": "bullish",
+          "rsi14": 64.28,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 1.38,
+          "volatility_20d_annualized_pct": 21.86,
+          "return_5d_pct": 1.16,
+          "return_20d_pct": 7.98,
+          "return_period_pct": 13.27
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 319.97
+          },
+          {
+            "date": "2026-09-08",
+            "close": 316.22
+          },
+          {
+            "date": "2026-09-09",
+            "close": 315.34
+          },
+          {
+            "date": "2026-09-10",
+            "close": 326.57
+          },
+          {
+            "date": "2026-09-11",
+            "close": 332.27
+          },
+          {
+            "date": "2026-09-14",
+            "close": 333.08
+          },
+          {
+            "date": "2026-09-15",
+            "close": 331.34
+          },
+          {
+            "date": "2026-09-16",
+            "close": 332.41
+          },
+          {
+            "date": "2026-09-17",
+            "close": 337.0
+          },
+          {
+            "date": "2026-09-18",
+            "close": 336.13
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:AAPL": {
+      "tool": "query_news",
+      "ticker": "AAPL",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "AAPL",
+        "entity": "AAPL",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "Bill Ackman Says Nike ‘Needs Help’ as Alexandre Arnault Joins Board: ‘Great Development’",
+            "publisher": "Benzinga",
+            "published_at": "2026-09-19T01:31+00:00",
+            "summary": "Investment firm Pershing Square Inc. founder Bill Ackman said Wednesday that Nike Inc.’s decision to add Deputy CEO of LVMH’s Moët Hennessy division Alexandre Arnault to its board was a “great development” for the retailer, which is working through a...",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/bill-ackman-says-nike-needs-013111888.html"
+          },
+          {
+            "title": "Here’s A Stock That Jim Cramer Like Before But Now He Just Doesn’t Want To Buy It",
+            "publisher": "Insider Monkey",
+            "published_at": "2026-09-18T23:12+00:00",
+            "summary": "Glass technology products manufacturer Corning Incorporated (NYSE:GLW) has had an interesting relationship with Jim Cramer’s radar. Late last year, the CNBC TV host was one of the firm’s strongest supporters as he praised it for its partnership with Apple to bring manufacturing back to the US under ",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/stock-jim-cramer-now-just-231218503.html"
+          },
+          {
+            "title": "John Ternus has the 'Apple DNA' that will push company to the 'next level'",
+            "publisher": "Yahoo Finance Video",
+            "published_at": "2026-09-18T22:00+00:00",
+            "summary": "CFRA Research senior vice president Angelo Zino discusses why new Apple (AAPL) CEO John Ternus may be the right man for the job, especially after the release of the new iPhone 18 Pro and unveiling of the foldable iPhone Duo.",
+            "url": "https://finance.yahoo.com/video/john-ternus-apple-dna-push-220000814.html"
+          },
+          {
+            "title": "Coinbase Files to List Single-Stock Perps on Apple, Tesla and Nvidia",
+            "publisher": "decrypt",
+            "published_at": "2026-09-18T21:01+00:00",
+            "summary": "The filing seeks CFTC approval for contracts giving US traders 24/5 leveraged exposure to individual stocks without ownership.",
+            "url": "https://decrypt.co/378681/coinbase-single-stock-perps-apple-tesla-nvidia"
+          },
+          {
+            "title": "Stock Market Today: Nasdaq, S&P Reverse Slightly Higher; Sandisk, Lumentum Lead This Tech Rally",
+            "publisher": "Investor's Business Daily",
+            "published_at": "2026-09-18T20:57+00:00",
+            "summary": "Stock Market Today: The Dow Jones index falls Friday as oil prices reverse higher. Apple, AMD, Micron and Sandisk are key movers.",
+            "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-oil-prices-apple-amd-micron-sandisk/?src=A00220&yptr=yahoo"
+          },
+          {
+            "title": "Update: Wall Street Wavers, Logs Mixed Weekly Performance",
+            "publisher": "MT Newswires",
+            "published_at": "2026-09-18T20:37+00:00",
+            "summary": "(Updates with market moves at the end of the day, and other changes, if any.) US stocks struggled",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/wall-street-wavers-logs-mixed-203716131.html"
+          },
+          {
+            "title": "Apple Stock Gets Stunning Price Target Hike on Strong iPhone Demand",
+            "publisher": "GuruFocus.com",
+            "published_at": "2026-09-18T20:21+00:00",
+            "summary": "Evercore Delivers Bullish $380 Price Target for Apple Stock",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/apple-stock-gets-stunning-price-202120422.html"
+          },
+          {
+            "title": "Apple will essentially sell 'every single' iPhone Duo it makes: CFRA",
+            "publisher": "Yahoo Finance Video",
+            "published_at": "2026-09-18T20:09+00:00",
+            "summary": "Apple's (AAPL) iPhone 18 Pro has hit store shelves on Friday, coming out a full month before the foldable iPhone Duo's release in late October. CFRA Research senior vice president and equity analyst Angelo Zino comes on Market Domination to discuss his forecast surrounding demand for the foldable iP",
+            "url": "https://finance.yahoo.com/video/apple-essentially-sell-every-single-200934859.html"
+          }
+        ]
+      }
+    },
+    "query_market_data:AMD": {
+      "tool": "query_market_data",
+      "ticker": "AMD",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "AMD",
+        "entity": "AMD",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "Advanced Micro Devices, Inc.",
+          "sector": "Technology",
+          "industry": "Semiconductors",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 31000,
+          "summary": "Advanced Micro Devices, Inc. operates as a semiconductor company internationally. It operates in three segments: Data Center, Client and Gaming, and Embedded. The company offers artificial intelligence (AI) accelerators, microprocessors, and graphics processing units (GPUs) as standalone devices or as incorporated into accelerated processing units, chipsets, and data center and professional GPUs; "
+        },
+        "fundamentals": {
+          "market_cap": 913892179968,
+          "trailing_pe": 138.91,
+          "forward_pe": 35.95,
+          "price_to_book": 13.59,
+          "dividend_yield_pct": null,
+          "profit_margin_pct": 15.58,
+          "revenue_growth_pct": 50.1,
+          "earnings_growth_pct": 159.5,
+          "return_on_equity_pct": 10.2,
+          "debt_to_equity": 6.36,
+          "current_ratio": 2.61,
+          "total_revenue": 41305001984,
+          "net_income": 6469000192,
+          "free_cash_flow": 8841499648,
+          "beta": 2.48,
+          "fifty_two_week_high": 584.73,
+          "fifty_two_week_low": 154.78,
+          "analyst_target_mean": 616.51,
+          "analyst_recommendation": "strong_buy",
+          "analyst_count": 50
+        },
+        "technicals": {
+          "last_close": 559.82,
+          "ma20": 490.75,
+          "ma50": 495.85,
+          "price_vs_ma20": "bullish",
+          "price_vs_ma50": "bullish",
+          "rsi14": 65.1,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 3.17,
+          "volatility_20d_annualized_pct": 50.35,
+          "return_5d_pct": 8.46,
+          "return_20d_pct": 19.25,
+          "return_period_pct": 1.48
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 477.57
+          },
+          {
+            "date": "2026-09-08",
+            "close": 505.74
+          },
+          {
+            "date": "2026-09-09",
+            "close": 521.1
+          },
+          {
+            "date": "2026-09-10",
+            "close": 503.6
+          },
+          {
+            "date": "2026-09-11",
+            "close": 516.13
+          },
+          {
+            "date": "2026-09-14",
+            "close": 493.41
+          },
+          {
+            "date": "2026-09-15",
+            "close": 504.2
+          },
+          {
+            "date": "2026-09-16",
+            "close": 512.5
+          },
+          {
+            "date": "2026-09-17",
+            "close": 545.09
+          },
+          {
+            "date": "2026-09-18",
+            "close": 559.82
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:AMD": {
+      "tool": "query_news",
+      "ticker": "AMD",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "AMD",
+        "entity": "AMD",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "Dow Jones Futures: Nasdaq, S&P 500 Hold; Robinhood, Sandisk, AMD, Moderna Surge Into Buy Areas",
+            "publisher": "Investor's Business Daily",
+            "published_at": "2026-09-19T01:36+00:00",
+            "summary": "The stock market showed choppy, mixed weekly action. But Robinhood, Sandisk, AMD and Moderna rallied into buy areas.",
+            "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-futures-robinhood-sandisk-amd-moderna-surge-buy-areas/?src=A00220&yptr=yahoo"
+          },
+          {
+            "title": "The ARK Trade Watch: Cathie Wood Cuts Crypto Exposure, Then Reverses Course On CoreWeave",
+            "publisher": "Stocktwits",
+            "published_at": "2026-09-18T21:38+00:00",
+            "summary": "Cathie Wood's ARK Invest funds made a broad move out of crypto-linked assets during the week, led by the sale of more than 1.5 million shares of the ARK 21Shares Bitcoin ETF.",
+            "url": "https://stocktwits.com/news-articles/markets/equity/crwv-arkb-crcl-coin-cathie-wood-biggest-ark-invest-trades-week/cZtH7mZRBEg"
+          },
+          {
+            "title": "AMD (AMD) Stock Looks Cheap After Its Huge 3 Year Run",
+            "publisher": "Simply Wall St.",
+            "published_at": "2026-09-18T21:13+00:00",
+            "summary": "Advanced Micro Devices has ridden a powerful AI story in recent years, and the question now is whether the current share price is still grounded in the cash the business can realistically generate. For anyone watching AMD today, the focus has shifted from headline momentum to the harder question of ",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/amd-amd-stock-looks-cheap-211318753.html"
+          },
+          {
+            "title": "Stock Market Today: Nasdaq, S&P Reverse Slightly Higher; Sandisk, Lumentum Lead This Tech Rally",
+            "publisher": "Investor's Business Daily",
+            "published_at": "2026-09-18T20:57+00:00",
+            "summary": "Stock Market Today: The Dow Jones index falls Friday as oil prices reverse higher. Apple, AMD, Micron and Sandisk are key movers.",
+            "url": "https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-oil-prices-apple-amd-micron-sandisk/?src=A00220&yptr=yahoo"
+          },
+          {
+            "title": "Chip Stocks Break Through Ceiling As Sector Rebounds. Macom Is A Standout.",
+            "publisher": "Investor's Business Daily",
+            "published_at": "2026-09-18T20:33+00:00",
+            "summary": "The Philadelphia semiconductor index, known as SOX, rose for a fourth consecutive day on Friday, with a new batch of chip stocks leading the charge.",
+            "url": "https://www.investors.com/news/technology/chip-stocks-hit-ceiling-macom-technology-solutions-mtsi/?src=A00220&yptr=yahoo"
+          },
+          {
+            "title": "Top Research Reports for AMD, Linde & Amgen",
+            "publisher": "Zacks",
+            "published_at": "2026-09-18T20:28+00:00",
+            "summary": "AMD, Linde and Amgen highlight AI demand, contracted growth and drug launches, while supply, margin and pipeline risks remain key factors.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/top-research-reports-amd-linde-202800486.html"
+          },
+          {
+            "title": "Why XLK’s Next Rebalance Won’t Fix Its Massive Concentration Problem",
+            "publisher": "24/7 Wall St.",
+            "published_at": "2026-09-18T17:25+00:00",
+            "summary": "XLK markets itself as diversified large-cap tech exposure, but a closer look at the holdings reveals a chip bet so large that even a quarterly rebalance may do nothing to shrink it.",
+            "url": "https://247wallst.com/investing/etf/2026/09/18/why-xlks-next-rebalance-wont-fix-its-massive-concentration-problem/"
+          },
+          {
+            "title": "Why Does NVDA Stock Carry The Lowest Clean Multiple In Its Peer Group?",
+            "publisher": "Trefis",
+            "published_at": "2026-09-18T16:40+00:00",
+            "summary": "NVIDIA (NVDA) is the strongest business in its peer group, and it is priced below every rival you can compare it with fairly, at 27.5 times earnings. Yet over the past twelve months NVDA returned 25.7% while AMD returned 239.7%. The best business in the group is one of its weakest stocks, and not be",
+            "url": "https://www.trefis.com/articles/615854/why-does-nvda-stock-carry-the-lowest-clean-multiple-in-its-peer-group/2026-09-18"
+          }
+        ]
+      }
+    },
+    "query_market_data:AMZN": {
+      "tool": "query_market_data",
+      "ticker": "AMZN",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "AMZN",
+        "entity": "AMZN",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "Amazon.com, Inc.",
+          "sector": "Consumer Cyclical",
+          "industry": "Internet Retail",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 1595000,
+          "summary": "Amazon.com, Inc. engages in the retail sale of consumer products, advertising, and subscriptions service through online and physical stores in North America and internationally. The company operates through three segments: North America, International, and Amazon Web Services (AWS). It also manufactures and sells electronic devices, including Kindle, fire tablets, fire TVs, echo, ring, blink, and "
+        },
+        "fundamentals": {
+          "market_cap": 2736595664896,
+          "trailing_pe": 20.2,
+          "forward_pe": 24.45,
+          "price_to_book": 4.96,
+          "dividend_yield_pct": null,
+          "profit_margin_pct": 17.44,
+          "revenue_growth_pct": 19.6,
+          "earnings_growth_pct": 242.3,
+          "return_on_equity_pct": 30.56,
+          "debt_to_equity": 45.62,
+          "current_ratio": 1.03,
+          "total_revenue": 775680032768,
+          "net_income": 135281000448,
+          "free_cash_flow": 3219124992,
+          "beta": 1.44,
+          "fifty_two_week_high": 287.2,
+          "fifty_two_week_low": 196.0,
+          "analyst_target_mean": 328.22,
+          "analyst_recommendation": "strong_buy",
+          "analyst_count": 59
+        },
+        "technicals": {
+          "last_close": 253.71,
+          "ma20": 256.13,
+          "ma50": 255.84,
+          "price_vs_ma20": "bearish",
+          "price_vs_ma50": "bearish",
+          "rsi14": 48.36,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 1.65,
+          "volatility_20d_annualized_pct": 26.22,
+          "return_5d_pct": -1.2,
+          "return_20d_pct": -2.46,
+          "return_period_pct": 8.99
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 258.51
+          },
+          {
+            "date": "2026-09-08",
+            "close": 256.97
+          },
+          {
+            "date": "2026-09-09",
+            "close": 252.4
+          },
+          {
+            "date": "2026-09-10",
+            "close": 251.89
+          },
+          {
+            "date": "2026-09-11",
+            "close": 256.78
+          },
+          {
+            "date": "2026-09-14",
+            "close": 253.54
+          },
+          {
+            "date": "2026-09-15",
+            "close": 248.42
+          },
+          {
+            "date": "2026-09-16",
+            "close": 245.96
+          },
+          {
+            "date": "2026-09-17",
+            "close": 251.19
+          },
+          {
+            "date": "2026-09-18",
+            "close": 253.71
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:AMZN": {
+      "tool": "query_news",
+      "ticker": "AMZN",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "AMZN",
+        "entity": "AMZN",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "Amazon (AMZN) Is Reworking Its Air Fleet With 30 A330 Freighters By 2027",
+            "publisher": "Simply Wall St.",
+            "published_at": "2026-09-19T04:18+00:00",
+            "summary": "Amazon.com (NasdaqGS:AMZN) plans to transition its air cargo fleet from Boeing 767 aircraft to Airbus A330 freighters. Air Transport Services Group will acquire and convert 30 Airbus A330 jets into freighters to support Amazon's air network. ATSG expects to begin operating the Airbus A330 cargo airc",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/amazon-amzn-reworking-air-fleet-041803486.html"
+          },
+          {
+            "title": "The ARK Trade Watch: Cathie Wood Cuts Crypto Exposure, Then Reverses Course On CoreWeave",
+            "publisher": "Stocktwits",
+            "published_at": "2026-09-18T21:38+00:00",
+            "summary": "Cathie Wood's ARK Invest funds made a broad move out of crypto-linked assets during the week, led by the sale of more than 1.5 million shares of the ARK 21Shares Bitcoin ETF.",
+            "url": "https://stocktwits.com/news-articles/markets/equity/crwv-arkb-crcl-coin-cathie-wood-biggest-ark-invest-trades-week/cZtH7mZRBEg"
+          },
+          {
+            "title": "Sir Lynton Crosby, CT Group Executive Chairman, on the Case for Capitalism",
+            "publisher": "Exec Edge",
+            "published_at": "2026-09-18T21:06+00:00",
+            "summary": "By Exec-Edge Editorial Staff Sir Lynton Crosby has spent four decades reading public opinion for people who couldn’t afford to get it wrong — prime ministers, presidents, and the boards of some of the world’s largest companies. As Executive Chairman of CT Group, the research and strategy firm he co-",
+            "url": "https://finance.yahoo.com/economy/policy/articles/sir-lynton-crosby-ct-group-210625339.html"
+          },
+          {
+            "title": "How Big A Swing In eBay Stock Are You Actually Holding?",
+            "publisher": "Trefis",
+            "published_at": "2026-09-18T20:26+00:00",
+            "summary": "eBay (EBAY) stock trades at about $113. It has returned 28.7% over the past year and sits about 5% below its 52-week high. The options market is pricing substantial movement ahead, with implied volatility pointing to a wide one-standard-deviation range between $79.44 and $160.45 over the next twelve",
+            "url": "https://www.trefis.com/articles/615874/how-big-a-swing-in-ebay-stock-are-you-actually-holding/2026-09-18"
+          },
+          {
+            "title": "Breakout Watch: Savvy Investors Get Wired Up For This Nvidia, Amazon Partner",
+            "publisher": "Investor's Business Daily",
+            "published_at": "2026-09-18T20:00+00:00",
+            "summary": "Savvy money managers lift Nvidia and Amazon partner F5 stock near buy range and all-time high in uncertain market.",
+            "url": "https://www.investors.com/research/ibd-stock-analysis/f5-stock-near-breakout-as-top-funds-buy-into-nvidia-amazon-partner/?src=A00220&yptr=yahoo"
+          },
+          {
+            "title": "Should You Buy NetApp Stock For The Shares It Keeps Retiring?",
+            "publisher": "Trefis",
+            "published_at": "2026-09-18T19:53+00:00",
+            "summary": "NetApp (NTAP) has spent years quietly retiring its own stock while the attention went to its flash arrays and AI deals. The stock is not quiet now: it has gained about 92% over the trailing six months and sits roughly 5% below its 52-week high. Fewer shares mean each one carries more of the profit. ",
+            "url": "https://www.trefis.com/articles/615850/should-you-buy-netapp-stock-for-the-shares-it-keeps-retiring/2026-09-18"
+          },
+          {
+            "title": "Goldman Sachs Sends Stark Warning on S&P 500 Earnings",
+            "publisher": "GuruFocus.com",
+            "published_at": "2026-09-18T19:35+00:00",
+            "summary": "AI Boom Is Supercharging S&P 500 Profits. Goldman Sachs Warns the Boost Won't Last",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/goldman-sachs-sends-stark-warning-193526963.html"
+          },
+          {
+            "title": "Where AAPL Stock's $510 Billion Of Shareholder Cash Came From",
+            "publisher": "Trefis",
+            "published_at": "2026-09-18T19:24+00:00",
+            "summary": "One of the world’s largest companies has become a cash-return machine of historic scale, but its engine is now facing a serious test.",
+            "url": "https://www.trefis.com/articles/615801/where-aapl-stocks-510-billion-of-shareholder-cash-came-from/2026-09-18"
+          }
+        ]
+      }
+    },
+    "query_market_data:ASML": {
+      "tool": "query_market_data",
+      "ticker": "ASML",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "ASML",
+        "entity": "ASML",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "ASML Holding N.V.",
+          "sector": "Technology",
+          "industry": "Semiconductor Equipment & Materials",
+          "country": "Netherlands",
+          "currency": "USD",
+          "employees": 43938,
+          "summary": "ASML Holding N.V. provides lithography solutions for the development, production, marketing, sales, upgrading, and servicing of advanced semiconductor equipment systems. The company offers lithography, metrology, and inspection systems. It also provides extreme ultraviolet lithography systems; and deep ultraviolet lithography systems comprising immersion and dry lithography systems solutions to ma"
+        },
+        "fundamentals": {
+          "market_cap": 645257297920,
+          "trailing_pe": 55.55,
+          "forward_pe": 28.32,
+          "price_to_book": 1432.06,
+          "dividend_yield_pct": 0.56,
+          "profit_margin_pct": 30.11,
+          "revenue_growth_pct": 21.3,
+          "earnings_growth_pct": 28.5,
+          "return_on_equity_pct": 53.94,
+          "debt_to_equity": 9.09,
+          "current_ratio": 1.33,
+          "total_revenue": 35327500288,
+          "net_income": 10638399488,
+          "free_cash_flow": 8437675008,
+          "beta": 1.36,
+          "fifty_two_week_high": 1999.96,
+          "fifty_two_week_low": 925.87,
+          "analyst_target_mean": 2137.39,
+          "analyst_recommendation": "strong_buy",
+          "analyst_count": 16
+        },
+        "technicals": {
+          "last_close": 1679.92,
+          "ma20": 1689.4,
+          "ma50": 1721.6,
+          "price_vs_ma20": "bearish",
+          "price_vs_ma50": "bearish",
+          "rsi14": 48.19,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 2.5,
+          "volatility_20d_annualized_pct": 39.73,
+          "return_5d_pct": -1.08,
+          "return_20d_pct": -4.02,
+          "return_period_pct": -12.81
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 1714.88
+          },
+          {
+            "date": "2026-09-08",
+            "close": 1764.85
+          },
+          {
+            "date": "2026-09-09",
+            "close": 1729.52
+          },
+          {
+            "date": "2026-09-10",
+            "close": 1687.43
+          },
+          {
+            "date": "2026-09-11",
+            "close": 1698.3
+          },
+          {
+            "date": "2026-09-14",
+            "close": 1575.15
+          },
+          {
+            "date": "2026-09-15",
+            "close": 1591.48
+          },
+          {
+            "date": "2026-09-16",
+            "close": 1602.22
+          },
+          {
+            "date": "2026-09-17",
+            "close": 1629.67
+          },
+          {
+            "date": "2026-09-18",
+            "close": 1679.92
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:ASML": {
+      "tool": "query_news",
+      "ticker": "ASML",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "ASML",
+        "entity": "ASML",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "KLAC Gains From AI Infrastructure: Can It Outpace AMAT & ASML?",
+            "publisher": "Zacks",
+            "published_at": "2026-09-18T17:18+00:00",
+            "summary": "KLA Corporation's AI-driven process-control demand is rising with 2nm, EUV, HBM and advanced packaging investments as rivals intensify competition.",
+            "url": "https://finance.yahoo.com/technology/ai/articles/klac-gains-ai-infrastructure-outpace-171800151.html"
+          },
+          {
+            "title": "Eisman Says Buy Micron And SK Hynix. “In This Knife Fight You Want To Be The One Selling The Knives”",
+            "publisher": "24/7 Wall St.",
+            "published_at": "2026-09-18T14:38+00:00",
+            "summary": "Steve Eisman thinks the real winners of the AI arms race are not the chip designers everyone is fighting over but the suppliers equipping both sides of the battle. Five stocks have already lapped Nvidia in 2026, and Eisman ranks them by who survives if the whole AI ecosystem cracks.",
+            "url": "https://247wallst.com/investing/2026/09/18/eisman-says-buy-micron-and-sk-hynix-in-this-knife-fight-you-want-to-be-the-one-selling-the-knives/"
+          },
+          {
+            "title": "ASML Rides on Strength in Installed Base Business: Will it Sustain?",
+            "publisher": "Zacks",
+            "published_at": "2026-09-18T13:30+00:00",
+            "summary": "ASML's Installed Base Management sales surge 31.8%, fueled by upgrades and a growing EUV fleet, but sustaining growth hinges on customer demand.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/asml-rides-strength-installed-business-133000472.html"
+          },
+          {
+            "title": "ASML Gains 1.5% as 110 EUV Machines Test Assembly Speed",
+            "publisher": "GuruFocus.com",
+            "published_at": "2026-09-17T18:36+00:00",
+            "summary": "AI demand has moved ASML's constraint from customer interest to manufacturing throughput.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/asml-gains-1-5-110-183616992.html"
+          },
+          {
+            "title": "Chasing ASML’s Dominance: Canon and Nikon Are Doing Something The Market Misses",
+            "publisher": "24/7 Wall St.",
+            "published_at": "2026-09-17T16:59+00:00",
+            "summary": "ASML just dominated another quarter, but Canon and Nikon are quietly carving out a position in chip manufacturing that Wall Street's models barely account for, and one memory giant is already betting on it.",
+            "url": "https://247wallst.com/investing/2026/09/17/chasing-asmls-dominance-canon-and-nikon-are-doing-something-the-market-misses/"
+          },
+          {
+            "title": "ASML Holding N.V. (ASML) is Attracting Investor Attention: Here is What You Should Know",
+            "publisher": "Zacks",
+            "published_at": "2026-09-17T13:00+00:00",
+            "summary": "Zacks.com users have recently been watching ASML (ASML) quite a bit. Thus, it is worth knowing the facts that could determine the stock's prospects.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/asml-holding-n-v-asml-130004384.html"
+          },
+          {
+            "title": "Modi pitches India as global chipmaking hub",
+            "publisher": "AFP",
+            "published_at": "2026-09-17T09:19+00:00",
+            "summary": "Prime Minister Narendra Modi pitched India as a new global hub for semiconductor production on Thursday, urging technology firms to invest in what he called a \"reliable\" location.Amidst these challenges, the semiconductor industry also needs new and reliable locations,\" Modi said.",
+            "url": "https://finance.yahoo.com/technology/articles/modi-pitches-india-global-chipmaking-091954560.html"
+          },
+          {
+            "title": "European Indexes Higher as Oil Falls Back",
+            "publisher": "The Wall Street Journal",
+            "published_at": "2026-09-17T07:21+00:00",
+            "summary": "STOCKS 0716 GMT – European stock indexes broadly rose at the open, as lower oil prices boosted sentiment. Technology and energy-intensive stocks help drive the Stoxx 600 up 0.55%. London’s FTSE 100 is 0.",
+            "url": "https://www.wsj.com/finance/stocks/nikkei-rises-1-0-led-by-pharma-machinery-stocks-2d9b558c?siteid=yhoof2&yptr=yahoo"
+          }
+        ]
+      }
+    },
+    "query_market_data:AVGO": {
+      "tool": "query_market_data",
+      "ticker": "AVGO",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "AVGO",
+        "entity": "AVGO",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "Broadcom Inc.",
+          "sector": "Technology",
+          "industry": "Semiconductors",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 33000,
+          "summary": "Broadcom Inc. designs, develops, and supplies various semiconductor devices and infrastructure software solutions internationally. The company operates in two segments: Semiconductor Solutions and Infrastructure Software. The company offers networking connectivity, such as custom silicon solutions, ethernet switching & routing, ethernet NIC controllers, physical layer devices, and fiber optic comp"
+        },
+        "fundamentals": {
+          "market_cap": 1707097718784,
+          "trailing_pe": 44.26,
+          "forward_pe": 18.45,
+          "price_to_book": 17.13,
+          "dividend_yield_pct": 0.75,
+          "profit_margin_pct": 42.94,
+          "revenue_growth_pct": 85.5,
+          "earnings_growth_pct": 215.3,
+          "return_on_equity_pct": 44.25,
+          "debt_to_equity": 59.6,
+          "current_ratio": 2.5,
+          "total_revenue": 89103998976,
+          "net_income": 38264999936,
+          "free_cash_flow": 30596499456,
+          "beta": 1.46,
+          "fifty_two_week_high": 495.0,
+          "fifty_two_week_low": 289.96,
+          "analyst_target_mean": 531.85,
+          "analyst_recommendation": "strong_buy",
+          "analyst_count": 47
+        },
+        "technicals": {
+          "last_close": 357.61,
+          "ma20": 359.32,
+          "ma50": 379.76,
+          "price_vs_ma20": "bearish",
+          "price_vs_ma50": "bearish",
+          "rsi14": 45.46,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 2.15,
+          "volatility_20d_annualized_pct": 34.2,
+          "return_5d_pct": -1.21,
+          "return_20d_pct": -1.76,
+          "return_period_pct": -8.8
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 357.9
+          },
+          {
+            "date": "2026-09-08",
+            "close": 368.56
+          },
+          {
+            "date": "2026-09-09",
+            "close": 364.38
+          },
+          {
+            "date": "2026-09-10",
+            "close": 360.83
+          },
+          {
+            "date": "2026-09-11",
+            "close": 361.99
+          },
+          {
+            "date": "2026-09-14",
+            "close": 344.72
+          },
+          {
+            "date": "2026-09-15",
+            "close": 339.27
+          },
+          {
+            "date": "2026-09-16",
+            "close": 339.51
+          },
+          {
+            "date": "2026-09-17",
+            "close": 347.3
+          },
+          {
+            "date": "2026-09-18",
+            "close": 357.61
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:AVGO": {
+      "tool": "query_news",
+      "ticker": "AVGO",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "AVGO",
+        "entity": "AVGO",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "Applied Materials vs. Broadcom: Comparing Sales Growth Trajectories for These Artificial Intelligence Companies",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-19T06:19+00:00",
+            "summary": "Broadcom's revenue has more than doubled in two years while Applied Materials posted modest gains.",
+            "url": "https://www.fool.com/coverage/charts/2026/09/19/applied-materials-vs-broadcom-comparing-sales-growth-trajectories-for-these-artificial-intelligence-companies/"
+          },
+          {
+            "title": "Jim Cramer Said This AI Firm Has More Orders Than “Almost Anybody” Other Than NVIDIA",
+            "publisher": "Insider Monkey",
+            "published_at": "2026-09-18T23:21+00:00",
+            "summary": "For custom chip designer Broadcom Inc. (NASDAQ:AVGO), the debate is all about whether the demand for AI products will sustain and grow. It is among the few firms capable of designing custom AI chips that big technology firms rely on to supplement NVIDIA’s high-power and expensive AI chips. Anthropic",
+            "url": "https://finance.yahoo.com/technology/ai/articles/jim-cramer-said-ai-firm-232154601.html"
+          },
+          {
+            "title": "This Little-Known Chip Stock Has Doubled. Wall Street Is Getting Bullish.",
+            "publisher": "Barrons.com",
+            "published_at": "2026-09-18T17:47+00:00",
+            "summary": "MACOM Technology Solutions stock has more than doubled over the past year. BMO is the latest Wall Street firm to turn bullish on the chip maker.",
+            "url": "https://www.barrons.com/articles/macom-stock-bmo-upgrade-ai-chips-f0be4a1d?siteid=yhoof2&yptr=yahoo"
+          },
+          {
+            "title": "Why XLK’s Next Rebalance Won’t Fix Its Massive Concentration Problem",
+            "publisher": "24/7 Wall St.",
+            "published_at": "2026-09-18T17:25+00:00",
+            "summary": "XLK markets itself as diversified large-cap tech exposure, but a closer look at the holdings reveals a chip bet so large that even a quarterly rebalance may do nothing to shrink it.",
+            "url": "https://247wallst.com/investing/etf/2026/09/18/why-xlks-next-rebalance-wont-fix-its-massive-concentration-problem/"
+          },
+          {
+            "title": "Cisco Drops 8% in 3 Months: Should You Buy the Stock on the Dip?",
+            "publisher": "Zacks",
+            "published_at": "2026-09-18T16:55+00:00",
+            "summary": "CSCO's 8% three-month drop reflects margin and recurring-growth concerns, but surging AI demand and networking refresh opportunities support its outlook.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/cisco-drops-8-3-months-165500656.html"
+          },
+          {
+            "title": "Will Micron Follow Nvidia and Give Investors a Huge Dividend Hike?",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-18T16:50+00:00",
+            "summary": "Nvidia just raised its dividend by 2,400%. Is Micron next?",
+            "url": "https://www.fool.com/investing/2026/09/18/will-micron-follow-nvidia-and-give-investors-a-huge-dividend-hike/"
+          },
+          {
+            "title": "Nvidia’s Not Going to Be King for Life, So I Buy This Now",
+            "publisher": "24/7 Wall St.",
+            "published_at": "2026-09-18T16:42+00:00",
+            "summary": "Every AI boom crowns a new king, and betting on the current one at peak valuation is how investors get caught holding the bag when the throne shifts. There is a quieter company already collecting royalties from every challenger lining up to take that crown.",
+            "url": "https://247wallst.com/investing/2026/09/18/nvidias-not-going-to-be-king-for-life-so-i-buy-this-now/"
+          },
+          {
+            "title": "Why Does NVDA Stock Carry The Lowest Clean Multiple In Its Peer Group?",
+            "publisher": "Trefis",
+            "published_at": "2026-09-18T16:40+00:00",
+            "summary": "NVIDIA (NVDA) is the strongest business in its peer group, and it is priced below every rival you can compare it with fairly, at 27.5 times earnings. Yet over the past twelve months NVDA returned 25.7% while AMD returned 239.7%. The best business in the group is one of its weakest stocks, and not be",
+            "url": "https://www.trefis.com/articles/615854/why-does-nvda-stock-carry-the-lowest-clean-multiple-in-its-peer-group/2026-09-18"
+          }
+        ]
+      }
+    },
+    "query_market_data:DIS": {
+      "tool": "query_market_data",
+      "ticker": "DIS",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "DIS",
+        "entity": "DIS",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "The Walt Disney Company",
+          "sector": "Communication Services",
+          "industry": "Entertainment",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 175560,
+          "summary": "The Walt Disney Company operates as an entertainment company in Americas, Europe, and the Asia Pacific. It operates in three segments: Entertainment, Sports, and Experiences. The company produces and distributes film and television content under the ABC Television Network, Disney, Freeform, FX, Fox, National Geographic, and Star brand television channels, as well as ABC television stations and A+E"
+        },
+        "fundamentals": {
+          "market_cap": 177278943232,
+          "trailing_pe": 21.75,
+          "forward_pe": 13.73,
+          "price_to_book": 1.61,
+          "dividend_yield_pct": 1.42,
+          "profit_margin_pct": 8.7,
+          "revenue_growth_pct": 6.8,
+          "earnings_growth_pct": -48.3,
+          "return_on_equity_pct": 8.01,
+          "debt_to_equity": 39.4,
+          "current_ratio": 0.71,
+          "total_revenue": 98860998656,
+          "net_income": 8600000512,
+          "free_cash_flow": 4860375040,
+          "beta": 1.41,
+          "fifty_two_week_high": 117.09,
+          "fifty_two_week_low": 92.19,
+          "analyst_target_mean": 127.22,
+          "analyst_recommendation": "strong_buy",
+          "analyst_count": 31
+        },
+        "technicals": {
+          "last_close": 102.67,
+          "ma20": 107.0,
+          "ma50": 102.71,
+          "price_vs_ma20": "bearish",
+          "price_vs_ma50": "bearish",
+          "rsi14": 42.71,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 1.54,
+          "volatility_20d_annualized_pct": 24.49,
+          "return_5d_pct": -3.64,
+          "return_20d_pct": -4.33,
+          "return_period_pct": 0.98
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 105.31
+          },
+          {
+            "date": "2026-09-08",
+            "close": 105.06
+          },
+          {
+            "date": "2026-09-09",
+            "close": 104.18
+          },
+          {
+            "date": "2026-09-10",
+            "close": 105.82
+          },
+          {
+            "date": "2026-09-11",
+            "close": 106.55
+          },
+          {
+            "date": "2026-09-14",
+            "close": 108.59
+          },
+          {
+            "date": "2026-09-15",
+            "close": 106.42
+          },
+          {
+            "date": "2026-09-16",
+            "close": 106.99
+          },
+          {
+            "date": "2026-09-17",
+            "close": 105.35
+          },
+          {
+            "date": "2026-09-18",
+            "close": 102.67
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:DIS": {
+      "tool": "query_news",
+      "ticker": "DIS",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "DIS",
+        "entity": "DIS",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "Disney (DIS) Stock May Trade Near Fair Value On CTO Appointment",
+            "publisher": "Simply Wall St.",
+            "published_at": "2026-09-19T03:17+00:00",
+            "summary": "Walt Disney has been reshaping its streaming and technology footprint, while the share price has lagged over several time frames. This puts the focus squarely on what the current valuation implies about its cash flows. With a Discounted Cash Flow (DCF) view available, the question now is whether the",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/disney-dis-stock-may-trade-031710686.html"
+          },
+          {
+            "title": "Walt Disney (DIS) Stock Dips While Market Gains: Key Facts",
+            "publisher": "Zacks",
+            "published_at": "2026-09-18T21:45+00:00",
+            "summary": "Walt Disney (DIS) closed the most recent trading day at $102.42, moving 2.78% from the previous trading session.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/walt-disney-dis-stock-dips-214502762.html"
+          },
+          {
+            "title": "Stock Market Today, Sept. 18: Netflix Falls on Analyst Downgrade and Slashed Price Target",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-18T21:14+00:00",
+            "summary": "Today, Sept. 18, 2026, Wells Fargo cut its rating and price target, citing weaker engagement and content concerns, prompting investors to watch margin trends.",
+            "url": "https://www.fool.com/coverage/stock-market-today/2026/09/18/stock-market-today-sept-18-netflix-falls-on-analyst-downgrade-and-slashed-price-target/"
+          },
+          {
+            "title": "Disney’s first CTO led an AI startup it once accused of copying its characters",
+            "publisher": "TechCrunch",
+            "published_at": "2026-09-18T17:59+00:00",
+            "summary": "The former CEO of Character.AI, which Disney previously sent a cease-and-desist letter to, will serve as the company's first-ever chief technology officer.",
+            "url": "https://finance.yahoo.com/technology/ai/articles/disney-first-cto-led-ai-175953724.html"
+          },
+          {
+            "title": "Disney names Karandeep Anand as first-ever CTO",
+            "publisher": "Quartz",
+            "published_at": "2026-09-18T17:31+00:00",
+            "summary": "Karandeep Anand, who previously led AI chatbot startup Character.AI, will join Disney on Oct. 2 in the newly created role",
+            "url": "https://qz.com/disney-first-cto-karandeep-anand-character-ai-091826"
+          },
+          {
+            "title": "Disney names first-ever chief technology officer, a day after tapping ex-YouTube executive to run streaming",
+            "publisher": "LA Times",
+            "published_at": "2026-09-18T17:00+00:00",
+            "summary": "Disney named former Character.AI CEO Karandeep Anand its first-ever chief technology officer, a day after putting former YouTube executive Adam Smith in charge of streaming.",
+            "url": "https://finance.yahoo.com/technology/articles/disney-names-first-ever-chief-170000071.html"
+          },
+          {
+            "title": "Netflix Stock Falls After Downgrade. Why It’s Losing the Streaming Wars to Disney.",
+            "publisher": "Barrons.com",
+            "published_at": "2026-09-18T16:56+00:00",
+            "summary": "The streamer desperately needs to find the next Squid Game. Weak engagement numbers are dire news for its shares, down 20% this year.",
+            "url": "https://www.barrons.com/articles/netflix-stock-downgrade-streaming-disney-78fe3ca9?siteid=yhoof2&yptr=yahoo"
+          },
+          {
+            "title": "Apple TV's Emmy Sweep Adds Momentum to AAPL's Services Business",
+            "publisher": "Zacks",
+            "published_at": "2026-09-18T16:20+00:00",
+            "summary": "Apple TV's 29 Emmy wins, record viewership and strong video revenue growth add momentum to Apple's expanding Services business.",
+            "url": "https://finance.yahoo.com/media-advertising/articles/apple-tvs-emmy-sweep-adds-162000873.html"
+          }
+        ]
+      }
+    },
+    "query_market_data:F": {
+      "tool": "query_market_data",
+      "ticker": "F",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "F",
+        "entity": "F",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "Ford Motor Company",
+          "sector": "Consumer Cyclical",
+          "industry": "Auto Manufacturers",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 169000,
+          "summary": "Ford Motor Company develops, delivers, and services Ford trucks, sport utility vehicles, commercial vans and cars, and Lincoln luxury vehicles in the United States, Canada, the United Kingdom, Mexico, and internationally. It operates through Ford Blue, Ford Model e, Ford Pro, and Ford Credit segments. The company sells Ford and Lincoln internal combustion engine and hybrid vehicles, electric vehic"
+        },
+        "fundamentals": {
+          "market_cap": 52676141056,
+          "trailing_pe": null,
+          "forward_pe": 6.76,
+          "price_to_book": 1.47,
+          "dividend_yield_pct": 4.41,
+          "profit_margin_pct": -3.94,
+          "revenue_growth_pct": -3.8,
+          "earnings_growth_pct": null,
+          "return_on_equity_pct": -18.25,
+          "debt_to_equity": 456.71,
+          "current_ratio": 1.09,
+          "total_revenue": 187972993024,
+          "net_income": -7395999744,
+          "free_cash_flow": -7940250112,
+          "beta": 1.83,
+          "fifty_two_week_high": 17.78,
+          "fifty_two_week_low": 11.11,
+          "analyst_target_mean": 16.12,
+          "analyst_recommendation": "buy",
+          "analyst_count": 18
+        },
+        "technicals": {
+          "last_close": 13.21,
+          "ma20": 13.89,
+          "ma50": 14.03,
+          "price_vs_ma20": "bearish",
+          "price_vs_ma50": "bearish",
+          "rsi14": 40.38,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 2.24,
+          "volatility_20d_annualized_pct": 35.59,
+          "return_5d_pct": -5.44,
+          "return_20d_pct": -5.58,
+          "return_period_pct": -5.36
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 14.62
+          },
+          {
+            "date": "2026-09-08",
+            "close": 14.0
+          },
+          {
+            "date": "2026-09-09",
+            "close": 13.45
+          },
+          {
+            "date": "2026-09-10",
+            "close": 13.88
+          },
+          {
+            "date": "2026-09-11",
+            "close": 13.97
+          },
+          {
+            "date": "2026-09-14",
+            "close": 13.86
+          },
+          {
+            "date": "2026-09-15",
+            "close": 13.5
+          },
+          {
+            "date": "2026-09-16",
+            "close": 13.35
+          },
+          {
+            "date": "2026-09-17",
+            "close": 13.61
+          },
+          {
+            "date": "2026-09-18",
+            "close": 13.21
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:F": {
+      "tool": "query_news",
+      "ticker": "F",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "F",
+        "entity": "F",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "GM is re-downloading Apple CarPlay, Android Auto to its cars",
+            "publisher": "Yahoo Finance Video",
+            "published_at": "2026-09-18T20:35+00:00",
+            "summary": "General Motors (GM) will reinstall Apple's (AAPL) CarPlay and Android Auto in its vehicles after initially planning to remove the software from new cars. Yahoo Finance Senior Autos Reporter Pras Subramanian explains the consumer reaction that led to this decision.",
+            "url": "https://finance.yahoo.com/video/gm-downloading-apple-carplay-android-203500547.html"
+          },
+          {
+            "title": "Ford Motor vs. Stellantis: Which Automotive Stock Is a Better Buy in 2026?",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-18T20:17+00:00",
+            "summary": "Ford is paying a dividend while its turnaround plays out. Stellantis is still working toward positive free cash flow and doesn't expect to get there until 2027. The difference in financial footing tells the whole story.",
+            "url": "https://www.fool.com/coverage/better-buy/2026/09/18/ford-motor-vs-stellantis-which-automotive-stock-is-a-better-buy-in-2026/"
+          },
+          {
+            "title": "Market Chatter: Toyota, General Motors, Ford Join Coalition Asking Trump to Maintain Bar on Chinese Carmakers in US",
+            "publisher": "MT Newswires",
+            "published_at": "2026-09-18T17:11+00:00",
+            "summary": "Toyota Motor (TM), General Motors (GM), and Ford Motor (F) have joined a coalition of automobile mak",
+            "url": "https://finance.yahoo.com/economy/policy/articles/market-chatter-toyota-general-motors-171106269.html"
+          },
+          {
+            "title": "Auto industry urges Trump to keep Chinese automakers out ahead of Xi meeting",
+            "publisher": "Reuters",
+            "published_at": "2026-09-18T16:49+00:00",
+            "summary": "By David Shepardson WASHINGTON, Sept 18 (Reuters) - Major automakers, suppliers and dealers on Friday urged President Donald Trump to keep Chinese automakers out of the US market, ahead of his meeting",
+            "url": "https://finance.yahoo.com/economy/policy/articles/auto-industry-urges-trump-keep-164913146.html"
+          },
+          {
+            "title": "What's Going On With Tesla Stock Friday",
+            "publisher": "GuruFocus.com",
+            "published_at": "2026-09-18T16:41+00:00",
+            "summary": "Tesla Stock Rises as Automaker Rally and New Charging Deal Lift Shares",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/whats-going-tesla-stock-friday-164138175.html"
+          },
+          {
+            "title": "Automaker Stocks Reverse as Rotation Trade Unwinds: General Motors and Stellantis Fall 4%, Ford Pulls Back",
+            "publisher": "24/7 Wall St.",
+            "published_at": "2026-09-18T14:51+00:00",
+            "summary": "Thursday's rotation rally handed automakers a one-day reprieve from months of pressure, but Friday morning that same trade ran straight into reverse, and the order in which Stellantis, GM, and Ford are falling tells the whole story.",
+            "url": "https://247wallst.com/investing/2026/09/18/automaker-stocks-reverse-as-rotation-trade-unwinds-general-motors-and-stellantis-fall-4-ford-pulls-back/"
+          },
+          {
+            "title": "Ford’s Yield Is One of the Loudest in the Market. Is the Payout Actually Safe?",
+            "publisher": "24/7 Wall St.",
+            "published_at": "2026-09-18T13:26+00:00",
+            "summary": "Ford's dividend yield screams louder than almost anything else on the market right now, but trailing yield screens are hiding something important about what investors are actually collecting. Before you buy for income, there are two numbers that determine whether this payout survives 2026.",
+            "url": "https://247wallst.com/investing/2026/09/18/fords-yield-is-one-of-the-loudest-in-the-market-is-the-payout-actually-safe/"
+          },
+          {
+            "title": "The Moneymaxxing Crowd Will Love 5 High-Yield Dividend Stocks Under $20",
+            "publisher": "24/7 Wall St.",
+            "published_at": "2026-09-18T12:45+00:00",
+            "summary": "Younger investors are rewriting the rules of wealth building, and five overlooked dividend stocks under $20 sit right at the center of that shift. The real question is whether these picks can hold up long enough to matter.",
+            "url": "https://247wallst.com/investing/2026/09/18/the-moneymaxxing-legions-will-love-5-high-yield-dividend-stocks-under-20/"
+          }
+        ]
+      }
+    },
+    "query_market_data:GM": {
+      "tool": "query_market_data",
+      "ticker": "GM",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "GM",
+        "entity": "GM",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "General Motors Company",
+          "sector": "Consumer Cyclical",
+          "industry": "Auto Manufacturers",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 156000,
+          "summary": "General Motors Company designs, builds, and sells trucks, crossovers, cars, and automobile parts worldwide. It operates through GM North America, GM International, and GM Financial segments. The company markets its vehicles primarily under the Buick, Cadillac, Chevrolet, GMC, Baojun, and Wuling brand names. In addition, it sells trucks, crossovers, cars, and automobile parts through retail dealers"
+        },
+        "fundamentals": {
+          "market_cap": 74345914368,
+          "trailing_pe": 36.7,
+          "forward_pe": 5.48,
+          "price_to_book": 1.16,
+          "dividend_yield_pct": 0.83,
+          "profit_margin_pct": 1.05,
+          "revenue_growth_pct": 1.9,
+          "earnings_growth_pct": -26.2,
+          "return_on_equity_pct": 3.16,
+          "debt_to_equity": 202.34,
+          "current_ratio": 1.14,
+          "total_revenue": 185527992320,
+          "net_income": 1856999936,
+          "free_cash_flow": 21933750272,
+          "beta": 1.32,
+          "fifty_two_week_high": 91.85,
+          "fifty_two_week_low": 54.33,
+          "analyst_target_mean": 103.83,
+          "analyst_recommendation": "buy",
+          "analyst_count": 24
+        },
+        "technicals": {
+          "last_close": 82.2,
+          "ma20": 85.82,
+          "ma50": 84.7,
+          "price_vs_ma20": "bearish",
+          "price_vs_ma50": "bearish",
+          "rsi14": 41.98,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 2.03,
+          "volatility_20d_annualized_pct": 32.21,
+          "return_5d_pct": -3.99,
+          "return_20d_pct": -4.39,
+          "return_period_pct": 2.41
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 87.76
+          },
+          {
+            "date": "2026-09-08",
+            "close": 85.79
+          },
+          {
+            "date": "2026-09-09",
+            "close": 83.76
+          },
+          {
+            "date": "2026-09-10",
+            "close": 86.12
+          },
+          {
+            "date": "2026-09-11",
+            "close": 85.62
+          },
+          {
+            "date": "2026-09-14",
+            "close": 87.16
+          },
+          {
+            "date": "2026-09-15",
+            "close": 85.37
+          },
+          {
+            "date": "2026-09-16",
+            "close": 84.29
+          },
+          {
+            "date": "2026-09-17",
+            "close": 86.62
+          },
+          {
+            "date": "2026-09-18",
+            "close": 82.2
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:GM": {
+      "tool": "query_news",
+      "ticker": "GM",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "GM",
+        "entity": "GM",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "A Nine-Year-Late Sports Car, An Unpriced Robotaxi Pact, Supplier Snags And GM’s Hybrid Gap: The EV Wrap",
+            "publisher": "Stocktwits",
+            "published_at": "2026-09-19T01:28+00:00",
+            "summary": "Dealers sold an estimated 78,895 new battery-electric vehicles last month, up 2.5% from July yet down 46.9% from August 2025, Cox Automotive noted.",
+            "url": "https://stocktwits.com/news-articles/markets/equity/a-nine-year-late-sports-car-an-unpriced-robotaxi-pact-supplier-snags-and-gm-s-hybrid-gap-the-ev-wrap/cZtDZLFRBE1"
+          },
+          {
+            "title": "GM CEO Mary Barra Says Skilled Trades Could Be More ‘AI-Proof’ As Company Invested $200 Million In Training",
+            "publisher": "Benzinga",
+            "published_at": "2026-09-18T22:00+00:00",
+            "summary": "General Motors Co.‘s CEO Mary Barra said skilled-trades careers could be \"a little more AI-proof\" than some other jobs as the U.S. faces a growing shortage of workers with technical skills. In an episode of Fortune’s Titans and Disruptors of...",
+            "url": "https://finance.yahoo.com/technology/ai/articles/gm-ceo-mary-barra-says-220005317.html"
+          },
+          {
+            "title": "GM is re-downloading Apple CarPlay, Android Auto to its cars",
+            "publisher": "Yahoo Finance Video",
+            "published_at": "2026-09-18T20:35+00:00",
+            "summary": "General Motors (GM) will reinstall Apple's (AAPL) CarPlay and Android Auto in its vehicles after initially planning to remove the software from new cars. Yahoo Finance Senior Autos Reporter Pras Subramanian explains the consumer reaction that led to this decision.",
+            "url": "https://finance.yahoo.com/video/gm-downloading-apple-carplay-android-203500547.html"
+          },
+          {
+            "title": "Market Chatter: Toyota, General Motors, Ford Join Coalition Asking Trump to Maintain Bar on Chinese Carmakers in US",
+            "publisher": "MT Newswires",
+            "published_at": "2026-09-18T17:11+00:00",
+            "summary": "Toyota Motor (TM), General Motors (GM), and Ford Motor (F) have joined a coalition of automobile mak",
+            "url": "https://finance.yahoo.com/economy/policy/articles/market-chatter-toyota-general-motors-171106269.html"
+          },
+          {
+            "title": "General Motors (GM) Bets on Software to Strengthen its Pickup Truck Franchise",
+            "publisher": "Insider Monkey",
+            "published_at": "2026-09-18T17:00+00:00",
+            "summary": "General Motors Company (NYSE:GM) is introducing a redesigned software experience on the 2027 Chevrolet Silverado 1500 and GMC Sierra 1500, its two important full-size pickup nameplates. The new interface expands screen real estate to more than 60 inches on some configurations, simplifies controls fo",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/general-motors-gm-bets-software-170012082.html"
+          },
+          {
+            "title": "Auto industry urges Trump to keep Chinese automakers out ahead of Xi meeting",
+            "publisher": "Reuters",
+            "published_at": "2026-09-18T16:49+00:00",
+            "summary": "By David Shepardson WASHINGTON, Sept 18 (Reuters) - Major automakers, suppliers and dealers on Friday urged President Donald Trump to keep Chinese automakers out of the US market, ahead of his meeting",
+            "url": "https://finance.yahoo.com/economy/policy/articles/auto-industry-urges-trump-keep-164913146.html"
+          },
+          {
+            "title": "What's Going On With Tesla Stock Friday",
+            "publisher": "GuruFocus.com",
+            "published_at": "2026-09-18T16:41+00:00",
+            "summary": "Tesla Stock Rises as Automaker Rally and New Charging Deal Lift Shares",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/whats-going-tesla-stock-friday-164138175.html"
+          },
+          {
+            "title": "Automaker Stocks Reverse as Rotation Trade Unwinds: General Motors and Stellantis Fall 4%, Ford Pulls Back",
+            "publisher": "24/7 Wall St.",
+            "published_at": "2026-09-18T14:51+00:00",
+            "summary": "Thursday's rotation rally handed automakers a one-day reprieve from months of pressure, but Friday morning that same trade ran straight into reverse, and the order in which Stellantis, GM, and Ford are falling tells the whole story.",
+            "url": "https://247wallst.com/investing/2026/09/18/automaker-stocks-reverse-as-rotation-trade-unwinds-general-motors-and-stellantis-fall-4-ford-pulls-back/"
+          }
+        ]
+      }
+    },
+    "query_market_data:GOOGL": {
+      "tool": "query_market_data",
+      "ticker": "GOOGL",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "GOOGL",
+        "entity": "GOOGL",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "Alphabet Inc.",
+          "sector": "Communication Services",
+          "industry": "Internet Content & Information",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 198933,
+          "summary": "Alphabet Inc. offers various products and platforms in the United States, Europe, the Middle East, Africa, the Asia-Pacific, Canada, and Latin America. It operates through Google Services, Google Cloud, and Other Bets segments. The Google Services segment provides products and services, including ads, Android, Chrome, devices, Gmail, Google Drive, Google Maps, Google Photos, Google Play, Search, a"
+        },
+        "fundamentals": {
+          "market_cap": 4274851676160,
+          "trailing_pe": 17.42,
+          "forward_pe": 23.53,
+          "price_to_book": 6.87,
+          "dividend_yield_pct": 0.25,
+          "profit_margin_pct": 54.77,
+          "revenue_growth_pct": 24.2,
+          "earnings_growth_pct": 294.0,
+          "return_on_equity_pct": 48.68,
+          "debt_to_equity": 18.86,
+          "current_ratio": 2.72,
+          "total_revenue": 445865984000,
+          "net_income": 244118994944,
+          "free_cash_flow": 22665000960,
+          "beta": 1.23,
+          "fifty_two_week_high": 408.61,
+          "fifty_two_week_low": 235.84,
+          "analyst_target_mean": 428.41,
+          "analyst_recommendation": "strong_buy",
+          "analyst_count": 53
+        },
+        "technicals": {
+          "last_close": 349.54,
+          "ma20": 341.68,
+          "ma50": 345.4,
+          "price_vs_ma20": "bullish",
+          "price_vs_ma50": "bullish",
+          "rsi14": 55.37,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 1.46,
+          "volatility_20d_annualized_pct": 23.19,
+          "return_5d_pct": 3.26,
+          "return_20d_pct": 2.67,
+          "return_period_pct": 0.02
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 338.46
+          },
+          {
+            "date": "2026-09-08",
+            "close": 338.36
+          },
+          {
+            "date": "2026-09-09",
+            "close": 330.65
+          },
+          {
+            "date": "2026-09-10",
+            "close": 332.6
+          },
+          {
+            "date": "2026-09-11",
+            "close": 338.5
+          },
+          {
+            "date": "2026-09-14",
+            "close": 349.39
+          },
+          {
+            "date": "2026-09-15",
+            "close": 344.98
+          },
+          {
+            "date": "2026-09-16",
+            "close": 342.87
+          },
+          {
+            "date": "2026-09-17",
+            "close": 347.33
+          },
+          {
+            "date": "2026-09-18",
+            "close": 349.54
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:GOOGL": {
+      "tool": "query_news",
+      "ticker": "GOOGL",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "GOOGL",
+        "entity": "GOOGL",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "3 Cyber Insurance Stocks Retail Investors May Want To Watch After Gemini Hacking News",
+            "publisher": "Simply Wall St.",
+            "published_at": "2026-09-19T05:14+00:00",
+            "summary": "When news breaks that Google’s Gemini can autonomously hack real companies, the story quickly shifts from science fiction to balance sheet risk. Cyber insurance and tech liability insurers suddenly move from background players to potential shock absorbers or pressure points for the AI era. This arti",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/3-cyber-insurance-stocks-retail-051413327.html"
+          },
+          {
+            "title": "How to position for the next wave of AI-led scientific breakthroughs",
+            "publisher": "Investing.com",
+            "published_at": "2026-09-19T01:36+00:00",
+            "summary": "Investing.com -- Artificial intelligence is moving beyond text generation into scientific research, creating investment opportunities across AI infrastructure, pharmaceuticals, nuclear fusion, industrial materials and utilities, according to UBS Wealth Management.",
+            "url": "https://finance.yahoo.com/technology/ai/articles/position-next-wave-ai-led-013630980.html"
+          },
+          {
+            "title": "Alphabet's Ad Business Got a Lift From a Key Antitrust Ruling, Helping End Google's Worst Losing Streak in Over a Decade. Is Sundar Pichai's Alphabet Stock a Buy Now?",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-19T00:20+00:00",
+            "summary": "Whether investors realize it or not, the ruling is huge for Google's parent company and its stock.",
+            "url": "https://www.fool.com/investing/2026/09/18/alphabets-ad-business-got-a-lift-from-a-key-antitr/"
+          },
+          {
+            "title": "IONQ Stock Surges On Tech Wins, But The Heavy Burn Persists",
+            "publisher": "Trefis",
+            "published_at": "2026-09-18T22:37+00:00",
+            "summary": "IonQ (IONQ) shares rose 9.5% on Thursday, closing at $40.34 after six sessions that had mostly gone the other way. The reason on offer was research: quantum algorithms running inside mainstream engineering software, developed with Synopsys, sped up complex industrial design by up to 14.6%. That is g",
+            "url": "https://www.trefis.com/articles/615831/ionq-stock-surges-on-tech-wins-but-the-heavy-burn-persists/2026-09-18"
+          },
+          {
+            "title": "What Happens To Reddit Stock If Search Keeps Sending Fewer People?",
+            "publisher": "Trefis",
+            "published_at": "2026-09-18T21:36+00:00",
+            "summary": "Reddit (RDDT) stock trades near $153, down about 43% over the past year while the S&P 500 returned 17%. The market has already decided something here is wrong. The advertising business is not the problem; it is still growing fast. The risk sits one step upstream, in where the next visitor comes from",
+            "url": "https://www.trefis.com/articles/615859/what-happens-to-reddit-stock-if-search-keeps-sending-fewer-people/2026-09-18"
+          },
+          {
+            "title": "California to Reconsider AI ‘Kill Switch’ With Newsom’s New Executive Order",
+            "publisher": "Barrons.com",
+            "published_at": "2026-09-18T20:45+00:00",
+            "summary": "Fears of AI running amok have increased over the past week, with tech execs and President Donald Trump all weighing in on the matter.",
+            "url": "https://www.barrons.com/articles/california-newsom-ai-kill-switch-executive-order-c7a352df?siteid=yhoof2&yptr=yahoo"
+          },
+          {
+            "title": "Sector Update: Tech Stocks Rise Late Afternoon",
+            "publisher": "MT Newswires",
+            "published_at": "2026-09-18T19:57+00:00",
+            "summary": "Tech stocks rose late Friday afternoon, with the State Street Technology Select Sector SPDR ETF (XLK",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-tech-stocks-rise-afternoon-195713111.html"
+          },
+          {
+            "title": "2 Stocks to Buy as Google Starts Selling Its AI Chips",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-18T19:42+00:00",
+            "summary": "The search giant's in-house AI chip is now a product line. Two companies collect on every system that ships.",
+            "url": "https://www.fool.com/investing/2026/09/18/2-stocks-to-buy-as-google-starts-selling-its-ai-chips/"
+          }
+        ]
+      }
+    },
+    "query_market_data:INTC": {
+      "tool": "query_market_data",
+      "ticker": "INTC",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "INTC",
+        "entity": "INTC",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "Intel Corporation",
+          "sector": "Technology",
+          "industry": "Semiconductors",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 85100,
+          "summary": "Intel Corporation designs, develops, manufactures, markets, sells, and services computing and related end products and services in the United States, Ireland, Israel, and internationally. It operates through three segments: CCG, DCAI, and Intel Foundry. The company offers client computing group products, including client and commercial CPUs, discrete client GPUs, edge computing, and connectivity p"
+        },
+        "fundamentals": {
+          "market_cap": 574070980608,
+          "trailing_pe": null,
+          "forward_pe": 52.67,
+          "price_to_book": 6.26,
+          "dividend_yield_pct": null,
+          "profit_margin_pct": -19.79,
+          "revenue_growth_pct": 25.4,
+          "earnings_growth_pct": null,
+          "return_on_equity_pct": -10.71,
+          "debt_to_equity": 49.0,
+          "current_ratio": 1.6,
+          "total_revenue": 57031999488,
+          "net_income": -11288999936,
+          "free_cash_flow": 4866375168,
+          "beta": 2.23,
+          "fifty_two_week_high": 142.35,
+          "fifty_two_week_low": 28.73,
+          "analyst_target_mean": 116.37,
+          "analyst_recommendation": "buy",
+          "analyst_count": 43
+        },
+        "technicals": {
+          "last_close": 108.6,
+          "ma20": 95.87,
+          "ma50": 97.09,
+          "price_vs_ma20": "bullish",
+          "price_vs_ma50": "bullish",
+          "rsi14": 61.06,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 3.85,
+          "volatility_20d_annualized_pct": 61.04,
+          "return_5d_pct": 5.5,
+          "return_20d_pct": 17.88,
+          "return_period_pct": -22.95
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 95.8
+          },
+          {
+            "date": "2026-09-08",
+            "close": 104.47
+          },
+          {
+            "date": "2026-09-09",
+            "close": 106.24
+          },
+          {
+            "date": "2026-09-10",
+            "close": 100.32
+          },
+          {
+            "date": "2026-09-11",
+            "close": 102.94
+          },
+          {
+            "date": "2026-09-14",
+            "close": 97.19
+          },
+          {
+            "date": "2026-09-15",
+            "close": 97.14
+          },
+          {
+            "date": "2026-09-16",
+            "close": 101.05
+          },
+          {
+            "date": "2026-09-17",
+            "close": 108.8
+          },
+          {
+            "date": "2026-09-18",
+            "close": 108.6
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:INTC": {
+      "tool": "query_news",
+      "ticker": "INTC",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "INTC",
+        "entity": "INTC",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "Applied Materials vs. Intel: Examining Revenue Growth Trajectories of These Artificial Intelligence Companies",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-19T05:29+00:00",
+            "summary": "Applied Materials has posted three consecutive quarterly gains and now generates $9.1 billion in revenue, while Intel's operating margin sits at half that of its competitor.",
+            "url": "https://www.fool.com/coverage/charts/2026/09/19/applied-materials-vs-intel-examining-revenue-growth-trajectories-of-these-artificial-intelligence-companies/"
+          },
+          {
+            "title": "UBS now expects AI capex to reach nearly $1tn this year and around $1.4tn by 2027",
+            "publisher": "Investing.com",
+            "published_at": "2026-09-19T04:45+00:00",
+            "summary": "Investing.com -- UBS now expects artificial intelligence capital expenditure to reach nearly $1 trillion in 2026 before climbing to around $1.4 trillion in 2027, with surging memory costs accounting for most of the increase.",
+            "url": "https://finance.yahoo.com/technology/ai/articles/ubs-now-expects-ai-capex-044549899.html"
+          },
+          {
+            "title": "What Does Micron Technology (MU) Warning Of Shortages Through 2027 Mean?",
+            "publisher": "Simply Wall St.",
+            "published_at": "2026-09-19T00:19+00:00",
+            "summary": "Micron Technology (NasdaqGS: MU) and Intel CEOs cautioned that memory chip shortages and higher prices could persist through 2027. Micron's leadership indicated on a recent call that supply constraints may only start to ease meaningfully from 2028 onward. Intel's CEO echoed the outlook for extended ",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/does-micron-technology-mu-warning-001915512.html"
+          },
+          {
+            "title": "NVIDIA Vs Intel Corporation (NASDAQ:INTC): Here’s The One Jim Cramer Likes",
+            "publisher": "Insider Monkey",
+            "published_at": "2026-09-18T23:03+00:00",
+            "summary": "Chip maker Intel Corporation (NASDAQ:INTC) has become one of the hottest stocks in today’s market with year-to-date gains and valuation both being richer than AI GPU giant NVIDIA. The shares are up by more than 170% year-to-date while the forward P/E ratio of 54.64 is also higher than NVIDIA’s 23.58",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/nvidia-vs-intel-corporation-nasdaq-230352152.html"
+          },
+          {
+            "title": "Top analyst sets outrageous Intel stock target ahead of earnings",
+            "publisher": "TheStreet",
+            "published_at": "2026-09-18T22:33+00:00",
+            "summary": "A veteran tech analyst thinks Intel stock could gain seriously in two years if its foundry plan gets the right customers.",
+            "url": "https://www.thestreet.com/investing/stocks/melius-research-200-usd-intel-intc-stock-price-target"
+          },
+          {
+            "title": "Netflix, Nucor, On Holding, Xenon, Accenture, Coinbase, and More Stocks That Explain Today’s Market",
+            "publisher": "Barrons.com",
+            "published_at": "2026-09-18T20:19+00:00",
+            "summary": "The S&P 500 and the Nasdaq Composite rebounded to end Friday’s session slightly higher after spending most of the day in the red.  The Dow Jones Industrial Average ended lower as higher oil prices and bond yields weighed on equities.  Glassmaker  Corning  and optical networking stocks  Coherent  and",
+            "url": "https://www.barrons.com/articles/stock-movers-433c4e96?siteid=yhoof2&yptr=yahoo"
+          },
+          {
+            "title": "Intel vs. SK Hynix: Which Chip Stock Is Worth Chasing After This Week's Surge?",
+            "publisher": "Zacks",
+            "published_at": "2026-09-18T19:10+00:00",
+            "summary": "Intel (INTC) and SK Hynix (SKHY) have been among this week's hottest semiconductor stocks as investors react to reports that the companies are exploring partnership opportunities.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/intel-vs-sk-hynix-chip-191000596.html"
+          },
+          {
+            "title": "Micron Adds 1.3% as Intel Extends Memory Scarcity Into 2027",
+            "publisher": "GuruFocus.com",
+            "published_at": "2026-09-18T18:23+00:00",
+            "summary": "Five-to-sevenfold price increases protect margins while testing customers' hardware budgets.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/micron-adds-1-3-intel-182356450.html"
+          }
+        ]
+      }
+    },
+    "query_market_data:META": {
+      "tool": "query_market_data",
+      "ticker": "META",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "META",
+        "entity": "META",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "Meta Platforms, Inc.",
+          "sector": "Communication Services",
+          "industry": "Internet Content & Information",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 75472,
+          "summary": "Meta Platforms, Inc. engages in the development of products that enable people to connect and share with friends and family through mobile devices, personal computers, virtual reality (VR) headsets, and AI glasses in the United States, Canada, Europe, Asia-Pacific, and internationally. It operates through two segments, Family of Apps (FoA) and Reality Labs (RL). The FoA segment offers Facebook, wh"
+        },
+        "fundamentals": {
+          "market_cap": 1696002211840,
+          "trailing_pe": 25.7,
+          "forward_pe": 19.04,
+          "price_to_book": 6.49,
+          "dividend_yield_pct": 0.31,
+          "profit_margin_pct": 29.83,
+          "revenue_growth_pct": 28.0,
+          "earnings_growth_pct": -13.4,
+          "return_on_equity_pct": 29.85,
+          "debt_to_equity": 43.0,
+          "current_ratio": 2.23,
+          "total_revenue": 228246994944,
+          "net_income": 68097998848,
+          "free_cash_flow": 21553625088,
+          "beta": 1.24,
+          "fifty_two_week_high": 785.73,
+          "fifty_two_week_low": 520.26,
+          "analyst_target_mean": 755.28,
+          "analyst_recommendation": "strong_buy",
+          "analyst_count": 56
+        },
+        "technicals": {
+          "last_close": 665.75,
+          "ma20": 614.61,
+          "ma50": 607.38,
+          "price_vs_ma20": "bullish",
+          "price_vs_ma50": "bullish",
+          "rsi14": 66.13,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 1.91,
+          "volatility_20d_annualized_pct": 30.38,
+          "return_5d_pct": 2.73,
+          "return_20d_pct": 21.97,
+          "return_period_pct": 18.07
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 616.77
+          },
+          {
+            "date": "2026-09-08",
+            "close": 613.48
+          },
+          {
+            "date": "2026-09-09",
+            "close": 653.69
+          },
+          {
+            "date": "2026-09-10",
+            "close": 644.38
+          },
+          {
+            "date": "2026-09-11",
+            "close": 648.03
+          },
+          {
+            "date": "2026-09-14",
+            "close": 665.6
+          },
+          {
+            "date": "2026-09-15",
+            "close": 670.24
+          },
+          {
+            "date": "2026-09-16",
+            "close": 673.31
+          },
+          {
+            "date": "2026-09-17",
+            "close": 682.31
+          },
+          {
+            "date": "2026-09-18",
+            "close": 665.75
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:META": {
+      "tool": "query_news",
+      "ticker": "META",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "META",
+        "entity": "META",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "What Happens To Reddit Stock If Search Keeps Sending Fewer People?",
+            "publisher": "Trefis",
+            "published_at": "2026-09-18T21:36+00:00",
+            "summary": "Reddit (RDDT) stock trades near $153, down about 43% over the past year while the S&P 500 returned 17%. The market has already decided something here is wrong. The advertising business is not the problem; it is still growing fast. The risk sits one step upstream, in where the next visitor comes from",
+            "url": "https://www.trefis.com/articles/615859/what-happens-to-reddit-stock-if-search-keeps-sending-fewer-people/2026-09-18"
+          },
+          {
+            "title": "S&P 500 Posts Slight Weekly Decline as Utilities Weigh",
+            "publisher": "MT Newswires",
+            "published_at": "2026-09-18T20:46+00:00",
+            "summary": "The Standard & Poor's 500 index slipped 0.1% this week as the market digested a quarter-point rate i",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/p-500-posts-slight-weekly-204640571.html"
+          },
+          {
+            "title": "California to Reconsider AI ‘Kill Switch’ With Newsom’s New Executive Order",
+            "publisher": "Barrons.com",
+            "published_at": "2026-09-18T20:45+00:00",
+            "summary": "Fears of AI running amok have increased over the past week, with tech execs and President Donald Trump all weighing in on the matter.",
+            "url": "https://www.barrons.com/articles/california-newsom-ai-kill-switch-executive-order-c7a352df?siteid=yhoof2&yptr=yahoo"
+          },
+          {
+            "title": "Nvidia-Backed Cloud Startup Nscale Files for IPO",
+            "publisher": "The Wall Street Journal",
+            "published_at": "2026-09-18T20:39+00:00",
+            "summary": "The U.K.-based company didn’t say how many shares it would offer, or at what price, but intends to list shares on the New York Stock Exchange under the symbol NSCL.",
+            "url": "https://www.wsj.com/business/nvidia-backed-cloud-startup-nscale-files-for-ipo-2622ca12?siteid=yhoof2&yptr=yahoo"
+          },
+          {
+            "title": "Meta's Muse Just Had a Breakout Launch. Is It a Game Changer for the Stock?",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-18T20:35+00:00",
+            "summary": "Meta's New AI App Grew Almost as Fast as ChatGPT in Its First 5 Days. Is Meta Stock a Buy?",
+            "url": "https://www.fool.com/investing/2026/09/18/meta-s-muse-just-had-a-breakout-launch-here-s-what-it-means-for-the-stock/"
+          },
+          {
+            "title": "Sector Update: Tech Stocks Rise Late Afternoon",
+            "publisher": "MT Newswires",
+            "published_at": "2026-09-18T19:57+00:00",
+            "summary": "Tech stocks rose late Friday afternoon, with the State Street Technology Select Sector SPDR ETF (XLK",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/sector-tech-stocks-rise-afternoon-195713111.html"
+          },
+          {
+            "title": "How Shopify and Meta are diving deeper into banking",
+            "publisher": "American Banker",
+            "published_at": "2026-09-18T19:47+00:00",
+            "summary": "The commerce company has made major inroads into embedded finance, a strategy that could get a boost from partnering with the social media giant's new AI agent.",
+            "url": "https://www.americanbanker.com/payments/news/shopify-adds-meta-muse-to-agentic-ai-strategy"
+          },
+          {
+            "title": "Goldman Sachs Sends Stark Warning on S&P 500 Earnings",
+            "publisher": "GuruFocus.com",
+            "published_at": "2026-09-18T19:35+00:00",
+            "summary": "AI Boom Is Supercharging S&P 500 Profits. Goldman Sachs Warns the Boost Won't Last",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/goldman-sachs-sends-stark-warning-193526963.html"
+          }
+        ]
+      }
+    },
+    "query_market_data:MSFT": {
+      "tool": "query_market_data",
+      "ticker": "MSFT",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "MSFT",
+        "entity": "MSFT",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "Microsoft Corporation",
+          "sector": "Technology",
+          "industry": "Software - Infrastructure",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 223000,
+          "summary": "Microsoft Corporation, a technology company, develops and supports a portfolio of technology solutions for individuals and businesses worldwide. Its products include operating systems, server applications, business solution applications, software development tools, desktop and server management tools, and video games; and devices, such as PCs, tablets, gaming and entertainment consoles, other inte"
+        },
+        "fundamentals": {
+          "market_cap": 3666585845760,
+          "trailing_pe": 27.69,
+          "forward_pe": 20.93,
+          "price_to_book": 8.29,
+          "dividend_yield_pct": 0.79,
+          "profit_margin_pct": 40.3,
+          "revenue_growth_pct": 17.7,
+          "earnings_growth_pct": 31.7,
+          "return_on_equity_pct": 34.04,
+          "debt_to_equity": 29.12,
+          "current_ratio": 1.23,
+          "total_revenue": 331839012864,
+          "net_income": 133748998144,
+          "free_cash_flow": 16545500160,
+          "beta": 1.11,
+          "fifty_two_week_high": 553.72,
+          "fifty_two_week_low": 349.2,
+          "analyst_target_mean": 572.92,
+          "analyst_recommendation": "strong_buy",
+          "analyst_count": 52
+        },
+        "technicals": {
+          "last_close": 493.78,
+          "ma20": 497.51,
+          "ma50": 464.2,
+          "price_vs_ma20": "bearish",
+          "price_vs_ma50": "bullish",
+          "rsi14": 53.6,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 1.39,
+          "volatility_20d_annualized_pct": 22.02,
+          "return_5d_pct": -0.37,
+          "return_20d_pct": 2.62,
+          "return_period_pct": 34.67
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 499.7
+          },
+          {
+            "date": "2026-09-08",
+            "close": 493.95
+          },
+          {
+            "date": "2026-09-09",
+            "close": 491.65
+          },
+          {
+            "date": "2026-09-10",
+            "close": 492.44
+          },
+          {
+            "date": "2026-09-11",
+            "close": 495.63
+          },
+          {
+            "date": "2026-09-14",
+            "close": 505.41
+          },
+          {
+            "date": "2026-09-15",
+            "close": 497.12
+          },
+          {
+            "date": "2026-09-16",
+            "close": 490.3
+          },
+          {
+            "date": "2026-09-17",
+            "close": 497.75
+          },
+          {
+            "date": "2026-09-18",
+            "close": 493.78
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:MSFT": {
+      "tool": "query_news",
+      "ticker": "MSFT",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "MSFT",
+        "entity": "MSFT",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "How to position for the next wave of AI-led scientific breakthroughs",
+            "publisher": "Investing.com",
+            "published_at": "2026-09-19T01:36+00:00",
+            "summary": "Investing.com -- Artificial intelligence is moving beyond text generation into scientific research, creating investment opportunities across AI infrastructure, pharmaceuticals, nuclear fusion, industrial materials and utilities, according to UBS Wealth Management.",
+            "url": "https://finance.yahoo.com/technology/ai/articles/position-next-wave-ai-led-013630980.html"
+          },
+          {
+            "title": "CRWD Stock Keeps Climbing. Should You Climb On?",
+            "publisher": "Trefis",
+            "published_at": "2026-09-18T22:49+00:00",
+            "summary": "This cybersecurity stock is on a historic run fueled by the AI boom, forcing investors to evaluate whether the growth engine has enough fuel left to justify its expanding multiple.",
+            "url": "https://www.trefis.com/articles/615810/crwd-stock-keeps-climbing-should-you-climb-on/2026-09-18"
+          },
+          {
+            "title": "How Low Can UiPath Stock Go When Its Numbers Are Not The Problem?",
+            "publisher": "Trefis",
+            "published_at": "2026-09-18T22:06+00:00",
+            "summary": "UiPath (PATH) trades at about $14, some 29% below its high of the past year, and it has lost 11.7% over the past month. Its results are not what did that. The fall is recent: the stock is still up 34.5% over the past three months, and over the past twelve months it returned 18.9% against 17.0% for t",
+            "url": "https://www.trefis.com/articles/615833/how-low-can-uipath-stock-go-when-its-numbers-are-not-the-problem/2026-09-18"
+          },
+          {
+            "title": "Nvidia-Backed Cloud Platform Nscale Files For IPO — NVDA Stock In Focus",
+            "publisher": "Stocktwits",
+            "published_at": "2026-09-18T21:31+00:00",
+            "summary": "AI data center provider Nscale has submitted paperwork for a New York initial public offering to fund computing infrastructure.",
+            "url": "https://stocktwits.com/news-articles/markets/equity/nvidia-backed-cloud-platform-nscale-files-for-ipo/cZtH7g6RBEQ"
+          },
+          {
+            "title": "Should You Buy NetApp Stock For The Shares It Keeps Retiring?",
+            "publisher": "Trefis",
+            "published_at": "2026-09-18T19:53+00:00",
+            "summary": "NetApp (NTAP) has spent years quietly retiring its own stock while the attention went to its flash arrays and AI deals. The stock is not quiet now: it has gained about 92% over the trailing six months and sits roughly 5% below its 52-week high. Fewer shares mean each one carries more of the profit. ",
+            "url": "https://www.trefis.com/articles/615850/should-you-buy-netapp-stock-for-the-shares-it-keeps-retiring/2026-09-18"
+          },
+          {
+            "title": "Nvidia-Backed Data Center Firm Nscale Files Publicly for US IPO",
+            "publisher": "Bloomberg",
+            "published_at": "2026-09-18T19:52+00:00",
+            "summary": "Nscale, a developer of artificial intelligence data centers that counts Nvidia Corp. and Microsoft Corp. among its partners, filed for an initial public offering in New York to tap into AI’s insatiable demand for computing power.",
+            "url": "https://finance.yahoo.com/technology/ai/articles/nvidia-backed-data-center-firm-195220456.html"
+          },
+          {
+            "title": "Goldman Sachs Sends Stark Warning on S&P 500 Earnings",
+            "publisher": "GuruFocus.com",
+            "published_at": "2026-09-18T19:35+00:00",
+            "summary": "AI Boom Is Supercharging S&P 500 Profits. Goldman Sachs Warns the Boost Won't Last",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/goldman-sachs-sends-stark-warning-193526963.html"
+          },
+          {
+            "title": "OpenAI and Anthropic's Chinese Rivals Face a Revenue Reality Check",
+            "publisher": "GuruFocus.com",
+            "published_at": "2026-09-18T19:33+00:00",
+            "summary": "The real divide may be revenue, not model quality",
+            "url": "https://finance.yahoo.com/technology/ai/articles/openai-anthropics-chinese-rivals-face-193317619.html"
+          }
+        ]
+      }
+    },
+    "query_market_data:NFLX": {
+      "tool": "query_market_data",
+      "ticker": "NFLX",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "NFLX",
+        "entity": "NFLX",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "Netflix, Inc.",
+          "sector": "Communication Services",
+          "industry": "Entertainment",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 16000,
+          "summary": "Netflix, Inc. provides entertainment services worldwide. The company offers television (TV) series, documentaries, feature films, games, and live programming across various genres and languages. It also provides members the ability to receive streaming content through a host of internet-connected devices, including TVs, digital video players, TV set-top boxes, and mobile devices. Netflix, Inc. was"
+        },
+        "fundamentals": {
+          "market_cap": 298929225728,
+          "trailing_pe": 23.69,
+          "forward_pe": 18.8,
+          "price_to_book": 9.91,
+          "dividend_yield_pct": null,
+          "profit_margin_pct": 28.22,
+          "revenue_growth_pct": 13.4,
+          "earnings_growth_pct": 11.1,
+          "return_on_equity_pct": 49.54,
+          "debt_to_equity": 55.24,
+          "current_ratio": 1.14,
+          "total_revenue": 48370765824,
+          "net_income": 13649642496,
+          "free_cash_flow": 25387552768,
+          "beta": 1.53,
+          "fifty_two_week_high": 124.86,
+          "fifty_two_week_low": 65.08,
+          "analyst_target_mean": 93.88,
+          "analyst_recommendation": "buy",
+          "analyst_count": 45
+        },
+        "technicals": {
+          "last_close": 71.79,
+          "ma20": 78.92,
+          "ma50": 75.72,
+          "price_vs_ma20": "bearish",
+          "price_vs_ma50": "bearish",
+          "rsi14": 36.59,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 2.37,
+          "volatility_20d_annualized_pct": 37.69,
+          "return_5d_pct": -7.25,
+          "return_20d_pct": -10.42,
+          "return_period_pct": -1.5
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 78.25
+          },
+          {
+            "date": "2026-09-08",
+            "close": 76.77
+          },
+          {
+            "date": "2026-09-09",
+            "close": 76.03
+          },
+          {
+            "date": "2026-09-10",
+            "close": 76.01
+          },
+          {
+            "date": "2026-09-11",
+            "close": 77.4
+          },
+          {
+            "date": "2026-09-14",
+            "close": 80.32
+          },
+          {
+            "date": "2026-09-15",
+            "close": 77.9
+          },
+          {
+            "date": "2026-09-16",
+            "close": 76.41
+          },
+          {
+            "date": "2026-09-17",
+            "close": 75.31
+          },
+          {
+            "date": "2026-09-18",
+            "close": 71.79
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:NFLX": {
+      "tool": "query_news",
+      "ticker": "NFLX",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "NFLX",
+        "entity": "NFLX",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "Netflix Has $27 Billion Left to Buy Back Its Own Stock -- About 8% of the Whole Company",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-19T00:04+00:00",
+            "summary": "The streaming giant just bought back more stock in a single quarter than ever before. But is that a reason to own it?",
+            "url": "https://www.fool.com/investing/2026/09/18/netflix-has-usd27-billion-left-to-buy-back-its-own-stock-about-8-of-the-whole-company/"
+          },
+          {
+            "title": "Netflix (NFLX) Stock Trades Down, Here Is Why",
+            "publisher": "StockStory",
+            "published_at": "2026-09-18T22:32+00:00",
+            "summary": "Shares of streaming video giant Netflix (NASDAQ: NFLX) fell 5% in the afternoon session after Wells Fargo analyst Steven Cahall downgraded the stock from Equal Weight to Underweight and lowered his price target to $57 from $80. According to TipRanks, Cahall cited user engagement trends and a weaker ",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/netflix-nflx-stock-trades-down-223240493.html"
+          },
+          {
+            "title": "Stock Market Today, Sept. 18: Netflix Falls on Analyst Downgrade and Slashed Price Target",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-18T21:14+00:00",
+            "summary": "Today, Sept. 18, 2026, Wells Fargo cut its rating and price target, citing weaker engagement and content concerns, prompting investors to watch margin trends.",
+            "url": "https://www.fool.com/coverage/stock-market-today/2026/09/18/stock-market-today-sept-18-netflix-falls-on-analyst-downgrade-and-slashed-price-target/"
+          },
+          {
+            "title": "Netflix Stock Gets Downgraded by Wells Fargo on ‘Worrying’ Engagement Trends",
+            "publisher": "Investopedia",
+            "published_at": "2026-09-18T20:45+00:00",
+            "summary": "Netflix shares have taken a hit lately. One group of experts sees the streaming giant’s stock falling even further.",
+            "url": "https://www.investopedia.com/market-update-netflix-stock-gets-downgraded-by-wells-fargo-on-worrying-engagement-trends-nflx-12128200"
+          },
+          {
+            "title": "Wells Fargo Brutally Revamps Netflix Stock Price Target",
+            "publisher": "GuruFocus.com",
+            "published_at": "2026-09-18T20:21+00:00",
+            "summary": "Analyst sees deeper trouble beneath Netflix's engagement slowdown",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/wells-fargo-brutally-revamps-netflix-202122052.html"
+          },
+          {
+            "title": "Netflix Drops 4.8% as Wells Fargo Cuts Its Target to $57",
+            "publisher": "GuruFocus.com",
+            "published_at": "2026-09-18T20:21+00:00",
+            "summary": "The downgrade questions engagement and hit-making while leaving Netflix's content response expensive.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/netflix-drops-4-8-wells-202111557.html"
+          },
+          {
+            "title": "Netflix, Nucor, On Holding, Xenon, Accenture, Coinbase, and More Stocks That Explain Today’s Market",
+            "publisher": "Barrons.com",
+            "published_at": "2026-09-18T20:19+00:00",
+            "summary": "The S&P 500 and the Nasdaq Composite rebounded to end Friday’s session slightly higher after spending most of the day in the red.  The Dow Jones Industrial Average ended lower as higher oil prices and bond yields weighed on equities.  Glassmaker  Corning  and optical networking stocks  Coherent  and",
+            "url": "https://www.barrons.com/articles/stock-movers-433c4e96?siteid=yhoof2&yptr=yahoo"
+          },
+          {
+            "title": "Netflix Stock Downgraded To Sell As Viewer Engagement Wanes",
+            "publisher": "Investor's Business Daily",
+            "published_at": "2026-09-18T20:08+00:00",
+            "summary": "Netflix stock tanked on Friday after a Wall Street analyst downgraded the streaming video giant to the equivalent of a sell rating.",
+            "url": "https://www.investors.com/news/technology/netflix-stock-downgraded-sell-viewer-engagement-wanes/?src=A00220&yptr=yahoo"
+          }
+        ]
+      }
+    },
+    "query_market_data:NVDA": {
+      "tool": "query_market_data",
+      "ticker": "NVDA",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "NVDA",
+        "entity": "NVDA",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "NVIDIA Corporation",
+          "sector": "Technology",
+          "industry": "Semiconductors",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 42000,
+          "summary": "NVIDIA Corporation operates as a data center scale AI infrastructure company in the United States, Taiwan, China, Hong Kong, Europe, and internationally. It operates through Compute & Networking, and Graphics segments. The Compute & Networking segment provides data center accelerated computing and networking platforms and artificial intelligence solutions and software, and automotive platforms and"
+        },
+        "fundamentals": {
+          "market_cap": 5367153557504,
+          "trailing_pe": 27.71,
+          "forward_pe": 14.17,
+          "price_to_book": 23.44,
+          "dividend_yield_pct": 0.46,
+          "profit_margin_pct": 63.66,
+          "revenue_growth_pct": 105.9,
+          "earnings_growth_pct": 127.8,
+          "return_on_equity_pct": 117.21,
+          "debt_to_equity": 16.97,
+          "current_ratio": 4.59,
+          "total_revenue": 302970011648,
+          "net_income": 192880001024,
+          "free_cash_flow": 41809874944,
+          "beta": 2.22,
+          "fifty_two_week_high": 236.54,
+          "fifty_two_week_low": 164.27,
+          "analyst_target_mean": 328.49,
+          "analyst_recommendation": "strong_buy",
+          "analyst_count": 58
+        },
+        "technicals": {
+          "last_close": 222.27,
+          "ma20": 218.72,
+          "ma50": 214.07,
+          "price_vs_ma20": "bullish",
+          "price_vs_ma50": "bullish",
+          "rsi14": 54.24,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 2.93,
+          "volatility_20d_annualized_pct": 46.45,
+          "return_5d_pct": 1.82,
+          "return_20d_pct": 2.61,
+          "return_period_pct": 6.65
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 230.1
+          },
+          {
+            "date": "2026-09-08",
+            "close": 225.48
+          },
+          {
+            "date": "2026-09-09",
+            "close": 223.42
+          },
+          {
+            "date": "2026-09-10",
+            "close": 218.36
+          },
+          {
+            "date": "2026-09-11",
+            "close": 218.29
+          },
+          {
+            "date": "2026-09-14",
+            "close": 210.96
+          },
+          {
+            "date": "2026-09-15",
+            "close": 212.17
+          },
+          {
+            "date": "2026-09-16",
+            "close": 213.9
+          },
+          {
+            "date": "2026-09-17",
+            "close": 219.34
+          },
+          {
+            "date": "2026-09-18",
+            "close": 222.27
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:NVDA": {
+      "tool": "query_news",
+      "ticker": "NVDA",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "NVDA",
+        "entity": "NVDA",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "Why Tesla's Robotaxi/Cybercab Bet Just Got Complicated. What It Means to Investors.",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-19T06:50+00:00",
+            "summary": "The robotaxi/Cybercab rollout is on track, but investors need to be patient and understand there are regulatory and operational hurdles to cross.",
+            "url": "https://www.fool.com/investing/2026/09/19/why-teslas-robotaxicybercab-bet-just-got-complicat/"
+          },
+          {
+            "title": "3 Wall Street Analysts Predict 100%+ Upside for Plug Power. Here's Why I'm Not Buying.",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-19T06:25+00:00",
+            "summary": "Several analysts remain very bullish on Plug Power stock.",
+            "url": "https://www.fool.com/investing/2026/09/19/3-wall-street-analysts-predict-100-upside-for-plug/"
+          },
+          {
+            "title": "Shiba Inu's Bull Market Price Potential May Surprise You",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-19T06:06+00:00",
+            "summary": "The meme coin is on a hot streak again.",
+            "url": "https://www.fool.com/investing/2026/09/19/shiba-inus-bull-market-price-potential-may-surpris/"
+          },
+          {
+            "title": "Got $1,000? 2 No-Brainer Nuclear Stocks to Buy Right Now.",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-19T05:50+00:00",
+            "summary": "Nuclear demand is rising fast, and two very different stocks offer two very different ways for investors to cash in.",
+            "url": "https://www.fool.com/investing/2026/09/19/got-1000-2-no-brainer-nuclear-stocks-to-buy-right/"
+          },
+          {
+            "title": "Sandisk Joins the S&P 100 on Monday -- the Same Day Nike Leaves It",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-19T05:13+00:00",
+            "summary": "Index funds will need to buy the flash-memory specialist's stock ahead of Monday -- though maybe not much of it.",
+            "url": "https://www.fool.com/investing/2026/09/19/sandisk-joins-the-s-and-p-100-on-monday-the-same-day-nike-leaves-it/"
+          },
+          {
+            "title": "UBS now expects AI capex to reach nearly $1tn this year and around $1.4tn by 2027",
+            "publisher": "Investing.com",
+            "published_at": "2026-09-19T04:45+00:00",
+            "summary": "Investing.com -- UBS now expects artificial intelligence capital expenditure to reach nearly $1 trillion in 2026 before climbing to around $1.4 trillion in 2027, with surging memory costs accounting for most of the increase.",
+            "url": "https://finance.yahoo.com/technology/ai/articles/ubs-now-expects-ai-capex-044549899.html"
+          },
+          {
+            "title": "Ross Gerber Sees Jensen Huang’s Charisma As Part Of Nvidia’s Edge, Says ‘This Is Why I Own Nvidia’ After Dreamforce Exchange With Marc Benioff: 'Big is Unnecessary'",
+            "publisher": "Benzinga",
+            "published_at": "2026-09-19T02:30+00:00",
+            "summary": "Investor Ross Gerber highlighted Nvidia Corp.’s CEO Jensen Huang’s charisma at Salesforce Inc.’s Dreamforce 2026, saying a playful exchange with Salesforce CEO Marc Benioff showed part of what he sees in Nvidia’s leadership. Gerber Points To Huang’s Stage Presence \"This...",
+            "url": "https://finance.yahoo.com/technology/ai/articles/ross-gerber-sees-jensen-huang-023051012.html"
+          },
+          {
+            "title": "Nvidia, SK Hynix send strong signal to Micron investors",
+            "publisher": "TheStreet",
+            "published_at": "2026-09-19T01:17+00:00",
+            "summary": "With Micron’s earnings report looming, competitors have weighed in on the same pressure they’re all feeling.",
+            "url": "https://www.thestreet.com/investing/stocks/nvidia-sk-hynix-warning-memory-prices-micron-investors"
+          }
+        ]
+      }
+    },
+    "query_market_data:ORCL": {
+      "tool": "query_market_data",
+      "ticker": "ORCL",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "ORCL",
+        "entity": "ORCL",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "Oracle Corporation",
+          "sector": "Technology",
+          "industry": "Software - Infrastructure",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 141000,
+          "summary": "Oracle Corporation offers products and services that build, run and support enterprise information technology frameworks worldwide. Its Oracle cloud software as a service offering includes various cloud software applications, including Oracle Fusion cloud enterprise resource planning ERP, Oracle Fusion cloud enterprise performance management EPM, Oracle Fusion cloud supply chain and manufacturing "
+        },
+        "fundamentals": {
+          "market_cap": 446333681664,
+          "trailing_pe": 23.58,
+          "forward_pe": 13.42,
+          "price_to_book": 7.22,
+          "dividend_yield_pct": 1.33,
+          "profit_margin_pct": 26.36,
+          "revenue_growth_pct": 29.6,
+          "earnings_growth_pct": 54.5,
+          "return_on_equity_pct": 41.19,
+          "debt_to_equity": 251.72,
+          "current_ratio": 1.17,
+          "total_revenue": 71776002048,
+          "net_income": 18736001024,
+          "free_cash_flow": -45853626368,
+          "beta": 1.73,
+          "fifty_two_week_high": 329.5,
+          "fifty_two_week_low": 114.5,
+          "analyst_target_mean": 239.0,
+          "analyst_recommendation": "buy",
+          "analyst_count": 41
+        },
+        "technicals": {
+          "last_close": 147.61,
+          "ma20": 149.41,
+          "ma50": 141.0,
+          "price_vs_ma20": "bearish",
+          "price_vs_ma50": "bullish",
+          "rsi14": 49.39,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 3.3,
+          "volatility_20d_annualized_pct": 52.41,
+          "return_5d_pct": -1.78,
+          "return_20d_pct": 3.9,
+          "return_period_pct": -15.39
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 158.78
+          },
+          {
+            "date": "2026-09-08",
+            "close": 162.52
+          },
+          {
+            "date": "2026-09-09",
+            "close": 161.63
+          },
+          {
+            "date": "2026-09-10",
+            "close": 152.94
+          },
+          {
+            "date": "2026-09-11",
+            "close": 150.28
+          },
+          {
+            "date": "2026-09-14",
+            "close": 144.79
+          },
+          {
+            "date": "2026-09-15",
+            "close": 140.35
+          },
+          {
+            "date": "2026-09-16",
+            "close": 143.16
+          },
+          {
+            "date": "2026-09-17",
+            "close": 150.59
+          },
+          {
+            "date": "2026-09-18",
+            "close": 147.61
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:ORCL": {
+      "tool": "query_news",
+      "ticker": "ORCL",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "ORCL",
+        "entity": "ORCL",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "Jim Cramer Said The Strength In Oracle (ORCL)’s Shares Was A “Positive Sign”",
+            "publisher": "Insider Monkey",
+            "published_at": "2026-09-18T23:06+00:00",
+            "summary": "Oracle Corporation (NYSE:ORCL) is quite important when it comes to the AI buildout. The shares are down by more than 20% year-to-date. Cramer mentioned Oracle Corporation (NYSE:ORCL) in a tweet made close to midday on the 17th. The shares closed 5% higher that day: “Strength in Oracle is a very posi",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/jim-cramer-said-strength-oracle-230622055.html"
+          },
+          {
+            "title": "Why Oracle (ORCL) Stock Is Trading Lower Today",
+            "publisher": "StockStory",
+            "published_at": "2026-09-18T22:48+00:00",
+            "summary": "Shares of enterprise software giant Oracle (NYSE:ORCL) fell 3.4% in the afternoon session after Business Insider reported that co-CEO Clay Magouyrk stated during an internal town hall that the company previously struggled to make generative artificial intelligence useful for its own staff despite sp",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/why-oracle-orcl-stock-trading-224840340.html"
+          },
+          {
+            "title": "Workday Or Autodesk: Is The Louder AI Story The Better Stock?",
+            "publisher": "Trefis",
+            "published_at": "2026-09-18T22:19+00:00",
+            "summary": "If you own Workday (WDAY) or Autodesk (ADSK), you hold the same bet: the company that already keeps a customer's data gets paid as that customer adopts AI. Workday keeps HR and finance records, and Autodesk keeps design, manufacturing, and construction data.",
+            "url": "https://www.trefis.com/articles/615721/workday-or-autodesk-is-the-louder-ai-story-the-better-stock/2026-09-18"
+          },
+          {
+            "title": "Oracle Slides 3.4% as Buy Call Meets a Capital Burden",
+            "publisher": "GuruFocus.com",
+            "published_at": "2026-09-18T20:21+00:00",
+            "summary": "Barron's sees stabilization; Ellison's canceled sale removes insider supply without adding corporate cash.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/oracle-slides-3-4-buy-202108114.html"
+          },
+          {
+            "title": "Oracle Falls 3% While Cloud Rivals Hold Their Ground; Microsoft Dips, Amazon Nudges Higher",
+            "publisher": "24/7 Wall St.",
+            "published_at": "2026-09-18T18:07+00:00",
+            "summary": "Oracle is sliding hard on a day when its cloud rivals are barely flinching, and the reason behind that split tells investors something important about where the real pressure on ORCL stock is coming from.",
+            "url": "https://247wallst.com/investing/2026/09/18/oracle-falls-3-while-cloud-rivals-hold-their-ground-microsoft-dips-amazon-nudges-higher/"
+          },
+          {
+            "title": "Credo Technology Group vs. Sandisk: Which Technology Stock Is a Better Buy in 2026?",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-18T18:05+00:00",
+            "summary": "One company is growing at a pace that is almost impossible to find in semiconductors. The other has reinvented itself as a contracted AI infrastructure play with billions in guaranteed revenue.",
+            "url": "https://www.fool.com/coverage/better-buy/2026/09/18/credo-technology-group-vs-sandisk-which-technology-stock-is-a-better-buy-in-2026/"
+          },
+          {
+            "title": "DTE Could Be One of the Quiet Winners of the Data Center Boom",
+            "publisher": "24/7 Wall St.",
+            "published_at": "2026-09-18T17:30+00:00",
+            "summary": "DTE Energy has been quietly signing contracts with some of the biggest hyperscalers on the planet, and the numbers behind that pipeline suggest most investors are not yet pricing in what it could mean for earnings growth.",
+            "url": "https://247wallst.com/investing/2026/09/18/dte-could-be-one-of-the-quiet-winners-of-the-data-center-boom/"
+          },
+          {
+            "title": "Can Hewlett Packard Enterprise Stock Keep Running On Orders It Cannot Ship?",
+            "publisher": "Trefis",
+            "published_at": "2026-09-18T16:22+00:00",
+            "summary": "Hewlett Packard Enterprise (HPE) has returned 156% over the trailing twelve months, and the stock now sits right at the top of its 52-week range. The next leg is the hard one. What could power it is already on the company's books: orders it has taken and cannot yet ship.",
+            "url": "https://www.trefis.com/articles/615862/can-hewlett-packard-enterprise-stock-keep-running-on-orders-it-cannot-ship/2026-09-18"
+          }
+        ]
+      }
+    },
+    "query_market_data:QCOM": {
+      "tool": "query_market_data",
+      "ticker": "QCOM",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "QCOM",
+        "entity": "QCOM",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "QUALCOMM Incorporated",
+          "sector": "Technology",
+          "industry": "Semiconductors",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 52000,
+          "summary": "QUALCOMM Incorporated engages in the development and commercialization of foundational technologies for the wireless industry worldwide. It operates through three segments: Qualcomm CDMA Technologies (QCT); Qualcomm Technology Licensing (QTL); and Qualcomm Strategic Initiatives (QSI). The QCT segment develops and supplies integrated circuits and system software with connectivity and computing tech"
+        },
+        "fundamentals": {
+          "market_cap": 189815717888,
+          "trailing_pe": 21.54,
+          "forward_pe": 17.42,
+          "price_to_book": 6.79,
+          "dividend_yield_pct": 1.95,
+          "profit_margin_pct": 21.01,
+          "revenue_growth_pct": -4.0,
+          "earnings_growth_pct": -23.0,
+          "return_on_equity_pct": 33.75,
+          "debt_to_equity": 55.21,
+          "current_ratio": 2.02,
+          "total_revenue": 44068999168,
+          "net_income": 9260000256,
+          "free_cash_flow": 10241000448,
+          "beta": 1.68,
+          "fifty_two_week_high": 259.92,
+          "fifty_two_week_low": 121.99,
+          "analyst_target_mean": 194.13,
+          "analyst_recommendation": "hold",
+          "analyst_count": 30
+        },
+        "technicals": {
+          "last_close": 177.72,
+          "ma20": 171.87,
+          "ma50": 167.82,
+          "price_vs_ma20": "bullish",
+          "price_vs_ma50": "bullish",
+          "rsi14": 53.79,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 2.36,
+          "volatility_20d_annualized_pct": 37.44,
+          "return_5d_pct": -2.34,
+          "return_20d_pct": 11.17,
+          "return_period_pct": -19.47
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 168.74
+          },
+          {
+            "date": "2026-09-08",
+            "close": 174.09
+          },
+          {
+            "date": "2026-09-09",
+            "close": 176.4
+          },
+          {
+            "date": "2026-09-10",
+            "close": 176.88
+          },
+          {
+            "date": "2026-09-11",
+            "close": 181.97
+          },
+          {
+            "date": "2026-09-14",
+            "close": 180.15
+          },
+          {
+            "date": "2026-09-15",
+            "close": 187.8
+          },
+          {
+            "date": "2026-09-16",
+            "close": 184.84
+          },
+          {
+            "date": "2026-09-17",
+            "close": 188.71
+          },
+          {
+            "date": "2026-09-18",
+            "close": 177.72
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:QCOM": {
+      "tool": "query_news",
+      "ticker": "QCOM",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "QCOM",
+        "entity": "QCOM",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "Qualcomm (QCOM) Joins New Edge AI Ecosystem",
+            "publisher": "Simply Wall St.",
+            "published_at": "2026-09-19T04:19+00:00",
+            "summary": "QUALCOMM (NasdaqGS:QCOM) has joined Advantech and other partners in the new WEDA edge AI ecosystem to support scalable deployments across varied hardware. The WEDA collaboration focuses on simplifying edge AI solutions by standardising tools and reference designs for industrial and enterprise use ca",
+            "url": "https://finance.yahoo.com/technology/ai/articles/qualcomm-qcom-joins-edge-ai-041937210.html"
+          },
+          {
+            "title": "Qualcomm Drops 6% as Past Month’s Rally Unwinds; Skyworks and Qorvo Slip",
+            "publisher": "24/7 Wall St.",
+            "published_at": "2026-09-18T17:58+00:00",
+            "summary": "Qualcomm is selling off sharply on a day when the broader chip fund is climbing, and the disconnect between those two moves points to something specific happening inside one of the market's most closely watched semiconductor names.",
+            "url": "https://247wallst.com/investing/2026/09/18/qualcomm-drops-6-as-past-months-rally-unwinds-skyworks-and-qorvo-slip/"
+          },
+          {
+            "title": "Why Does NVDA Stock Carry The Lowest Clean Multiple In Its Peer Group?",
+            "publisher": "Trefis",
+            "published_at": "2026-09-18T16:40+00:00",
+            "summary": "NVIDIA (NVDA) is the strongest business in its peer group, and it is priced below every rival you can compare it with fairly, at 27.5 times earnings. Yet over the past twelve months NVDA returned 25.7% while AMD returned 239.7%. The best business in the group is one of its weakest stocks, and not be",
+            "url": "https://www.trefis.com/articles/615854/why-does-nvda-stock-carry-the-lowest-clean-multiple-in-its-peer-group/2026-09-18"
+          },
+          {
+            "title": "What Needs To Be True To Buy Qualcomm Stock Now?",
+            "publisher": "Trefis",
+            "published_at": "2026-09-18T14:03+00:00",
+            "summary": "Qualcomm (QCOM) told investors in its fiscal Q3 2026 call that its share of Apple's recent iPhone launch would be materially lower than its prior estimate of 20%. In the same call, management raised its non-handset revenue target for fiscal 2029 to $40 billion—nearly doubling its prior $22 billion g",
+            "url": "https://www.trefis.com/articles/615901/what-needs-to-be-true-to-buy-qualcomm-stock-now/2026-09-18"
+          },
+          {
+            "title": "Volatility Aside, ARM’s AI Thesis Is Untouched",
+            "publisher": "24/7 Wall St.",
+            "published_at": "2026-09-18T11:35+00:00",
+            "summary": "ARM has tripled off its January lows, hyperscalers are lining up for its AI silicon, and analysts keep raising their targets. So why does the setup feel less like a green light and more like a fork in the road?",
+            "url": "https://247wallst.com/investing/2026/09/18/volatility-aside-arms-ai-thesis-is-untouched/"
+          },
+          {
+            "title": "Apple’s Chip Strategy Keeps Paying Dividends",
+            "publisher": "Barrons.com",
+            "published_at": "2026-09-18T06:00+00:00",
+            "summary": "When Apple’s iPhone turned into an immediate hit upon its 2007 release, CEO Steve Jobs was quick to realize the value of designing and owning as many of the components in its devices as possible.  Since then, designing the main chips for all its devices has been a priority for  Apple  and a potent d",
+            "url": "https://www.barrons.com/articles/apple-iphone-a20-chip-43d4ef59?siteid=yhoof2&yptr=yahoo"
+          },
+          {
+            "title": "Trump-Xi Dinner Next Week Brings AI Titans To The Table — OpenAI, NVDA, and QCOM CEOs To Attend, Says Report",
+            "publisher": "Stocktwits",
+            "published_at": "2026-09-17T22:30+00:00",
+            "summary": "Sam Altman, Jensen Huang and Cristiano Amon are reportedly expected at the September 24 summit as AI safety, development standards and chip access emerge as potential discussion points.",
+            "url": "https://stocktwits.com/news-articles/markets/equity/trump-xi-dinner-next-week-brings-ai-titans-to-the-table-open-ai-nvda-qcom-ceos-to-attend/cZtscudRBdp"
+          },
+          {
+            "title": "Qualcomm (QCOM) Outpaces Stock Market Gains: What You Should Know",
+            "publisher": "Zacks",
+            "published_at": "2026-09-17T21:45+00:00",
+            "summary": "Qualcomm (QCOM) reached $188.94 at the closing of the latest trading day, reflecting a +2.22% change compared to its last close.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/qualcomm-qcom-outpaces-stock-market-214506347.html"
+          }
+        ]
+      }
+    },
+    "query_market_data:TSLA": {
+      "tool": "query_market_data",
+      "ticker": "TSLA",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "TSLA",
+        "entity": "TSLA",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "Tesla, Inc.",
+          "sector": "Consumer Cyclical",
+          "industry": "Auto Manufacturers",
+          "country": "United States",
+          "currency": "USD",
+          "employees": 134785,
+          "summary": "Tesla, Inc. designs, develops, manufactures, leases, and sells electric vehicles, and energy generation and storage systems in the United States, China, and internationally. The company operates in two segments, Automotive; and Energy Generation and Storage. The company offers electric vehicles, as well as sells automotive regulatory credits; and non-warranty maintenance services and collision, au"
+        },
+        "fundamentals": {
+          "market_cap": 1438701584384,
+          "trailing_pe": 343.65,
+          "forward_pe": 165.76,
+          "price_to_book": 16.56,
+          "dividend_yield_pct": null,
+          "profit_margin_pct": 3.67,
+          "revenue_growth_pct": 25.5,
+          "earnings_growth_pct": -3.0,
+          "return_on_equity_pct": 4.67,
+          "debt_to_equity": 18.37,
+          "current_ratio": 1.94,
+          "total_revenue": 103619002368,
+          "net_income": 3806000128,
+          "free_cash_flow": 4835999744,
+          "beta": 1.84,
+          "fifty_two_week_high": 498.83,
+          "fifty_two_week_low": 297.38,
+          "analyst_target_mean": 396.94,
+          "analyst_recommendation": "buy",
+          "analyst_count": 38
+        },
+        "technicals": {
+          "last_close": 364.27,
+          "ma20": 359.6,
+          "ma50": 350.25,
+          "price_vs_ma20": "bullish",
+          "price_vs_ma50": "bullish",
+          "rsi14": 53.73,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 3.1,
+          "volatility_20d_annualized_pct": 49.18,
+          "return_5d_pct": -0.32,
+          "return_20d_pct": 5.55,
+          "return_period_pct": -10.07
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 354.08
+          },
+          {
+            "date": "2026-09-08",
+            "close": 368.16
+          },
+          {
+            "date": "2026-09-09",
+            "close": 367.81
+          },
+          {
+            "date": "2026-09-10",
+            "close": 363.56
+          },
+          {
+            "date": "2026-09-11",
+            "close": 365.44
+          },
+          {
+            "date": "2026-09-14",
+            "close": 358.97
+          },
+          {
+            "date": "2026-09-15",
+            "close": 356.58
+          },
+          {
+            "date": "2026-09-16",
+            "close": 358.08
+          },
+          {
+            "date": "2026-09-17",
+            "close": 366.2
+          },
+          {
+            "date": "2026-09-18",
+            "close": 364.27
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:TSLA": {
+      "tool": "query_news",
+      "ticker": "TSLA",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "TSLA",
+        "entity": "TSLA",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "Why Tesla's Robotaxi/Cybercab Bet Just Got Complicated. What It Means to Investors.",
+            "publisher": "Motley Fool",
+            "published_at": "2026-09-19T06:50+00:00",
+            "summary": "The robotaxi/Cybercab rollout is on track, but investors need to be patient and understand there are regulatory and operational hurdles to cross.",
+            "url": "https://www.fool.com/investing/2026/09/19/why-teslas-robotaxicybercab-bet-just-got-complicat/"
+          },
+          {
+            "title": "A Nine-Year-Late Sports Car, An Unpriced Robotaxi Pact, Supplier Snags And GM’s Hybrid Gap: The EV Wrap",
+            "publisher": "Stocktwits",
+            "published_at": "2026-09-19T01:28+00:00",
+            "summary": "Dealers sold an estimated 78,895 new battery-electric vehicles last month, up 2.5% from July yet down 46.9% from August 2025, Cox Automotive noted.",
+            "url": "https://stocktwits.com/news-articles/markets/equity/a-nine-year-late-sports-car-an-unpriced-robotaxi-pact-supplier-snags-and-gm-s-hybrid-gap-the-ev-wrap/cZtDZLFRBE1"
+          },
+          {
+            "title": "Dow Drops To Record Worst Week In Six Months Amid Elevated Yields, Oil — NVDA, TSLA, SPCX, ONON In Focus",
+            "publisher": "Stocktwits",
+            "published_at": "2026-09-18T23:35+00:00",
+            "summary": "An interest rate hike amid soaring energy costs and rising inflation concerns has weighed on the Dow.",
+            "url": "https://stocktwits.com/news-articles/markets/equity/dow-drops-to-record-worst-week-in-six-months-amid-elevated-yields-oil-nvda-tsla-spcx-onon-in-focus/cZtHOYsRBEK"
+          },
+          {
+            "title": "Tesla, Inc. (TSLA) Eyes Europe’s Electric Truck Boom With Semi Expansion",
+            "publisher": "Insider Monkey",
+            "published_at": "2026-09-18T22:49+00:00",
+            "summary": "Tesla, Inc. (NASDAQ:TSLA) is expanding beyond passenger electric vehicles. On September 11, Reuters reported that the company is preparing to enter the European electric truck market, marking another step in its efforts to diversify its revenue base. The company has brought the European Semi to the ",
+            "url": "https://finance.yahoo.com/technology/articles/tesla-inc-tsla-eyes-europe-224919901.html"
+          },
+          {
+            "title": "Weekly Wrap: Bitcoin Climbs Back Above $80,000",
+            "publisher": "CryptoProwl",
+            "published_at": "2026-09-18T22:01+00:00",
+            "summary": "The price of Bitcoin (CRYPTO: $BTC) and other cryptocurrencies strengthened heading into the weekend after a volati...",
+            "url": "https://www.cryptoprowl.com/releases/weekly-wrap-bitcoin-climbs-back-above-80000-7093"
+          },
+          {
+            "title": "Humanoid Robots Are Getting Smarter and Capable — But Researchers Mull If Their ‘ChatGPT Moment’ Is Here?",
+            "publisher": "Benzinga",
+            "published_at": "2026-09-18T21:30+00:00",
+            "summary": "Humanoid robots are showing meaningful progress beyond controlled demonstrations, with advances in autonomy, dexterity, and the ability to perform repetitive real-world tasks. But widespread commercial deployment still remains a work in progress. After spending a week meeting with leading robotics..",
+            "url": "https://finance.yahoo.com/technology/ai/articles/humanoid-robots-getting-smarter-capable-213040189.html"
+          },
+          {
+            "title": "Coinbase Files to List Single-Stock Perps on Apple, Tesla and Nvidia",
+            "publisher": "decrypt",
+            "published_at": "2026-09-18T21:01+00:00",
+            "summary": "The filing seeks CFTC approval for contracts giving US traders 24/5 leveraged exposure to individual stocks without ownership.",
+            "url": "https://decrypt.co/378681/coinbase-single-stock-perps-apple-tesla-nvidia"
+          },
+          {
+            "title": "NIO Just Dropped 20% in a Month. Is It Time to Sell?",
+            "publisher": "24/7 Wall St.",
+            "published_at": "2026-09-18T18:58+00:00",
+            "summary": "Nio shares cratered 20% in a single month while Tesla climbed and a broad EV fund barely flinched, a pattern that puts the blame squarely on one company and forces a hard question for anyone still holding the stock.",
+            "url": "https://247wallst.com/investing/2026/09/18/nio-just-dropped-20-in-a-month-is-it-time-to-sell/"
+          }
+        ]
+      }
+    },
+    "query_market_data:TSM": {
+      "tool": "query_market_data",
+      "ticker": "TSM",
+      "params": {
+        "period": "3mo"
+      },
+      "result": {
+        "ticker": "TSM",
+        "entity": "TSM",
+        "source": "Yahoo Finance (yfinance)",
+        "data_as_of": "2026-09-18",
+        "period": "3mo",
+        "company": {
+          "name": "Taiwan Semiconductor Manufacturing Company Limited",
+          "sector": "Technology",
+          "industry": "Semiconductors",
+          "country": "Taiwan",
+          "currency": "USD",
+          "employees": 76907,
+          "summary": "Taiwan Semiconductor Manufacturing Company Limited, together with its subsidiaries, manufactures, packages, tests, and sells integrated circuits and other semiconductor devices in Taiwan, China, Europe, the Middle East, Africa, Japan, the United States, and internationally. It provides various wafer fabrication processes, such as processes to manufacture complementary metal- oxide-semiconductor (C"
+        },
+        "fundamentals": {
+          "market_cap": 2254404845568,
+          "trailing_pe": 32.06,
+          "forward_pe": 19.83,
+          "price_to_book": 88.95,
+          "dividend_yield_pct": 0.95,
+          "profit_margin_pct": 49.92,
+          "revenue_growth_pct": 36.0,
+          "earnings_growth_pct": 77.4,
+          "return_on_equity_pct": 39.97,
+          "debt_to_equity": 16.5,
+          "current_ratio": 2.46,
+          "total_revenue": 4440492343296,
+          "net_income": 2216808415232,
+          "free_cash_flow": 730826014720,
+          "beta": 1.25,
+          "fifty_two_week_high": 479.0,
+          "fifty_two_week_low": 265.45,
+          "analyst_target_mean": 552.26,
+          "analyst_recommendation": "strong_buy",
+          "analyst_count": 20
+        },
+        "technicals": {
+          "last_close": 434.67,
+          "ma20": 421.53,
+          "ma50": 416.33,
+          "price_vs_ma20": "bullish",
+          "price_vs_ma50": "bullish",
+          "rsi14": 56.83,
+          "rsi14_signal": "neutral",
+          "volatility_20d_pct": 1.8,
+          "volatility_20d_annualized_pct": 28.61,
+          "return_5d_pct": 0.6,
+          "return_20d_pct": 4.77,
+          "return_period_pct": -6.81
+        },
+        "recent_closes": [
+          {
+            "date": "2026-09-04",
+            "close": 427.76
+          },
+          {
+            "date": "2026-09-08",
+            "close": 437.83
+          },
+          {
+            "date": "2026-09-09",
+            "close": 434.2
+          },
+          {
+            "date": "2026-09-10",
+            "close": 426.88
+          },
+          {
+            "date": "2026-09-11",
+            "close": 432.08
+          },
+          {
+            "date": "2026-09-14",
+            "close": 416.89
+          },
+          {
+            "date": "2026-09-15",
+            "close": 412.64
+          },
+          {
+            "date": "2026-09-16",
+            "close": 417.72
+          },
+          {
+            "date": "2026-09-17",
+            "close": 430.26
+          },
+          {
+            "date": "2026-09-18",
+            "close": 434.67
+          }
+        ],
+        "warnings": []
+      }
+    },
+    "query_news:TSM": {
+      "tool": "query_news",
+      "ticker": "TSM",
+      "params": {
+        "max_items": 8
+      },
+      "result": {
+        "ticker": "TSM",
+        "entity": "TSM",
+        "source": "Yahoo Finance News (yfinance)",
+        "lookback_days": 14,
+        "article_count": 8,
+        "articles": [
+          {
+            "title": "TSMC (TSM) Beats Stock Market Upswing: What Investors Need to Know",
+            "publisher": "Zacks",
+            "published_at": "2026-09-18T21:45+00:00",
+            "summary": "In the latest trading session, TSMC (TSM) closed at $434.67, marking a +1.02% move from the previous day.",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/tsmc-tsm-beats-stock-market-214505465.html"
+          },
+          {
+            "title": "Can GFS' Marvell Deal for SiGe Capacity Expansion Accelerate Growth?",
+            "publisher": "Zacks",
+            "published_at": "2026-09-18T15:19+00:00",
+            "summary": "GlobalFoundries is boosting SiGe capacity for MRVL as AI and cloud data centers drive demand for high-speed optical connectivity.",
+            "url": "https://finance.yahoo.com/technology/articles/gfs-marvell-deal-sige-capacity-151900054.html"
+          },
+          {
+            "title": "These Are The 5 Best Stocks To Buy Or Watch Now",
+            "publisher": "Investor's Business Daily",
+            "published_at": "2026-09-18T13:31+00:00",
+            "summary": "Buying a stock is easy, but buying the right stock without a good strategy is incredibly hard. Here are five top-performing stocks to buy now or put on a watchlist.",
+            "url": "https://www.investors.com/research/best-stocks-to-buy-now/?src=A00220&yptr=yahoo"
+          },
+          {
+            "title": "New Semiconductor ETF AIFR Isolates Chip Makers, but the 0.71% Fee Demands Results",
+            "publisher": "24/7 Wall St.",
+            "published_at": "2026-09-18T12:40+00:00",
+            "summary": "Most semiconductor ETFs bury foundry exposure under layers of chip designers, equipment makers, and memory producers, which is exactly the problem a new fund called AIFR is built to fix. Whether its narrow foundry mandate justifies a premium fee and serious geopolitical concentration is a harder que",
+            "url": "https://247wallst.com/investing/etf/2026/09/18/portfolio-fit-aifr/"
+          },
+          {
+            "title": "Why Is Taiwan Semiconductor Manufacturing (TSM) Ramping 2nm Production And Spending More?",
+            "publisher": "Simply Wall St.",
+            "published_at": "2026-09-18T10:12+00:00",
+            "summary": "Taiwan Semiconductor Manufacturing (NYSE:TSM) moves its 2nm process into commercial production as part of a new advanced manufacturing push. The chip producer accelerates investment in cutting edge fabrication capacity and raises capital expenditure targets to support 2nm roll out. Management frames",
+            "url": "https://finance.yahoo.com/technology/articles/why-taiwan-semiconductor-manufacturing-tsm-101222060.html"
+          },
+          {
+            "title": "AMD Stock Rises Premarket: Report Flags Chip Price Hike Linked To TSMC Costs",
+            "publisher": "Stocktwits",
+            "published_at": "2026-09-18T09:22+00:00",
+            "summary": "Rising AI infrastructure costs are putting pressure on chip and cloud pricing.",
+            "url": "https://stocktwits.com/news-articles/markets/equity/amd-stock-rises-premarket-report-flags-chip-price-hike-linked-to-tsmc-costs/cZtupybRB30"
+          },
+          {
+            "title": "Taiwan Semiconductor Manufacturing (TSM) Could Be 14% Overvalued As 2nm MediaTek Win Lands",
+            "publisher": "Simply Wall St.",
+            "published_at": "2026-09-18T03:17+00:00",
+            "summary": "Taiwan Semiconductor Manufacturing (NYSE:TSM) just picked up fresh attention after MediaTek chose its 2-nanometer process for the new Dimensity 9600 Pro, while keeping the broader 9600M line on TSMC’s 3nm technology. That MediaTek win comes on top of a strong run for Taiwan Semiconductor Manufacturi",
+            "url": "https://finance.yahoo.com/markets/stocks/articles/taiwan-semiconductor-manufacturing-tsm-could-031716521.html"
+          },
+          {
+            "title": "TSMC Gains 1.65% as 2-Nanometer Phones Leave the Lab",
+            "publisher": "GuruFocus.com",
+            "published_at": "2026-09-17T18:27+00:00",
+            "summary": "MediaTek's dual-node launch turns TSMC's newest process into a consumer product without abandoning 3 nanometers.",
+            "url": "https://finance.yahoo.com/technology/articles/tsmc-gains-1-65-2-182718646.html"
+          }
+        ]
+      }
+    },
+    "query_sec_filings:AAPL": {
+      "tool": "query_sec_filings",
+      "ticker": "AAPL",
+      "params": {},
+      "result": {
+        "ticker": "AAPL",
+        "cik": 320193,
+        "company": "Apple Inc.",
+        "source": "SEC EDGAR",
+        "lookback_days": 365,
+        "filings": [
+          {
+            "form": "10-Q",
+            "filing_date": "2026-07-31",
+            "report_date": "2026-06-27",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000020/aapl-20260627.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-30",
+            "report_date": "2026-07-30",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000018/aapl-20260730.htm"
+          },
+          {
+            "form": "10-Q",
+            "filing_date": "2026-05-01",
+            "report_date": "2026-03-28",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000013/aapl-20260328.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-04-30",
+            "report_date": "2026-04-30",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/320193/000032019326000011/aapl-20260430.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-04-20",
+            "report_date": "2026-04-17",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126015711/ef20071035_8k.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-02-24",
+            "report_date": "2026-02-24",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/320193/000114036126006577/ef20060722_8k.htm"
+          }
+        ]
+      }
+    },
+    "query_sec_filings:MSFT": {
+      "tool": "query_sec_filings",
+      "ticker": "MSFT",
+      "params": {},
+      "result": {
+        "ticker": "MSFT",
+        "cik": 789019,
+        "company": "MICROSOFT CORP",
+        "source": "SEC EDGAR",
+        "lookback_days": 365,
+        "filings": [
+          {
+            "form": "8-K",
+            "filing_date": "2026-09-02",
+            "report_date": "2026-09-02",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526380280/d291965d8k.htm"
+          },
+          {
+            "form": "10-K",
+            "filing_date": "2026-07-29",
+            "report_date": "2026-06-30",
+            "description": "10-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323660/msft-20260630.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-29",
+            "report_date": "2026-07-29",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526323632/msft-20260729.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-06-05",
+            "report_date": "2026-06-02",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526258667/d26760d8k.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-05-14",
+            "report_date": "2026-05-13",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526224155/d125909d8k.htm"
+          },
+          {
+            "form": "10-Q",
+            "filing_date": "2026-04-29",
+            "report_date": "2026-03-31",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/789019/000119312526191507/msft-20260331.htm"
+          }
+        ]
+      }
+    },
+    "query_sec_filings:GOOGL": {
+      "tool": "query_sec_filings",
+      "ticker": "GOOGL",
+      "params": {},
+      "result": {
+        "ticker": "GOOGL",
+        "cik": 1652044,
+        "company": "Alphabet Inc.",
+        "source": "SEC EDGAR",
+        "lookback_days": 365,
+        "filings": [
+          {
+            "form": "8-K",
+            "filing_date": "2026-08-10",
+            "report_date": "2026-08-10",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1652044/000119312526342390/d171253d8k.htm"
+          },
+          {
+            "form": "10-Q",
+            "filing_date": "2026-07-23",
+            "report_date": "2026-06-30",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000071/goog-20260630.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-22",
+            "report_date": "2026-07-22",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000066/goog-20260722.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-06-11",
+            "report_date": "2026-06-05",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1652044/000119312526267578/d57679d8k.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-06-05",
+            "report_date": "2026-06-05",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1652044/000119312526259830/d36818d8k.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-06-05",
+            "report_date": "2026-06-02",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000059/goog-20260602.htm"
+          }
+        ]
+      }
+    },
+    "query_sec_filings:AMZN": {
+      "tool": "query_sec_filings",
+      "ticker": "AMZN",
+      "params": {},
+      "result": {
+        "ticker": "AMZN",
+        "cik": 1018724,
+        "company": "AMAZON COM INC",
+        "source": "SEC EDGAR",
+        "lookback_days": 365,
+        "filings": [
+          {
+            "form": "8-K",
+            "filing_date": "2026-09-14",
+            "report_date": "2026-09-14",
+            "description": "FORM 8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465926107526/tm2624614d5_8k.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-09-09",
+            "report_date": "2026-09-08",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000036/amzn-20260908.htm"
+          },
+          {
+            "form": "10-Q",
+            "filing_date": "2026-07-31",
+            "report_date": "2026-06-30",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000026/amzn-20260630.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-30",
+            "report_date": "2026-07-30",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1018724/000101872426000024/amzn-20260730.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-09",
+            "report_date": "2026-07-09",
+            "description": "FORM 8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465926082293/tm2619352d4_8k.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-06-12",
+            "report_date": "2026-06-12",
+            "description": "FORM 8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1018724/000110465926073562/tm2613616d5_8k.htm"
+          }
+        ]
+      }
+    },
+    "query_sec_filings:NVDA": {
+      "tool": "query_sec_filings",
+      "ticker": "NVDA",
+      "params": {},
+      "result": {
+        "ticker": "NVDA",
+        "cik": 1045810,
+        "company": "NVIDIA CORP",
+        "source": "SEC EDGAR",
+        "lookback_days": 365,
+        "filings": [
+          {
+            "form": "8-K",
+            "filing_date": "2026-09-03",
+            "report_date": "2026-09-02",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000078/nvda-20260902.htm"
+          },
+          {
+            "form": "10-Q",
+            "filing_date": "2026-08-26",
+            "report_date": "2026-07-26",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000075/nvda-20260726.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-08-26",
+            "report_date": "2026-08-26",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000073/nvda-20260826.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-08-17",
+            "report_date": "2026-08-17",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000069/nvda-20260817.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-02",
+            "report_date": "2026-06-28",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000060/nvda-20260628.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-06-30",
+            "report_date": "2026-06-24",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1045810/000104581026000056/nvda-20260624.htm"
+          }
+        ]
+      }
+    },
+    "query_sec_filings:META": {
+      "tool": "query_sec_filings",
+      "ticker": "META",
+      "params": {},
+      "result": {
+        "ticker": "META",
+        "cik": 1326801,
+        "company": "Meta Platforms, Inc.",
+        "source": "SEC EDGAR",
+        "lookback_days": 365,
+        "filings": [
+          {
+            "form": "10-Q",
+            "filing_date": "2026-07-30",
+            "report_date": "2026-06-30",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050705/meta-20260630.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-29",
+            "report_date": "2026-07-29",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026050596/meta-20260729.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-05-29",
+            "report_date": "2026-05-27",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026039193/meta-20260527.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-05-04",
+            "report_date": "2026-04-30",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1326801/000119312526204128/d134616d8k.htm"
+          },
+          {
+            "form": "10-Q",
+            "filing_date": "2026-04-30",
+            "report_date": "2026-03-31",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026028526/meta-20260331.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-04-29",
+            "report_date": "2026-04-29",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1326801/000162828026028364/meta-20260429.htm"
+          }
+        ]
+      }
+    },
+    "query_sec_filings:TSM": {
+      "tool": "query_sec_filings",
+      "ticker": "TSM",
+      "params": {},
+      "result": {
+        "ticker": "TSM",
+        "cik": 1046179,
+        "company": "TAIWAN SEMICONDUCTOR MANUFACTURING CO LTD",
+        "source": "SEC EDGAR",
+        "lookback_days": 365,
+        "filings": [
+          {
+            "form": "6-K",
+            "filing_date": "2026-09-10",
+            "report_date": "2026-08-31",
+            "description": "6-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000658/tsm-revenue20260910.htm"
+          },
+          {
+            "form": "6-K",
+            "filing_date": "2026-09-01",
+            "report_date": "2026-09-01",
+            "description": "6-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000552/tsm-dividendadjustmentx202.htm"
+          },
+          {
+            "form": "6-K",
+            "filing_date": "2026-08-25",
+            "report_date": "2026-07-31",
+            "description": "6-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000545/tsm-monthend6kx20260825.htm"
+          },
+          {
+            "form": "6-K",
+            "filing_date": "2026-08-14",
+            "report_date": "2026-06-30",
+            "description": "6-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000541/tsm-fsx20260814x6k.htm"
+          },
+          {
+            "form": "6-K",
+            "filing_date": "2026-08-11",
+            "report_date": "2026-08-11",
+            "description": "6-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000539/sonysemiconductorsolutions.htm"
+          },
+          {
+            "form": "6-K",
+            "filing_date": "2026-08-11",
+            "report_date": "2026-08-11",
+            "description": "6-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1046179/000104617926000536/tsm-boardx20260811.htm"
+          }
+        ]
+      }
+    },
+    "query_sec_filings:AMD": {
+      "tool": "query_sec_filings",
+      "ticker": "AMD",
+      "params": {},
+      "result": {
+        "ticker": "AMD",
+        "cik": 2488,
+        "company": "ADVANCED MICRO DEVICES INC",
+        "source": "SEC EDGAR",
+        "lookback_days": 365,
+        "filings": [
+          {
+            "form": "8-K",
+            "filing_date": "2026-08-19",
+            "report_date": "2026-08-17",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000163/amd-20260817.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-08-17",
+            "report_date": "2026-08-13",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/2488/000119312526354029/d142696d8k.htm"
+          },
+          {
+            "form": "10-Q",
+            "filing_date": "2026-08-05",
+            "report_date": "2026-06-27",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000123/amd-20260627.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-08-04",
+            "report_date": "2026-08-04",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000121/amd-20260804.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-01",
+            "report_date": "2026-06-26",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/2488/000000248826000115/amd-20260626.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-05-15",
+            "report_date": "2026-05-13",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/2488/000119312526226746/d118163d8k.htm"
+          }
+        ]
+      }
+    },
+    "query_sec_filings:INTC": {
+      "tool": "query_sec_filings",
+      "ticker": "INTC",
+      "params": {},
+      "result": {
+        "ticker": "INTC",
+        "cik": 50863,
+        "company": "INTEL CORP",
+        "source": "SEC EDGAR",
+        "lookback_days": 365,
+        "filings": [
+          {
+            "form": "8-K",
+            "filing_date": "2026-08-12",
+            "report_date": "2026-08-10",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/50863/000119312526346806/d117670d8k.htm"
+          },
+          {
+            "form": "10-Q",
+            "filing_date": "2026-07-24",
+            "report_date": "2026-06-27",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000157/intc-20260627.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-23",
+            "report_date": "2026-07-23",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000155/intc-20260723.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-05-15",
+            "report_date": "2026-05-13",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000118/intc-20260513.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-04-30",
+            "report_date": "2026-04-30",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/50863/000119312526197845/d143782d8k.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-04-24",
+            "report_date": "2026-04-24",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/50863/000005086326000083/intc-20260424.htm"
+          }
+        ]
+      }
+    },
+    "query_sec_filings:AVGO": {
+      "tool": "query_sec_filings",
+      "ticker": "AVGO",
+      "params": {},
+      "result": {
+        "ticker": "AVGO",
+        "cik": 1730168,
+        "company": "Broadcom Inc.",
+        "source": "SEC EDGAR",
+        "lookback_days": 365,
+        "filings": [
+          {
+            "form": "10-Q",
+            "filing_date": "2026-09-10",
+            "report_date": "2026-08-02",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000080/avgo-20260802.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-09-02",
+            "report_date": "2026-09-02",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000076/avgo-20260902.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-06",
+            "report_date": "2026-07-06",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1730168/000119312526295589/d84378d8k.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-06-18",
+            "report_date": "2026-06-17",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1730168/000119312526275077/d149683d8k.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-06-11",
+            "report_date": "2026-06-11",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1730168/000119312526266777/d152717d8k.htm"
+          },
+          {
+            "form": "10-Q",
+            "filing_date": "2026-06-09",
+            "report_date": "2026-05-03",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/1730168/000173016826000054/avgo-20260503.htm"
+          }
+        ]
+      }
+    },
+    "query_sec_filings:QCOM": {
+      "tool": "query_sec_filings",
+      "ticker": "QCOM",
+      "params": {},
+      "result": {
+        "ticker": "QCOM",
+        "cik": 804328,
+        "company": "QUALCOMM INC/DE",
+        "source": "SEC EDGAR",
+        "lookback_days": 365,
+        "filings": [
+          {
+            "form": "8-K",
+            "filing_date": "2026-09-08",
+            "report_date": "2026-09-03",
+            "description": "FORM 8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/804328/000110465926105718/tm2623289d1_8k.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-31",
+            "report_date": "2026-07-31",
+            "description": "FORM 8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/804328/000110465926089234/tm2621612d2_8k.htm"
+          },
+          {
+            "form": "10-Q",
+            "filing_date": "2026-07-29",
+            "report_date": "2026-06-28",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/804328/000080432826000086/qcom-20260628.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-29",
+            "report_date": "2026-07-29",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/804328/000080432826000085/qcom-20260729.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-06-24",
+            "report_date": "2026-06-21",
+            "description": "FORM 8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/804328/000110465926077071/tm2618522d1_8k.htm"
+          },
+          {
+            "form": "10-Q",
+            "filing_date": "2026-04-29",
+            "report_date": "2026-03-29",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/804328/000080432826000061/qcom-20260329.htm"
+          }
+        ]
+      }
+    },
+    "query_sec_filings:ASML": {
+      "tool": "query_sec_filings",
+      "ticker": "ASML",
+      "params": {},
+      "result": {
+        "ticker": "ASML",
+        "cik": 937966,
+        "company": "ASML HOLDING NV",
+        "source": "SEC EDGAR",
+        "lookback_days": 365,
+        "filings": [
+          {
+            "form": "6-K",
+            "filing_date": "2026-07-15",
+            "report_date": "2026-06-28",
+            "description": "6-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/937966/000162828026048235/form6-kquarterlyfilings.htm"
+          },
+          {
+            "form": "6-K",
+            "filing_date": "2026-04-23",
+            "report_date": "2026-04-23",
+            "description": "6-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/937966/000162828026026703/form6-kagmdisclosureofagmr.htm"
+          },
+          {
+            "form": "6-K",
+            "filing_date": "2026-04-15",
+            "report_date": "2026-03-29",
+            "description": "6-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/937966/000162828026025147/form6-kquarterlyfilings.htm"
+          },
+          {
+            "form": "6-K",
+            "filing_date": "2026-03-11",
+            "report_date": "2026-03-09",
+            "description": "6-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/937966/000162828026016671/form6-kagm.htm"
+          },
+          {
+            "form": "20-F",
+            "filing_date": "2026-02-25",
+            "report_date": "2025-12-31",
+            "description": "20-F",
+            "url": "https://www.sec.gov/Archives/edgar/data/937966/000162828026011378/asml-20251231.htm"
+          },
+          {
+            "form": "6-K",
+            "filing_date": "2026-02-25",
+            "report_date": "2025-12-31",
+            "description": "6-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/937966/000162828026011377/form6-kannualreportbasedon.htm"
+          }
+        ]
+      }
+    },
+    "query_sec_filings:ORCL": {
+      "tool": "query_sec_filings",
+      "ticker": "ORCL",
+      "params": {},
+      "result": {
+        "ticker": "ORCL",
+        "cik": 1341439,
+        "company": "ORACLE CORP",
+        "source": "SEC EDGAR",
+        "lookback_days": 365,
+        "filings": [
+          {
+            "form": "8-K",
+            "filing_date": "2026-09-14",
+            "report_date": "2026-09-12",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526389753/d20034d8k.htm"
+          },
+          {
+            "form": "10-Q",
+            "filing_date": "2026-09-11",
+            "report_date": "2026-08-31",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526389274/orcl-20260831.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-09-10",
+            "report_date": "2026-09-10",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526387905/orcl-20260910.htm"
+          },
+          {
+            "form": "10-K",
+            "filing_date": "2026-06-22",
+            "report_date": "2026-05-31",
+            "description": "10-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526277521/orcl-20260531.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-06-10",
+            "report_date": "2026-06-10",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526265848/orcl-20260610.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-05-12",
+            "report_date": "2026-05-06",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1341439/000119312526219708/d76569d8k.htm"
+          }
+        ]
+      }
+    },
+    "query_sec_filings:TSLA": {
+      "tool": "query_sec_filings",
+      "ticker": "TSLA",
+      "params": {},
+      "result": {
+        "ticker": "TSLA",
+        "cik": 1318605,
+        "company": "Tesla, Inc.",
+        "source": "SEC EDGAR",
+        "lookback_days": 365,
+        "filings": [
+          {
+            "form": "10-Q",
+            "filing_date": "2026-07-23",
+            "report_date": "2026-06-30",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026049270/tsla-20260630.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-22",
+            "report_date": "2026-07-22",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026049213/tsla-20260722.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-02",
+            "report_date": "2026-07-02",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026046717/tsla-20260702.htm"
+          },
+          {
+            "form": "10-Q",
+            "filing_date": "2026-04-23",
+            "report_date": "2026-03-31",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026673/tsla-20260331.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-04-22",
+            "report_date": "2026-04-22",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026026551/tsla-20260422.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-04-02",
+            "report_date": "2026-04-02",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1318605/000162828026022956/tsla-20260402.htm"
+          }
+        ]
+      }
+    },
+    "query_sec_filings:NFLX": {
+      "tool": "query_sec_filings",
+      "ticker": "NFLX",
+      "params": {},
+      "result": {
+        "ticker": "NFLX",
+        "cik": 1065280,
+        "company": "NETFLIX INC",
+        "source": "SEC EDGAR",
+        "lookback_days": 365,
+        "filings": [
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-30",
+            "report_date": "2026-07-26",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000214/nflx-20260726.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-22",
+            "report_date": "2026-07-20",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1065280/000119312526312575/d171951d8k.htm"
+          },
+          {
+            "form": "10-Q",
+            "filing_date": "2026-07-17",
+            "report_date": "2026-06-30",
+            "description": "10-Q",
+            "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000212/nflx-20260630.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-07-16",
+            "report_date": "2026-07-16",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000211/nflx-20260716.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-06-05",
+            "report_date": "2026-06-04",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000189/nflx-20260604.htm"
+          },
+          {
+            "form": "8-K",
+            "filing_date": "2026-04-23",
+            "report_date": "2026-04-22",
+            "description": "8-K",
+            "url": "https://www.sec.gov/Archives/edgar/data/1065280/000106528026000139/nflx-20260422.htm"
+          }
+        ]
+      }
+    },
+    "query_macro": {
+      "tool": "query_macro",
+      "ticker": null,
+      "params": {},
+      "result": {
+        "indicators": {
+          "fed_funds_rate": {
+            "value": 3.63,
+            "date": "2026-08-01",
+            "label": "联邦基金利率 (%)"
+          },
+          "treasury_10y": {
+            "value": 4.94,
+            "date": "2026-09-17",
+            "label": "10年期国债收益率 (%)"
+          },
+          "cpi_yoy": {
+            "value": 3.71,
+            "date": "2026-08-01",
+            "label": "CPI 同比变化 (%)"
+          },
+          "unemployment": {
+            "value": 4.1,
+            "date": "2026-08-01",
+            "label": "失业率 (%)"
+          },
+          "vix": {
+            "value": 15.44,
+            "date": "2026-09-17",
+            "label": "VIX 恐慌指数"
+          }
+        },
+        "summary_text": "  联邦基金利率 (%)：3.63  （2026-08-01）\n  10年期国债收益率 (%)：4.94  （2026-09-17）\n  CPI 同比变化 (%)：3.71  （2026-08-01）\n  失业率 (%)：4.1  （2026-08-01）\n  VIX 恐慌指数：15.44  （2026-09-17）",
+        "indicator_docs": {
+          "fed_funds_rate": "联邦基金利率（%），反映货币政策松紧",
+          "treasury_10y": "10年期国债收益率（%），反映长端利率预期",
+          "cpi_yoy": "CPI 同比变化（%），反映通货膨胀水平",
+          "unemployment": "失业率（%），反映劳动力市场状况",
+          "vix": "VIX 恐慌指数，反映市场隐含波动率和风险偏好"
+        }
+      }
+    }
+  }
+}
