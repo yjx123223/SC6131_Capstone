@@ -273,3 +273,46 @@ def test_main_summary_reports_existing_runs(tmp_path, capsys):
 def test_main_summary_without_results(tmp_path, capsys):
     runner.main(["--summary", "--out", str(tmp_path / "empty")])
     assert "没有结果文件" in capsys.readouterr().out
+
+
+# ── load_runs 的健壮性（报告目录与结果目录同级）──────────────────
+
+def test_load_runs_ignores_report_and_graph_files(tmp_path):
+    build = make_builder(lambda v, c: FakeAgent(draft=DRAFT))
+    runner.run_batch([("C", "AAPL", 1)], types.SimpleNamespace(data={}), None, tmp_path,
+                     build_agent=build, on_progress=lambda s: None)
+
+    # Orchestrator 会把报告与图谱写进 out_dir/_reports/
+    reports = tmp_path / "_reports"
+    reports.mkdir()
+    (reports / "AAPL_20260919_180658_graph.json").write_text(
+        json.dumps({"nodes": [], "edges": []}), encoding="utf-8")
+    (reports / "AAPL_20260919_180658.md").write_text("# 报告", encoding="utf-8")
+
+    runs = runner.load_runs(tmp_path)
+    assert len(runs) == 1 and runs[0]["variant"] == "C"
+
+
+def test_load_runs_skips_unparsable_and_foreign_json(tmp_path, capsys):
+    build = make_builder(lambda v, c: FakeAgent(draft=DRAFT))
+    runner.run_batch([("C", "AAPL", 1)], types.SimpleNamespace(data={}), None, tmp_path,
+                     build_agent=build, on_progress=lambda s: None)
+    (tmp_path / "C" / "notes.json").write_text("{坏的", encoding="utf-8")
+    (tmp_path / "C" / "other.json").write_text('{"foo": 1}', encoding="utf-8")
+
+    runs = runner.load_runs(tmp_path)
+    assert len(runs) == 1
+    assert "跳过无法解析" in capsys.readouterr().out
+
+
+def test_summary_cli_survives_report_dir(tmp_path, capsys):
+    """回归：eval/runs/_reports/*_graph.json 曾导致 --summary KeyError"""
+    build = make_builder(lambda v, c: FakeAgent(draft=DRAFT))
+    out_dir = tmp_path / "runs"
+    runner.run_batch([("C", "AAPL", 1)], types.SimpleNamespace(data={}), None, out_dir,
+                     build_agent=build, on_progress=lambda s: None)
+    (out_dir / "_reports").mkdir()
+    (out_dir / "_reports" / "AAPL_graph.json").write_text('{"nodes": []}', encoding="utf-8")
+
+    runner.main(["--summary", "--out", str(out_dir)])
+    assert "C" in capsys.readouterr().out

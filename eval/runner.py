@@ -146,8 +146,19 @@ def run_batch(jobs: list[tuple[str, str, int]], store: SnapshotStore, graph,
 
 
 def load_runs(out_dir: str | Path = DEFAULT_OUT) -> list[dict]:
-    return [json.loads(p.read_text(encoding="utf-8"))
-            for p in sorted(Path(out_dir).glob("*/*.json"))]
+    """读取结果文件；跳过 _reports/ 等辅助目录与非结果 JSON（如图谱快照）"""
+    runs = []
+    for path in sorted(Path(out_dir).glob("*/*.json")):
+        if path.parent.name.startswith("_"):
+            continue
+        try:
+            record = json.loads(path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            print(f"跳过无法解析的文件：{path}")
+            continue
+        if isinstance(record, dict) and "variant" in record:
+            runs.append(record)
+    return runs
 
 
 def summarize(runs: list[dict]) -> dict:
