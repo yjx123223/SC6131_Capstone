@@ -343,3 +343,44 @@ def test_agent_forwards_injections_to_loop(monkeypatch):
     assert agent.critic.temperature == 0
     assert agent.loop.extractor.temperature == 0
     assert agent.loop.client is agent.client and agent.client.usage is agent.usage
+
+
+# ── 最近一次运行的中间结果（供评估脚本与调试读取）──────────────────
+
+def test_last_attributes_default_to_empty(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "fake-key")
+    monkeypatch.setattr("anthropic.Anthropic", lambda **kwargs: object())
+
+    agent = OrchestratorAgent()
+    assert agent.last_draft is None
+    assert agent.last_tool_log == []
+    assert agent.last_critique is None
+    assert agent.last_compliance is None
+
+
+def test_last_attributes_record_pipeline_intermediates(orch, monkeypatch, tmp_path):
+    _reports_dir(monkeypatch, tmp_path)
+
+    _, report_md = orch.generate_report("Apple Inc.")
+
+    assert orch.last_tool_log == _TOOL_LOG
+    assert orch.last_draft is not None
+    assert orch.last_draft["recommendation"] == _DRAFT["recommendation"]
+    assert orch.last_critique["approved"] is True
+    assert {"score", "issues", "is_compliant"} <= set(orch.last_compliance)
+    # 记录的是合规处理之后的草稿，与最终报告一致
+    assert orch.last_draft is orch.last_compliance["draft"]
+
+
+def test_last_attributes_reset_on_failed_draft(orch, monkeypatch, tmp_path):
+    _reports_dir(monkeypatch, tmp_path)
+    orch.generate_report("Apple Inc.")
+    assert orch.last_draft is not None
+
+    orch.loop = _FakeLoop(draft=None)
+    orch.generate_report("Apple Inc.")
+
+    assert orch.last_draft is None
+    assert orch.last_critique is None
+    assert orch.last_compliance is None
+    assert orch.last_tool_log == _TOOL_LOG          # 工具日志仍保留，便于排查

@@ -100,6 +100,12 @@ class OrchestratorAgent:
         self.critic = CriticAgent(self.client, critic_model, critic_max_tokens, temperature=temperature)
         self.compliance = ComplianceChecker()
 
+        # 最近一次 generate_report 的中间结果（供调试与评估脚本读取）
+        self.last_draft: Optional[dict] = None
+        self.last_tool_log: list = []
+        self.last_critique: Optional[dict] = None
+        self.last_compliance: Optional[dict] = None
+
     # ── 主入口 ──────────────────────────────────────────────────────
 
     def generate_report(self, entity: str, feedback_store=None) -> tuple[Optional[int], str]:
@@ -120,11 +126,17 @@ class OrchestratorAgent:
           session_id : 供 FeedbackStore.rate() 事后评分；未传 feedback_store
                        或草稿生成失败时为 None
           report_md  : Markdown 格式的最终报告（失败时为错误说明）
+
+        过程中的草稿、工具日志、审查与合规结果会记录在 self.last_draft /
+        last_tool_log / last_critique / last_compliance，供调试与评估脚本读取。
         """
         self.usage.reset()
+        self.last_draft = self.last_critique = self.last_compliance = None
+        self.last_tool_log = []
 
         # 1. Orchestrator agentic loop
         draft, tool_log = self.loop.run(entity)
+        self.last_tool_log = tool_log
 
         if draft is None:
             reason = getattr(self.loop, "last_stop_reason", None)
@@ -137,6 +149,7 @@ class OrchestratorAgent:
         # 2. Critic Agent 审查
         print(f"\n[Critic] 审查草稿报告...")
         critique = self.critic.review(entity, draft, tool_log)
+        self.last_critique = critique
         approved = critique.get("approved", True)
         conflicts = critique.get("conflicts", [])
 
@@ -155,6 +168,8 @@ class OrchestratorAgent:
         # 4. 合规检查 + 置信度兜底（确定性规则，不调用 LLM）
         compliance = self.compliance.check(draft, critique, tool_log, original_confidence)
         draft = compliance["draft"]
+        self.last_draft = draft
+        self.last_compliance = compliance
         conf = compliance["confidence"]
         if conf["original"] != conf["final"]:
             print(f"[Compliance] 置信度 {conf['original']} → {conf['final']}：{'；'.join(conf['reasons'])}")
