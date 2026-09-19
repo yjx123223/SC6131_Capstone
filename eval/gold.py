@@ -9,16 +9,23 @@ eval/gold.py
 
 标注规范见 docs/annotation-guide.md。标注者只填 material / impact_on_target / note 三列。
 
+AI 起草（需人工审核）：逐篇文章的判断写在 eval/gold/ai_article_labels.json，
+再由 derive_row_label() 按每行的关系推导出 material / impact_on_target，
+保证同一篇文章在不同目标公司下的判断一致。
+
 命令行：
   python -m eval.gold --snapshot eval/snapshots/2026-09-19/snapshot.json    # 生成待标注 CSV
+  python -m eval.gold --apply-draft --snapshot <快照>                        # 写入 AI 草稿
   python -m eval.gold --check eval/gold/gold_events.csv                     # 校验 + 统计
   python -m eval.gold --consistency 第一次.csv 第二次.csv                    # 自一致率
+  python -m eval.gold --review-diff 草稿.csv 审核后.csv                      # 人工修正率
 """
 
 from __future__ import annotations
 
 import argparse
 import csv
+import json
 from pathlib import Path
 from typing import Optional
 
@@ -71,6 +78,136 @@ def build_rows(store: SnapshotStore, target_max_items: Optional[int] = None,
     for i, row in enumerate(rows, 1):
         row["id"] = i
     return rows
+
+
+# ── AI 草稿：逐篇文章判断 → 逐行标注 ──────────────────────────────
+
+DRAFT_PREFIX = "AI草稿："
+_INVERT = {"positive": "negative", "negative": "positive", "neutral": "neutral"}
+
+# 对目标公司而言，邻居事件的方向如何映射
+#   供应商/客户/合作伙伴：同向（供应商利空 → 对目标利空）
+#   竞争对手：反向（对手利好 → 对目标是竞争压力）
+_SAME_DIRECTION_ROLES = {"供应商", "客户", "合作伙伴", "上游供应商"}
+
+
+def load_article_labels(path: str | Path = "eval/gold/ai_article_labels.json") -> dict:
+    data = json.loads(Path(path).read_text(encoding="utf-8"))
+    return {k: v for k, v in data.items() if not k.startswith("_")}
+
+
+def article_keys(store) -> dict:
+    """url → "TICKER-序号"（序号按该公司新闻的发布时间倒序，与 build_rows 一致）"""
+    keys = {}
+    for ticker in store.universe:
+        articles = sorted(store.articles(ticker), key=lambda a: a.get("published_at", ""), reverse=True)
+        for i, a in enumerate(articles):
+            keys.setdefault((ticker, a.get("url", "")), f"{ticker}-{i}")
+    return keys
+
+
+def derive_row_label(row: dict, label: dict, seen_urls: Optional[set] = None) -> tuple[str, str, str]:
+    """
+    把一篇文章的判断映射到某一行（某个目标公司视角）。
+
+    Returns (material, impact_on_target, note)
+    """
+    note = label.get("note", "")
+    if not label.get("event"):
+        return "0", "", note
+
+    # 同一目标公司下重复出现的同一篇文章（可能来自不同来源公司）只算一次
+    if seen_urls is not None and row.get("url") in seen_urls:
+        return "0", "", "与前一条重复（同一篇报道）"
+    if label.get("dup_of"):
+        return "0", "", note
+
+    polarity = label.get("polarity", "neutral")
+    about = label.get("about")
+    relation = row.get("relation", "")
+    hop = str(row.get("hop", "0"))
+
+    # 报道主角就是目标公司本身 → 直接采用该方向
+    if about == row["company"] or (not about and hop == "0"):
+        return "1", polarity, note
+    # 主角是别的公司，且不是目标 → 与目标无关
+    if about and about != row["company"]:
+        return "0", "", (note + "；对本目标无直接关系").lstrip("；")
+
+    if not label.get("transmits"):
+        return "0", "", (note + "；对目标公司的传导通路不明确").lstrip("；")
+
+    downstream = label.get("downstream")
+    if downstream:
+        impact = downstream
+    elif label.get("industry_wide"):
+        impact = polarity
+    elif any(r in relation for r in _SAME_DIRECTION_ROLES):
+        impact = polarity
+    else:                      # 竞争对手：方向取反
+        impact = _INVERT.get(polarity, "neutral")
+    return "1", impact, note
+
+
+def apply_draft(rows: list[dict], store, labels: Optional[dict] = None,
+                only_empty: bool = True) -> tuple[list[dict], dict]:
+    """把 AI 草稿写入行（默认只填空白单元格），返回 (rows, 统计)"""
+    labels = labels or load_article_labels()
+    keys = article_keys(store)
+    stats = {"filled": 0, "material": 0, "skipped_existing": 0, "missing_label": 0}
+    seen: dict[str, set] = {}
+
+    for row in rows:
+        if only_empty and (row.get("material") or "").strip():
+            stats["skipped_existing"] += 1
+            continue
+        key = keys.get((row["source_company"], row["url"]))
+        label = labels.get(key) if key else None
+        if label is None:
+            stats["missing_label"] += 1
+            continue
+
+        seen_urls = seen.setdefault(row["company"], set())
+        material, impact, note = derive_row_label(row, label, seen_urls)
+        if material == "1":
+            seen_urls.add(row["url"])
+            stats["material"] += 1
+        row["material"] = material
+        row["impact_on_target"] = impact
+        row["note"] = f"{DRAFT_PREFIX}{note}" if note else DRAFT_PREFIX
+        stats["filled"] += 1
+    return rows, stats
+
+
+def review_diff(draft: list[dict], reviewed: list[dict]) -> dict:
+    """人工审核修正率：草稿 vs 审核后"""
+    draft_map = {r["id"]: r for r in draft}
+    changed_material, changed_impact, changes = 0, 0, []
+    compared = 0
+    for r in reviewed:
+        d = draft_map.get(r["id"])
+        if d is None:
+            continue
+        compared += 1
+        dm, rm = (d.get("material") or "").strip(), (r.get("material") or "").strip()
+        di = (d.get("impact_on_target") or "").strip().lower()
+        ri = (r.get("impact_on_target") or "").strip().lower()
+        if dm != rm:
+            changed_material += 1
+        if di != ri:
+            changed_impact += 1
+        if dm != rm or di != ri:
+            changes.append({"id": r["id"], "company": r.get("company"),
+                            "draft": (dm, di), "reviewed": (rm, ri),
+                            "title": (r.get("title") or "")[:60]})
+    return {
+        "compared": compared,
+        "changed_material": changed_material,
+        "changed_impact": changed_impact,
+        "material_change_rate": round(changed_material / compared, 3) if compared else None,
+        "any_change_rate": round(len(changes) / compared, 3) if compared else None,
+        "changes": changes,
+    }
 
 
 def write_csv(rows: list[dict], path: str | Path) -> Path:
@@ -174,6 +311,9 @@ def main(argv=None):
     parser.add_argument("--out", default="eval/gold/gold_events.csv")
     parser.add_argument("--check", help="校验已标注的 CSV")
     parser.add_argument("--consistency", nargs=2, metavar=("FIRST", "SECOND"), help="计算两次标注的一致率")
+    parser.add_argument("--apply-draft", action="store_true", help="用 AI 草稿填充（需要 --snapshot）")
+    parser.add_argument("--labels", default="eval/gold/ai_article_labels.json")
+    parser.add_argument("--review-diff", nargs=2, metavar=("DRAFT", "REVIEWED"), help="统计人工修正率")
     args = parser.parse_args(argv)
 
     if args.consistency:
@@ -182,6 +322,29 @@ def main(argv=None):
               f"含方向的完全一致率 {result['full_agreement']}")
         for d in result["disagreements"]:
             print(f"  #{d['id']}: {d['first']} → {d['second']}")
+        return
+
+    if args.review_diff:
+        result = review_diff(read_csv(args.review_diff[0]), read_csv(args.review_diff[1]))
+        print(f"对比 {result['compared']} 行：material 改动 {result['changed_material']} 行"
+              f"（{result['material_change_rate']:.1%}），方向改动 {result['changed_impact']} 行；"
+              f"总改动率 {result['any_change_rate']:.1%}")
+        for c in result["changes"][:50]:
+            print(f"  #{c['id']} [{c['company']}] {c['draft']} → {c['reviewed']}  {c['title']}")
+        return
+
+    if args.apply_draft:
+        if not args.snapshot:
+            parser.error("--apply-draft 需要 --snapshot")
+        store = SnapshotStore.load(args.snapshot)
+        rows = read_csv(args.out) if Path(args.out).exists() else build_rows(store)
+        rows, stats = apply_draft(rows, store, load_article_labels(args.labels))
+        write_csv(rows, args.out)
+        print(f"AI 草稿已写入 {args.out}")
+        print(f"  填充 {stats['filled']} 行，其中 material=1 共 {stats['material']} 行；"
+              f"跳过已填 {stats['skipped_existing']} 行，找不到文章判断 {stats['missing_label']} 行")
+        print("\n请逐条审核（重点看所有 material=1 的行），改完后运行：")
+        print(f"  python -m eval.gold --check {args.out}")
         return
 
     if args.check:
