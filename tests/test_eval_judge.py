@@ -235,3 +235,115 @@ def test_sample_csv_roundtrip(tmp_path):
     back = read_csv(path)
     assert len(back) == len(rows)
     assert "human_verdict" in back[0]
+
+
+# ── 模型返回格式异常的容错（实测 Haiku 会把数组返回成字符串）──────────
+
+from eval.judge import coerce_items      # noqa: E402
+
+# 取自真实缓存：mentioned 是一个 JSON 字符串，且里面的 evidence 含未转义引号
+REAL_BAD_MENTIONS = '''[
+  {
+    "id": 3,
+    "evidence": "新 CEO John Ternus 领导下推出 iPhone 18 Pro，获分析师认可，具有"Apple DNA"。"
+  },
+  {
+    "id": 7,
+    "evidence": "Evercore 上调目标价至 380 美元（9 月 18 日），显示机构看好。"
+  }
+]'''
+
+
+def test_coerce_passes_through_well_formed_list():
+    value = [{"id": 1, "evidence": "e"}]
+    items, note = coerce_items(value, "mention")
+    assert items == value and note == ""
+
+
+def test_coerce_parses_stringified_array():
+    items, note = coerce_items('[{"id": 5, "evidence": "原句"}]', "mention")
+    assert items == [{"id": 5, "evidence": "原句"}]
+    assert "字符串" in note
+
+
+def test_coerce_repairs_invalid_inner_json():
+    """真实故障样本：字符串化的数组 + 未转义的内嵌引号，json.loads 会失败"""
+    import json as _json
+    with pytest.raises(_json.JSONDecodeError):
+        _json.loads(REAL_BAD_MENTIONS)
+
+    items, note = coerce_items(REAL_BAD_MENTIONS, "mention")
+    assert [m["id"] for m in items] == [3, 7]
+    assert "Apple DNA" in items[0]["evidence"]          # 内嵌引号的证据也完整救回
+    assert items[1]["evidence"].startswith("Evercore")
+    assert "正则" in note
+
+
+def test_coerce_repairs_verdicts():
+    bad = '[{"index": 1, "verdict": "supported", "evidence": "数据里有 34.04%"}, ' \
+          '{"index": 2, "verdict": "unsupported", "evidence": "找不到"}]'
+    items, _ = coerce_items(bad.replace('"evidence": "数据里有', '"evidence": "数据"里"有'), "verdict")
+    assert [v["index"] for v in items] == [1, 2]
+    assert items[0]["verdict"] == "supported"
+
+
+def test_coerce_falls_back_to_ids_only():
+    """字段顺序都对不上时，至少把编号救回来——编号决定指标"""
+    items, note = coerce_items('{"evidence": "先写证据", "id": 12}', "mention")
+    assert items == [{"evidence": "先写证据", "id": 12}]   # dict 直接包一层
+
+    items, note = coerce_items('乱七八糟 "id": 4 ... "id": 9 ...', "mention")
+    assert [m["id"] for m in items] == [4, 9]
+    assert all("未能解析" in m["evidence"] for m in items)
+
+
+def test_coerce_handles_none_and_mixed_list():
+    assert coerce_items(None, "mention")[0] == []
+    items, note = coerce_items([{"id": 1, "evidence": "e"}, "垃圾"], "mention")
+    assert items == [{"id": 1, "evidence": "e"}]
+    assert "丢弃" in note
+
+
+def test_mentions_marks_repaired_result(tmp_path):
+    client = FakeClient([{"mentioned": REAL_BAD_MENTIONS}])
+    pool = [{"id": 3, "source_company": "AAPL", "hop": 0, "relation": "", "published_at": "",
+             "title": "t", "summary": "s"},
+            {"id": 7, "source_company": "AAPL", "hop": 0, "relation": "", "published_at": "",
+             "title": "t", "summary": "s"}]
+    out = Judge(client, cache_path=tmp_path / "c.json").mentions("报告", pool)
+    assert [m["id"] for m in out["mentioned"]] == [3, 7]
+    assert "repaired" in out
+
+
+def test_cached_bad_payload_is_repaired_on_read(tmp_path):
+    """坏返回已经写进缓存也没关系：修复发生在读取时，不用清缓存重花钱"""
+    client = FakeClient([{"mentioned": REAL_BAD_MENTIONS}])
+    pool = [{"id": 3, "source_company": "A", "hop": 0, "relation": "", "published_at": "",
+             "title": "", "summary": ""}]
+    cache = tmp_path / "c.json"
+    Judge(client, cache_path=cache).mentions("报告", pool)
+
+    offline = Judge(None, cache_path=cache)
+    assert [m["id"] for m in offline.mentions("报告", pool)["mentioned"]] == [3]
+
+
+def test_judge_all_continues_after_one_failure(tmp_path, capsys):
+    class Boom:
+        def __init__(self):
+            self.n = 0
+            self.messages = types.SimpleNamespace(create=self._create)
+
+        def _create(self, **kwargs):
+            self.n += 1
+            if self.n == 1:
+                raise RuntimeError("接口超时")
+            return types.SimpleNamespace(content=[_ToolUse(_mention_payload([]))], stop_reason="tool_use")
+
+    runs = [dict(RUN, company="AAPL", repeat=1), dict(RUN, company="AAPL", repeat=2)]
+    j = Judge(Boom(), cache_path=tmp_path / "c.json")
+    results = judge_mod.judge_all(runs, GOLD, j, out_dir=tmp_path / "j", do_citations=False)
+
+    assert len(results) == 1 and results[0]["repeat"] == 2
+    out = capsys.readouterr().out
+    assert "判定失败" in out and "1 份判定失败" in out
+    assert not judge_mod.judgement_path(tmp_path / "j", "C", "AAPL", 1).exists()

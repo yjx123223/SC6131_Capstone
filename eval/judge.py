@@ -159,6 +159,56 @@ def claims_of(draft: dict, max_risk_clauses: int = 6) -> list[str]:
     return claims
 
 
+# ── 模型返回的容错解析 ────────────────────────────────────────────
+# Haiku 偶尔会把数组字段返回成"一个 JSON 字符串"，而且那串 JSON 里还可能有
+# 未转义的引号（实测：evidence 里写了 具有"Apple DNA"）。直接迭代会把字符串
+# 按字符拆开，json.loads 也会失败。这里做两级兜底：先 json.loads，
+# 再正则抽取；两级都失败才报错。修复过的判定会标记出来，便于人工优先复核。
+
+_MENTION_RE = re.compile(r'"id"\s*:\s*(\d+)\s*,\s*"evidence"\s*:\s*"(.*?)"\s*[},]', re.S)
+_VERDICT_RE = re.compile(
+    r'"index"\s*:\s*(\d+)\s*,\s*"verdict"\s*:\s*"(\w+)"\s*,\s*"evidence"\s*:\s*"(.*?)"\s*[},]', re.S)
+_ID_ONLY_RE = re.compile(r'"(?:id|index)"\s*:\s*(\d+)')
+
+
+def _repair(text: str, kind: str) -> list[dict]:
+    """从半结构化文本里抠出判定项。kind: "mention" | "verdict" """
+    if kind == "mention":
+        items = [{"id": int(i), "evidence": e.strip()} for i, e in _MENTION_RE.findall(text)]
+    else:
+        items = [{"index": int(i), "verdict": v, "evidence": e.strip()}
+                 for i, v, e in _VERDICT_RE.findall(text)]
+    if items:
+        return items
+    # 连字段顺序都对不上时，至少把编号救回来——编号决定指标，证据只影响人工复核
+    ids = [int(x) for x in _ID_ONLY_RE.findall(text)]
+    key = "id" if kind == "mention" else "index"
+    return [{key: i, "evidence": "（模型返回格式异常，证据未能解析）",
+             **({"verdict": "unparsed"} if kind == "verdict" else {})} for i in ids]
+
+
+def coerce_items(value, kind: str) -> tuple[list[dict], str]:
+    """把模型返回的字段规范成 list[dict]，并返回修复说明（空串表示原本就正常）"""
+    if value is None:
+        return [], "字段缺失"
+    if isinstance(value, dict):
+        return [value], "返回了单个对象而非数组"
+    if isinstance(value, str):
+        try:
+            parsed = json.loads(value)
+        except json.JSONDecodeError:
+            items = _repair(value, kind)
+            return items, f"数组被返回成字符串且 JSON 非法，正则抽出 {len(items)} 项"
+        items, _ = coerce_items(parsed, kind)
+        return items, "数组被返回成字符串，已解析"
+    if isinstance(value, list):
+        good = [x for x in value if isinstance(x, dict)]
+        if len(good) == len(value):
+            return good, ""
+        return good, f"丢弃了 {len(value) - len(good)} 个非对象项"
+    return [], f"无法解析的类型 {type(value).__name__}"
+
+
 # ── 判定器 ───────────────────────────────────────────────────────
 
 class Judge:
@@ -218,19 +268,26 @@ class Judge:
         user = (f"# 候选事件\n{_pool_text(pool)}\n\n"
                 f"# 投资研究报告\n{report_md}")
         result = self._call(MENTION_TOOL, MENTION_SYSTEM, user)
+        items, repaired = coerce_items(result.get("mentioned"), "mention")
         valid = {e["id"] for e in pool}
         # 模型可能编出不存在的编号，丢掉并记录
-        kept = [m for m in result.get("mentioned", []) if m.get("id") in valid]
-        return {"mentioned": kept,
-                "dropped": [m for m in result.get("mentioned", []) if m.get("id") not in valid]}
+        kept = [m for m in items if m.get("id") in valid]
+        out = {"mentioned": kept, "dropped": [m for m in items if m.get("id") not in valid]}
+        if repaired:
+            out["repaired"] = repaired
+        return out
 
     def citations(self, claims: list[str], evidence_text: str) -> dict:
         numbered = "\n".join(f"{i}. {c}" for i, c in enumerate(claims, 1))
         user = (f"# 待核查的论断\n{numbered}\n\n"
                 f"# 生成报告时拿到的全部工具数据\n{evidence_text}")
         result = self._call(CITATION_TOOL, CITATION_SYSTEM, user)
-        verdicts = [v for v in result.get("verdicts", []) if 1 <= v.get("index", 0) <= len(claims)]
-        return {"verdicts": verdicts, "claims": claims}
+        items, repaired = coerce_items(result.get("verdicts"), "verdict")
+        verdicts = [v for v in items if 1 <= v.get("index", 0) <= len(claims)]
+        out = {"verdicts": verdicts, "claims": claims}
+        if repaired:
+            out["repaired"] = repaired
+        return out
 
 
 # ── 批量判定 ─────────────────────────────────────────────────────
@@ -262,12 +319,18 @@ def judge_all(runs: list[dict], gold_rows: list[dict], judge: Judge,
     from tool_log_summary import summarize_tool_log
 
     pools = {}
-    results = []
+    results, failures = [], []
     for i, run in enumerate(runs, 1):
         company = run["company"]
         pools.setdefault(company, candidate_pool(gold_rows, company))
         evidence = summarize_tool_log(run.get("tool_log") or [])
-        result = judge_run(judge, run, pools[company], evidence, do_mentions, do_citations)
+        try:
+            result = judge_run(judge, run, pools[company], evidence, do_mentions, do_citations)
+        except Exception as e:                # noqa: BLE001 - 单份失败不该中断整批
+            failures.append((run["variant"], company, run["repeat"], f"{type(e).__name__}: {e}"))
+            on_progress(f"[{i}/{len(runs)}] {run['variant']} {company} r{run['repeat']}："
+                        f"⚠️ 判定失败 {type(e).__name__}: {e}")
+            continue
         path = judgement_path(out_dir, run["variant"], company, run["repeat"])
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
@@ -275,9 +338,16 @@ def judge_all(runs: list[dict], gold_rows: list[dict], judge: Judge,
         n_m = len(result.get("mentions", {}).get("mentioned", []))
         n_c = result.get("citations", {}).get("verdicts", [])
         unsup = sum(1 for v in n_c if v["verdict"] == "unsupported")
+        repaired = [v.get("repaired") for v in (result.get("mentions"), result.get("citations"))
+                    if isinstance(v, dict) and v.get("repaired")]
         on_progress(f"[{i}/{len(runs)}] {run['variant']} {company} r{run['repeat']}："
                     f"提及 {n_m} 个事件，论断 {len(n_c)} 条（无依据 {unsup}）"
-                    f"｜缓存命中 {judge.hits} / 新判 {judge.misses}")
+                    f"｜缓存命中 {judge.hits} / 新判 {judge.misses}"
+                    + (f"  🔧 {'; '.join(repaired)}" if repaired else ""))
+    if failures:
+        on_progress(f"\n⚠️ {len(failures)} 份判定失败，重跑同一条命令会补上：")
+        for f in failures[:10]:
+            on_progress(f"   {f[0]} {f[1]} r{f[2]}: {f[3]}")
     return results
 
 
