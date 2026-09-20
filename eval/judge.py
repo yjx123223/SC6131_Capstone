@@ -81,7 +81,8 @@ MENTION_SYSTEM = """你是一位严谨的文本比对员。你会收到一份投
   报告写"分析师给出 380 美元目标价"，算提到）。
 - 只提到公司名、没有触及该事件的内容，不算提到。
 - 报告里泛泛地说"供应链存在风险"，而候选事件是某家供应商的具体事件，不算提到。
-- 必须从报告中摘出一句原句作为证据。找不到原句就不要判为提到。
+- 证据必须从**报告正文**中逐字摘录，不得复制候选事件的标题或摘要，也不要自己改写。
+  在报告里找不到可以逐字摘录的句子，就不要判为提到——宁可漏判，不要凑证据。
 
 只做客观比对，不评价报告好坏。"""
 
@@ -290,6 +291,32 @@ class Judge:
         return out
 
 
+# ── 证据核验 ────────────────────────────────────────────────────
+# 判定器偶尔会把候选事件的正文当成证据交上来（实测 26 条里有 2 条）。
+# 那是假阳性，会虚高召回率。这里做确定性核验：证据必须能在报告正文里找到。
+# 比对前规范化掉空白、中英文引号与全角标点——报告写 "买入区域"、
+# 判定器写 '买入区域'，是同一句话，不该算不匹配。
+
+_QUOTE_CHARS = "\u201c\u201d\u2018\u2019\u300c\u300d\u300e\u300f'\"`"
+_NORMALIZE = str.maketrans({c: "" for c in _QUOTE_CHARS}
+                           | {"（": "(", "）": ")", "，": ",", "：": ":", "、": ",", "％": "%"})
+
+
+def normalize_for_match(text: str) -> str:
+    return re.sub(r"\s+", "", (text or "").translate(_NORMALIZE)).lower()
+
+
+def evidence_verified(evidence: str, report_md: str, probe_chars: int = 24) -> bool:
+    """证据的前 probe_chars 个规范化字符能否在报告里找到"""
+    probe = normalize_for_match(evidence)[:probe_chars]
+    return bool(probe) and probe in normalize_for_match(report_md)
+
+
+def verify_mentions(mentions: list[dict], report_md: str) -> list[dict]:
+    """给每条判定打上 verified 标记（不删除，便于人工复核假阳性）"""
+    return [{**m, "verified": evidence_verified(m.get("evidence", ""), report_md)} for m in mentions]
+
+
 # ── 批量判定 ─────────────────────────────────────────────────────
 
 DEFAULT_JUDGEMENTS = "eval/results/judgements"
@@ -305,7 +332,10 @@ def judge_run(judge: Judge, run: dict, pool: list[dict], evidence_text: str,
            "run_git_commit": run.get("git_commit"), "judge_model": judge.model}
     draft = run.get("draft") or {}
     if do_mentions:
-        out["mentions"] = judge.mentions(run.get("report_md") or "", pool)
+        report_md = run.get("report_md") or ""
+        mentions = judge.mentions(report_md, pool)
+        mentions["mentioned"] = verify_mentions(mentions["mentioned"], report_md)
+        out["mentions"] = mentions
     if do_citations:
         claims = claims_of(draft)
         out["citations"] = judge.citations(claims, evidence_text) if claims else {"verdicts": [], "claims": []}
@@ -335,13 +365,17 @@ def judge_all(runs: list[dict], gold_rows: list[dict], judge: Judge,
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(result, ensure_ascii=False, indent=2), encoding="utf-8")
         results.append(result)
-        n_m = len(result.get("mentions", {}).get("mentioned", []))
+        mentioned = result.get("mentions", {}).get("mentioned", [])
+        n_m = len(mentioned)
+        n_unverified = sum(1 for m in mentioned if not m.get("verified", True))
         n_c = result.get("citations", {}).get("verdicts", [])
         unsup = sum(1 for v in n_c if v["verdict"] == "unsupported")
         repaired = [v.get("repaired") for v in (result.get("mentions"), result.get("citations"))
                     if isinstance(v, dict) and v.get("repaired")]
         on_progress(f"[{i}/{len(runs)}] {run['variant']} {company} r{run['repeat']}："
-                    f"提及 {n_m} 个事件，论断 {len(n_c)} 条（无依据 {unsup}）"
+                    f"提及 {n_m} 个事件"
+                    + (f"（{n_unverified} 条证据未核实）" if n_unverified else "")
+                    + f"，论断 {len(n_c)} 条（无依据 {unsup}）"
                     f"｜缓存命中 {judge.hits} / 新判 {judge.misses}"
                     + (f"  🔧 {'; '.join(repaired)}" if repaired else ""))
     if failures:

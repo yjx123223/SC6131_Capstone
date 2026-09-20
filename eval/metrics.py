@@ -89,10 +89,15 @@ def graph_event_ids(tool_log: list) -> set[str]:
     return ids
 
 
-def run_metrics(run: dict, judgement: dict, slices: dict) -> dict:
+def run_metrics(run: dict, judgement: dict, slices: dict, count_unverified: bool = False) -> dict:
+    """count_unverified=True 时把证据未核实的提及也算进召回（用于看这层过滤的影响）"""
     company = run["company"]
     sl = slices.get(company, {"cross": set(), "hop2": set(), "hop0": set()})
-    mentioned = {m["id"] for m in judgement.get("mentions", {}).get("mentioned", [])}
+    raw = judgement.get("mentions", {}).get("mentioned", [])
+    # 证据不在报告里的判定是假阳性（判定器摘了候选事件的原文），默认不计入
+    unverified = [m for m in raw if not m.get("verified", True)]
+    kept = raw if count_unverified else [m for m in raw if m.get("verified", True)]
+    mentioned = {m["id"] for m in kept}
 
     verdicts = judgement.get("citations", {}).get("verdicts", [])
     checkable = [v for v in verdicts if v["verdict"] in ("supported", "unsupported")]
@@ -110,6 +115,7 @@ def run_metrics(run: dict, judgement: dict, slices: dict) -> dict:
         "hop2_hit": len(mentioned & sl["hop2"]), "hop2_total": len(sl["hop2"]),
         "hop0_hit": len(mentioned & sl["hop0"]), "hop0_total": len(sl["hop0"]),
         "mentioned_ids": sorted(mentioned),
+        "mentions_unverified": len(unverified),
         "m3_citation_supported": supported / len(checkable) if checkable else None,
         "m4_unsupported": (len(checkable) - supported) / len(checkable) if checkable else None,
         "claims_checkable": len(checkable), "claims_judgment": len(verdicts) - len(checkable),
@@ -122,7 +128,8 @@ def run_metrics(run: dict, judgement: dict, slices: dict) -> dict:
     }
 
 
-def build_rows(runs: list[dict], judgements: list[dict], gold_rows: list[dict]) -> list[dict]:
+def build_rows(runs: list[dict], judgements: list[dict], gold_rows: list[dict],
+               count_unverified: bool = False) -> list[dict]:
     slices = gold_slices(gold_rows)
     index = {(j["variant"], j["company"], j["repeat"]): j for j in judgements}
     rows, missing = [], []
@@ -131,7 +138,7 @@ def build_rows(runs: list[dict], judgements: list[dict], gold_rows: list[dict]) 
         if key not in index:
             missing.append(key)
             continue
-        rows.append(run_metrics(run, index[key], slices))
+        rows.append(run_metrics(run, index[key], slices, count_unverified))
     if missing:
         raise SystemExit(f"有 {len(missing)} 份结果还没判定（如 {missing[:3]}），先跑 python -m eval.judge")
     return rows
@@ -220,6 +227,7 @@ def summarize(rows: list[dict], variants: list[str] = ("A", "B", "C")) -> dict:
             "m6_jaccard": st.mean([s["mention_jaccard"] for s in st_rows
                                    if s["mention_jaccard"] is not None]) if st_rows else None,
             "fabricated_runs": sum(1 for r in rows if r["variant"] == v and r["fabricated_event_ids"]),
+            "mentions_unverified": sum(r["mentions_unverified"] for r in rows if r["variant"] == v),
         }
     return summary
 
@@ -239,6 +247,9 @@ def print_summary(summary: dict, on_progress: Callable[[str], None] = print):
                     f"{s['m5_calls']:>7.1f}{s['m5_tokens']:>9.0f}")
     fab = {v: s["fabricated_runs"] for v, s in summary["by_variant"].items() if s["fabricated_runs"]}
     on_progress(f"\n引用了图谱里不存在的事件编号：{fab or '无'}")
+    unver = {v: s["mentions_unverified"] for v, s in summary["by_variant"].items() if s["mentions_unverified"]}
+    on_progress(f"证据未能在报告里核实、已排除的提及：{unver or '无'}"
+                "（--count-unverified 可看计入后的数字）")
 
 
 def write_csv(rows: list[dict], path: str | Path) -> Path:
@@ -263,6 +274,8 @@ def main(argv=None):
     parser.add_argument("--gold", default="eval/gold/gold_events.csv")
     parser.add_argument("--out", default=DEFAULT_RESULTS)
     parser.add_argument("--by-company", action="store_true", help="打印每家公司的 M1 明细")
+    parser.add_argument("--count-unverified", action="store_true",
+                        help="把证据未核实的提及也算进召回（默认排除）")
     args = parser.parse_args(argv)
 
     runs = load_runs(args.runs)
@@ -271,7 +284,7 @@ def main(argv=None):
     if not runs or not judgements:
         raise SystemExit("缺少结果或判定：先跑 eval.runner，再跑 eval.judge")
 
-    rows = build_rows(runs, judgements, gold_rows)
+    rows = build_rows(runs, judgements, gold_rows, args.count_unverified)
     summary = summarize(rows)
     print_summary(summary)
 

@@ -200,3 +200,48 @@ def test_main_end_to_end(tmp_path, capsys, monkeypatch):
     assert (tmp_path / "results" / "metrics.csv").exists()
     summary = json.loads((tmp_path / "results" / "summary.json").read_text(encoding="utf-8"))
     assert summary["by_variant"]["C"]["m1_mean"] == 1.0
+
+
+# ── 证据核验：判定器摘了候选事件原文的那些提及不算数 ──────────────────
+
+def _judgement_with_verification(ids_verified, ids_unverified):
+    return {"variant": "C", "company": "AAPL", "repeat": 1,
+            "mentions": {"mentioned":
+                         [{"id": i, "evidence": "报告原句", "verified": True} for i in ids_verified]
+                         + [{"id": i, "evidence": "候选事件原文", "verified": False} for i in ids_unverified]},
+            "citations": {"claims": [], "verdicts": []}}
+
+
+def test_unverified_mentions_excluded_by_default():
+    sl = metrics.gold_slices(GOLD)
+    row = metrics.run_metrics(_run("C", "AAPL", 1), _judgement_with_verification([2], [3]), sl)
+    assert row["m1_cross_recall"] == 0.5            # 只算核实过的事件 2
+    assert row["mentioned_ids"] == [2]
+    assert row["mentions_unverified"] == 1
+
+
+def test_count_unverified_flag_includes_them():
+    sl = metrics.gold_slices(GOLD)
+    row = metrics.run_metrics(_run("C", "AAPL", 1), _judgement_with_verification([2], [3]),
+                              sl, count_unverified=True)
+    assert row["m1_cross_recall"] == 1.0
+    assert row["mentions_unverified"] == 1          # 仍然如实记录条数
+
+
+def test_missing_verified_field_treated_as_verified():
+    """旧判定文件没有 verified 字段时不能全判成假阳性"""
+    sl = metrics.gold_slices(GOLD)
+    j = {"variant": "A", "company": "AAPL", "repeat": 1,
+         "mentions": {"mentioned": [{"id": 2, "evidence": "x"}]},
+         "citations": {"claims": [], "verdicts": []}}
+    row = metrics.run_metrics(_run("A", "AAPL", 1), j, sl)
+    assert row["m1_cross_recall"] == 0.5 and row["mentions_unverified"] == 0
+
+
+def test_summary_reports_unverified_count(capsys):
+    sl = metrics.gold_slices(GOLD)
+    rows = [metrics.run_metrics(_run(v, "AAPL", r), _judgement_with_verification([2], [3] if v == "C" else []), sl)
+            for v in ("A", "B", "C") for r in (1, 2, 3)]
+    metrics.print_summary(metrics.summarize(rows))
+    out = capsys.readouterr().out
+    assert "证据未能在报告里核实" in out and "'C': 3" in out
