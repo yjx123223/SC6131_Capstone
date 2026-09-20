@@ -97,6 +97,46 @@ def test_latest_result_returns_last_success():
 
 # ── 回归：摘要漏字段会导致 Critic 误判"编造"、revise 删掉真实内容 ──────
 
+def test_market_summary_keeps_every_technical_field():
+    """实测 B 组：report_5d_pct / return_period_pct 漏掉后，
+    报告里逐字取自工具的 '5日跌0.37%'、'NVDA 3月涨6.65%' 被判成编造"""
+    technicals = {
+        "last_close": 493.78, "ma20": 497.51, "ma50": 464.2,
+        "price_vs_ma20": "bearish", "price_vs_ma50": "bullish",
+        "rsi14": 53.6, "rsi14_signal": "neutral",
+        "volatility_20d_pct": 1.39, "volatility_20d_annualized_pct": 22.02,
+        "return_5d_pct": -0.37, "return_20d_pct": 2.62, "return_period_pct": 34.67,
+    }
+    log = [{"tool": "query_market_data", "input": {}, "result": {
+        "ticker": "MSFT", "data_as_of": "2026-09-18", "period": "3mo",
+        "technicals": technicals, "fundamentals": {},
+    }}]
+    text = summarize_tool_log(log)
+    for value in technicals.values():
+        assert str(value) in text, f"技术面字段 {value} 未进入摘要"
+    assert "3mo" in text                               # 报告说"3月涨幅"时要能对上区间
+
+
+def test_market_summary_keeps_unknown_fields():
+    """工具将来新增字段时，摘要不能悄悄吞掉（否则又是一次误判）"""
+    log = [{"tool": "query_market_data", "input": {}, "result": {
+        "ticker": "AAPL", "technicals": {"brand_new_metric": 42.0}, "fundamentals": {},
+    }}]
+    text = summarize_tool_log(log)
+    assert "brand_new_metric 42.0" in text
+
+
+def test_market_summary_includes_close_series():
+    log = [{"tool": "query_market_data", "input": {}, "result": {
+        "ticker": "AAPL", "technicals": {}, "fundamentals": {},
+        "recent_closes": [{"date": "2026-09-17", "close": 497.75},
+                          {"date": "2026-09-18", "close": 493.78}],
+    }}]
+    text = summarize_tool_log(log)
+    assert "近2个交易日收盘" in text
+    assert "2026-09-17 497.75" in text and "2026-09-18 493.78" in text
+
+
 def test_market_summary_keeps_every_fundamental_field():
     """摘要漏掉的基本面字段，Critic 会当成编造要求删除（实测 MSFT 的 ROE/净利增速）"""
     fundamentals = {

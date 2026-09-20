@@ -10,31 +10,43 @@ Critic 和 revise() 共用同一份摘要（让修订只能基于真实数据，
 
 重要约束：摘要必须覆盖报告可能引用的**全部事实字段**。摘要漏掉的字段，
 Critic 会当成"编造"而要求删除，revise 又只能看到同一份摘要，于是真实有据的
-内容被删掉。所以行情的基本面字段、新闻的正文摘要都要完整带上，
-不做条数截断——省下的 token 远不值一次误删。
+内容被删掉。所以行情的技术面/基本面字段、收盘序列、新闻的正文摘要都要完整带上，
+不做条数截断，未知字段也照原样输出——省下的 token 远不值一次误删。
 """
 
 
-def _fmt_market(r: dict) -> str:
-    t = r.get("technicals", {})
-    f = r.get("fundamentals", {})
-    parts = [
-        f"行情[{r.get('ticker')}] 截至 {r.get('data_as_of')}：收盘 {t.get('last_close')}",
-        f"MA20 {t.get('ma20')}（{t.get('price_vs_ma20')}）",
-        f"MA50 {t.get('ma50')}（{t.get('price_vs_ma50')}）",
-        f"RSI14 {t.get('rsi14')}（{t.get('rsi14_signal')}）",
-        f"20日涨跌 {t.get('return_20d_pct')}%",
-        f"年化波动率 {t.get('volatility_20d_annualized_pct')}%",
-    ]
-    # 基本面字段全部带上：报告引用哪个字段无法预知，漏一个就会被判成编造
-    fund = [f"{_FUND_LABELS.get(k, k)} {v}" for k, v in f.items() if v is not None]
-    text = "，".join(parts)
-    if fund:
-        text += "\n  基本面：" + "，".join(fund)
-    if r.get("warnings"):
-        text += f"\n  警告：{'; '.join(r['warnings'])}"
-    return text
+def _fmt_kv(d: dict, labels: dict) -> str:
+    """字典逐项展开；None 跳过。未知键用原始键名，保证新增字段不会被悄悄吞掉。"""
+    return "，".join(f"{labels.get(k, k)} {v}" for k, v in d.items() if v is not None)
 
+
+def _fmt_market(r: dict) -> str:
+    """行情摘要。技术面与基本面**全量**展开——报告会引用哪个字段无法预知，
+    漏一个，Critic 就会把有据可查的数字判成编造（实测 return_5d_pct /
+    return_period_pct / ROE 都栽在这上面）。"""
+    head = (f"行情[{r.get('ticker')}] 截至 {r.get('data_as_of')}"
+            f"（区间 {r.get('period')}，来源 {r.get('source')}）")
+    lines = [head]
+    if r.get("technicals"):
+        lines.append("  技术面：" + _fmt_kv(r["technicals"], _TECH_LABELS))
+    if r.get("fundamentals"):
+        lines.append("  基本面：" + _fmt_kv(r["fundamentals"], _FUND_LABELS))
+    closes = r.get("recent_closes") or []
+    if closes:
+        series = "；".join(f"{c.get('date')} {c.get('close')}" for c in closes)
+        lines.append(f"  近{len(closes)}个交易日收盘：{series}")
+    if r.get("warnings"):
+        lines.append(f"  警告：{'; '.join(r['warnings'])}")
+    return "\n".join(lines)
+
+
+_TECH_LABELS = {
+    "last_close": "收盘", "ma20": "MA20", "ma50": "MA50",
+    "price_vs_ma20": "相对MA20", "price_vs_ma50": "相对MA50",
+    "rsi14": "RSI14", "rsi14_signal": "RSI信号",
+    "volatility_20d_pct": "20日日波动率%", "volatility_20d_annualized_pct": "20日年化波动率%",
+    "return_5d_pct": "5日涨跌%", "return_20d_pct": "20日涨跌%", "return_period_pct": "区间涨跌%",
+}
 
 _FUND_LABELS = {
     "market_cap": "市值", "trailing_pe": "PE(TTM)", "forward_pe": "预期PE",
