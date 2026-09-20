@@ -80,3 +80,11 @@ def get_sec_user_agent(explicit: str | None = None) -> str | None:
     格式如 "Your Name your.email@example.com"，否则会返回 403。
     """
     return explicit or os.environ.get("SEC_EDGAR_USER_AGENT")
+
+
+# ── 消融实验的评审模型（eval/judge.py）──────────────────────────
+# 与生成报告的是同一个模型，这是已知局限：对"报告有没有提到这件事"这类
+# 客观判定影响小，对偏好性的盲评影响大，故盲评只作次要指标。见 docs/eval-design.md。
+JUDGE_MODEL = "claude-haiku-4-5"
+JUDGE_MAX_TOKENS = 4096
+JUDGE_TEMPERATURE = 0
