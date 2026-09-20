@@ -188,26 +188,58 @@ def _repair(text: str, kind: str) -> list[dict]:
              **({"verdict": "unparsed"} if kind == "verdict" else {})} for i in ids]
 
 
+def _coerce_numeric(items: list[dict], kind: str) -> tuple[list[dict], int]:
+    """编号字段统一成 int。模型有时返回 "3" 而不是 3：
+    citations 里会让 1 <= index <= n 直接抛 TypeError；mentions 里更隐蔽——
+    字符串不在整数集合里，会被当成"编造的编号"悄悄丢掉，指标无声偏低。"""
+    key = "id" if kind == "mention" else "index"
+    out, fixed = [], 0
+    for item in items:
+        value = item.get(key)
+        if isinstance(value, str):
+            digits = value.strip().lstrip("Ee#[](（）) ").rstrip("] )）")
+            if digits.isdigit():
+                item = {**item, key: int(digits)}
+                fixed += 1
+            else:
+                continue                       # 编号无法解析，整条丢弃
+        elif not isinstance(value, int):
+            continue
+        out.append(item)
+    return out, fixed
+
+
 def coerce_items(value, kind: str) -> tuple[list[dict], str]:
     """把模型返回的字段规范成 list[dict]，并返回修复说明（空串表示原本就正常）"""
+    notes = []
     if value is None:
         return [], "字段缺失"
     if isinstance(value, dict):
-        return [value], "返回了单个对象而非数组"
-    if isinstance(value, str):
+        items, notes = [value], ["返回了单个对象而非数组"]
+    elif isinstance(value, str):
         try:
             parsed = json.loads(value)
         except json.JSONDecodeError:
             items = _repair(value, kind)
-            return items, f"数组被返回成字符串且 JSON 非法，正则抽出 {len(items)} 项"
-        items, _ = coerce_items(parsed, kind)
-        return items, "数组被返回成字符串，已解析"
-    if isinstance(value, list):
-        good = [x for x in value if isinstance(x, dict)]
-        if len(good) == len(value):
-            return good, ""
-        return good, f"丢弃了 {len(value) - len(good)} 个非对象项"
-    return [], f"无法解析的类型 {type(value).__name__}"
+            notes = [f"数组被返回成字符串且 JSON 非法，正则抽出 {len(items)} 项"]
+        else:
+            items = parsed if isinstance(parsed, list) else [parsed]
+            items = [x for x in items if isinstance(x, dict)]
+            notes = ["数组被返回成字符串，已解析"]
+    elif isinstance(value, list):
+        items = [x for x in value if isinstance(x, dict)]
+        if len(items) != len(value):
+            notes = [f"丢弃了 {len(value) - len(items)} 个非对象项"]
+    else:
+        return [], f"无法解析的类型 {type(value).__name__}"
+
+    before = len(items)
+    items, fixed = _coerce_numeric(items, kind)
+    if fixed:
+        notes.append(f"{fixed} 个编号是字符串，已转成整数")
+    if len(items) != before:
+        notes.append(f"丢弃了 {before - len(items)} 条编号无法解析的判定")
+    return items, "；".join(notes)
 
 
 # ── 判定器 ───────────────────────────────────────────────────────

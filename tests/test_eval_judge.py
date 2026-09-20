@@ -347,3 +347,42 @@ def test_judge_all_continues_after_one_failure(tmp_path, capsys):
     out = capsys.readouterr().out
     assert "判定失败" in out and "1 份判定失败" in out
     assert not judge_mod.judgement_path(tmp_path / "j", "C", "AAPL", 1).exists()
+
+
+# ── 编号被返回成字符串（实测：一份判定因此抛 TypeError 中断）──────────
+
+def test_coerce_converts_string_ids():
+    """字符串编号在 mentions 里会被当成"编造的编号"悄悄丢掉，指标无声偏低"""
+    items, note = coerce_items([{"id": "3", "evidence": "e"}, {"id": 7, "evidence": "e"}], "mention")
+    assert [m["id"] for m in items] == [3, 7]
+    assert "字符串" in note
+
+
+def test_coerce_converts_string_index_in_verdicts():
+    """实测故障：'<=' not supported between instances of 'int' and 'str'"""
+    items, _ = coerce_items([{"index": "2", "verdict": "supported", "evidence": "e"}], "verdict")
+    assert items[0]["index"] == 2
+    assert isinstance(items[0]["index"], int)
+
+
+def test_coerce_strips_event_id_prefix():
+    items, _ = coerce_items([{"id": "E5", "evidence": "e"}, {"id": "[9]", "evidence": "e"}], "mention")
+    assert [m["id"] for m in items] == [5, 9]
+
+
+def test_coerce_drops_unparsable_ids():
+    items, note = coerce_items([{"id": "第三条", "evidence": "e"}, {"id": 1, "evidence": "e"}], "mention")
+    assert [m["id"] for m in items] == [1]
+    assert "无法解析" in note
+
+
+def test_coerce_drops_items_without_id():
+    items, _ = coerce_items([{"evidence": "没有编号"}, {"id": 2, "evidence": "e"}], "mention")
+    assert [m["id"] for m in items] == [2]
+
+
+def test_citations_with_string_index_does_not_raise(tmp_path):
+    """回归：B META r1 就是在这里中断的"""
+    client = FakeClient([{"verdicts": [{"index": "1", "verdict": "supported", "evidence": "e"}]}])
+    out = Judge(client, cache_path=tmp_path / "c.json").citations(["论断一"], "证据")
+    assert out["verdicts"][0]["index"] == 1
