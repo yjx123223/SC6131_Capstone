@@ -41,6 +41,9 @@ def test_sec_summary_lists_forms():
     }}]
     assert "10-Q(2026-07-31)" in summarize_tool_log(log)
 
+    log[0]["result"]["filings"][0]["report_date"] = "2026-06-27"
+    assert "10-Q(2026-07-31，报告期 2026-06-27)" in summarize_tool_log(log)
+
 
 def test_errors_are_marked_unavailable():
     log = [{"tool": "query_sec_filings", "input": {}, "result": {"error": "未配置 SEC_EDGAR_USER_AGENT"}}]
@@ -90,3 +93,58 @@ def test_latest_result_returns_last_success():
     ]
     assert latest_result(log, "query_news") == {"n": 2}
     assert latest_result(log, "query_macro") is None
+
+
+# ── 回归：摘要漏字段会导致 Critic 误判"编造"、revise 删掉真实内容 ──────
+
+def test_market_summary_keeps_every_fundamental_field():
+    """摘要漏掉的基本面字段，Critic 会当成编造要求删除（实测 MSFT 的 ROE/净利增速）"""
+    fundamentals = {
+        "market_cap": 3666585845760, "trailing_pe": 27.69, "forward_pe": 20.93,
+        "price_to_book": 8.29, "dividend_yield_pct": 0.79, "profit_margin_pct": 40.3,
+        "revenue_growth_pct": 17.7, "earnings_growth_pct": 31.7,
+        "return_on_equity_pct": 34.04, "debt_to_equity": 29.12, "current_ratio": 1.23,
+        "total_revenue": 331839012864, "net_income": 133748998144,
+        "free_cash_flow": 16545500160, "beta": 1.11, "fifty_two_week_high": 553.72,
+        "fifty_two_week_low": 349.2, "analyst_target_mean": 572.92,
+        "analyst_recommendation": "strong_buy", "analyst_count": 52,
+    }
+    log = [{"tool": "query_market_data", "input": {}, "result": {
+        "ticker": "MSFT", "data_as_of": "2026-09-18",
+        "technicals": {"last_close": 493.78}, "fundamentals": fundamentals,
+    }}]
+    text = summarize_tool_log(log)
+    for value in fundamentals.values():
+        assert str(value) in text, f"基本面字段 {value} 未进入摘要"
+
+
+def test_market_summary_omits_missing_fields():
+    log = [{"tool": "query_market_data", "input": {}, "result": {
+        "ticker": "AAPL", "technicals": {}, "fundamentals": {"trailing_pe": 30.0, "beta": None},
+    }}]
+    text = summarize_tool_log(log)
+    assert "PE(TTM) 30.0" in text and "beta" not in text
+
+
+def test_news_summary_keeps_all_articles_with_body():
+    """曾只取前 6 条标题、丢掉正文摘要：Evercore $380 就藏在正文里"""
+    arts = [{"title": f"标题{i}", "publisher": "P", "published_at": f"2026-09-{10 + i}T00:00",
+             "summary": f"正文{i}", "url": ""} for i in range(8)]
+    arts[7]["summary"] = "Evercore Delivers Bullish $380 Price Target for Apple Stock"
+    log = [{"tool": "query_news", "input": {}, "result": {
+        "ticker": "AAPL", "lookback_days": 14, "articles": arts}}]
+
+    text = summarize_tool_log(log)
+    assert "近14天 8 条" in text
+    for i in range(8):
+        assert f"标题{i}" in text                     # 不截断条数
+    assert "$380" in text                             # 正文摘要必须在
+    assert "Evercore" in text
+
+
+def test_news_summary_handles_article_without_summary():
+    log = [{"tool": "query_news", "input": {}, "result": {
+        "ticker": "AAPL", "lookback_days": 14,
+        "articles": [{"title": "只有标题", "publisher": "P", "published_at": "2026-09-18T00:00"}]}}]
+    text = summarize_tool_log(log)
+    assert "只有标题" in text and "摘要：" not in text
