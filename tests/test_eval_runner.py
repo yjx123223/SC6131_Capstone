@@ -316,3 +316,58 @@ def test_summary_cli_survives_report_dir(tmp_path, capsys):
 
     runner.main(["--summary", "--out", str(out_dir)])
     assert "C" in capsys.readouterr().out
+
+
+# ── 代码版本不同的旧结果要重跑（一轮实验必须同源）──────────────────
+
+def _write_result(tmp_path, variant, company, repeat, commit):
+    path = runner.run_path(tmp_path, variant, company, repeat)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps({"variant": variant, "company": company,
+                                "repeat": repeat, "status": "ok", "git_commit": commit}),
+                    encoding="utf-8")
+    return path
+
+
+def test_plan_runs_reruns_results_from_other_commit(tmp_path, capsys):
+    _write_result(tmp_path, "A", "AAPL", 1, "old1234")
+    _write_result(tmp_path, "A", "MSFT", 1, "new5678")
+
+    jobs = runner.plan_runs(["A"], ["AAPL", "MSFT"], 1, tmp_path, overwrite=False,
+                            current_commit="new5678")
+    assert jobs == [("A", "AAPL", 1)]                 # 同版本的 MSFT 被跳过
+    out = capsys.readouterr().out
+    assert "old1234" in out and "将重跑" in out
+
+
+def test_plan_runs_keep_stale_skips_everything(tmp_path):
+    _write_result(tmp_path, "A", "AAPL", 1, "old1234")
+    jobs = runner.plan_runs(["A"], ["AAPL"], 1, tmp_path, overwrite=False,
+                            current_commit="new5678", keep_stale=True)
+    assert jobs == []
+
+
+def test_plan_runs_reruns_unreadable_result(tmp_path):
+    path = runner.run_path(tmp_path, "A", "AAPL", 1)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text("{坏文件", encoding="utf-8")
+    jobs = runner.plan_runs(["A"], ["AAPL"], 1, tmp_path, overwrite=False,
+                            current_commit="new5678")
+    assert jobs == [("A", "AAPL", 1)]
+
+
+def test_plan_runs_without_current_commit_keeps_old_behaviour(tmp_path):
+    _write_result(tmp_path, "A", "AAPL", 1, "old1234")
+    assert runner.plan_runs(["A"], ["AAPL"], 1, tmp_path, overwrite=False) == []
+
+
+def test_main_warns_about_stale_results(tmp_path, capsys):
+    companies = tmp_path / "companies.txt"
+    companies.write_text("AAPL\n", encoding="utf-8")
+    out_dir = tmp_path / "runs"
+    _write_result(out_dir, "C", "AAPL", 1, "definitely_old")
+
+    runner.main(["--variant", "C", "--repeat", "1", "--companies", str(companies),
+                 "--out", str(out_dir), "--dry-run"])
+    out = capsys.readouterr().out
+    assert "definitely_old" in out and "待执行 1 个任务" in out

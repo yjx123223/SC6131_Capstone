@@ -107,14 +107,40 @@ def run_one(variant: str, company: str, repeat: int, store: SnapshotStore, graph
     return record
 
 
+def result_commit(path: Path) -> Optional[str]:
+    try:
+        return json.loads(path.read_text(encoding="utf-8")).get("git_commit")
+    except Exception:                          # noqa: BLE001 - 读不出就当作旧结果
+        return None
+
+
 def plan_runs(variants_: list[str], companies: list[str], repeat: int,
-              out_dir: str | Path, overwrite: bool) -> list[tuple[str, str, int]]:
-    jobs = []
+              out_dir: str | Path, overwrite: bool,
+              current_commit: Optional[str] = None, keep_stale: bool = False,
+              on_notice: Callable[[str], None] = print) -> list[tuple[str, str, int]]:
+    """列出待执行任务。
+
+    断点续跑默认跳过已有结果，但**代码版本不同的旧结果会重跑**：一轮消融
+    实验的所有结果必须来自同一份代码，否则变体之间的差异里混进了代码改动。
+    （实测踩过：改完证据摘要后直接跑全量，前 6 份仍是旧版本的结果。）
+    --keep-stale 可以关掉这个行为。
+    """
+    jobs, stale = [], []
     for variant in variants_:
         for company in companies:
             for r in range(1, repeat + 1):
-                if overwrite or not run_path(out_dir, variant, company, r).exists():
+                path = run_path(out_dir, variant, company, r)
+                if overwrite or not path.exists():
                     jobs.append((variant, company, r))
+                    continue
+                commit = result_commit(path)
+                if not keep_stale and current_commit and commit != current_commit:
+                    stale.append((variant, company, r, commit))
+                    jobs.append((variant, company, r))
+    if stale:
+        versions = sorted({c or "unknown" for *_, c in stale})
+        on_notice(f"⚠️  {len(stale)} 份已有结果来自其它代码版本（{', '.join(versions)}，"
+                  f"当前 {current_commit}），将重跑；加 --keep-stale 可保留它们")
     return jobs
 
 
@@ -207,6 +233,8 @@ def main(argv=None):
     parser.add_argument("--out", default=DEFAULT_OUT)
     parser.add_argument("--workers", type=int, default=1, help="并行度；注意 API 速率限制")
     parser.add_argument("--overwrite", action="store_true", help="重跑已有结果")
+    parser.add_argument("--keep-stale", action="store_true",
+                        help="保留其它代码版本跑出的已有结果（默认重跑，保证一轮实验同源）")
     parser.add_argument("--dry-run", action="store_true", help="只列出将要执行的任务")
     parser.add_argument("--smoke", action="store_true", help="冒烟：前 2 家公司各 1 次")
     parser.add_argument("--summary", action="store_true", help="统计已完成的结果")
@@ -235,7 +263,8 @@ def main(argv=None):
     if args.smoke:
         companies, repeat = companies[:2], 1
 
-    jobs = plan_runs(variant_list, companies, repeat, args.out, args.overwrite)
+    jobs = plan_runs(variant_list, companies, repeat, args.out, args.overwrite,
+                     current_commit=git_commit(), keep_stale=args.keep_stale)
     print(f"待执行 {len(jobs)} 个任务"
           f"（变体 {', '.join(variant_list)}；公司 {len(companies)} 家；每个 {repeat} 次）")
     if args.dry_run or not jobs:
