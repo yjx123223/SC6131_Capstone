@@ -173,6 +173,56 @@ def stability(rows: list[dict]) -> dict:
     return out
 
 
+# ── 显著性检验 ───────────────────────────────────────────────────
+
+def wilcoxon_exact(x: list[float], y: list[float]) -> dict:
+    """配对样本的精确 Wilcoxon 符号秩检验（双侧）。
+
+    n=14 这种小样本不用正态近似：零差按惯例剔除，并列值取平均秩，
+    然后枚举全部 2^n 种符号组合求精确 p（n ≤ 20 时很快）。
+    不引入 scipy，结果可以和 scipy.stats.wilcoxon(method="exact") 对照。
+    """
+    diffs = [a - b for a, b in zip(x, y) if abs(a - b) > 1e-12]
+    n = len(diffs)
+    out = {"n_pairs": len(x), "n_nonzero": n,
+           "wins": sum(1 for a, b in zip(x, y) if a - b > 1e-12),
+           "ties": len(x) - n,
+           "losses": sum(1 for a, b in zip(x, y) if b - a > 1e-12),
+           "median_diff": st.median([a - b for a, b in zip(x, y)]) if x else None}
+    if n == 0:
+        return {**out, "w_plus": 0.0, "w_minus": 0.0, "p": 1.0}
+    if n > 20:
+        raise ValueError(f"非零差 {n} 对，精确枚举 2^{n} 太慢，请改用正态近似")
+
+    order = sorted(range(n), key=lambda i: abs(diffs[i]))
+    ranks = [0.0] * n
+    i = 0
+    while i < n:
+        j = i
+        while j + 1 < n and abs(abs(diffs[order[j + 1]]) - abs(diffs[order[i]])) < 1e-12:
+            j += 1
+        for k in range(i, j + 1):
+            ranks[order[k]] = (i + j) / 2 + 1       # 并列取平均秩
+        i = j + 1
+
+    w_plus = sum(r for r, d in zip(ranks, diffs) if d > 0)
+    w_minus = sum(r for r, d in zip(ranks, diffs) if d < 0)
+    total, w = sum(ranks), min(w_plus, w_minus)
+    extreme = 0
+    for mask in range(1 << n):
+        s = sum(ranks[k] for k in range(n) if mask >> k & 1)
+        if min(s, total - s) <= w + 1e-9:
+            extreme += 1
+    return {**out, "w_plus": w_plus, "w_minus": w_minus, "p": extreme / (1 << n)}
+
+
+def pairwise_tests(per_company: dict, companies: list[str], metric: str = "m1_cross_recall",
+                   pairs=(("B", "C"), ("B", "A"), ("C", "A"))) -> dict:
+    return {f"{a}_vs_{b}": wilcoxon_exact([per_company[(a, c)][metric] for c in companies],
+                                         [per_company[(b, c)][metric] for c in companies])
+            for a, b in pairs}
+
+
 # ── 汇总 ─────────────────────────────────────────────────────────
 
 def _median(values) -> Optional[float]:
@@ -205,6 +255,8 @@ def summarize(rows: list[dict], variants: list[str] = ("A", "B", "C")) -> dict:
 
     summary = {"companies": companies_all, "m1_paired_companies": paired,
                "m1_excluded": [c for c in companies_all if c not in paired], "by_variant": {}}
+    if all(v in {vv for (vv, _) in per_company} for v in ("A", "B", "C")) and paired:
+        summary["m1_tests"] = pairwise_tests(per_company, paired)
     for v in variants:
         vals = lambda m, cs=None: [per_company[(v, c)][m] for c in (cs or companies_all)
                                    if per_company.get((v, c), {}).get(m) is not None]
@@ -245,6 +297,13 @@ def print_summary(summary: dict, on_progress: Callable[[str], None] = print):
                     f"{fmt(s['m2b_mean']):>11}{fmt(s['m3_mean']):>10}{fmt(s['m4_mean']):>10}"
                     f"{fmt(s['m6_rec_identical']):>11}{fmt(s['m6_jaccard'], False):>11}"
                     f"{s['m5_calls']:>7.1f}{s['m5_tokens']:>9.0f}")
+    if summary.get("m1_tests"):
+        on_progress("\nM1 配对检验（精确 Wilcoxon 双侧，公司为单位，3 次重复取中位数）")
+        for name, t in summary["m1_tests"].items():
+            md = "—" if t["median_diff"] is None else f"{t['median_diff'] * 100:+.1f}pp"
+            on_progress(f"  {name.replace('_vs_', ' vs '):<8} p={t['p']:.4f}  中位差 {md}  "
+                        f"胜/平/负 {t['wins']}/{t['ties']}/{t['losses']}  "
+                        f"(非零差 {t['n_nonzero']}，W+={t['w_plus']:g} W-={t['w_minus']:g})")
     fab = {v: s["fabricated_runs"] for v, s in summary["by_variant"].items() if s["fabricated_runs"]}
     on_progress(f"\n引用了图谱里不存在的事件编号：{fab or '无'}")
     unver = {v: s["mentions_unverified"] for v, s in summary["by_variant"].items() if s["mentions_unverified"]}

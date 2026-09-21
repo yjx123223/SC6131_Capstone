@@ -245,3 +245,47 @@ def test_summary_reports_unverified_count(capsys):
     metrics.print_summary(metrics.summarize(rows))
     out = capsys.readouterr().out
     assert "证据未能在报告里核实" in out and "'C': 3" in out
+
+
+# ── 精确 Wilcoxon ───────────────────────────────────────────────
+
+def test_wilcoxon_all_positive_small_sample():
+    """4 对全为正：最极端的情况，双侧精确 p = 2/16 = 0.125"""
+    t = metrics.wilcoxon_exact([1, 2, 3, 4], [0, 0, 0, 0])
+    assert t["n_nonzero"] == 4 and t["w_minus"] == 0
+    assert t["p"] == pytest.approx(0.125)
+    assert (t["wins"], t["ties"], t["losses"]) == (4, 0, 0)
+
+
+def test_wilcoxon_drops_zero_differences():
+    t = metrics.wilcoxon_exact([1, 1, 2, 5], [1, 1, 0, 0])
+    assert t["n_nonzero"] == 2 and t["ties"] == 2
+    assert t["p"] == pytest.approx(0.5)            # 2 对全正：2/4
+
+
+def test_wilcoxon_uses_average_rank_for_ties():
+    t = metrics.wilcoxon_exact([0.5, 0.5, 0.0], [0.0, 0.0, 0.5])
+    # |差| 全是 0.5，平均秩 2；两正一负
+    assert t["w_plus"] == pytest.approx(4.0) and t["w_minus"] == pytest.approx(2.0)
+
+
+def test_wilcoxon_no_difference():
+    t = metrics.wilcoxon_exact([0.3, 0.3], [0.3, 0.3])
+    assert t["p"] == 1.0 and t["n_nonzero"] == 0
+
+
+def test_wilcoxon_matches_reported_experiment():
+    """回归：复盘报告里引用的 B vs C，p=0.0215（W+=49.5，W-=5.5）"""
+    b = [0.5, 1/3, 2/3, 1.0, 1.0, 0.0, 0.0, 0.5, 0.0, 0.5, 0.0, 0.5, 1/6, 1.0]
+    c = [0.25, 0.0, 0.0, 0.5, 0.0, 0.5, 0.0, 0.5, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+    t = metrics.wilcoxon_exact(b, c)
+    assert (t["wins"], t["ties"], t["losses"]) == (9, 4, 1)
+    assert t["w_plus"] == pytest.approx(49.5) and t["w_minus"] == pytest.approx(5.5)
+    assert t["p"] == pytest.approx(0.0215, abs=5e-4)
+
+
+def test_summary_includes_tests(capsys):
+    summary = metrics.summarize(_dataset())
+    assert set(summary["m1_tests"]) == {"B_vs_C", "B_vs_A", "C_vs_A"}
+    metrics.print_summary(summary)
+    assert "精确 Wilcoxon" in capsys.readouterr().out
