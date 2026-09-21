@@ -1,0 +1,64 @@
+{
+  "variant": "C",
+  "company": "TSLA",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 395,
+        "evidence": "Robotaxi/Cybercab推出进展顺利但面临监管和运营障碍",
+        "verified": true
+      },
+      {
+        "id": 398,
+        "evidence": "欧洲Semi扩张战略积极",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "基本面数据显示：营收增速% 25.5，净利增速% -3.0。论断准确反映了这两个数据，并对其含义进行了解读。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "基本面数据显示：PE(TTM) 343.65，预期PE 165.76。论断数值完全匹配数据。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "知识图谱中目标事件 E1 记录：'2026-09-19 neutral PRODUCT：Tesla Robotaxi/Cybercab推出进展顺利，但需跨越监管和运营障碍'；新闻摘要（Motley Fool，2026-09-19）：'The robotaxi/Cybercab rollout is on track, but investors need to be patient and understand there are regulatory and operational hurdles to cross.'论断内容与数据相符。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：10年期国债收益率 (%)：4.94（2026-09-17），CPI 同比变化 (%)：3.71（2026-08-01）。论断数值完全匹配数据。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "技术面数据显示：20日年化波动率% 49.18，相对MA20 bullish，相对MA50 bullish，RSI14 53.73。论断准确引用了波动率数据，并对技术面和基本面的矛盾进行了描述。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是一个综合性的风险评估总结，包含5个方面的风险分析。其中各项具体数据（PE 343.65、净利润增速-3%、10Y收益率4.94%、波动率49.18%）都能在数据中找到支持，但整体的风险评级和'将引发大幅回调'、'打击股价'等表述属于主观判断和展望，不是可核对的事实。"
+      }
+    ],
+    "claims": [
+      "营收增速25.5%但净利润增速-3%，增长动能减弱与盈利能力恶化（Yahoo Finance，2026-09-18）",
+      "PE 343.65极高，Forward PE 165.76，估值与基本面严重脱节（Yahoo Finance，2026-09-18）",
+      "Robotaxi/Cybercab推出进展顺利但面临监管和运营障碍，商业化时间表不确定（Motley Fool，2026-09-19）",
+      "10年期国债收益率4.94%、CPI 3.71%，高利率环境压制高估值股票估值扩张（FRED，2026-09-17）",
+      "20日年化波动率49.18%，技术面虽呈牛市排列但缺乏基本面支撑，市场分歧明显（Yahoo Finance，2026-09-18）",
+      "1) 估值风险：PE 343.65极高，任何增长预期下调将引发大幅回调。2) 盈利风险：净利润增速转负，与营收增速25.5%背离，后续季度若继续恶化将打击股价。3) 监管风险：Robotaxi商业化面临各地监管不确定性，商业化时间表不明确。4) 宏观风险：高利率环境（10Y收益率4.94%）抑制消费者购车意愿和公司融资成本。5) 市场分歧风险：技术面高波动率（49.18%）反映投资者对前景认知分歧"
+    ]
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "variant": "C",
+  "company": "INTC",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 282,
+        "evidence": "Intel CEO警告内存芯片短缺延至2027年，供应约束最早2028年缓解",
+        "verified": true
+      },
+      {
+        "id": 281,
+        "evidence": "UBS预期AI资本支出2026年达1万亿美元、2027年达1.4万亿美元",
+        "verified": true
+      },
+      {
+        "id": 286,
+        "evidence": "Intel与SK Hynix探索合作机会，推动两家公司股价上涨",
+        "verified": true
+      },
+      {
+        "id": 280,
+        "evidence": "Intel运营利润率仅为Applied Materials的一半",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：营收增速25.4%，净利润-11288999936美元（约-112.89亿美元），净利率-19.79%，ROE -10.71%"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：Forward PE 52.67（新闻中Insider Monkey提到54.64，略有差异但同一数量级），NVIDIA Forward PE 23.58，分析师目标价116.37美元，当前收盘价108.6美元，上升空间(116.37-108.6)/108.6=7.1%"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "知识图谱事件E1（2026-09-19）记录：Intel CEO警告内存芯片短缺和价格上升可能持续至2027年，供应约束最早2028年才能缓解。新闻摘要（Simply Wall St.）和GuruFocus均提及'Five-to-sevenfold price increases'（5-7倍价格上升）"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：RSI14 61.06（中性偏强），20日涨跌% 17.88，区间涨跌%（3个月）-22.95，20日年化波动率% 61.04。技术面相对MA20和MA50均为bullish"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "知识图谱事件E2（2026-09-18）记录：Intel与SK Hynix探索合作机会。Zacks新闻摘要确认此信息。论断中关于foundry业务关键指标数据不可用的表述属实，工具数据中确实未提供订单簿、客户名单、产能利用率等具体数据"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：净利润-11288999936美元（约-112.89亿美元），负债权益比49.0。这些数据支持持续巨额亏损和高债务率的论述"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "关于foundry业务竞争激烈、客户获取困难的表述是主观判断，虽然数据确实显示关键指标不可用，但'竞争激烈'、'客户获取困难'等评价性表述不属于可核对的事实"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "知识图谱事件E1和新闻摘要确认：内存芯片短缺延至2027年，价格可能上升5-7倍。这些信息直接来自Intel CEO的警告"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "虽然Forward PE 52.67高于NVIDIA 23.58是事实，但'存在泡沫'、'面临调整风险'是主观判断，不是可核对的事实"
+      },
+      {
+        "index": 10,
+        "verdict": "unsupported",
+        "evidence": "工具数据中未提供关于Intel技术工艺进度的具体信息，也未提供与AMD、NVIDIA在AI芯片领域具体竞争对比的数据。知识图谱仅显示AMD和NVIDIA为竞争对手，但无具体进度对比数据"
+      },
+      {
+        "index": 11,
+        "verdict": "unsupported",
+        "evidence": "工具数据中未提及台湾、中国市场等地缘政治风险，也未提供这些风险对Intel供应链与销售的具体影响数据"
+      }
+    ],
+    "claims": [
+      "营收增长25.4%但净亏损112.89亿美元，利润率-19.79%，ROE -10.71%，表明收入增长无法转化为盈利（Yahoo Finance，2026-09-18）",
+      "Forward PE 52.67远高于NVIDIA 23.58，估值存在泡沫风险，相对目标价116.37美元上升空间仅7.1%（Insider Monkey，2026-09-18）",
+      "Intel CEO警告内存芯片短缺延至2027年，供应约束最早2028年缓解，内存价格可能上升5-7倍，对foundry客户成本与需求构成压力（Simply Wall St.，2026-09-19；GuruFocus，2026-09-18）",
+      "技术面短期强势（RSI 61.06中性偏强，近20日涨17.88%）但3个月跌幅22.95%、52周波动率61.04%，反弹为技术超卖反弹，缺乏基本面支撑，持续性存疑（Yahoo Finance，2026-09-18）",
+      "Intel与SK Hynix探索合作（E2，2026-09-18）可能缓解供应链压力，但foundry业务关键指标（订单簿、客户名单、产能利用率）数据不可用，前景判断置信度低（Zacks，2026-09-18）",
+      "持续巨额亏损（净亏损112.89亿美元）与高债务率（债权比49.0）威胁财务稳定性，融资成本上升将进一步压低利润空间",
+      "Foundry业务竞争激烈，客户获取困难，关键指标数据不可用导致前景判断置信度低",
+      "内存芯片短缺延至2027年，价格可能上升5-7倍，成本压力持续，foundry客户采购意愿受压",
+      "高估值（Forward PE 52.67）面临调整风险，相对NVIDIA（23.58）存在泡沫",
+      "技术工艺进度不及预期可能导致市场份额丧失，竞争对手AMD、NVIDIA在AI芯片领域领先",
+      "地缘政治风险（台湾、中国市场）影响供应链与销售"
+    ]
+  }
+}

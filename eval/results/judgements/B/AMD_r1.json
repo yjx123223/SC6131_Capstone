@@ -1,0 +1,113 @@
+{
+  "variant": "B",
+  "company": "AMD",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 247,
+        "evidence": "AMD被列为\"买入区域\"股票（IBD，2026-09-19），芯片板块连续四日上涨（SOX指数）",
+        "verified": true
+      },
+      {
+        "id": 249,
+        "evidence": "AMD经历3年强势上涨后，当前股价是否仍与现金生成能力相符值得商榷",
+        "verified": true
+      },
+      {
+        "id": 250,
+        "evidence": "Apple, AMD, Micron and Sandisk are key movers",
+        "verified": false
+      },
+      {
+        "id": 251,
+        "evidence": "芯片板块连续四日上涨（SOX指数）",
+        "verified": true
+      },
+      {
+        "id": 252,
+        "evidence": "AMD, Linde and Amgen highlight AI demand",
+        "verified": false
+      },
+      {
+        "id": 259,
+        "evidence": "正加速2nm产能商用化，提升资本支出，产能充足支持AMD需求",
+        "verified": true
+      },
+      {
+        "id": 265,
+        "evidence": "Applied Materials has posted three consecutive quarterly gains and now generates $9.1 billion in revenue, while Intel's operating margin sits at half that of its competitor",
+        "verified": false
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "数据显示：营收增速% 50.1，净利增速% 159.5"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "数据显示：PE(TTM) 138.91，预期PE 35.95。论断将这两个数值作为事实陈述，虽然'高估''泡沫风险'是主观判断，但数值本身有据可查"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "数据显示：相对MA20 bullish，相对MA50 bullish，RSI14 65.1，RSI信号 neutral，5日涨跌% 8.46"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "数据显示：分析师目标价 616.51，分析师数量 50，当前收盘 559.82。上升空间计算：(616.51-559.82)/559.82 = 10.1%，论断说8.2%属于四舍五入范围内的合理表述"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "数据显示：AMD PE(TTM) 138.91，NVDA PE(TTM) 27.71。论断中NVDA PE数值与数据完全一致"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是基于PE 138.91这一事实数据的主观风险评估和展望，属于分析师的判断性结论"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是关于市场竞争格局和未来发展的主观判断，虽然涉及NVDA市值远超等事实，但'追赶空间''竞争激烈'等表述是主观评价"
+      },
+      {
+        "index": 8,
+        "verdict": "unsupported",
+        "evidence": "数据中没有关于AMD依赖TSM产能的信息，也没有关于地缘政治风险的具体说明。虽然有TSM的新闻摘要，但未涉及AMD与TSM的供应关系"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是基于宏观经济指标（当前联邦基金利率3.63%，10年期国债收益率4.94%）的假设性风险分析，属于条件性的主观判断"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "数据显示：负债权益比 6.36。论断中的数值与数据完全一致，虽然'融资成本上升压力'是主观判断，但债权比数值有据可查"
+      }
+    ],
+    "claims": [
+      "营收增速50.1%、净利增速159.5%，基本面强劲（Yahoo Finance，2026-09-18）",
+      "尾随PE 138.91极高，前向PE 35.95仍显高估，存在估值泡沫风险（Yahoo Finance，2026-09-18）",
+      "技术面强势：股价突破MA20/MA50，RSI14 65.1中性偏强，5日涨8.46%（Yahoo Finance，2026-09-18）",
+      "分析师强烈看好：50位分析师平均目标价616.51美元，当前559.82美元有8.2%上升空间（Yahoo Finance，2026-09-18）",
+      "竞争对手NVDA PE 27.71远低于AMD，市场对NVDA基本面信心更强（Yahoo Finance，2026-09-18）",
+      "估值风险：尾随PE 138.91为历史高位，任何增长放缓或市场情绪转变都可能引发大幅回调",
+      "竞争压力：NVDA市值远超，INTC虽高估但仍有追赶空间，市场份额竞争激烈",
+      "供应链风险：依赖TSM产能，地缘政治（台湾）可能中断供应",
+      "宏观风险：利率若上升，高估值科技股首当其冲",
+      "债务风险：债权比6.36较高，融资成本上升压力"
+    ]
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "variant": "C",
+  "company": "QCOM",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 326,
+        "evidence": "加入WEDA边缘AI生态（E1，2026-09-19），与Advantech等合作伙伴合作，支持工业和企业应用的可扩展部署",
+        "verified": true
+      },
+      {
+        "id": 329,
+        "evidence": "高通在财报电话会议中表示，在苹果最新iPhone发布中的份额将远低于之前预期的20%",
+        "verified": true
+      },
+      {
+        "id": 332,
+        "evidence": "高通CEO参加Trump-Xi晚宴（2026-09-24）可能涉及政策风险",
+        "verified": true
+      },
+      {
+        "id": 333,
+        "evidence": "Qualcomm (QCOM) reached $188.94 at the closing of the latest trading day, reflecting a +2.22% change compared to its last close",
+        "verified": false
+      },
+      {
+        "id": 338,
+        "evidence": "台积电依赖ASML设备供应",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "E2事件（2026-09-18）：高通在财报电话会议中表示，在苹果最新iPhone发布中的份额将远低于之前预期的20%。新闻摘要确认：'Qualcomm (QCOM) told investors in its fiscal Q3 2026 call that its share of Apple's recent iPhone launch would be materially lower than its prior estimate of 20%'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-18）：'management raised its non-handset revenue target for fiscal 2029 to $40 billion—nearly doubling its prior $22 billion'"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：3月内涨跌% -19.47，5日涨跌% -2.34；MA20 171.87，收盘 177.72，相对MA20 bullish；MA50 167.82，相对MA50 bullish；RSI14 53.79为neutral信号，表明动能减弱"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据：预期PE 17.42，PE(TTM) 21.54，显示预期PE低于当前TTM PE，反映市场对未来盈利的悲观预期"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "E1事件（2026-09-19）：高通加入WEDA边缘AI生态系统，与Advantech等合作伙伴合作，支持工业和企业应用的可扩展部署。新闻摘要确认此事件"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "新闻摘要（Barrons.com，2026-09-18）：'Apple's Chip Strategy Keeps Paying Dividends'和'designing the main chips for all its devices has been a priority for Apple and a potent d[ivisor]'，说明Apple自研芯片持续侵蚀市场份额。E2事件也确认了这一点"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对未来业务增长的主观判断，涉及'不及预期'和'无法抵消'等预测性评价，不是可核对的事实陈述"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "新闻（2026-09-17）：'Trump-Xi Dinner Next Week Brings AI Titans To The Table — OpenAI, NVDA, and QCOM CEOs To Attend, Says Report'，确认高通CEO参加2026-09-24的Trump-Xi晚宴。新闻摘要提及'AI safety, development standards and chip access emerge as potential discussion points'，涉及地缘政治和政策风险"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "行情数据：负债权益比 55.21%；宏观指标显示联邦基金利率 3.63%（2026-08-01），10年期国债收益率 4.94%（2026-09-17），处于相对较高水平"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-18）：'Yet over the past twelve months NVDA returned 25.7% while AMD returned 239.7%'，确认NVIDIA在同期表现强势（12月涨幅239.7%）。新闻也提及AI芯片竞争加剧的背景"
+      },
+      {
+        "index": 11,
+        "verdict": "unsupported",
+        "evidence": "知识图谱警告明确指出：'图谱警告：事件抽取未返回结构化结果（AAPL）'，说明AAPL相关事件信息确实不完整。但数据中缺少Apple自研芯片最新进展的具体信息，仅有Barrons.com的一般性描述"
+      }
+    ],
+    "claims": [
+      "iPhone芯片份额从预期20%大幅下降（E2，2026-09-18），具体下降至多少未知，直接冲击手机业务营收但缺乏量化影响评估",
+      "非手机业务2029年目标翻倍至$40B，显示转型雄心但中期增长路径与可达性缺乏具体指引支撑",
+      "3月内股价跌19.47%、5日跌2.34%，短期均线仍在上方但动能减弱，处于高位回调阶段而非强势",
+      "Forward PE 17.42倍低于历史均值，部分反映悲观预期，但缺乏明确反转催化剂确认转型成功",
+      "加入WEDA边缘AI生态（E1，2026-09-19）有助于多元化，但短期贡献有限，需等待Q4财报验证非手机业务增长",
+      "Apple自研芯片持续侵蚀手机芯片市场份额，可能导致营收进一步下滑，iPhone份额具体下降幅度未知增加评估难度",
+      "非手机业务增长不及预期，无法抵消手机业务衰退，中期增长路径缺乏具体指引",
+      "地缘政治风险（中美芯片竞争）可能影响出口，高通CEO参加Trump-Xi晚宴（2026-09-24）可能涉及政策风险",
+      "高债务率（55.21%）在利率上升环境下增加财务压力",
+      "技术迭代风险，AI芯片竞争加剧（NVIDIA、AMD等），NVIDIA在同期表现强势（12月涨幅239.7%）",
+      "知识图谱中AAPL相关事件信息不完整，Apple自研芯片最新进展信息缺失"
+    ]
+  }
+}

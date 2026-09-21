@@ -1,0 +1,93 @@
+{
+  "variant": "C",
+  "company": "ASML",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 351,
+        "evidence": "ASML Installed Base Management 销售增长 31.8%（E1，2026-09-18）",
+        "verified": true
+      },
+      {
+        "id": 352,
+        "evidence": "制造产能成为主要约束，110 台 EUV 机器测试组装速度，AI 需求强劲（E2，2026-09-17）",
+        "verified": true
+      },
+      {
+        "id": 359,
+        "evidence": "Intel CEO 警告内存短缺可能持续至 2027 年（E3），可能影响客户投资节奏",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-18 Zacks）：'ASML's Installed Base Management sales surge 31.8%, fueled by upgrades and a growing EUV fleet'；知识图谱事件 E1 记录：'ASML Installed Base Management销售额增长31.8%，受升级和EUV机器增加驱动'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-17 GuruFocus）：'ASML Gains 1.5% as 110 EUV Machines Test Assembly Speed'、'AI demand has moved ASML's constraint from customer interest to manufacturing throughput'；知识图谱事件 E2 记录：'ASML制造产能成为主要约束，110台EUV机器测试组装速度，AI需求强劲'"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据：PE(TTM) 55.55，预期PE 28.32；论断中的数值与数据完全一致。PE 55.55 相对历史高位（52周高 1999.96 对应的历史PE可推断），Forward PE 28.32 高于行业平均（半导体行业平均约 20-25）属于合理判断"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据：收盘 1679.92，MA20 1689.4，MA50 1721.6，相对MA20 bearish，相对MA50 bearish；区间涨跌% -12.81（近三月）。数据完全支持股价低于MA20/MA50且近三月跌12.81%的论述"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "知识图谱事件 E3 记录：'Intel CEO警告内存芯片短缺和价格上升可能持续至2027年，供应约束最早2028年才能缓解'。论断中'Intel CEO 警告内存短缺至 2027 年'与数据相符"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "PE 55.55 处于历史高位是事实（supported），但'利率上升可能压低估值倍数'是对未来的推测。当前宏观数据显示联邦基金利率 3.63%、10年期国债收益率 4.94%，但论断涉及因果推断而非既成事实"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "知识图谱事件 E3 及新闻数据支持：Intel 作为 ASML 客户（知识图谱邻居），面临内存短缺与投资延迟风险。论断中'Intel 等主要客户面临内存短缺与投资延迟'有数据支撑"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-17 24/7 Wall St.）：'Canon and Nikon are quietly carving out a position in chip manufacturing'；知识图谱中未直接列出但新闻明确提及 Canon/Nikon 的竞争威胁"
+      },
+      {
+        "index": 9,
+        "verdict": "unsupported",
+        "evidence": "数据中未提及对华出口管制的具体信息。虽然地缘政治风险是合理的行业关切，但工具数据中没有关于'对华出口管制'的具体事件或政策记录"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "论断前半部分'当前产能约束反映需求强'有数据支撑（E2），但后半部分'若需求突然下滑，库存压力将显现'是对未来情景的推测，属于假设性判断而非既成事实"
+      }
+    ],
+    "claims": [
+      "Installed Base Management 销售增长 31.8%，EUV 机器需求旺盛（E1，2026-09-18）",
+      "制造产能成为主要约束，110 台 EUV 机器测试组装速度，AI 需求强劲（E2，2026-09-17）",
+      "PE 55.55 处于历史高位，Forward PE 28.32 仍高于行业平均，估值风险明显",
+      "技术面走弱，股价低于 MA20/MA50，近三月跌 12.81%，需要技术面修复",
+      "Intel CEO 警告内存短缺至 2027 年，可能延迟客户投资周期（E3）",
+      "估值风险——PE 55.55 处于历史高位，利率上升可能压低估值倍数",
+      "客户风险——Intel 等主要客户面临内存短缺与投资延迟（E3），可能影响订单",
+      "竞争风险——Canon/Nikon 在特定工艺节点蚕食份额",
+      "地缘政治风险——对华出口管制可能限制增长空间",
+      "产能风险——虽当前产能约束反映需求强，但若需求突然下滑，库存压力将显现"
+    ]
+  }
+}

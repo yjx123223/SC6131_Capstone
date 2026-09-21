@@ -1,0 +1,99 @@
+{
+  "variant": "A",
+  "company": "ORCL",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 367,
+        "evidence": "Jim Cramer在推特认为股价强势是\"正面信号\"",
+        "verified": true
+      },
+      {
+        "id": 368,
+        "evidence": "Business Insider报道CEO Clay Magouyrk在内部会议承认公司在生成式AI应用上的困难，导致股价当日下跌3.4%",
+        "verified": true
+      },
+      {
+        "id": 370,
+        "evidence": "GuruFocus评论\"Oracle Slides 3.4% as Buy Call Meets a Capital Burden\"",
+        "verified": true
+      },
+      {
+        "id": 371,
+        "evidence": "Oracle is sliding hard on a day when its cloud rivals are barely flinching",
+        "verified": true
+      }
+    ],
+    "dropped": [],
+    "repaired": "数组被返回成字符串且 JSON 非法，正则抽出 4 项"
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "基本面数据来自10-K(2026-06-22，报告期2026-05-31)：营收增速29.6%、净利润增速54.5%、ROE 41.19%。数据截至2026-05-31，至2026-09-18确实已4个月。CEO AI应用困难的报道来自2026-09-18 Business Insider新闻。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "2026-09-18 StockStory新闻摘要：'Shares of enterprise software giant Oracle (NYSE:ORCL) fell 3.4% in the afternoon session after Business Insider reported that co-CEO Clay Magouyrk stated during an internal town hall that the company previously struggled to make generative artificial intelligence useful for its own staff'。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "技术面数据：收盘147.61，MA20 149.41（股价跌破MA20），MA50 141.0（股价在MA50上方），相对MA20 bearish，相对MA50 bullish。近10日收盘范围：最高158.78（2026-09-04），最低140.35（2026-09-15），波动幅度$140.35-$158.78。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "基本面数据：负债权益比(D/E) 251.72%，自由现金流-45853626368（约-$458.5亿）。营业收入71776002048（约$717.76亿），自由现金流占营收比例约-64%。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标：联邦基金利率3.63%（2026-08-01），VIX 15.44（2026-09-17）。2026-09-18 24/7 Wall St.新闻摘要：'Oracle is sliding hard on a day when its cloud rivals are barely flinching, and the reason behind that split tells investors something important about where the real pressure on ORCL stock is coming from'，说明问题在公司层面而非宏观层面。"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "2026-09-18 Business Insider报道（通过StockStory摘要）：CEO Clay Magouyrk承认公司在AI应用上存在困难。这是对AI战略不确定性的直接证据。"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "基本面数据来自10-K(2026-06-22，报告期2026-05-31)：营收增速29.6%、净利增速54.5%。数据截至2026-05-31，至2026-09-18已4个月陈旧。"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "基本面数据：负债权益比251.72%，自由现金流-45853626368（约-$458.5亿）。"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "技术面数据：股价147.61跌破MA20 149.41。2026-09-18 StockStory新闻：'fell 3.4% in the afternoon session'。MA50支撑位141.0。"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "2026-09-18 24/7 Wall St.新闻摘要：'Oracle is sliding hard on a day when its cloud rivals are barely flinching'，表明云竞争对手表现更好，问题在公司层面而非宏观层面。"
+      }
+    ],
+    "claims": [
+      "基本面数据强劲但已陈旧：营收增速29.6%、净利润增速54.5%、ROE 41.19%（数据截至2026-05-31，已4个月），而最新AI战略疑虑（2026-09-18）可能预示增长放缓",
+      "CEO承认AI应用困难导致市场负面反应：2026-09-18 Business Insider报道CEO Clay Magouyrk承认AI应用困难，当日股价下跌3.4%，市场对AI战略存疑",
+      "技术面短期看跌中期不确定：股价$147.61跌破MA20（$149.41）处于看跌信号，但仍在MA50（$141.00）上方，近10日剧烈波动（$140.35-$158.78）反映市场情绪不稳定",
+      "高杠杆融资模式风险：债务率D/E 251.72%、自由现金流-$458.5亿（相当于营收的64%），融资压力大",
+      "宏观友好但不足以支撑相对表现：联邦基金利率3.63%、VIX 15.44低位，但Oracle相对云竞争对手表现差，说明问题在公司层面而非宏观层面（24/7 Wall St., 2026-09-18）",
+      "AI战略不确定性——CEO于2026-09-18承认AI应用困难，可能影响云业务竞争力和未来增长可持续性，市场已开始重新评估",
+      "基本面数据时效性风险——当前强劲的基本面数据（营收增速29.6%、净利增速54.5%）基于截至2026-05-31的财报，已4个月陈旧，可能无法反映最新AI战略困难对业绩的影响",
+      "高杠杆风险——D/E 251.72%、自由现金流为负$458.5亿，融资压力大，若增长放缓将加重财务压力",
+      "技术面短期看跌——股价跌破MA20，近期单日跌幅3.4%，可能继续回调至MA50支撑位$141附近",
+      "相对表现风险——云竞争对手表现更好，说明问题在公司层面而非宏观层面，可能面临市场份额压力"
+    ]
+  }
+}

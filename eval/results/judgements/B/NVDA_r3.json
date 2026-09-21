@@ -1,0 +1,104 @@
+{
+  "variant": "B",
+  "company": "NVDA",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 158,
+        "evidence": "UBS预测2026年近1万亿美元、2027年1.4万亿美元",
+        "verified": true
+      },
+      {
+        "id": 159,
+        "evidence": "CEO Jensen Huang在Salesforce Dreamforce 2026获投资者认可",
+        "verified": true
+      },
+      {
+        "id": 160,
+        "evidence": "NVIDIA与SK Hynix发出内存价格压力信号",
+        "verified": true
+      },
+      {
+        "id": 165,
+        "evidence": "Taiwan Semiconductor Manufacturing (NYSE:TSM) moves its 2nm process into commercial production as part of a new advanced manufacturing push",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻[NVDA]中2026-09-19 Investing.com报道：'UBS now expects artificial intelligence capital expenditure to reach nearly $1 trillion in 2026 before climbing to around $1.4 trillion in 2027'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情[NVDA]基本面数据（截至2026-09-18）：营收增速% 105.9、净利增速% 127.8、ROE% 117.21、预期PE 14.17"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情[NVDA]基本面数据：分析师目标价 328.49、当前收盘 222.27，上升空间为(328.49-222.27)/222.27=47.8%；分析师数量 58"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情[ASML]技术面数据（截至2026-09-18）：区间涨跌% -12.81；新闻[ASML]中提及内存成本压力；新闻[NVDA]中2026-09-19 Investing.com报道提及'surging memory costs accounting for most of the increase'"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "行情[NVDA]基本面数据：PE(TTM) 27.71；宏观指标：10年期国债收益率(%) 4.94（2026-09-17）"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对未来估值变化的主观预测，涉及'可能快速收缩'等展望性判断，不是可核对的事实"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "行情[ASML]技术面数据：区间涨跌% -12.81；新闻[NVDA]中2026-09-19 Investing.com报道提及内存成本上升"
+      },
+      {
+        "index": 8,
+        "verdict": "unsupported",
+        "evidence": "数据中未提供AMZN、GOOGL、META、MSFT等大客户占NVDA收入的具体比例数据，无法验证'占比高'的说法"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "行情[TSM]基本面数据显示TSM存在，地缘政治风险是基于TSM在台湾的事实，虽未在数据中明确提及中美关系，但TSM台湾位置是可验证的事实"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对竞争态势和市场份额变化的主观判断，'可能被蚕食'是展望性表述，不是可核对的事实"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "行情[NVDA]基本面数据：净利增速% 127.8（超100%）、预期PE 14.17反映市场对增速放缓的预期"
+      }
+    ],
+    "claims": [
+      "AI资本支出预期强劲：UBS预测2026年近1万亿美元、2027年1.4万亿美元（2026-09-19），为NVDA长期需求提供支撑",
+      "基本面增速超预期：营收增速105.9%、净利润增速127.8%、ROE 117.21%，远超行业平均（2026-09-18），但Forward PE 14.17反映市场对增速放缓的预期",
+      "分析师看好：58位分析师平均目标价328.49美元，较当前222.27美元有47.8%上升空间，但实现需维持超100%增速",
+      "供应链成本压力信号：ASML技术面走弱（-12.81%）、内存价格上升可能压低毛利率，具体影响需等待Q3财报验证（2026-09-19）",
+      "估值与利率矛盾：Trailing PE 27.71处于历史高位，而10年期国债收益率4.94%相对较高，对高估值股票形成压力（2026-09-17）",
+      "估值风险：Trailing PE 27.71处于历史高位，若AI投资增速放缓或利率维持高位，估值可能快速收缩",
+      "供应链成本风险：ASML技术面走弱（-12.81%）、内存价格上升可能压低毛利率，具体影响需等待Q3财报验证",
+      "客户集中风险：AMZN、GOOGL、META、MSFT等大客户占比高，若其AI投资放缓，需求可能大幅下滑",
+      "地缘政治风险：TSM在台湾，中美关系紧张可能影响供应",
+      "竞争加剧：AMD、Intel等竞争对手加速追赶，市场份额可能被蚕食",
+      "增速可持续性风险：当前超100%的增速难以长期维持，Forward PE 14.17反映市场对增速放缓的预期"
+    ]
+  }
+}

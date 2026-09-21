@@ -46,3 +46,6 @@ env/
 
 # 实验产物（体积大、可重跑；快照与最终结果仍纳入版本控制以便复现）
 eval/runs/
+
+# 评审模型的原始返回缓存：与 eval/results/judgements 重复，只用于重跑时省钱
+eval/results/judge_cache.json

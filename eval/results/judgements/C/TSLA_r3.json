@@ -1,0 +1,84 @@
+{
+  "variant": "C",
+  "company": "TSLA",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 395,
+        "evidence": "Robotaxi/Cybercab推出进展顺利但需跨越监管障碍",
+        "verified": true
+      },
+      {
+        "id": 398,
+        "evidence": "Tesla准备进入欧洲电动卡车市场，推出欧洲版Semi产品",
+        "verified": true
+      },
+      {
+        "id": 408,
+        "evidence": "GM重新在新车中安装Apple CarPlay和Android Auto",
+        "verified": true
+      },
+      {
+        "id": 410,
+        "evidence": "丰田、通用、福特等车企联合呼吁特朗普政府维持对中国车企的市场禁入",
+        "verified": true
+      },
+      {
+        "id": 415,
+        "evidence": "GM重新在新车中安装Apple CarPlay和Android Auto",
+        "verified": true
+      },
+      {
+        "id": 417,
+        "evidence": "GM为2027年雪佛兰Silverado和GMC Sierra推出重新设计的软件体验",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示PE(TTM) 343.65，净利增速% -3.0。这两个数据直接支持论断中的'PE 343.65极高'和'盈利增速-3%转负'。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "知识图谱中E1事件（2026-09-19）记录：'Tesla Robotaxi/Cybercab推出进展顺利，但需跨越监管和运营障碍'。新闻摘要也确认：'The robotaxi/Cybercab rollout is on track, but investors need to be patient and understand there are regulatory and operational hurdles to cross.'"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "知识图谱中E2事件（2026-09-18）记录：'Tesla准备进入欧洲电动卡车市场，推出欧洲版Semi产品，拓展收入来源'。新闻摘要确认：'the company is preparing to enter the European electric truck market, marking another step in its efforts to diversify its revenue base'。论断中'需验证盈利贡献'是对未来的判断，属于合理的分析。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "知识图谱中E3、E5、E6事件均记录GM的相关行动：E3（2026-09-18）'GM决定重新在新车中安装Apple CarPlay和Android Auto'；E5（2026-09-18）'GM重新在新车中安装Apple CarPlay和Android Auto，回应消费者需求'；E6（2026-09-18）'GM为2027年雪佛兰Silverado和GMC Sierra推出重新设计的软件体验，屏幕超60英寸'。这些都支持论断中'GM重新支持CarPlay/Android Auto，削弱Tesla车机系统竞争力'。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：10年期国债收益率 4.94%（2026-09-17），CPI同比变化 3.71%（2026-08-01）。新闻摘要也确认：'An interest rate hike amid soaring energy costs and rising inflation concerns has weighed on the Dow'。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "该论断是对多项风险的综合评估和展望。其中涉及的具体事实（PE 343.65、盈利增速-3%、Robotaxi监管障碍、GM竞争、高利率环境）都有数据支持，但'任何盈利预期下调将引发大幅调整'、'中国车企禁入政策可能变化'等属于主观判断和展望，不是可直接核对的事实。"
+      }
+    ],
+    "claims": [
+      "PE 343.65极高，盈利增速-3%转负，估值与增长严重错配（市场数据，2026-09-18）",
+      "Robotaxi/Cybercab推出进展顺利但需跨越监管障碍，商业化时间表不确定（E1，2026-09-19）",
+      "欧洲Semi扩张积极，拓展新收入来源，但需验证盈利贡献（E2，2026-09-18）",
+      "竞争对手GM重新支持CarPlay/Android Auto，削弱Tesla车机系统竞争力（E3、E5、E6，2026-09-18）",
+      "10Y收益率4.94%、CPI 3.71%，高利率环境压制增长股估值（宏观数据，2026-09-17）",
+      "估值风险：PE 343.65极高，任何盈利预期下调将引发大幅调整。监管风险：Robotaxi商业化面临各地监管不确定性。竞争风险：GM等传统车企在软件体验上追赶，中国车企禁入政策可能变化。宏观风险：高利率环境持续压制增长股估值。盈利增速转负需关注"
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "variant": "B",
+  "company": "TSM",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 214,
+        "evidence": "股价 434.67 美元",
+        "verified": true
+      },
+      {
+        "id": 218,
+        "evidence": "2nm 工艺进入商业化阶段",
+        "verified": true
+      },
+      {
+        "id": 220,
+        "evidence": "MediaTek Dimensity 9600 Pro 采用 2nm，巩固工艺领先地位",
+        "verified": true
+      },
+      {
+        "id": 221,
+        "evidence": "MediaTek Dimensity 9600 Pro 采用 2nm，巩固工艺领先地位",
+        "verified": true
+      },
+      {
+        "id": 224,
+        "evidence": "Installed Base Management 销售增长 31.8%",
+        "verified": true
+      },
+      {
+        "id": 225,
+        "evidence": "EUV 产能扩张",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情[TSM]数据显示：营收增速% 36.0、净利增速% 77.4、ROE% 39.97，数据截至2026-09-18"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻[TSM]中Simply Wall St.文章标题：'Taiwan Semiconductor Manufacturing (TSM) Could Be 14% Overvalued As 2nm MediaTek Win Lands'，以及GuruFocus.com文章：'TSMC Gains 1.65% as 2-Nanometer Phones Leave the Lab'，确认MediaTek Dimensity 9600 Pro采用2nm工艺，数据截至2026-09-18"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：NVDA区间涨跌% 6.65（3个月）、AMD 20日涨跌% 19.25、AAPL区间涨跌% 13.27（3个月），数据截至2026-09-18"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情[TSM]数据显示：PE(TTM) 32.06、预期PE 19.83；新闻[TSM]中Simply Wall St.文章标题：'Taiwan Semiconductor Manufacturing (TSM) Could Be 14% Overvalued As 2nm MediaTek Win Lands'，指出可能被高估14%，数据截至2026-09-18"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：联邦基金利率 3.63%（2026-08-01）、CPI同比变化 3.71%（2026-08-01）、失业率 4.1%（2026-08-01）、VIX恐慌指数 15.44（2026-09-17）。论断准确指出宏观数据为8月初，近期可能有变化"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "行情[TSM]数据显示：PE(TTM) 32.06、预期PE 19.83；新闻[TSM]中Simply Wall St.文章指出TSM可能被高估14%，数据截至2026-09-18"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "关于台湾地位不确定性、美国对华芯片出口管制升级等地缘政治风险的论述，属于对未来可能性的主观判断和展望，不涉及可核对的历史事实或数据"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "关于2nm产能扩张需大额资本支出、若需求不及预期可能拖累利润率的论述，属于对未来可能情景的主观判断，不涉及已发生的可核对事实"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "关于三星、Intel等竞争对手加大先进工艺投资可能分流客户的论述，属于对竞争格局演变的主观判断和展望，不涉及已发生的具体事实"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "行情[TSM]数据显示：区间涨跌% -6.81（3个月），MA20 421.53，收盘434.67相对MA20 bullish，数据截至2026-09-18"
+      }
+    ],
+    "claims": [
+      "基本面强劲：营收增长 36%、净利润增长 77.4%、ROE 39.97%（数据截至 2026-09-18）",
+      "2nm 工艺商业化：MediaTek Dimensity 9600 Pro 采用 2nm，巩固工艺领先地位（新闻截至 2026-09-18）",
+      "客户需求旺盛：NVDA 3 个月回报率 +6.65%、AMD 近 20 日回报率 +19.25%、AAPL 3 个月回报率 +13.27%（数据截至 2026-09-18）",
+      "估值存在争议：Forward PE 19.83 相对合理，但 TTM PE 32.06 处于高位；Simply Wall St. 指出可能被高估 14%（数据截至 2026-09-18）",
+      "宏观环境温和但数据已过期：联邦基金利率 3.63%、CPI 3.71%、失业率 4.1%、VIX 15.44，但宏观数据为 8 月初，近期可能有变化（数据截至 2026-08-01 至 2026-09-17）",
+      "估值风险：TTM PE 32.06 处于高位，Forward PE 19.83 虽相对合理但仍需增长支撑。Simply Wall St. 指出 TSM 可能被高估 14%，若增长放缓或宏观环境恶化，估值承压风险显著",
+      "地缘政治风险：台湾地位不确定性、美国对华芯片出口管制可能升级，影响客户与供应链，短期内客户需求强劲可能抵消，但长期不确定性仍存",
+      "产能投资风险：2nm 产能扩张需大额资本支出，若需求不及预期，可能拖累利润率",
+      "竞争风险：三星、Intel 等竞争对手加大先进工艺投资，可能分流客户",
+      "技术面风险：3 个月区间下跌 6.81%，中期承压，需观察 MA20 支撑能否维持"
+    ]
+  }
+}

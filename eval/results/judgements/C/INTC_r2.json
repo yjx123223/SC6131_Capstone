@@ -1,0 +1,109 @@
+{
+  "variant": "C",
+  "company": "INTC",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 281,
+        "evidence": "UBS预测2026年AI资本支出近1万亿美元、2027年达1.4万亿美元",
+        "verified": true
+      },
+      {
+        "id": 282,
+        "evidence": "Intel CEO警告内存芯片短缺和价格上升可能延续至2027年",
+        "verified": true
+      },
+      {
+        "id": 286,
+        "evidence": "Intel与SK Hynix探索合作机会",
+        "verified": true
+      },
+      {
+        "id": 287,
+        "evidence": "Intel Extends Memory Scarcity Into 2027",
+        "verified": true
+      },
+      {
+        "id": 280,
+        "evidence": "Applied Materials营收增速与利润率均超Intel",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：营收增速25.4%、净利润-11288999936美元（约-112.89亿美元）、净利率-19.79%、ROE-10.71%，均与论断一致。10-Q报告期2026-06-27，数据截至2026-09-18，时间差约2.5个月。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：Forward PE 52.67、分析师目标价116.37美元、当前收盘价108.6美元（上升幅度(116.37-108.6)/108.6=7.1%）、分析师评级buy、分析师数量43位。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "知识图谱事件E1（2026-09-19）记录：'Intel CEO警告内存芯片短缺和价格上升可能持续到2027年'；Simply Wall St.新闻摘要：'Micron Technology和Intel CEOs警告内存芯片短缺和更高价格可能持续到2027年。Micron领导层表示供应约束可能仅从2028年起开始有意义地缓解。Intel CEO呼应了这一前景。'"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：收盘108.6美元、MA20 95.87、MA50 97.09（均低于收盘价，相对MA20/MA50 bullish）、RSI14 61.06（中性偏强）、20日涨跌17.88%、区间涨跌-22.95%、年化波动率61.04%、Beta 2.23，均与论断一致。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "知识图谱事件E2（2026-09-18）记录：'Intel与SK Hynix探索合作机会'；Zacks新闻摘要：'Intel和SK Hynix是本周最热的半导体股票，投资者对两家公司探索合作机会的报告做出反应。'Motley Fool新闻摘要：'Applied Materials已连续三个季度实现增长，现在营收为91亿美元，而Intel的营业利润率仅为其竞争对手的一半。'论断中'合作细节未明'和'无法量化缓解程度'属于合理的信息缺失描述。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对股价走势的主观预测和判断，涉及'可能导致股价大幅回调'等展望性表述，不是可核对的事实陈述。"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "Simply Wall St.新闻摘要确认：'内存芯片短缺和更高价格可能持续到2027年'，'供应约束可能仅从2028年起开始有意义地缓解'。这与论断'内存芯片短缺延至2027年推高成本，压低利润，供应约束可能仅从2028年起缓解'一致。"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "知识图谱显示AMD和NVDA为竞争对手；Motley Fool新闻摘要显示'Applied Materials的营业利润率是Intel的两倍'，表明竞争对手表现更强。Insider Monkey新闻摘要提及'Intel与NVIDIA的估值对比'，反映竞争加剧。"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "论断'Foundry业务商业化风险高，需大额资本投入，客户订单获取存疑'是对业务前景的主观评估。TheStreet新闻摘要提及'分析师认为如果foundry计划获得合适客户，Intel股票可能在两年内大幅上涨'，但这是分析师观点而非事实陈述。"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：负债权益比49.0、自由现金流4866375168美元（约48.66亿美元，相对净利润-112.89亿美元的亏损规模，反映现金流压力）。"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "知识图谱显示ASML为供应商；事件E1涉及供应链风险。论断'地缘政治风险影响ASML等关键供应商'基于知识图谱中ASML作为供应商的关系，以及供应链相关事件的记录。"
+      }
+    ],
+    "claims": [
+      "营收增长25.4%但净利润亏损112.89亿美元、利润率-19.79%、ROE-10.71%，增长未转化为盈利（Yahoo Finance，2026-09-18，基于10-Q报告期2026-06-27，存在2.5个月滞后）",
+      "Forward PE 52.67远高于历史均值，分析师目标价116.37美元（较当前108.6美元上升7.1%）、43位分析师'买入'评级，但分析师假设基础未明确（Yahoo Finance，2026-09-18）",
+      "Intel CEO警告内存芯片短缺和价格上升可能延续至2027年，与Micron CEO观点一致，供应约束可能仅从2028年起缓解（Simply Wall St.，2026-09-19，E1）",
+      "技术面短期强势：价格108.6美元高于MA20/MA50、RSI61.06中性偏强、近20日涨17.88%，但3个月跌幅22.95%、年化波动率61.04%、Beta 2.23，存在高位回调风险（Yahoo Finance，2026-09-18）",
+      "与SK Hynix探索合作机会，显示战略调整应对供应链压力，但合作细节未明，无法量化缓解程度（Zacks，2026-09-18，E2）；Applied Materials营收增速与利润率均超Intel，竞争力相对较弱（Motley Fool，2026-09-19）",
+      "持续亏损（净利润-112.89亿美元）与高估值（Forward PE 52.67）的矛盾可能导致股价大幅回调，特别是当宏观流动性收紧时",
+      "内存芯片短缺延至2027年推高成本，压低利润，供应约束可能仅从2028年起缓解",
+      "与AMD/NVDA竞争加剧，市场份额压力，Applied Materials等竞争对手表现更强",
+      "Foundry业务商业化风险高，需大额资本投入，客户订单获取存疑",
+      "高债务率（债权比49.0）与负现金流压力，融资成本高企",
+      "地缘政治风险影响ASML等关键供应商，供应链长期不确定性"
+    ]
+  }
+}

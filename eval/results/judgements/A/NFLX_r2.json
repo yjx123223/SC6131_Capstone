@@ -1,0 +1,120 @@
+{
+  "variant": "A",
+  "company": "NFLX",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 423,
+        "evidence": "管理层$27B股票回购计划（占公司8%）显示长期信心",
+        "verified": true
+      },
+      {
+        "id": 424,
+        "evidence": "Wells Fargo于9月18日下调评级至Underweight，目标价$57",
+        "verified": true
+      },
+      {
+        "id": 425,
+        "evidence": "Wells Fargo于9月18日下调评级至Underweight，目标价$57，理由是用户参与度趋势令人担忧",
+        "verified": true
+      },
+      {
+        "id": 426,
+        "evidence": "Wells Fargo 9月18日下调（Equal Weight→Underweight，$80→$57目标价）成为主导新闻，理由是用户参与度趋势\"令人担忧\"",
+        "verified": true
+      },
+      {
+        "id": 427,
+        "evidence": "Wells Fargo 9月18日下调（Equal Weight→Underweight，$80→$57目标价）",
+        "verified": true
+      },
+      {
+        "id": 428,
+        "evidence": "Wells Fargo于9月18日下调评级至Underweight，目标价$57",
+        "verified": true
+      },
+      {
+        "id": 430,
+        "evidence": "Wells Fargo 9月18日下调（Equal Weight→Underweight，$80→$57目标价）成为主导新闻",
+        "verified": true
+      }
+    ],
+    "dropped": [],
+    "repaired": "数组被返回成字符串且 JSON 非法，正则抽出 7 项"
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻数据显示：2026-09-18 StockStory报道'Wells Fargo analyst Steven Cahall downgraded the stock from Equal Weight to Underweight and lowered his price target to $57'，Motley Fool和Investopedia等媒体均报道此事，理由为'user engagement trends'（用户参与度趋势）和'weaker engagement'（参与度下降）"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "技术面数据：收盘价71.79，MA20为78.92，MA50为75.72，均低于两条均线；5日涨跌-7.25%，20日涨跌-10.42%；RSI14为36.59（超卖区间通常<30，此处接近超卖但未完全进入）；技术面评级'相对MA20 bearish，相对MA50 bearish'"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "基本面数据：Forward PE 18.8，ROE 49.54%，自由现金流25387552768（约254亿）；分析师目标价93.88，新闻中提及Wells Fargo目标价$57，分歧幅度为(93.88-57)/57=64.7%≈65%"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻数据（2026-09-19 Motley Fool）：'Netflix Has $27 Billion Left to Buy Back Its Own Stock -- About 8% of the Whole Company'，市值298929225728（约2989亿），27B占比约9%，与'占公司8%'基本相符"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观数据：VIX 15.44（2026-09-17），失业率4.1%（2026-08-01），CPI 3.71%（2026-08-01），均显示宏观环境相对稳定；论断正确指出关键参与度具体数据（DAU、观看时长等）缺失，工具数据中确实未包含这些指标，财报预计10月发布符合Q3财报发布时间"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对参与度风险的主观判断和展望，虽然新闻中提及'engagement trends'和'engagement slowdown'，但具体参与度数据缺失，无法量化验证'持续下滑'的程度，属于基于不完整信息的推断性判断"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对内容成本压力和竞争影响的主观判断，虽然新闻中提及'content concerns'和'hit-making'问题，但工具数据中未提供具体的内容成本数据或竞争对手对比数据，属于分析性推断而非可核对的事实"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对宏观衰退风险的主观判断和展望，虽然提及当前VIX 15.44温和，但'宏观衰退风险可能压低消费支出'是假设性推断，不是已发生的事实"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "分析师目标价数据：最高93.88，最低57（Wells Fargo），分歧幅度(93.88-57)/57=64.7%≈65%；分析师数量45人，评级为buy，反映市场对Netflix前景的高度分歧"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对技术面走势的主观判断，虽然数据显示下跌趋势（5日-7.25%，20日-10.42%），但'可能吸引止损，加剧下行压力'是对未来走势的推断性判断，不是已发生的事实"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "基本面数据：Beta 1.53，高于市场基准值1.0，表明该股在市场下跌时风险放大的特性"
+      }
+    ],
+    "claims": [
+      "Wells Fargo 9月18日下调至Underweight，目标价$57，理由是用户参与度趋势令人担忧（新闻来源：StockStory、Motley Fool、Investopedia等，2026-09-18）",
+      "股价$71.79跌破MA20（$78.92）和MA50（$75.72），5日跌7.25%、20日跌10.42%，RSI14=36.59超卖但缺乏反弹确认，技术面弱势（市场数据截至2026-09-18）",
+      "Forward PE 18.8、ROE 49.54%、自由现金流254亿，基本面仍强但与参与度担忧形成冲突，分析师目标价分歧巨大（$57-$93.88，分歧幅度65%）（市场数据）",
+      "管理层$27B股票回购计划（占公司8%）显示长期信心，但未能抵消短期参与度疑虑（新闻来源：Motley Fool，2026-09-19）",
+      "宏观环境稳定（VIX 15.44、失业率4.1%、CPI 3.71%），不构成系统性压力，但不足以支撑Netflix特定参与度风险；关键参与度具体数据（DAU、观看时长等）缺失，待Q3财报确认（宏观数据截至2026-09-17，财报预计10月发布）",
+      "用户参与度持续下滑，威胁订阅增长与广告收入，但具体参与度指标缺失，风险程度待Q3财报确认",
+      "内容成本压力与竞争加剧，可能压低利润率",
+      "宏观衰退风险（虽当前VIX 15.44温和）可能压低消费支出",
+      "分析师目标价分歧大（$57-$93.88），反映高度不确定性，共识调整可能引发股价波动",
+      "技术面下跌趋势未见反转，可能吸引止损，加剧下行压力",
+      "Beta 1.53高于市场，在市场下跌时风险放大"
+    ]
+  }
+}

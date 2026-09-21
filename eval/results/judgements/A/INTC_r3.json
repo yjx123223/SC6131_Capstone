@@ -1,0 +1,98 @@
+{
+  "variant": "A",
+  "company": "INTC",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 280,
+        "evidence": "Applied Materials运营利润率为Intel两倍，竞争力相对弱化",
+        "verified": true
+      },
+      {
+        "id": 281,
+        "evidence": "UBS预期2027年AI capex达$1.4tn",
+        "verified": true
+      },
+      {
+        "id": 282,
+        "evidence": "内存短缺延续至2027年",
+        "verified": true
+      },
+      {
+        "id": 286,
+        "evidence": "Intel与SK Hynix合作传言支撑股价",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "数据显示Intel Forward P/E为52.67，NVIDIA为23.58。数据中Insider Monkey新闻（2026-09-18）也提到'forward P/E ratio of 54.64 is also higher than NVIDIA's 23.58'（略有差异但在合理范围内）。52.67确实远高于23.58。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "数据显示：20日涨跌% 17.88，区间涨跌% -22.95（3个月），20日年化波动率% 61.04。论断中的三个数值完全对应。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "数据显示：净利润 -11288999936（约-112.9亿美元），净利率% -19.79，ROE% -10.71。论断中的三个数值完全对应。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "Investing.com新闻（2026-09-19）明确指出：'UBS now expects artificial intelligence capital expenditure to reach nearly $1 trillion in 2026 before climbing to around $1.4 trillion by 2027'。论断中'UBS预期2027年AI capex达$1.4tn'与数据相符。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "Motley Fool新闻（2026-09-19）明确指出：'Intel's operating margin sits at half that of its competitor'（指Applied Materials）。这表示Applied Materials运营利润率为Intel的两倍。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对未来风险的主观判断和展望，涉及'泡沫破裂风险'和'大幅回调'的预测，属于分析性观点而非可核对的事实。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对竞争态势和foundry计划前景的主观判断。虽然数据支持'Applied Materials运营效率更高'的事实，但'能否获得足够客户存疑'是纯粹的主观推测，不是可核对的事实。"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "数据显示负债权益比 49.0，即负债率49.0%。"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "数据显示20日年化波动率% 61.04。"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对未来盈利改善的主观判断。虽然数据显示当前净利润为负，但'盈利改善不确定'和'foundry业务商业化进展缓慢'是对未来的推测和评价，不是可核对的既有事实。"
+      }
+    ],
+    "claims": [
+      "Forward P/E 52.67远高于NVIDIA 23.58，估值风险突出（Yahoo Finance, 2026-09-18）",
+      "近20日涨17.88%，技术面强势反弹，但3个月内跌22.95%，高波动率61.04%（Yahoo Finance, 2026-09-18）",
+      "净利润-112.9亿美元，利润率-19.79%，ROE -10.71%，基本面严重受损（Yahoo Finance, 2026-09-18）",
+      "AI芯片需求旺盛，UBS预期2027年AI capex达$1.4tn，foundry计划前景看好（Investing.com, 2026-09-19）",
+      "Applied Materials运营利润率为Intel两倍，竞争力相对弱化（Motley Fool, 2026-09-19）",
+      "估值泡沫破裂风险——Forward P/E 52.67远高于NVIDIA，任何盈利预期下调将引发大幅回调",
+      "竞争加剧——Applied Materials等对手运营效率更高，Intel foundry计划能否获得足够客户存疑",
+      "高负债率49.0%限制灵活性",
+      "高波动率61.04%提示短期风险",
+      "盈利改善不确定——当前亏损，foundry业务商业化进展缓慢"
+    ]
+  }
+}

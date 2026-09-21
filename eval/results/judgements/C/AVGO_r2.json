@@ -1,0 +1,82 @@
+{
+  "variant": "C",
+  "company": "AVGO",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 303,
+        "evidence": "Broadcom收入在两年内翻倍，增长速度超过Applied Materials",
+        "verified": true
+      },
+      {
+        "id": 304,
+        "evidence": "Broadcom作为少数能设计定制AI芯片的公司，订单充足，需求旺盛",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 85.5，净利增速% 215.3"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-18 Insider Monkey）：'It is among the few firms capable of designing custom AI chips that big technology firms rely on to supplement NVIDIA's high-power and expensive AI chips'，表明订单充足且仅次于NVIDIA"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘 357.61，MA20 359.32，MA50 379.76，相对MA20 bearish，相对MA50 bearish；区间涨跌% -8.8（3个月）"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示：PE(TTM) 44.26，预期PE 18.45，分析师目标价 531.85"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：VIX 15.44（2026-09-17），联邦基金利率 3.63%（2026-08-01），10年期国债收益率 4.94%（2026-09-17），均处于相对温和水平"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "'估值风险'和'若增长预期下修将面临估值压缩'属于主观风险评估和展望，不涉及可核对的事实"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "'技术面风险'和'短期可能继续下行'属于主观判断和展望，虽然基于可核对的技术面数据（股价跌破MA20/MA50），但对未来走势的预测是主观判断"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "知识图谱显示：TSM为供应商（邻居节点），表明依赖TSM产能；地缘政治不确定性是行业共识但数据中未明确体现该公司特定风险"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "'竞争风险'和'市场格局可能变化'属于主观判断，虽然NVIDIA、AMD等竞争对手存在，但'可能变化'是展望性陈述"
+      }
+    ],
+    "claims": [
+      "收入同比增长85.5%、EPS增长215.3%，基本面强劲（Yahoo Finance，2026-09-18）",
+      "AI芯片订单充足，仅次于NVIDIA（Insider Monkey，2026-09-18）",
+      "股价跌破MA20/MA50，技术面走弱，近3月跌幅8.8%（Yahoo Finance，2026-09-18）",
+      "PE 44.26偏高，但Forward PE 18.45合理，分析师目标价531.85美元（Yahoo Finance，2026-09-18）",
+      "宏观环境温和，VIX 15.44低位，利率稳定，对科技股有利（FRED，2026-09-17）",
+      "估值风险——PE 44.26处于历史高位，若增长预期下修将面临估值压缩",
+      "技术面风险——股价跌破MA20/MA50，短期可能继续下行",
+      "供应链风险——依赖TSM产能，地缘政治不确定性",
+      "竞争风险——NVIDIA、AMD等竞争加剧，AI芯片市场格局可能变化"
+    ]
+  }
+}

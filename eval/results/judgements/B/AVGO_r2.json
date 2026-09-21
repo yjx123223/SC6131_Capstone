@@ -1,0 +1,125 @@
+{
+  "variant": "B",
+  "company": "AVGO",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 303,
+        "evidence": "Motley Fool指出AVGO营收增速快于Applied Materials的\"modest gains\"",
+        "verified": true
+      },
+      {
+        "id": 304,
+        "evidence": "Jim Cramer强调AVGO订单量仅次于NVIDIA，突出其在定制AI芯片设计中的竞争优势",
+        "verified": true
+      },
+      {
+        "id": 309,
+        "evidence": "新闻《Nvidia's Not Going to Be King for Life》提示\"betting on the current one at peak valuation is how investors get caught\"",
+        "verified": true
+      },
+      {
+        "id": 315,
+        "evidence": "TSM正加速2nm产能投资",
+        "verified": true
+      },
+      {
+        "id": 318,
+        "evidence": "新CEO上任有利于长期战略调整",
+        "verified": true
+      },
+      {
+        "id": 323,
+        "evidence": "ASML's Installed Base Management sales surge 31.8%, fueled by upgrades and a growing EUV fleet",
+        "verified": false
+      },
+      {
+        "id": 324,
+        "evidence": "110 EUV Machines Test Assembly Speed",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 85.5，净利增速% 215.3"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：分析师目标价 531.85，现价 357.61，上升空间 (531.85-357.61)/357.61=48.4%≈48%；分析师评级 strong_buy，分析师数量 47"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "新闻2026-09-18 Insider Monkey: 'Jim Cramer Said This AI Firm Has More Orders Than \"Almost Anybody\" Other Than NVIDIA'，摘要提及'For custom chip designer Broadcom Inc. (NASDAQ:AVGO)...It is among the few firms capable of designing custom AI chips'"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "技术面数据显示：收盘 357.61，MA20 359.32，MA50 379.76，相对MA20 bearish，相对MA50 bearish；近10日收盘从2026-09-14的344.72反弹至2026-09-18的357.61"
+      },
+      {
+        "index": 5,
+        "verdict": "judgment",
+        "evidence": "这是对市场担忧的描述，属于主观判断而非可核对的事实陈述"
+      },
+      {
+        "index": 6,
+        "verdict": "unsupported",
+        "evidence": "SEC申报数据显示有10-Q(2026-09-10，报告期2026-08-02)，但题目中未提供该10-Q的具体内容，无法验证'关键财务指引数据缺失'的说法"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对市场风险的主观分析和展望，涉及'可持续性不确定'、'可能引发调整'等推断性表述，不是可核对的事实"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "行情数据显示：负债权益比 59.6%"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对潜在地缘政治风险的主观判断，不涉及可核对的具体事实"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "技术面数据显示：相对MA20 bearish，相对MA50 bearish，RSI14 45.46处于中性偏弱"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "这是对竞争格局的主观判断，属于推断性表述而非可核对的事实"
+      },
+      {
+        "index": 12,
+        "verdict": "judgment",
+        "evidence": "这是对产业链传导假设的主观评价，明确指出'基于推断而非确定事实'，属于分析性判断"
+      }
+    ],
+    "claims": [
+      "营收增速85.5%、净利增速215.3%，AI周期受益明确（市场数据2026-09-18）",
+      "分析师目标价$531.85，较现价$357.61有48%上升空间，47家分析师强烈买入（市场数据2026-09-18）",
+      "Jim Cramer称AVGO订单量仅次于NVIDIA，定制AI芯片设计竞争力突出（新闻2026-09-18）",
+      "技术面短期走弱（价格低于MA20/MA50），但近期反弹显示支撑有效，需等待MA50突破确认（技术数据2026-09-18）",
+      "AI芯片需求可持续性存疑，市场担忧高估值调整风险（新闻2026-09-18）",
+      "关键财务指引数据缺失，建议等待10-Q详细披露后重新评估（SEC申报2026-09-10）",
+      "AI芯片需求可持续性不确定，市场对NVIDIA等龙头估值过高可能引发调整，AVGO作为受益者也面临周期转移风险",
+      "AVGO债务率59.6%偏高，利率上升将增加融资成本",
+      "地缘政治风险（台湾、中国）可能冲击供应链",
+      "技术面仍在下行，需等待确认反弹",
+      "竞争加剧，AMD、NVIDIA等可能蚕食市场份额",
+      "产业链传导假设基于推断而非确定事实，实际供应链稳定性需持续监测"
+    ]
+  }
+}

@@ -1,0 +1,115 @@
+{
+  "variant": "B",
+  "company": "TSLA",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 395,
+        "evidence": "Robotaxi 推出进展顺利但面临监管与运营障碍（Motley Fool，2026-09-19），提示商业化时间表存在重大不确定性",
+        "verified": true
+      },
+      {
+        "id": 396,
+        "evidence": "EV 市场整体销售放缓（8 月同比下降 46.9%，Cox Automotive，2026-09-19）",
+        "verified": true
+      },
+      {
+        "id": 398,
+        "evidence": "Tesla 欧洲电动卡车扩张（Insider Monkey，2026-09-18）为新增长点",
+        "verified": true
+      },
+      {
+        "id": 408,
+        "evidence": "竞争对手 GM 重新支持 Apple CarPlay/Android Auto（2026-09-18）显示消费者对传统车企软件方案的需求",
+        "verified": true
+      },
+      {
+        "id": 410,
+        "evidence": "F/GM 与 Toyota 联合呼吁特朗普政府维持对中国车企的禁令（MT Newswires，2026-09-18）",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "TSLA行情数据显示：营收增速% 25.5、自由现金流 4835999744（约48.4B）、净利增速% -3.0、ROE% 4.67，均与论断数值一致。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "TSLA行情数据显示：PE(TTM) 343.65、预期PE 165.76；GM行情数据显示：PE(TTM) 36.7、预期PE 5.48；F行情数据显示：预期PE 6.76。论断中GM PE 36.7、F Forward PE 6.76与数据完全匹配。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：10年期国债收益率 4.94%（2026-09-17）、CPI同比变化 3.71%（2026-08-01），与论断数值完全一致。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻[TSLA]中2026-09-19 Motley Fool报道：'The robotaxi/Cybercab rollout is on track, but investors need to be patient and understand there are regulatory and operational hurdles to cross.'，与论断内容相符。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻[TSLA]中2026-09-19 Stocktwits报道：'Dealers sold an estimated 78,895 new battery-electric vehicles last month, up 2.5% from July yet down 46.9% from August 2025, Cox Automotive noted.'，与论断中EV市场销售同比下降46.9%（8月）完全一致。"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "TSLA行情数据显示：区间涨跌% -10.07（3个月），相对MA20 bullish、相对MA50 bullish，收盘364.27在MA20(359.6)和MA50(350.25)上方。论断中'股价过去3月下跌10.07%'与'短期在均线上方'均有数据支持。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "论断中'PE 343.65极高'、'难以通过基本面增长合理化'、'下行空间可能达20-30%'属于主观评估和预测，不是可核对的事实陈述。"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "TSLA行情数据显示：净利增速% -3.0、ROE% 4.67，与论断中'盈利增速已转负（-3.0%）、ROE低迷（4.67%）'完全一致。"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "新闻[TSLA]中2026-09-19 Motley Fool报道：'The robotaxi/Cybercab rollout is on track, but investors need to be patient and understand there are regulatory and operational hurdles to cross.'，支持Robotaxi面临监管与运营障碍的论述。"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：10年期国债收益率 4.94%（2026-09-17）、CPI同比变化 3.71%（2026-08-01），与论断中'高利率环境（10Y 4.94%）与持续高通胀（CPI 3.71%）'完全一致。"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "新闻[TSLA]中2026-09-19 Stocktwits报道：'Dealers sold an estimated 78,895 new battery-electric vehicles last month, up 2.5% from July yet down 46.9% from August 2025, Cox Automotive noted.'，与论断中'EV市场销售同比下降46.9%（8月）'完全一致。"
+      },
+      {
+        "index": 12,
+        "verdict": "supported",
+        "evidence": "新闻[F]、[GM]中2026-09-18 MT Newswires和Reuters报道：'Toyota Motor (TM), General Motors (GM), and Ford Motor (F) have joined a coalition of automobile makers...urging President Donald Trump to keep Chinese automakers out of the US market'，支持贸易保护主义升温和F/GM/Toyota呼吁维持对中国车企禁令的论述。论断中'具体影响幅度缺乏定量数据'的表述也准确反映了数据状况。"
+      }
+    ],
+    "claims": [
+      "营收增速 25.5% 与自由现金流 $48.4B 显示强劲现金生成能力，但盈利增速转负 -3.0%、ROE 仅 4.67%，增长动能明显放缓（Yahoo Finance，2026-09-18）",
+      "PE 343.65 与 Forward PE 165.76 极高，远超行业平均（GM PE 36.7、F Forward PE 6.76），当前估值水平难以通过基本面增长合理化（Yahoo Finance，2026-09-18）",
+      "10Y 国债收益率 4.94% 与 CPI 3.71% 处于高位，高利率环境对依赖估值扩张的高增长公司形成明显压力（FRED，2026-09-17）",
+      "Robotaxi 推出进展顺利但面临监管与运营障碍，商业化时间表存在重大不确定性（Motley Fool，2026-09-19）",
+      "EV 市场销售同比下降 46.9%（8 月），行业需求疲软对 Tesla 增长前景形成压力（Cox Automotive，2026-09-19）",
+      "股价过去 3 月下跌 10.07%，虽短期在均线上方但处于中期下行趋势，近期反弹可能为技术性反弹而非趋势反转（Yahoo Finance，2026-09-18）",
+      "估值风险（首要风险）：PE 343.65 极高，远超行业平均，当前估值水平难以通过基本面增长合理化。任何增长放缓加速或利率进一步上升可能引发大幅调整，下行空间可能达 20-30%",
+      "增长放缓风险：盈利增速已转负（-3.0%）、ROE 低迷（4.67%），显示增长动能明显放缓，与市场对 Tesla 高增长的预期形成偏离",
+      "监管风险：Robotaxi 推出面临监管与运营障碍，商业化时间表存在重大不确定性，可能延迟或削弱这一关键增长驱动的贡献",
+      "宏观风险：高利率环境（10Y 4.94%）与持续高通胀（CPI 3.71%）抑制高估值股估值扩张，融资成本上升",
+      "行业需求风险：EV 市场销售同比下降 46.9%（8 月），反映行业需求疲软，对 Tesla 增长前景形成压力",
+      "国际扩张风险：贸易保护主义升温（F/GM/Toyota 呼吁维持对中国车企禁令），可能对 Tesla 欧洲卡车扩张形成风险，但具体影响幅度缺乏定量数据"
+    ]
+  }
+}

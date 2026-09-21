@@ -1,0 +1,88 @@
+{
+  "variant": "C",
+  "company": "AVGO",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 303,
+        "evidence": "Broadcom收入在两年内翻倍，增长速度超过Applied Materials",
+        "verified": true
+      },
+      {
+        "id": 304,
+        "evidence": "Broadcom作为少数能设计定制AI芯片的公司之一，订单充足，需求旺盛",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "基本面数据显示：营收增速% 85.5，净利增速% 215.3；知识图谱事件E1（2026-09-19）和E2（2026-09-18）均为positive，E2明确指出'Broadcom作为少数能设计定制AI芯片的公司之一，订单充足，需求旺盛'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "基本面数据显示：分析师目标价 531.85，当前收盘价 357.61，上升空间为(531.85-357.61)/357.61=48.6%（约48%）；分析师数量 47，分析师评级 strong_buy"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "技术面数据显示：收盘 357.61，MA20 359.32，MA50 379.76，相对MA20 bearish，相对MA50 bearish；RSI14 45.46，RSI信号 neutral；区间涨跌% -8.8（近3月）"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "基本面数据显示：PE(TTM) 44.26；负债权益比 59.6"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：VIX 恐慌指数 15.44，失业率 4.1%；这些指标确实反映温和的宏观环境。后半句关于'不足以抵消个股技术面压力'是judgment性质的分析"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "基本面数据显示：PE(TTM) 44.26（高估值），负债权益比 59.6（高杠杆）"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对AI芯片市场需求的主观判断和风险展望，数据中未涉及库存调整的具体信息"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "知识图谱确实显示TSM为供应商，但'若晶圆代工产能紧张或成本上升，利润率承压'是基于假设的条件推论，不是可核对的事实陈述"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "知识图谱显示AAPL为客户，但'客户集中度风险'和'AAPL等大客户占比高'是基于关系推断的风险判断，数据中未提供具体的客户占比数据"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对地缘政治风险的一般性陈述，数据中未包含具体的芯片出口管制政策信息或对该公司的具体影响"
+      }
+    ],
+    "claims": [
+      "收入同比增长85.5%、净利润增长215.3%，AI芯片订单充足（E1、E2）",
+      "分析师平均目标价531.85美元，较当前价格有48%上升空间，47家分析师一致看好",
+      "股价跌破MA20/MA50，RSI 45.46中性偏弱，近3月跌幅8.8%，技术面需修复",
+      "PE 44.26处于高位，D/E 59.6高杠杆，估值与财务风险并存",
+      "宏观环境温和（VIX 15.44、失业率4.1%），有利于科技股，但不足以抵消个股技术面压力",
+      "高估值与高杠杆（D/E 59.6）放大下行风险",
+      "AI芯片需求可能过热，存在库存调整风险",
+      "依赖TSM产能，若晶圆代工产能紧张或成本上升，利润率承压",
+      "客户集中度风险（AAPL等大客户占比高）",
+      "地缘政治风险（芯片出口管制）"
+    ]
+  }
+}

@@ -1,0 +1,114 @@
+{
+  "variant": "B",
+  "company": "QCOM",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 326,
+        "evidence": "加入WEDA边缘AI生态(2026-09-19新闻)，拓展新增长点",
+        "verified": true
+      },
+      {
+        "id": 327,
+        "evidence": "近期下跌(2026-09-18下跌6%)",
+        "verified": true
+      },
+      {
+        "id": 329,
+        "evidence": "Qualcomm (QCOM) told investors in its fiscal Q3 2026 call that its share of Apple's recent iPhone launch would be materially lower than its prior estimate of 20%",
+        "verified": false
+      },
+      {
+        "id": 332,
+        "evidence": "CEO参加Trump-Xi晚宴(2026-09-17新闻)讨论芯片访问",
+        "verified": true
+      },
+      {
+        "id": 333,
+        "evidence": "Qualcomm (QCOM) reached $188.94 at the closing of the latest trading day, reflecting a +2.22% change compared to its last close",
+        "verified": false
+      },
+      {
+        "id": 338,
+        "evidence": "Taiwan Semiconductor Manufacturing (NYSE:TSM) moves its 2nm process into commercial production as part of a new advanced manufacturing push",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻摘要(2026-09-18 Trefis)：'Qualcomm (QCOM) told investors in its fiscal Q3 2026 call that its share of Apple's recent iPhone launch would be materially lower than its prior estimate of 20%'。论断准确反映了iPhone 18芯片份额从预期20%下降至'materially lower'的事实。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据(QCOM截至2026-09-18)：营收增速% -4.0，净利增速% -23.0。论断中'营收同比-4%、净利同比-23%'与数据完全一致。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "新闻摘要(2026-09-18 Trefis)：'management raised its non-handset revenue target for fiscal 2029 to $40 billion—nearly doubling its prior $22 billion'。论断准确反映了非手机业务目标提升至$40B(2029年)的事实。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据(QCOM截至2026-09-18)：收盘177.72，MA20 171.87，MA50 167.82，相对MA20 bullish，相对MA50 bullish；5日涨跌% -2.34，区间涨跌% -19.47。论断中所有技术数据均与数据一致。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻(2026-09-17 Stocktwits)：'Trump-Xi Dinner Next Week Brings AI Titans To The Table — OpenAI, NVDA, and QCOM CEOs To Attend, Says Report'，摘要提及'AI safety, development standards and chip access emerge as potential discussion points'。论断准确反映了CEO参加Trump-Xi晚宴讨论芯片访问的事实。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "论断'iPhone份额丧失可能加速'是对未来趋势的推测，属于主观判断而非可核对的事实。虽然数据支持份额下降的事实，但'可能加速'是对未来的预测。"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "行情数据(QCOM截至2026-09-18)：负债权益比 55.21。论断中'D/E 55.21'与数据完全一致。"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "论断'地缘政治风险(中美芯片竞争)可能影响海外市场'是对潜在风险的推测，属于主观判断。虽然Trump-Xi晚宴的事实存在，但'可能影响'是推测性表述。"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "论断'非手机业务能否达成$40B目标存疑'是对未来目标可达成性的主观判断，不涉及可核对的事实。数据支持$40B目标的存在，但能否达成是推测。"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "论断'技术面反弹可能是死猫反弹'和'缺乏基本面支撑'是对市场走势的主观判断。虽然数据显示营收-4%、净利-23%的基本面恶化，但'死猫反弹'的判断属于分析师观点而非事实。"
+      },
+      {
+        "index": 11,
+        "verdict": "unsupported",
+        "evidence": "论断声称'关键财务数据缺失(8-K具体内容、iPhone新份额数字)'。但数据中确实存在8-K申报(2026-09-08、2026-07-31等)，虽然摘要内容未完整披露，但不能说'缺失'。iPhone新份额具体数字确实未在数据中出现(仅有'materially lower'的定性描述)，这部分属实。"
+      }
+    ],
+    "claims": [
+      "苹果iPhone 18芯片份额从预期20%大幅下降至具体数字未知(仅披露'materially lower')，客户集中度风险凸显，战略性打击(2026-09-18新闻)",
+      "营收同比-4%、净利同比-23%，基本面恶化幅度超预期(市场数据截至2026-09-18)",
+      "非手机业务目标提升至$40B(2029年)，战略转向但需3-4年验证，能否弥补手机端下滑存疑(2026-09-18新闻)",
+      "技术面短期看涨(价格$177.72>MA20 $171.87/MA50 $167.82)但3个月回报-19.47%、5日回报-2.34%，反弹缺乏持续动能(技术数据截至2026-09-18)",
+      "CEO参加Trump-Xi晚宴讨论芯片访问，地缘政治不确定性高，政策支持结果未知(2026-09-17新闻)",
+      "iPhone份额丧失可能加速，具体新份额数字未知，影响未来2-3年营收的幅度存在高度不确定性",
+      "高债务率(D/E 55.21)限制应对能力，若营收持续下滑，偿债压力上升",
+      "地缘政治风险(中美芯片竞争)可能影响海外市场，Trump-Xi晚宴结果存在不确定性",
+      "非手机业务能否达成$40B目标存疑，战略转向需要3-4年验证",
+      "技术面反弹可能是死猫反弹，缺乏基本面支撑，近期下跌已显示反弹脆弱性",
+      "关键财务数据缺失(8-K具体内容、iPhone新份额数字)，报告置信度受限"
+    ]
+  }
+}

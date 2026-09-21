@@ -1,0 +1,113 @@
+{
+  "variant": "B",
+  "company": "TSLA",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 395,
+        "evidence": "Robotaxi 推出进展但面临监管与运营障碍",
+        "verified": true
+      },
+      {
+        "id": 396,
+        "evidence": "8 月 EV 销售同比下滑 46.9%",
+        "verified": true
+      },
+      {
+        "id": 397,
+        "evidence": "高收益率环境对 Tesla 这类高增长、高估值公司形成压力",
+        "verified": true
+      },
+      {
+        "id": 398,
+        "evidence": "欧洲卡车扩张提供新增长点",
+        "verified": true
+      },
+      {
+        "id": 408,
+        "evidence": "竞争对手 GM 重新引入 CarPlay/Android Auto",
+        "verified": true
+      },
+      {
+        "id": 413,
+        "evidence": "8 月 EV 销售同比下滑 46.9%",
+        "verified": true
+      },
+      {
+        "id": 415,
+        "evidence": "竞争对手 GM 重新引入 CarPlay/Android Auto",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示TSLA营收增速% 25.5，净利增速% -3.0。这两个数据直接支持论断中的数值。毛利率压力的表述是对这一现象的解释性判断。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示TSLA PE(TTM) 343.65，预期PE 165.76，分析师目标价 396.94，当前收盘价 364.27。计算上升空间：(396.94-364.27)/364.27=8.98%≈9%。NVDA PE(TTM) 27.71，GM PE(TTM) 36.7。所有数值均来自数据。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "新闻数据显示：(1)2026-09-19 Motley Fool报道'The robotaxi/Cybercab rollout is on track, but investors need to be patient and understand there are regulatory and operational hurdles to cross'；(2)2026-09-18 Insider Monkey报道'Tesla, Inc. is expanding beyond passenger electric vehicles...the company is preparing to enter the European electric truck market'。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻数据显示：(1)2026-09-19 Stocktwits报道'Dealers sold an estimated 78,895 new battery-electric vehicles last month, up 2.5% from July yet down 46.9% from August 2025'；(2)2026-09-18 Yahoo Finance Video报道'General Motors (GM) will reinstall Apple's (AAPL) CarPlay and Android Auto in its vehicles after initially planning to remove the software from new cars'。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：10年期国债收益率 4.94%（2026-09-17），CPI同比变化 3.71%（2026-08-01）。两个数值均与论断相符。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对估值风险的主观评估和展望。虽然引用了PE 343.65、NVDA 27.71、GM 36.7等可核对的数据，但'任何增长放缓或利率上升都可能触发大幅调整'是对未来可能性的判断，不是可核对的事实。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对盈利风险的主观解释。虽然引用了净利增速% -3.0和营收增速% 25.5等可核对数据，但'这是基本面恶化信号，不应被营收增长掩盖'是对数据含义的主观判断，不是可核对的事实。"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对监管风险的主观评估。虽然新闻确实提到Robotaxi面临监管与运营障碍，但'可能延迟收入贡献'是对未来影响的推测判断，不是可核对的事实。"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对行业风险的主观评估。虽然引用了8月EV销售同比下滑46.9%和GM重新引入CarPlay等可核对事实，但'需关注后续月度数据确认是否代表行业需求压力趋势'和'削弱Tesla差异化'是对未来趋势和竞争影响的主观判断。"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对宏观风险的主观评估。虽然引用了10Y收益率4.94%和CPI 3.71%等可核对数据，但'可能导致进一步加息，对高估值股形成压力'是对未来政策和市场影响的推测判断，不是可核对的事实。"
+      }
+    ],
+    "claims": [
+      "营收增速 25.5% 但盈利增速 -3.0%，毛利率压力明显，反映基本面恶化而非强劲（市场数据截至 2026-09-18）",
+      "PE 343.65 极高，远超 NVDA（27.71）、GM（36.7）等可比公司，Forward PE 165.76 仍处高位，分析师目标价 $396.94 仅暗示 9% 上升空间，风险回报不对称（市场数据截至 2026-09-18）",
+      "Robotaxi 推出进展但面临监管与运营障碍，具体商业化时间表不确定；欧洲卡车扩张提供新增长点（新闻截至 2026-09-19）",
+      "8 月 EV 销售同比下滑 46.9%，需关注后续月度数据确认行业趋势；竞争对手 GM 重新引入 CarPlay 削弱差异化（新闻截至 2026-09-19）",
+      "10Y 国债收益率 4.94%、CPI 3.71% 高位，宏观环境对高估值股形成压力（宏观数据截至 2026-09-17）",
+      "估值风险——PE 343.65 极高，远超 NVDA（27.71）、GM（36.7）等可比公司，任何增长放缓或利率上升都可能触发大幅调整",
+      "盈利风险——盈利增速转负（-3.0%），与营收增速 25.5% 的巨大差距反映毛利率压力，这是基本面恶化信号，不应被营收增长掩盖",
+      "监管风险——Robotaxi 推出面临监管与运营障碍，商业化时间表不确定，可能延迟收入贡献",
+      "行业风险——8 月 EV 销售同比下滑 46.9%，需关注后续月度数据确认是否代表行业需求压力趋势，竞争对手 GM 重新引入 CarPlay 削弱 Tesla 差异化",
+      "宏观风险——10Y 收益率 4.94% 高位，高通胀 3.71% 可能导致进一步加息，对高估值股形成压力"
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "variant": "C",
+  "company": "AVGO",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 303,
+        "evidence": "Broadcom过去两年收入翻倍，增长轨迹超过Applied Materials",
+        "verified": true
+      },
+      {
+        "id": 304,
+        "evidence": "Broadcom作为少数能设计定制AI芯片的公司，订单充足，需求强劲",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 85.5，净利增速% 215.3；新闻E2（2026-09-18）确认Broadcom作为少数能设计定制AI芯片的公司，订单充足，需求强劲"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：PE(TTM) 44.26，预期PE 18.45，分析师目标价 531.85，分析师评级 strong_buy"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：区间涨跌% -8.8（3个月），收盘 357.61 低于 MA20 359.32 和 MA50 379.76（bearish），RSI14 45.46 对应 neutral 信号"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：VIX 恐慌指数 15.44，失业率 4.1%，10年期国债收益率 4.94%"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "知识图谱显示TSM为供应商，AAPL为客户；新闻E1（2026-09-19）确认Broadcom过去两年收入翻倍，增长轨迹超过Applied Materials，支撑AI需求强劲"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对未来需求的主观预测，属于风险展望而非可核对的事实"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对利率变化影响的主观判断，属于风险分析而非可核对的事实"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "知识图谱显示TSM为供应商，但数据中未提供具体的地缘政治风险事件，仅确认供应链依赖关系存在"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "行情数据显示：负债权益比 59.6%，但数据中未直接提供融资成本上升的具体证据，仅确认债务率数值"
+      }
+    ],
+    "claims": [
+      "收入YoY +85.5%、净利润YoY +215.3%，AI芯片订单充足（E2）",
+      "PE 44.26处历史高位，Forward PE 18.45相对合理，分析师目标价531.85美元",
+      "股价近3月下跌8.8%，技术面走弱（价格低于MA20/MA50，RSI 45.46中性偏弱）",
+      "宏观环境温和（VIX 15.44、失业率4.1%），但10年期国债收益率4.94%对估值有压力",
+      "产业链完整，TSM供应稳定，AI需求强劲支撑增长（E1）",
+      "AI芯片需求可能不及预期，影响订单增长",
+      "高估值对利率敏感，若10年期国债收益率继续上升将压低股价",
+      "供应链依赖TSM，地缘政治风险需关注",
+      "债务率59.6%偏高，融资成本上升风险"
+    ]
+  }
+}

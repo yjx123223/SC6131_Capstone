@@ -1,0 +1,110 @@
+{
+  "variant": "A",
+  "company": "META",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 195,
+        "evidence": "Meta's Muse AI应用首周增长接近ChatGPT速度，AI商业化进展超预期",
+        "verified": false
+      },
+      {
+        "id": 197,
+        "evidence": "与Shopify合作深化AI代理战略，拓展商业应用场景",
+        "verified": false
+      },
+      {
+        "id": 198,
+        "evidence": "Goldman Sachs警告AI繁荣对S&P 500利润的提振作用不可持续",
+        "verified": true
+      },
+      {
+        "id": 193,
+        "evidence": "加州AI'杀死开关'政策讨论升温，AI监管风险升温",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "Motley Fool新闻标题：'Meta's Muse Just Had a Breakout Launch. Is It a Game Changer for the Stock?' 摘要：'Meta's New AI App Grew Almost as Fast as ChatGPT in Its First 5 Days.'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance行情数据：营收增速% 28.0，净利增速% -13.4"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance行情数据：PE(TTM) 25.7，预期PE 19.04"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "GuruFocus新闻标题：'Goldman Sachs Sends Stark Warning on S&P 500 Earnings' 摘要：'AI Boom Is Supercharging S&P 500 Profits. Goldman Sachs Warns the Boost Won't Last'"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance行情数据：MA20 614.61，MA50 607.38，收盘 665.75（均高于MA20和MA50），20日涨跌% 21.97，相对MA20 bullish，相对MA50 bullish"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "Barron's新闻标题：'California to Reconsider AI 'Kill Switch' With Newsom's New Executive Order' 摘要：'Fears of AI running amok have increased over the past week, with tech execs and President Donald Trump all weighing in on the matter.'"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "论断包含对数据的解读和因果推断（'可能反映AI基础设施投资支出增加或一次性成本压力'），这是基于净利增速-13.4%和营收增速28%的主观分析，属于判断而非可核对的事实"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "论断涉及对未来的主观评估（'前向PE 19.04x的合理性取决于未来盈利改善能否实现'、'若净利增速继续恶化，估值压缩风险显著'），这是基于现有数据的推测性判断"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "Goldman Sachs警告数据来自GuruFocus新闻；Meta净利增速% -13.4来自Yahoo Finance行情数据"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "Barron's新闻：'California to Reconsider AI 'Kill Switch' With Newsom's New Executive Order'"
+      },
+      {
+        "index": 11,
+        "verdict": "unsupported",
+        "evidence": "数据中未提及OpenAI、Google等竞争对手，也未提及Muse应用的长期竞争力评估。这是基于行业常识的推断，但工具数据中没有相关信息"
+      },
+      {
+        "index": 12,
+        "verdict": "judgment",
+        "evidence": "论断是对宏观风险的假设性推断（'若联邦基金利率上升或通胀反弹'），虽然数据中有联邦基金利率3.63%和CPI 3.71%的当前值，但'若...则...'的因果推断属于主观判断"
+      }
+    ],
+    "claims": [
+      "Meta Muse AI应用首周增长接近ChatGPT速度，AI商业化进展超预期（Motley Fool, 2026-09-18）",
+      "营收增长28%但净利润同比增速-13.4%，利润增长动能明显弱于收入增长，可持续性存疑（10-Q, 2026-06-30）",
+      "尾随PE 25.7x处于高位，前向PE 19.04x反映市场对未来盈利改善的乐观预期，两者差异显著（Yahoo Finance, 2026-09-18）",
+      "Goldman Sachs警告AI繁荣对S&P 500利润的提振作用不可持续，与Meta净利增速恶化相呼应（GuruFocus, 2026-09-18）",
+      "股价高于MA20/MA50，近20日涨21.97%，技术面上升趋势确立但近日出现回调压力（Yahoo Finance, 2026-09-18）",
+      "加州AI'杀死开关'政策讨论升温，AI监管风险升温（Barron's, 2026-09-18）",
+      "利润增长可持续性风险——净利润同比增速-13.4%与营收增长28%形成鲜明对比，表明利润增长动能明显弱化，可能反映AI基础设施投资支出增加或一次性成本压力，这对长期增长预期构成重大威胁",
+      "估值风险——尾随PE 25.7x处于高位，前向PE 19.04x的合理性取决于未来盈利改善能否实现，若净利增速继续恶化，估值压缩风险显著",
+      "AI利润增长可持续性风险——Goldman Sachs警告AI繁荣对S&P 500利润的提振作用不可持续，与Meta当前净利增速为负的现状相呼应，暗示AI投资回报率可能面临压力",
+      "AI监管风险——加州等地AI\"杀死开关\"政策讨论升温，可能影响AI投资回报",
+      "竞争风险——OpenAI、Google等AI竞争加剧，Muse应用长期竞争力存不确定性",
+      "宏观风险——若联邦基金利率上升或通胀反弹，科技股估值承压"
+    ]
+  }
+}

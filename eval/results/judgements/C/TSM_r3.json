@@ -1,0 +1,79 @@
+{
+  "variant": "C",
+  "company": "TSM",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 214,
+        "evidence": "截至2026-09-18，收盘价434.67美元",
+        "verified": true
+      },
+      {
+        "id": 218,
+        "evidence": "台积电将2nm工艺推进商业化生产，加大先进制造投资，提高资本支出目标以支持2nm推出",
+        "verified": true
+      },
+      {
+        "id": 220,
+        "evidence": "联发科选择台积电2纳米工艺用于新款Dimensity 9600 Pro芯片，3nm工艺用于9600M",
+        "verified": true
+      },
+      {
+        "id": 221,
+        "evidence": "2nm工艺商业化推进（E1）、MediaTek 2nm订单确认（E2）为核心利好，体现市场对台积电先进工艺的需求",
+        "verified": true
+      },
+      {
+        "id": 219,
+        "evidence": "AMD芯片价格上涨与TSMC成本关联的报道反映行业定价权",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "知识图谱中事件E1（2026-09-18）：台积电将2nm工艺推进商业化生产；事件E2（2026-09-18）：联发科选择台积电2纳米工艺用于新款Dimensity 9600 Pro芯片。新闻中《Simply Wall St.》报道：'Taiwan Semiconductor Manufacturing (NYSE:TSM) moves its 2nm process into commercial production'和'MediaTek chose its 2-nanometer process for the new Dimensity 9600 Pro'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 36.0、净利增速% 77.4、ROE% 39.97，与论断中'2026年营收增长36%、净利润增长77.4%，ROE 39.97%'完全一致"
+      },
+      {
+        "index": 3,
+        "verdict": "unsupported",
+        "evidence": "行情数据显示PE(TTM) 32.06、分析师目标价 552.26、当前收盘价 434.67。计算上升空间：(552.26-434.67)/434.67 = 27.1%，与论断'仅提供27%上升空间'基本一致。但论断称'P/E 32.06处历史高位'无法验证——数据中仅有当前PE值，未提供历史PE数据，无法确认是否为历史高位"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示：MA20 421.53、MA50 416.33、收盘 434.67，相对MA20 bullish、相对MA50 bullish（牛市排列）；RSI14 56.83、RSI信号 neutral（中性）。与论断'MA20/MA50牛市排列，RSI14中性'完全一致"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：VIX恐慌指数 15.44（2026-09-17）、失业率 4.1%（2026-08-01）、10年期国债收益率 4.94%（2026-09-17），与论断中'VIX 15.44、失业率4.1%、利率水平（10Y 4.94%）'完全一致"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "论断中'估值风险：P/E 32.06、P/B 88.95处高位'涉及数据事实（PE和PB数值在数据中有），但'宏观利率上升或增长预期下调可能引发估值压缩'是纯粹的因果推断；'地缘政治风险：台湾地缘政治敏感性对供应链构成长期威胁'是主观判断；'竞争风险：三星、Intel等竞争对手先进工艺进展可能分流客户'和'产能风险：2nm产能爬坡不及预期或客户需求放缓可能影响利用率'都是假设性的风险展望，不涉及可核对的既成事实"
+      }
+    ],
+    "claims": [
+      "2nm工艺商业化推进，MediaTek 2nm订单确认（E1、E2），体现先进工艺领先地位与客户需求旺盛",
+      "2026年营收增长36%、净利润增长77.4%，ROE 39.97%，盈利能力行业顶级",
+      "P/E 32.06处历史高位，分析师目标价仅提供27%上升空间，估值透支风险明显",
+      "技术面MA20/MA50牛市排列，RSI14中性，支持继续上升但需警惕高位回调",
+      "宏观环境温和（VIX 15.44、失业率4.1%），但利率水平（10Y 4.94%）对科技股估值有压力",
+      "估值风险：P/E 32.06、P/B 88.95处高位，宏观利率上升或增长预期下调可能引发估值压缩。地缘政治风险：台湾地缘政治敏感性对供应链构成长期威胁。竞争风险：三星、Intel等竞争对手先进工艺进展可能分流客户。产能风险：2nm产能爬坡不及预期或客户需求放缓可能影响利用率"
+    ]
+  }
+}

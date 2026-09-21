@@ -1,0 +1,109 @@
+{
+  "variant": "A",
+  "company": "QCOM",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 326,
+        "evidence": "加入WEDA边缘AI生态",
+        "verified": true
+      },
+      {
+        "id": 327,
+        "evidence": "9月18日股价大幅下跌6%",
+        "verified": true
+      },
+      {
+        "id": 329,
+        "evidence": "Q3财报显示营收同比-4%、净利润同比-23%，iPhone订单低于之前预期的20%",
+        "verified": true
+      },
+      {
+        "id": 332,
+        "evidence": "CEO参加Trump-Xi峰会（2026-09-17 Stocktwits，9月24日，可能涉及芯片政策讨论）",
+        "verified": true
+      },
+      {
+        "id": 331,
+        "evidence": "Apple自研芯片战略可能对iPhone订单产生压力",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示营收增速% -4.0、净利增速% -23.0。Trefis 2026-09-18新闻摘要：'Qualcomm (QCOM) told investors in its fiscal Q3 2026 call that its share of Apple's recent iPhone launch would be materially lower than its prior estimate of 20%'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示预期PE 17.42。论断关于'利润下滑趋势未见底'对应数据中净利增速% -23.0，'估值吸引力有限'是基于PE倍数和利润下滑的主观判断"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：收盘177.72，MA20 171.87，MA50 167.82，相对MA20 bullish，相对MA50 bullish（价格在MA20/MA50上方）；20日年化波动率% 37.44；近10个交易日中2026-09-18收盘177.72，2026-09-17收盘188.71，跌幅约6%"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "Trefis 2026-09-18新闻摘要：'management raised its non-handset revenue target for fiscal 2029 to $40 billion—nearly doubling its prior $22 billion'。Simply Wall St. 2026-09-19新闻：'QUALCOMM (NasdaqGS:QCOM) has joined Advantech and other partners in the new WEDA edge AI ecosystem'"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：VIX 15.44（2026-09-17）、失业率 4.1%（2026-08-01）。论断关于'不足以抵消公司基本面恶化'是主观判断"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "Barrons.com 2026-09-18新闻提及'Apple's Chip Strategy'和'designing the main chips for all its devices'，但论断'可能加速对iPhone订单的侵蚀'是对未来的推测，不是已发生的事实。数据中已有iPhone订单下降的事实（论断1），但'加速侵蚀'是因果推测"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "数据显示当前净利增速% -23.0，但'利润下滑趋势可能持续至2027年'是对未来的预测，不是已验证的事实"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示负债权益比 55.21"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示20日年化波动率% 37.44"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "Stocktwits 2026-09-17新闻提及'Trump-Xi Dinner Next Week'和'September 24 summit'，但论断关于'结果不确定，可能影响芯片政策'是对未来事件的推测，不是已发生的事实"
+      },
+      {
+        "index": 11,
+        "verdict": "unsupported",
+        "evidence": "数据中有非手机业务2029年目标$40B的信息，但缺少当前非手机业务的实际贡献度数据。论断'当前贡献度未知'本身承认了数据缺失"
+      }
+    ],
+    "claims": [
+      "Q3财报显示营收同比-4%、净利润同比-23%，iPhone订单低于之前预期的20%（SEC 10-Q 2026-07-29、Trefis 2026-09-18）",
+      "Forward PE 17.42倍相对合理，但利润下滑趋势未见底，估值吸引力有限（Yahoo Finance 2026-09-18）",
+      "技术面相对强势（价格在MA20/MA50上方），但20日年化波动率37.44%偏高、近期单日跌幅6%，市场情绪不稳定（Yahoo Finance 2026-09-18）",
+      "非手机业务目标从$22B提升至$40B（2029年）与WEDA边缘AI生态是长期机遇，但当前贡献度与增长路径需验证（Trefis 2026-09-18、Simply Wall St. 2026-09-19）",
+      "宏观环境稳定（VIX 15.44、失业率4.1%），但不足以抵消公司基本面恶化压力（FRED 2026-09-17）",
+      "Apple自研芯片战略可能加速对iPhone订单的侵蚀，进一步压低营收",
+      "利润下滑趋势可能持续至2027年，估值面临重估压力",
+      "负债权益比55.21%偏高，限制公司应对市场变化的灵活性",
+      "高波动率（37.44%）增加投资风险",
+      "地缘政治风险（Trump-Xi峰会结果不确定，可能影响芯片政策）",
+      "非手机业务增长目标能否实现存在不确定性，当前贡献度未知"
+    ]
+  }
+}

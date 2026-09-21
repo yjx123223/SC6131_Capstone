@@ -1,0 +1,109 @@
+{
+  "variant": "C",
+  "company": "ORCL",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 367,
+        "evidence": "Jim Cramer评论Oracle股价强势为\"正面信号\"",
+        "verified": true
+      },
+      {
+        "id": 368,
+        "evidence": "联合CEO Clay Magouyrk在内部会议透露公司难以将生成式AI应用于自身员工工作，引发股价下跌3.4%",
+        "verified": true
+      },
+      {
+        "id": 370,
+        "evidence": "Oracle Slides 3.4% as Buy Call Meets a Capital Burden",
+        "verified": true
+      },
+      {
+        "id": 371,
+        "evidence": "Oracle is sliding hard on a day when its cloud rivals are barely flinching",
+        "verified": false
+      },
+      {
+        "id": 381,
+        "evidence": "云计算竞争对手（MSFT、AMZN）表现相对稳定，Oracle相对承压",
+        "verified": true
+      },
+      {
+        "id": 385,
+        "evidence": "E2事件（AMZN物流升级）属竞争压力，但与Oracle云业务的竞争关联度较低",
+        "verified": true
+      }
+    ],
+    "dropped": [],
+    "repaired": "数组被返回成字符串且 JSON 非法，正则抽出 6 项"
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "营收增速29.6%、净利增速54.5%来自Yahoo Finance数据：营收增速% 29.6，净利增速% 54.5；自由现金流-45.9B来自数据：自由现金流 -45853626368（约-45.9B）；相比营业收入的-63.8%计算：-45.9B / 71.8B ≈ -63.8%"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "债务率251.72来自Yahoo Finance数据：负债权益比 251.72。报告中确实缺少同行对标数据，但这是数据本身的限制，不是论断的错误"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "E1事件来自知识图谱和新闻数据：目标事件 E1 2026-09-18 negative OTHER：Oracle联合CEO在内部会议表示公司之前难以将生成式AI应用于自身员工工作，股价下跌3.4%；新闻StockStory 2026-09-18确认：'co-CEO Clay Magouyrk stated during an internal town hall that the company previously struggled to make generative artificial intelligence useful for its own staff'，股价下跌3.4%"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "股价147.61来自行情数据：收盘 147.61；MA20为149.41，相对MA20下行；3个月跌15.39%来自数据：区间涨跌% -15.39（3mo区间）"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "分析师目标价239美元来自数据：分析师目标价 239.0；上升空间计算：(239-147.61)/147.61 ≈ 62%；41位分析师buy评级来自数据：分析师评级 buy，分析师数量 41。但数据中无法确认这41位分析师的评级时间是否已反映E1事件"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "自由现金流持续负值-45.9B来自数据：自由现金流 -45853626368。但数据中未提供成因分析和可持续性评估，这属于分析层面的判断"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "债务率极高251.72来自数据：负债权益比 251.72。同行对标数据确实缺失，但这是数据本身的限制"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "E1事件来自知识图谱和新闻：目标事件 E1 2026-09-18 negative OTHER记录了Oracle联合CEO表示难以将生成式AI应用于自身员工工作；发生于报告日期2026-09-18当天；后续影响未知属于合理的不确定性表述"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "股价3个月跌15.39%来自数据：区间涨跌% -15.39（3mo区间）；技术面弱势相对MA20来自数据：相对MA20 bearish；基本面强劲来自数据：营收增速% 29.6，净利增速% 54.5，ROE% 41.19"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对分析师目标价假设前提的质疑和推测，属于主观分析判断，不涉及可直接核对的事实数据"
+      }
+    ],
+    "claims": [
+      "营收增速29.6%、净利增速54.5%表现强劲，但自由现金流-45.9B（相比营业收入的-63.8%）严重负值，融资压力突出（Yahoo Finance，2026-09-18）",
+      "债务率251.72极高，限制战略灵活性，与同行对标数据缺失（Yahoo Finance，2026-09-18）",
+      "联合CEO在内部会议表示公司难以将生成式AI应用于自身员工工作，股价下跌3.4%，战略执行风险凸显，E1事件发生于报告日期当天，市场反应可能不充分（StockStory，2026-09-18，E1）",
+      "技术面弱势：股价147.61相比MA20下行，3个月跌15.39%，与强劲基本面矛盾，反映市场对风险的重新定价（Yahoo Finance，2026-09-18）",
+      "分析师目标价239美元有62%上升空间，但41位分析师'buy'评级的时间关系需确认，是否已反映E1事件风险（Yahoo Finance，2026-09-18）",
+      "自由现金流持续负值-45.9B可能引发融资危机，成因与可持续性未明确",
+      "债务率极高（251.72）限制战略灵活性，与同行对标数据缺失",
+      "E1事件（AI应用困难）暴露产品竞争力风险，可能影响云业务增长，发生于报告日期当天，后续影响未知",
+      "技术面弱势，股价3个月跌15.39%，与强劲基本面矛盾，反映市场对风险的重新定价",
+      "分析师目标价239美元的假设前提是否已消化AI应用困难风险需确认"
+    ]
+  }
+}

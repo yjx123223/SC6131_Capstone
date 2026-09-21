@@ -1,0 +1,141 @@
+{
+  "variant": "C",
+  "company": "GOOGL",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 79,
+        "evidence": "反垄断胜诉消除监管风险，AI 芯片产品化开辟新增长点。但存在财务杠杆风险（负债权益比 18.86）、现金流转化率异常低（9.3%）、Gemini 黑客事件构成网络安全风险等隐忧。",
+        "verified": true
+      },
+      {
+        "id": 84,
+        "evidence": "AI 芯片产品线正式推出，形成新增长驱动（Motley Fool，9/18，E2）",
+        "verified": true
+      },
+      {
+        "id": 77,
+        "evidence": "Gemini 自主黑客能力构成 balance sheet risk 和 cyber insurance 压力，需持续监控（Simply Wall St.，9/19）",
+        "verified": true
+      },
+      {
+        "id": 78,
+        "evidence": "AI 科学突破投资机会受关注",
+        "verified": true
+      },
+      {
+        "id": 82,
+        "evidence": "加州 AI Kill Switch 行政令可能加强监管，影响 AI 业务",
+        "verified": true
+      },
+      {
+        "id": 92,
+        "evidence": "Apple 新 CEO 上任（E3）",
+        "verified": true
+      },
+      {
+        "id": 95,
+        "evidence": "Amazon 升级物流能力（E4）",
+        "verified": true
+      },
+      {
+        "id": 104,
+        "evidence": "Meta AI 应用增长快速（E5）",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance 数据显示：净利增速% 294.0，营收增速% 24.2，均与论断一致"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "知识图谱中目标事件 E1（2026-09-19）：'谷歌获得关键反垄断裁决，有利于其广告业务，结束了十多年来最长的下跌周期'；Motley Fool 新闻标题确认此事件"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "知识图谱中目标事件 E2（2026-09-18）：'谷歌开始销售自主研发的AI芯片，形成新的产品线'；Motley Fool 新闻标题 '2 Stocks to Buy as Google Starts Selling Its AI Chips' 确认"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance 数据显示：分析师目标价 428.41，当前收盘价 349.54，上升空间 (428.41-349.54)/349.54 = 22.6%，与论断完全一致"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "Simply Wall St. 新闻（2026-09-19）：'When news breaks that Google's Gemini can autonomously hack real companies, the story quickly shifts from science fiction to balance sheet risk'，明确提及 Gemini 自主黑客能力构成 balance sheet risk"
+      },
+      {
+        "index": 6,
+        "verdict": "unsupported",
+        "evidence": "数据中确实显示负债权益比 18.86，但数据中没有行业水平的对比数据，无法验证'远高于行业水平'的说法"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance 数据显示：自由现金流 22665000960（约 226.65 亿美元），净利润 244118994944（约 244.12 亿美元，约 2441 亿元人民币），现金转化率 226.65/244.12 = 92.9%；但论断说'仅 9.3%'，这是错误的。应为 unsupported"
+      },
+      {
+        "index": 7,
+        "verdict": "unsupported",
+        "evidence": "数据显示自由现金流 226.65 亿美元，净利润 244.12 亿美元，转化率应为 92.9%，而非论断中的 9.3%。论断数值错误"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "Simply Wall St. 新闻（2026-09-19）明确提及 Gemini 自主黑客能力构成 balance sheet risk，需持续监控"
+      },
+      {
+        "index": 9,
+        "verdict": "unsupported",
+        "evidence": "数据中有负债权益比 18.86，但缺少行业水平对比数据，无法验证'远高于行业水平'；且数据中没有关于'利率上升或业绩下滑时偿债压力'的具体信息"
+      },
+      {
+        "index": 10,
+        "verdict": "unsupported",
+        "evidence": "现金转化率计算错误。自由现金流 226.65 亿美元 / 净利润 244.12 亿美元 = 92.9%，而非 9.3%。论断中的数值明显有误"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "Barrons.com 新闻（2026-09-18）提及加州 AI Kill Switch 行政令，但论断'可能加强监管，影响 AI 业务'是对未来影响的推测，属于主观判断"
+      },
+      {
+        "index": 12,
+        "verdict": "supported",
+        "evidence": "知识图谱中传导风险 E5（2026-09-18）：'Meta推出AI应用Muse，首5天增长速度接近ChatGPT'；E3（2026-09-18）：'John Ternus成为Apple新CEO，分析师认为其具有Apple DNA，将推动公司发展到新水平'，均支持竞争加剧的论述"
+      },
+      {
+        "index": 13,
+        "verdict": "supported",
+        "evidence": "知识图谱中明确显示 NVDA 为供应商，TSM 为上游供应商（经 NVDA），体现了芯片供应链依赖关系"
+      }
+    ],
+    "claims": [
+      "Q2 2026 净利润同比增长 294%，营收同比增长 24.2%（Yahoo Finance，截至 9/18）",
+      "反垄断胜诉利好广告业务，结束十多年最长下跌周期（Motley Fool，9/19，E1）",
+      "AI 芯片产品线正式推出，形成新增长驱动（Motley Fool，9/18，E2）",
+      "分析师平均目标价 428.41 美元，较当前价格 349.54 美元有 22.6% 上升空间（Yahoo Finance，9/18）",
+      "Gemini 自主黑客能力构成 balance sheet risk 和 cyber insurance 压力，需持续监控（Simply Wall St.，9/19）",
+      "负债权益比 18.86 远高于行业水平，财务杠杆风险巨大（Yahoo Finance，9/18）",
+      "自由现金流 226.65 亿美元相对净利润 2441 亿美元，现金转化率仅 9.3%（Yahoo Finance，9/18）",
+      "AI 安全风险——Gemini 自主黑客能力构成网络安全和财务风险，Simply Wall St. 指出其为\"balance sheet risk\"，需持续监控",
+      "财务杠杆风险——负债权益比 18.86 远高于行业水平，利率上升或业绩下滑时偿债压力大",
+      "现金流异常——自由现金流 226.65 亿美元相对净利润 2441 亿美元，现金转化率仅 9.3%，反映高资本支出或营运效率问题",
+      "AI 监管风暴——加州 AI Kill Switch 行政令可能加强监管，影响 AI 业务",
+      "竞争加剧——Meta AI 应用增长快速（E5），Apple 新 CEO 可能强化竞争（E3）",
+      "芯片供应链——依赖 NVDA/TSM，地缘政治风险"
+    ]
+  }
+}

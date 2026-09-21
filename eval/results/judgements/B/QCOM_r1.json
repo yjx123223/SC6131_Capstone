@@ -1,0 +1,119 @@
+{
+  "variant": "B",
+  "company": "QCOM",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 326,
+        "evidence": "2026-09-19加入WEDA边缘AI生态",
+        "verified": true
+      },
+      {
+        "id": 327,
+        "evidence": "2026-09-18股价下跌（近10日收盘显示2026-09-17为188.71，2026-09-18为177.72）",
+        "verified": true
+      },
+      {
+        "id": 329,
+        "evidence": "QCOM在Q3财报中披露Apple iPhone采购份额将'materially lower'于之前20%的预期，同时管理层将非手机业务2029年营收目标从$22B提升至$40B",
+        "verified": true
+      },
+      {
+        "id": 332,
+        "evidence": "2026-09-17 CEO参加Trump-Xi峰会讨论AI芯片政策",
+        "verified": true
+      },
+      {
+        "id": 333,
+        "evidence": "QCOM面临关键转折点：根据Q3财报披露，Apple iPhone采购份额将'materially lower'于之前20%的预期，导致营收同比-4%、净利同比-23%",
+        "verified": true
+      },
+      {
+        "id": 338,
+        "evidence": "TSM（供应商）强劲增长（营收+36%、净利+77%）",
+        "verified": true
+      },
+      {
+        "id": 346,
+        "evidence": "ASML（上游设备商）基本面强劲（营收+21.3%、净利+28.5%）",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "Trefis 2026-09-18报道：'Qualcomm (QCOM) told investors in its fiscal Q3 2026 call that its share of Apple's recent iPhone launch would be materially lower than its prior estimate of 20%'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "QCOM基本面数据（截至2026-09-18）：营收增速% -4.0，净利增速% -23.0"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "QCOM技术面数据（截至2026-09-18）：收盘177.72，MA20 171.87，MA50 167.82（价格高于两条均线），相对MA20 bullish，相对MA50 bullish；5日涨跌% -2.34；区间涨跌% -19.47"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "TSM基本面数据：营收增速% 36.0（+36%增长）；ASML技术面数据：收盘1679.92，MA20 1689.4，MA50 1721.6，相对MA20 bearish，相对MA50 bearish"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据：VIX 15.44（2026-09-17），失业率 4.1%（2026-08-01），CPI 3.71%（2026-08-01）"
+      },
+      {
+        "index": 6,
+        "verdict": "unsupported",
+        "evidence": "缺少具体的份额下降幅度数据。Trefis报道仅提及'materially lower than its prior estimate of 20%'，但未量化具体下降幅度，无法确认'可能影响营收10%+'的说法"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "QCOM基本面数据：TTM营收增速% -4.0，净利增速% -23.0"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "QCOM基本面数据：PE(TTM) 21.54，预期PE 17.42"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "QCOM基本面数据：负债权益比 55.21"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "Stocktwits 2026-09-17报道：'Trump-Xi Dinner Next Week Brings AI Titans To The Table — OpenAI, NVDA, and QCOM CEOs To Attend, Says Report'，提及'AI safety, development standards and chip access emerge as potential discussion points'"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "这是对信息完整性的主观评估，涉及数据缺失的风险判断，而非可核对的事实陈述"
+      }
+    ],
+    "claims": [
+      "Apple iPhone采购份额将'materially lower'于之前20%的预期，具体幅度未量化（2026-09-18 Trefis报道），这是降低置信度的主要原因",
+      "TTM营收同比-4%、净利同比-23%，基本面衰退趋势明确（Yahoo Finance市场数据，截至2026-09-18）",
+      "技术面相对MA均线看涨但动能不足：价格$177.72高于MA20/MA50，但3个月区间回跌-19.47%，最近一日跌幅-2.34%，信号混合",
+      "供应链稳定但需求端风险突出：TSM强劲增长+36%，ASML基本面强但技术面相对均线看跌，暗示市场对芯片需求预期谨慎",
+      "宏观环境友好但不足以抵消特定风险：VIX 15.44、失业率4.1%、CPI 3.71%均温和，但无法对冲Apple客户集中度风险",
+      "Apple客户集中度风险——份额下降幅度未量化，但\"materially lower\"暗示可能显著下降，可能影响营收10%+",
+      "基本面衰退——TTM营收-4%、净利-23%，可能继续恶化",
+      "估值压力——PE(TTM) 21.54在衰退环境下不便宜，预期PE 17.42显示市场对未来盈利有下调预期",
+      "负债率55.21%偏高，限制财务灵活性",
+      "地缘政治风险——Trump-Xi峰会涉及芯片出口管制，可能影响中国市场",
+      "信息不完整风险——Apple份额下降的具体数字和Q3完整财报数据尚未公开，当前判断基于有限信息"
+    ]
+  }
+}

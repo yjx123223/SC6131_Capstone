@@ -1,0 +1,109 @@
+{
+  "variant": "B",
+  "company": "AAPL",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 3,
+        "evidence": "新 CEO John Ternus 获分析师认可，CFRA 认为其具有\"Apple DNA\"推动公司升级（2026-09-18）",
+        "verified": true
+      },
+      {
+        "id": 7,
+        "evidence": "Evercore 上调目标价至 380 美元（2026-09-18）",
+        "verified": true
+      },
+      {
+        "id": 8,
+        "evidence": "iPhone 18 Pro 已上市，CFRA 预测 iPhone Duo 折叠屏将\"基本售罄\"（2026-09-18）",
+        "verified": true
+      },
+      {
+        "id": 17,
+        "evidence": "QCOM 作为射频芯片供应商，在 iPhone 18 Pro 中份额显著低于 20%（相比之前 20% 的预期，2026-09-18）",
+        "verified": true
+      },
+      {
+        "id": 23,
+        "evidence": "TSMC 作为主要代工商，2nm 产能扩张并加大投资（2026-09-18），支持 Apple 芯片供应",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻[AAPL]中2026-09-18 Yahoo Finance Video标题：'Apple will essentially sell 'every single' iPhone Duo it makes: CFRA'，摘要提及'CFRA Research senior vice president and equity analyst Angelo Zino comes on Market Domination to discuss his forecast surrounding demand for the foldable iPhone'。同时2026-09-18 Yahoo Finance Video另一条新闻提及'especially after the release of the new iPhone 18 Pro and unveiling of the foldable iPhone Duo'，确认iPhone 18 Pro已发布，iPhone Duo预期强劲。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情[AAPL]基本面数据（截至2026-09-18）：净利增速% 28.7，营收增速% 16.4，ROE% 148.75。这些数据完全匹配论断中的数值。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情[AAPL]技术面数据（截至2026-09-18）：收盘336.13，MA20 322.64，MA50 320.03，相对MA20 bullish，相对MA50 bullish，区间涨跌% 13.27，PE(TTM) 38.59。所有数值均与论断相符。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻[AAPL]2026-09-18 GuruFocus.com：'Evercore Delivers Bullish $380 Price Target for Apple Stock'。行情[AAPL]基本面：分析师目标价 327.84，分析师数量 39。流动比率 1.0。所有数据均在工具数据中找到。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻[TSM]2026-09-18 Simply Wall St.：'Taiwan Semiconductor Manufacturing (NYSE:TSM) moves its 2nm process into commercial production as part of a new advanced manufacturing push'，确认TSMC 2nm产能扩张。行情[AAPL]基本面：负债权益比 78.44。行情[AAPL]宏观指标中联邦基金利率 3.63%（2026-08-01）。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对估值和增长关系的主观判断，涉及'需要'、'若...将承压'等预期性表述，属于分析师的观点而非可核对的事实。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对ROE可持续性的主观判断，'远高于行业正常水平'、'可持续性存疑'属于分析师评估而非可核对的事实。虽然ROE 148.75%的数值在数据中存在，但对其异常性和可持续性的判断是主观的。"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对流动性风险的主观判断。虽然流动比率 1.0的数值在数据中存在，但'处于临界水平'、'短期偿债能力紧张'是分析师的主观评估。"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对债务杠杆风险的主观判断。虽然负债权益比 78.44的数值在数据中存在，但'偏高'、'利率上升增加融资成本'是分析师的主观评估和预期。"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "新闻[AAPL]2026-09-18 Yahoo Finance Video：'Apple will essentially sell 'every single' iPhone Duo it makes: CFRA'。论断正确指出这是'分析师预测而非确定事实'，存在需求不确定性，这与新闻中CFRA的预测性表述相符。"
+      },
+      {
+        "index": 11,
+        "verdict": "unsupported",
+        "evidence": "工具数据中没有关于台湾芯片供应链地缘政治风险的具体信息。虽然新闻[TSM]提及TSMC 2nm产能扩张，但没有涉及地缘政治不确定性的讨论。这个论断引入了数据中不存在的风险因素。"
+      }
+    ],
+    "claims": [
+      "iPhone 18 Pro 热销 + iPhone Duo 预期强劲（CFRA 预测基本售罄，但作为新品类存在需求不确定性，2026-09-18）",
+      "净利润增速 28.7% 超营收增速 16.4%，盈利加速，但 ROE 148.75% 异常高值需要验证可持续性（截至 2026-06-27）",
+      "技术面强势：股价 336.13 高于 MA20/MA50，3 月涨幅 13.27%，但 PE 38.59 处于较高水平需要增长支撑（截至 2026-09-18）",
+      "分析师看好：Evercore 上调目标价至 380 美元，平均目标 327.84 美元（39 位分析师），但流动比率 1.0 处于临界水平",
+      "TSMC 2nm 产能扩张支持芯片供应，供应链风险可控，但负债权益比 78.44 偏高需关注利率风险（2026-09-18）",
+      "估值偏高（PE 38.59），需要 28.7% 的净利增速支撑，若增长预期下修或利率上升将承压",
+      "基本面异常值风险：ROE 148.75% 远高于行业正常水平，可持续性存疑",
+      "流动性风险：流动比率 1.0 处于临界水平，短期偿债能力紧张",
+      "债务杠杆风险：负债权益比 78.44 偏高，利率上升增加融资成本",
+      "新产品需求风险：iPhone Duo 作为新品类，CFRA 预测\"基本售罄\"为分析师预测而非确定事实，存在需求不确定性",
+      "地缘政治风险：台湾芯片供应链面临地缘政治不确定性"
+    ]
+  }
+}

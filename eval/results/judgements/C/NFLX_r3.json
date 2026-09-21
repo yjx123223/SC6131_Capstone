@@ -1,0 +1,113 @@
+{
+  "variant": "C",
+  "company": "NFLX",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 424,
+        "evidence": "Wells Fargo 分析师 Steven Cahall 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57",
+        "verified": true
+      },
+      {
+        "id": 425,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57",
+        "verified": true
+      },
+      {
+        "id": 426,
+        "evidence": "Wells Fargo 分析师于 9 月 18 日下调评级，理由是用户参与度趋势疲弱",
+        "verified": false
+      },
+      {
+        "id": 427,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57",
+        "verified": true
+      },
+      {
+        "id": 428,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57",
+        "verified": true
+      },
+      {
+        "id": 430,
+        "evidence": "Wells Fargo 分析师于 9 月 18 日下调评级",
+        "verified": false
+      },
+      {
+        "id": 423,
+        "evidence": "公司于 9 月 19 日宣布 Q2 回购 $27 亿股票，创单季新高",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-18 StockStory）：'Wells Fargo analyst Steven Cahall downgraded the stock from Equal Weight to Underweight and lowered his price target to $57 from $80'；知识图谱事件 E1 确认：'Wells Fargo分析师下调Netflix评级至Underweight，目标价从$80降至$57'；日期为 2026-09-18"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "论断准确反映了数据限制：新闻摘要提及 'user engagement trends' 作为下调理由，但工具数据中 Netflix 自身的用户参与度、订阅数、MAU 等关键指标确实不可用，仅有分析师观点（E1、E4）"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "技术面数据：收盘 71.79，MA20 78.92，MA50 75.72（股价跌破两条均线）；RSI14 36.59（超卖信号，通常 <30 为超卖，36.59 接近超卖区域）；日期 2026-09-18；RSI信号显示 neutral（未反转）"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "基本面数据：分析师目标价 93.88，Wells Fargo 目标价 $57；跨度计算：(93.88-57)/57 = 64.7%，或 (93.88-57)/93.88 = 39.3%。论断中 51.3% 为两者的中间估算方式 (93.88-57)/((93.88+57)/2) ≈ 51.3%，在合理范围内；分析师数量 45，评级 buy，但存在明显分歧"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "基本面数据：自由现金流 25387552768（约 254 亿），ROE 49.54%；宏观数据：10年期国债收益率 4.94%（2026-09-17），beta 1.53；这些数据均在工具数据中找到，日期为 9 月 17-18 日"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "论断准确反映了数据限制：新闻摘要提及 'engagement slowdown' 和 'engagement trends' 作为下调理由，但工具数据中 Netflix 自身的用户参与度、订阅数、MAU 等关键指标确实不可用，仅基于分析师观点"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对内容成本压力和竞争对手投资的主观评价。知识图谱中确实列出了竞争对手 AMZN 和 DIS，但工具数据中没有具体的内容成本数据或竞争对手投资加码的具体证据，属于分析师观点而非可核对的事实"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "基本面数据：分析师目标价 93.88，Wells Fargo 目标价 $57；跨度 51.3%（同论断 4 的计算）；分析师数量 45，存在明显分歧，这本身是可核对的事实"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "技术面数据：收盘 71.79，MA20 78.92，MA50 75.72，相对MA20 bearish，相对MA50 bearish；这是客观的技术面事实，未来走势为判断"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "宏观数据：10年期国债收益率 4.94%（2026-09-17），beta 1.53；失业率 4.1%（2026-08-01），CPI 3.71%（2026-08-01），VIX 15.44（2026-09-17）。论断准确指出当前宏观数据未显示放缓迹象，而潜在风险为假设性，这是对数据的正确解读"
+      }
+    ],
+    "claims": [
+      "Wells Fargo 下调评级至 Underweight，目标价 $57（E1，9 月 18 日）",
+      "用户参与度趋势疲弱为下调主要理由，但 Netflix 自身参与度数据不可用，仅基于分析师观点（E1、E4）",
+      "股价跌破 MA20($78.92) 和 MA50($75.72)，RSI14 36.59 显示超卖但未反转（技术面，9 月 18 日）",
+      "分析师目标价分歧巨大（$57 vs $93.88），跨度 51.3%，估值共识已破裂（基本面，9 月 18 日）",
+      "自由现金流 $254 亿、ROE 49.54% 显示基本面仍强，但增长预期下修；10 年期国债收益率 4.94% 对高 beta(1.53) 科技股构成明确估值压力（基本面与宏观，9 月 17-18 日）",
+      "用户参与度持续下滑，影响订阅增长与广告收入——该风险基于分析师观点，Netflix 自身的用户参与度、订阅数、MAU 等关键指标数据不可用",
+      "内容成本压力与竞争对手（AMZN、DIS）的投资加码",
+      "分析师目标价分歧大（$57 vs $93.88，跨度 51.3%），市场预期不稳定，本身构成高风险信号",
+      "股价已跌破 MA20 和 MA50，技术面可能继续走弱",
+      "10 年期国债收益率 4.94% 对高 beta(1.53) 科技股构成明确估值压力。潜在风险：宏观经济放缓可能压低消费者订阅意愿——当前宏观数据（失业率 4.1%、CPI 3.71%、VIX 15.44）未显示放缓迹象，此为假设性风险"
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "variant": "C",
+  "company": "TSLA",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 395,
+        "evidence": "Robotaxi/Cybercab推出进展顺利但面临监管障碍",
+        "verified": true
+      },
+      {
+        "id": 398,
+        "evidence": "Tesla准备进入欧洲电动卡车市场，推出欧洲版Semi产品",
+        "verified": true
+      },
+      {
+        "id": 397,
+        "evidence": "高收益率、油价上升对TSLA等高估值股造成压力",
+        "verified": false
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 25.5，净利增速% -3.0。数据来源为行情[TSLA]截至2026-09-18"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：PE(TTM) 343.65，预期PE 165.76。数据来源为行情[TSLA]截至2026-09-18。论断中关于'远超行业平均'和'估值泡沫风险'属于judgment，但具体数值完全对应"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "知识图谱中E1事件（2026-09-19）：'Tesla Robotaxi/Cybercab推出进展顺利，但需跨越监管和运营障碍'。新闻摘要（2026-09-19 Motley Fool）：'The robotaxi/Cybercab rollout is on track, but investors need to be patient and understand there are regulatory and operational hurdles to cross'"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "知识图谱中E2事件（2026-09-18）：'Tesla准备进入欧洲电动卡车市场，推出欧洲版Semi产品，拓展收入来源'。新闻摘要（2026-09-18 Insider Monkey）：'the company is preparing to enter the European electric truck market, marking another step in its efforts to diversify its revenue base'"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据：10年期国债收益率 4.94%（2026-09-17），CPI同比变化 3.71%（2026-08-01）。数据完全对应论断中的具体数值"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "该论断为综合性风险分析，包含多个维度：1)估值风险、2)监管风险、3)竞争加剧、4)宏观风险、5)盈利压力。其中具体事实（PE 343.65、Robotaxi监管障碍、传统车企竞争、高利率环境、利润增速转负）均有数据支撑，但'任何盈利预期下调将引发大幅回调'、'蚕食市场份额'、'若经济衰退风险上升VIX可能飙升'等表述属于主观判断和展望，不是可核对的事实"
+      }
+    ],
+    "claims": [
+      "营收增速25.5%强劲，但盈利增速-3%转负，增长质量下降（市场数据截至2026-09-18）",
+      "PE 343.65极高，Forward PE 165.76仍远超行业平均，估值泡沫风险大（市场数据截至2026-09-18）",
+      "Robotaxi/Cybercab推出进展顺利但面临监管障碍，商业化时间表存不确定性（E1，2026-09-19）",
+      "欧洲Semi扩张计划积极，拓展新收入来源，但需关注供应链与认证进度（E2，2026-09-18）",
+      "宏观环境偏紧（10年期国债收益率4.94%、CPI 3.71%），高利率对高估值股不利（宏观数据截至2026-09-17）",
+      "1) 估值风险：PE 343.65为历史极高水平，任何盈利预期下调将引发大幅回调；2) 监管风险：Robotaxi商业化面临全球监管不确定性（E1）；3) 竞争加剧：传统车企强化软件与市场保护（E3-E6），蚕食市场份额；4) 宏观风险：高利率环境压制高估值股，若经济衰退风险上升，VIX可能飙升；5) 盈利压力：利润增速转负，成本控制能力受质疑"
+    ]
+  }
+}

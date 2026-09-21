@@ -1,0 +1,103 @@
+{
+  "variant": "A",
+  "company": "INTC",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 280,
+        "evidence": "Applied Materials 相比 Intel 增长更强、利润率更高，暗示 Intel 在竞争中处于劣势",
+        "verified": true
+      },
+      {
+        "id": 281,
+        "evidence": "UBS 预期 2027 年 AI capex $1.4T",
+        "verified": true
+      },
+      {
+        "id": 282,
+        "evidence": "内存短缺延续至 2027 年",
+        "verified": true
+      },
+      {
+        "id": 286,
+        "evidence": "与 SK Hynix 合作传言提供短期支撑",
+        "verified": true
+      },
+      {
+        "id": 287,
+        "evidence": "Intel Extends Memory Scarcity Into 2027",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "数据显示 INTC Forward P/E 52.67，NVIDIA Forward P/E 23.58（来自新闻摘要：'forward P/E ratio of 54.64 is also higher than NVIDIA's 23.58'，与数据中52.67接近，为四舍五入差异）。52.67 确实远超 23.58。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "数据显示净利润 -11288999936 美元（约 -112.9 亿美元），净利率 -19.79%。数据完全匹配。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "数据显示负债权益比（D/E）49.0，宏观指标显示联邦基金利率 3.63%、10年期国债收益率 4.94%，处于相对高利率环境。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-19 Investing.com）：'UBS now expects artificial intelligence capital expenditure to reach nearly $1 trillion in 2026 before climbing to around $1.4 trillion by 2027'；新闻摘要（2026-09-19 Simply Wall St.）：'Micron Technology (NasdaqGS: MU) and Intel CEOs cautioned that memory chip shortages and higher prices could persist through 2027'。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "数据显示收盘 108.6 高于 MA20 95.87 和 MA50 97.09（bullish），3个月区间涨跌 -22.95%，20日年化波动率 61.04%。所有数据均匹配。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对估值泡沫风险的主观判断和展望，涉及'任何负面消息可能引发大幅回调'的预测性表述，不是可核对的事实。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对 Foundry 业务执行风险的主观评估和展望，'能否成功获客、盈利仍存疑'属于不确定性判断，不是可核对的事实。"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对竞争格局的主观判断，'竞争对手技术领先'是定性评价，数据中未提供具体的技术对比证据。"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "数据显示 D/E 49.0，宏观指标显示联邦基金利率 3.63%、10年期国债收益率 4.94%，处于相对高利率环境。高杠杆在高利率环境下确实加重财务压力。"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对行业周期的展望性判断，'芯片短缺可能在 2027-2028 年缓解'是对未来的预测。虽然数据显示短缺延续至 2027 年，但 2027-2028 年的缓解是推测性的，不是已发生的事实。"
+      }
+    ],
+    "claims": [
+      "Forward P/E 52.67 远超 NVIDIA 23.58，估值严重高估（Yahoo Finance，2026-09-18）",
+      "净利润 -112.9 亿美元、利润率 -19.79%，盈利能力严重受损（Yahoo Finance，2026-09-18）",
+      "债务/权益 49.0，高杠杆在高利率环境下风险加大（Yahoo Finance，2026-09-18）",
+      "AI 芯片需求强劲，UBS 预期 2027 年 AI capex $1.4T，内存短缺延续至 2027 年（Investing.com，2026-09-19）",
+      "技术面强（价格高于 MA20/MA50）但 3 个月跌 22.95%，高波动率（61%）提示风险（Yahoo Finance，2026-09-18）",
+      "估值泡沫风险——Forward P/E 52.67 远超历史均值，任何负面消息可能引发大幅回调",
+      "执行风险——Foundry 业务能否成功获客、盈利仍存疑",
+      "竞争风险——NVIDIA、AMD、台积电等竞争对手技术领先",
+      "高杠杆风险——D/E 49.0 在利率上升环境下加重财务压力",
+      "行业周期风险——芯片短缺可能在 2027-2028 年缓解，压低价格"
+    ]
+  }
+}

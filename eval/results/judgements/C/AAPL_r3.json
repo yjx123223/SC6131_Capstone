@@ -1,0 +1,74 @@
+{
+  "variant": "C",
+  "company": "AAPL",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 3,
+        "evidence": "新CEO John Ternus上任获认可、CFRA Research认为其具有'Apple DNA'将推动公司发展到新水平",
+        "verified": false
+      },
+      {
+        "id": 7,
+        "evidence": "Evercore上调目标价至380美元",
+        "verified": true
+      },
+      {
+        "id": 8,
+        "evidence": "CFRA分析师预期Apple将'基本售出'所有iPhone Duo产品",
+        "verified": true
+      },
+      {
+        "id": 17,
+        "evidence": "高通预期在iPhone 18中的供应份额将远低于之前预期的20%",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 16.4，净利增速% 28.7，自由现金流 107721875456（约1077亿美元），数据截至2026-09-18"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "知识图谱事件E1记录：John Ternus成为Apple新CEO，分析师认为其具有Apple DNA，将推动公司发展到新水平。新闻中Yahoo Finance Video标题确认：'John Ternus has the Apple DNA that will push company to the next level'，来源CFRA Research，日期2026-09-18"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "知识图谱事件E2记录：Evercore将Apple股票目标价上调至380美元，日期2026-09-18。行情数据显示现价336.13，上升空间为(380-336.13)/336.13=13.0%。分析师目标价327.84，分析师数量39"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "知识图谱传导风险E5记录：高通在财报电话会议中表示，在苹果最新iPhone发布中的份额将远低于之前预期的20%，日期2026-09-18，供应风险分数0.9"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据：联邦基金利率3.63%（2026-08-01），VIX恐慌指数15.44（2026-09-17），失业率4.1%（2026-08-01）。行情数据显示：现价336.13，52周高位344.57，日期2026-09-18"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "该论断包含多个主观评价和风险判断：'高估值风险''成本控制存在不确定性''对Apple的直接影响需进一步观察''需求预期可能过高'等，这些都是分析师的主观判断而非可核对的事实。虽然PE 38.6、PB 45.7、D/E 78.4、流动比率1.0等数值可在行情数据中找到（PE(TTM) 38.59、PB 45.67、负债权益比 78.44、流动比率 1.0），但对这些数据的评价（'高估值''高债务杠杆''临界'）以及对未来风险的预测都属于主观判断"
+      }
+    ],
+    "claims": [
+      "基本面保持强劲增长：营收增速16.4%、净利润增速28.7%、自由现金流1077亿美元（市场数据截至2026-09-18）",
+      "新CEO John Ternus上任获分析师认可，CFRA Research认为其具有Apple DNA将推动公司发展到新水平（E1，2026-09-18）",
+      "Evercore上调目标价至380美元，较现价336.13美元有13%上升空间；分析师平均目标价327.84美元（39家分析师）（E2，2026-09-18）",
+      "高通预期在iPhone 18中的供应份额将远低于之前预期的20%，反映Apple供应链多元化趋势但存在整合风险（E5，2026-09-18）",
+      "宏观环境温和：联邦基金利率3.63%、VIX 15.44、失业率4.1%，支持科技股表现；但当前股价336.13美元已接近52周高位344.57美元（宏观数据2026-08/09）",
+      "高估值风险（PE 38.6、PB 45.7）；高债务杠杆（D/E 78.4）与流动比率临界（1.0）；高通供应份额下降可能反映供应链整合复杂度上升，成本控制存在不确定性；竞争对手Google获反垄断胜诉可能强化其广告与生态竞争力，但对Apple的直接影响需进一步观察；宏观利率上升风险；iPhone Duo需求预期可能过高，10月发布后需观察实际销售表现"
+    ]
+  }
+}

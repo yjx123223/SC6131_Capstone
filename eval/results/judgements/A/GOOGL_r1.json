@@ -1,0 +1,79 @@
+{
+  "variant": "A",
+  "company": "GOOGL",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 77,
+        "evidence": "Gemini 自主黑客能力引发网络安全风险",
+        "verified": true
+      },
+      {
+        "id": 78,
+        "evidence": "AI 科学突破机遇",
+        "verified": true
+      },
+      {
+        "id": 79,
+        "evidence": "关键反垄断裁决支持广告业务（9月19日），结束长期下跌",
+        "verified": true
+      },
+      {
+        "id": 82,
+        "evidence": "加州 AI 监管风险",
+        "verified": true
+      },
+      {
+        "id": 84,
+        "evidence": "AI 芯片产品线推出（9月18日）",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "基本面数据显示：营收增速% 24.2，净利增速% 294.0（Q2 2026对应报告期2026-06-30的10-Q申报）"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻[2026-09-19 Motley Fool]：'Alphabet's Ad Business Got a Lift From a Key Antitrust Ruling, Helping End Google's Worst Losing Streak in Over a Decade'，确认反垄断裁决支持广告业务并结束长期下跌"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "技术面数据：收盘 349.54，MA20 341.68，MA50 345.4，相对MA20 bullish，相对MA50 bullish（截至2026-09-18）"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "分析师数据：分析师评级 strong_buy，分析师目标价 428.41，分析师数量 53。上升空间计算：(428.41-349.54)/349.54 = 22.5%"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标：联邦基金利率 3.63%（2026-08-01），VIX恐慌指数 15.44（2026-09-17）。失业率4.1%、CPI 3.71%均未显示衰退信号"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "该段落为风险分析和主观评估：'AI安全风险'、'监管不确定性'、'估值风险'等均为基于数据的推断性判断，而非可直接核对的事实。其中提及的Gemini黑客能力在新闻中有提及（2026-09-19新闻），加州AI'杀死开关'政策在新闻中有提及（2026-09-18 Barrons.com），Forward PE 23.53在数据中有（预期PE 23.53），但整体段落属于风险评估和展望性质"
+      }
+    ],
+    "claims": [
+      "营收增长 24.2%、净利润增长 294%（Q2 2026，基本面强劲）",
+      "关键反垄断裁决支持广告业务，结束长期下跌（2026-09-19 新闻）",
+      "技术面看涨：股价 $349.54 高于 MA20 $341.68 和 MA50 $345.40（截至 2026-09-18）",
+      "分析师强买评级，目标价 $428.41，上升空间 22.5%（53 位分析师）",
+      "宏观环境支持：联邦基金利率 3.63%、VIX 15.44，无衰退信号（截至 2026-09-17）",
+      "AI 安全风险：Gemini 自主黑客能力可能引发监管加强和声誉风险。监管不确定性：加州 AI \"杀死开关\"等政策可能影响 AI 业务。反垄断持续压力：虽有利好裁决，但长期诉讼风险仍存。估值风险：Forward PE 23.53 相对较高，若增长放缓或利率上升可能承压"
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "variant": "A",
+  "company": "TSLA",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 395,
+        "evidence": "Robotaxi/Cybercab 推出进展积极但面临监管和运营障碍，商业化前景不确定",
+        "verified": false
+      },
+      {
+        "id": 396,
+        "evidence": "EV 市场销售 8 月同比下降 46.9%，行业需求疲软",
+        "verified": true
+      },
+      {
+        "id": 397,
+        "evidence": "高收益率环境（10Y 4.94%）削弱高估值科技股相对吸引力",
+        "verified": false
+      },
+      {
+        "id": 398,
+        "evidence": "欧洲电动卡车扩张（9/18）显示多元化发展",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示 PE(TTM) 343.65，预期PE 165.76，均为极高水平。这是纯数据陈述，不涉及估值判断。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：净利增速% -3.0，营收增速% 25.5，ROE% 4.67。数据完全匹配论断中的具体数值。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "宏观数据显示 10年期国债收益率 (%)：4.94（2026-09-17）。论断中的数值与数据完全一致。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-19 Stocktwits）明确指出：'Dealers sold an estimated 78,895 new battery-electric vehicles last month, up 2.5% from July yet down 46.9% from August 2025'。EV市场销售8月同比下降46.9%的数据完全匹配。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-19 Motley Fool）指出：'The robotaxi/Cybercab rollout is on track, but investors need to be patient and understand there are regulatory and operational hurdles to cross.'。论断中关于Robotaxi推出进展积极但面临监管和运营障碍的表述与新闻内容相符。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是一个综合性的风险评估和投资建议。虽然其中包含的具体数据（PE 343.65、Forward PE 165.76、净利润增速-3.0%、营收增长25.5%、ROE 4.67%、EV销售下降46.9%、10Y收益率4.94%、波动率49.18%）都能在数据中找到，但整体论述涉及多个主观判断：'可能反映产能利用率下降或竞争加剧'（因果推断）、'可能延迟商业化进程'（展望）、'需关注Q3财报'（建议）。这些属于分析师的主观判断而非可直接核对的事实。"
+      }
+    ],
+    "claims": [
+      "PE 343.65 极高，Forward PE 165.76，估值处于历史高位，增长预期已充分定价（市场数据 2026-09-18）",
+      "净利润增速 -3.0% 与营收增长 25.5% 严重脱节，盈利质量恶化，ROE 仅 4.67%（市场数据 2026-09-18）",
+      "10 年期国债收益率 4.94%，高收益率环境削弱高估值科技股相对吸引力（宏观数据 2026-09-17）",
+      "EV 市场销售 8 月同比下降 46.9%，行业需求疲软（新闻 2026-09-19）",
+      "Robotaxi 推出进展积极但面临监管和运营障碍，商业化前景不确定（新闻 2026-09-19）",
+      "极高估值风险（PE 343.65、Forward PE 165.76），处于历史高位；净利润增速 -3.0% 与营收增长 25.5% 严重脱节，盈利质量恶化，可能反映产能利用率下降或竞争加剧，需关注 Q3 财报确认；Robotaxi 商业化面临监管和运营不确定性，可能延迟商业化进程；EV 市场销售同比下降 46.9%，行业需求疲软趋势；高收益率环境（10Y 4.94%）持续压低高估值股票；高波动率（49.18%）增加风险；财报数据时效性已 3 个月，后续 Q3 财报可能带来新的风险信号"
+    ]
+  }
+}

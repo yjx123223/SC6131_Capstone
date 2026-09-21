@@ -1,0 +1,104 @@
+{
+  "variant": "A",
+  "company": "TSLA",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 395,
+        "evidence": "Robotaxi和欧洲卡车业务前景看好，但需要投资者耐心等待监管和运营挑战的解决",
+        "verified": true
+      },
+      {
+        "id": 396,
+        "evidence": "EV市场环比销售下降46.9% YoY（相比2025年8月），但环比上升2.5%（相比2026年7月）",
+        "verified": true
+      },
+      {
+        "id": 398,
+        "evidence": "欧洲电动卡车扩张（9月18日）",
+        "verified": true
+      },
+      {
+        "id": 413,
+        "evidence": "EV市场环比销售下降46.9% YoY（相比2025年8月），但环比上升2.5%（相比2026年7月）",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 25.5，净利增速% -3.0"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：PE(TTM) 343.65，预期PE 165.76。这两个数值均处于历史高位（52周高 498.83，52周低 297.38的背景下）"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "宏观数据显示：10年期国债收益率 4.94%（2026-09-17）。新闻摘要提及'An interest rate hike amid soaring energy costs and rising inflation concerns has weighed on the Dow'"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻2026-09-19 Motley Fool摘要：'The robotaxi/Cybercab rollout is on track, but investors need to be patient and understand there are regulatory and operational hurdles to cross'"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻2026-09-19 Stocktwits摘要：'Dealers sold an estimated 78,895 new battery-electric vehicles last month, up 2.5% from July yet down 46.9% from August 2025'"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对估值泡沫风险的主观判断和展望，涉及'可能引发大幅调整'等预测性表述，以及对分析师评级时间假设的质疑"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "行情数据显示：净利增速% -3.0。但'毛利率可能继续承压'是推测，数据中未提供毛利率信息"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对Robotaxi商业化风险的主观评估和展望，涉及'需要耐心等待'、'时间表存不确定性'等判断性表述"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "新闻数据显示EV销售环比下降46.9%（相比2025年8月）和环比上升2.5%（相比2026年7月）。但'同比趋势仍需关注'是展望性判断"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "行情数据显示：20日年化波动率% 49.18。但'大幅波动可能'和'技术面支撑脆弱'是主观判断"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "这是对高利率环境下股票表现的主观判断，涉及'对高估值股不利'、'任何进一步加息都将加重压力'等预测性表述"
+      }
+    ],
+    "claims": [
+      "营收增长25.5%但净利润增速-3.0%，利润质量恶化（市场数据2026-09-18）",
+      "PE 343.65、Forward PE 165.76处历史高位，估值与基本面严重脱节（市场数据2026-09-18）",
+      "10年期国债收益率4.94%高位，高利率环境压低高估值股估值，削弱技术面支撑（宏观数据2026-09-17）",
+      "Robotaxi推出需要投资者耐心等待，存在监管和运营挑战，商业化时间表不确定（新闻2026-09-19）",
+      "EV市场环比销售下降46.9%（相比2025年8月），但环比上升2.5%（相比2026年7月），市场竞争加剧（新闻2026-09-19）",
+      "估值泡沫风险——PE 343.65极高，任何增长放缓或利率上升都可能引发大幅调整。当前PE与分析师目标价隐含的8.8%上升空间存在逻辑张力，需关注分析师评级的时间假设",
+      "利润压力——净利润增速-3.0%，毛利率可能继续承压",
+      "Robotaxi商业化风险——推出需要耐心等待，监管和运营挑战的解决时间表存不确定性，商业化盈利能力未明确",
+      "EV市场竞争加剧——环比销售下降46.9%（相比2025年8月）反映市场竞争压力，虽环比上升2.5%（相比2026年7月）但同比趋势仍需关注",
+      "高波动率风险——49.18%年化波动率意味着大幅波动可能，在高利率环境下技术面支撑脆弱",
+      "利率敏感性——高收益率环境（10Y国债4.94%）对高估值股不利，任何进一步加息都将加重压力"
+    ]
+  }
+}

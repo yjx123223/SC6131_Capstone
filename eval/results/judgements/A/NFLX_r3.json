@@ -1,0 +1,120 @@
+{
+  "variant": "A",
+  "company": "NFLX",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 423,
+        "evidence": "$27B回购计划（约占公司8%）",
+        "verified": true
+      },
+      {
+        "id": 424,
+        "evidence": "Wells Fargo在2026-09-18的下调评级主导。分析师Steven Cahall将评级从Equal Weight下调至Underweight，目标价从$80下调至$57",
+        "verified": true
+      },
+      {
+        "id": 425,
+        "evidence": "Wells Fargo在2026-09-18的下调评级主导。分析师Steven Cahall将评级从Equal Weight下调至Underweight，目标价从$80下调至$57，理由包括\"用户参与度趋势令人担忧\"和内容成本压力",
+        "verified": true
+      },
+      {
+        "id": 426,
+        "evidence": "用户参与度疲弱成为核心关切",
+        "verified": true
+      },
+      {
+        "id": 427,
+        "evidence": "Wells Fargo在2026-09-18的下调评级主导。分析师Steven Cahall将评级从Equal Weight下调至Underweight，目标价从$80下调至$57",
+        "verified": true
+      },
+      {
+        "id": 428,
+        "evidence": "Wells Fargo在2026-09-18的下调评级主导。分析师Steven Cahall将评级从Equal Weight下调至Underweight，目标价从$80下调至$57",
+        "verified": true
+      },
+      {
+        "id": 430,
+        "evidence": "Wells Fargo在2026-09-18的下调评级主导。分析师Steven Cahall将评级从Equal Weight下调至Underweight，目标价从$80下调至$57",
+        "verified": true
+      }
+    ],
+    "dropped": [],
+    "repaired": "数组被返回成字符串且 JSON 非法，正则抽出 7 项"
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻数据显示Wells Fargo分析师Steven Cahall于2026-09-18将评级从Equal Weight下调至Underweight，目标价从$80下调至$57。行情数据显示45位分析师平均目标价$93.88，分析师评级为buy，说明分析师共识未明确转变。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻摘要提及'user engagement trends'和'weaker engagement'是下调的原因。SEC申报显示最新10-Q报告期为2026-06-30，截至2026-09-18已约2.5个月（接近3个月）。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据：收盘$71.79，MA20 $78.92，MA50 $75.72，相对MA20和MA50均为bearish（跌破）；RSI14为36.59（接近超卖）；20日涨跌% -10.42%。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据：自由现金流$25387552768（约254亿），ROE 49.54%。宏观数据：10年期国债收益率4.94%。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻数据（2026-09-19 Motley Fool）：'Netflix Has $27 Billion Left to Buy Back Its Own Stock -- About 8% of the Whole Company'。市值数据$298929225728，$27B约占9%（接近8%的表述）。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是基于用户参与度下滑的推测性判断，涉及'可能导致'的未来估值压缩，属于主观展望而非可核对的事实。"
+      },
+      {
+        "index": 7,
+        "verdict": "unsupported",
+        "evidence": "数据中未提供内容成本与广告收入的具体数据对比。虽然营收增速13.4%、净利增速11.1%可见，但无法从提供的数据中找到'内容成本高企与广告收入增长不匹配'的具体证据。"
+      },
+      {
+        "index": 8,
+        "verdict": "unsupported",
+        "evidence": "数据中未提及Disney+、Amazon Prime等竞争对手的信息，也未提供定价权压低的具体数据支撑。"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "行情数据：负债权益比（D/E）55.24%。宏观数据：10年期国债收益率4.94%，联邦基金利率3.63%，均处于较高水平。"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "Wells Fargo目标价$57，分析师平均目标价$93.88，两者差异巨大（相差64%），反映出分析师目标价分散度大，存在估值共识破裂风险。"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "SEC申报显示最新10-Q报告期为2026-06-30，截至2026-09-18已约2.5-3个月，存在信息滞后性。"
+      }
+    ],
+    "claims": [
+      "Wells Fargo单家下调至Underweight，目标价$57（2026-09-18），但45位分析师平均目标价$93.88，分析师共识未明确转变",
+      "用户参与度疲弱成为核心关切，但最新财务数据（10-Q）截至2026-06-30已3个月前，后续财务影响尚未充分反映",
+      "技术面破位：股价$71.79跌破MA20/MA50，RSI 36.59接近超卖，近20日跌10.42%（截至2026-09-18）",
+      "强现金流与高ROE（49.54%）支撑基本面，但高利率环境（10年期收益率4.94%）对高估值科技股构成压力",
+      "$27B回购计划（约占公司8%）显示管理层信心，但市场反应冷淡，未能扭转负面情绪",
+      "用户参与度持续下滑可能导致进一步的估值压缩，特别是若后续财报确认增长放缓",
+      "内容成本高企与广告收入增长不匹配的风险",
+      "竞争加剧（Disney+、Amazon Prime等）压低定价权",
+      "高杠杆（D/E 55.24）在利率维持高位环境下增加财务风险",
+      "分析师目标价分散度大（$57 vs $93.88），存在估值共识破裂风险",
+      "最新财务数据已3个月前，存在信息滞后性，后续财报可能带来重大波动"
+    ]
+  }
+}

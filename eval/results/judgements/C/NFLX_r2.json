@@ -1,0 +1,113 @@
+{
+  "variant": "C",
+  "company": "NFLX",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 423,
+        "evidence": "公司宣布 $27 亿回购计划（9 月 19 日），试图稳定股价",
+        "verified": true
+      },
+      {
+        "id": 424,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57",
+        "verified": true
+      },
+      {
+        "id": 425,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57，反映市场对内容竞争力与增长前景的担忧",
+        "verified": true
+      },
+      {
+        "id": 426,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57，反映市场对内容竞争力与增长前景的担忧",
+        "verified": true
+      },
+      {
+        "id": 427,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57",
+        "verified": true
+      },
+      {
+        "id": 428,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57",
+        "verified": true
+      },
+      {
+        "id": 430,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "知识图谱中E1和E4事件均记录：'Wells Fargo分析师下调Netflix评级至Underweight，目标价从$80降至$57'。目标价从$80降至$57的跌幅为 (80-57)/80 = 28.75%。新闻摘要确认理由为'用户参与度趋势疲弱'和'用户参与度下降'。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘价 71.79，MA20 78.92，MA50 75.72，相对MA20 bearish，相对MA50 bearish。5日涨跌% -7.25。所有数据均与论断一致。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：ROE% 49.54，自由现金流 25387552768（约254亿），营收增速% 13.4，净利增速% 11.1。所有数据均与论断一致。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：10年期国债收益率 4.94%（2026-09-17），VIX恐慌指数 15.44（2026-09-17）。数据与论断一致。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "行情数据显示：分析师目标价 93.88，分析师数量 45。知识图谱E1记录Wells Fargo目标价 $57。论断中平均目标价$93.88与Wells Fargo $57的对比在数据中有依据。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对未来趋势的预测性判断。虽然数据中提到'用户参与度趋势疲弱'（E1、E4），但'可能导致订阅增速进一步放缓'是对未来的推测，不是可核对的事实。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对未来可能性的主观判断。虽然新闻摘要提到'内容问题'和'内容成本'，但'可能压低利润率'是推测性的展望，不是已发生的事实。"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对未来股价走势的预测性判断。虽然数据显示分析师目标价下调和股价下跌，但'股价可能继续探底'是对未来的推测，不是可核对的事实。"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "行情数据显示：负债权益比 55.24%。论断中的'高债务率（55.24%）'与数据完全一致。"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对宏观环境影响的主观判断。虽然数据显示10年期国债收益率4.94%和VIX 15.44，但'对高估值科技股持续压制'是对市场影响的推测性评价，不是可核对的事实。"
+      }
+    ],
+    "claims": [
+      "Wells Fargo 下调目标价至 $57，跌幅 28.75%，理由是用户参与度疲弱（E1、E4，9 月 18 日）",
+      "技术面走弱：股价 $71.79 跌破 MA20 $78.92 与 MA50 $75.72，5 日跌幅 -7.25%（数据截至 9 月 18 日）",
+      "基本面仍强但增速放缓：ROE 49.54%、自由现金流 $254 亿，但收入增速 13.4%、盈利增速 11.1%（数据截至 9 月 18 日）",
+      "宏观环境中性偏空：10 年期国债收益率 4.94%、VIX 15.44，利率环境对高估值股不利（数据截至 9 月 17 日）",
+      "分析师共识分歧：平均目标价 $93.88 vs Wells Fargo $57，显示市场对增长前景预期差异大（数据截至 9 月 18 日）",
+      "用户参与度持续下滑可能导致订阅增速进一步放缓",
+      "内容成本压力与竞争加剧可能压低利润率",
+      "分析师目标价大幅下调反映市场预期调整，股价可能继续探底",
+      "高债务率（55.24%）限制公司应对危机的灵活性",
+      "宏观利率环境对高估值科技股持续压制"
+    ]
+  }
+}

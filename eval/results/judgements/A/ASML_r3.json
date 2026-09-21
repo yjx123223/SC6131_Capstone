@@ -1,0 +1,104 @@
+{
+  "variant": "A",
+  "company": "ASML",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 351,
+        "evidence": "Installed Base销售增长31.8%，AI需求驱动强劲",
+        "verified": true
+      },
+      {
+        "id": 352,
+        "evidence": "EUV产能扩张至110台机器测试，制约已从客户需求转向制造吞吐量",
+        "verified": false
+      },
+      {
+        "id": 353,
+        "evidence": "Canon和Nikon在芯片制造领域布局，市场份额威胁程度待观察",
+        "verified": true
+      },
+      {
+        "id": 355,
+        "evidence": "印度政府推动本土芯片制造可能分散需求",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "Zacks 2026-09-18新闻标题：'ASML Rides on Strength in Installed Base Business: Will it Sustain?'，摘要明确指出'ASML's Installed Base Management sales surge 31.8%, fueled by upgrades and a growing EUV fleet'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "GuruFocus 2026-09-17新闻标题：'ASML Gains 1.5% as 110 EUV Machines Test Assembly Speed'，摘要指出'AI demand has moved ASML's constraint from customer interest to manufacturing throughput'"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘1679.92低于MA20 1689.4和MA50 1721.6（bearish），区间涨跌% -12.81（近3月下跌），20日年化波动率% 39.73"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示：分析师目标价2137.39，分析师评级strong_buy，分析师数量16。现价1679.92，目标价较现价上升(2137.39-1679.92)/1679.92=27.2%，约27%"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "24/7 Wall St. 2026-09-17新闻：'Chasing ASML's Dominance: Canon and Nikon Are Doing Something The Market Misses'，提及Canon和Nikon在芯片制造领域的布局。AFP 2026-09-17新闻：'Modi pitches India as global chipmaking hub'，提及印度政府推动本土芯片制造"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "24/7 Wall St. 2026-09-17新闻：'Chasing ASML's Dominance: Canon and Nikon Are Doing Something The Market Misses'，摘要指出'Canon and Nikon are quietly carving out a position in chip manufacturing that Wall Street's models barely account for'"
+      },
+      {
+        "index": 7,
+        "verdict": "unsupported",
+        "evidence": "数据中未提及美国对华芯片出口管制对ASML客户需求的具体影响。虽然有Canon/Nikon竞争和印度芯片制造的新闻，但缺少地缘政治（美国对华出口管制）的相关信息"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "GuruFocus 2026-09-17新闻提及'110 EUV Machines Test Assembly Speed'和'constraint from customer interest to manufacturing throughput'。Zacks 2026-09-18新闻提及'sustaining growth hinges on customer demand'，暗示产能释放时间表的不确定性"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "行情数据显示预期PE 28.32。Zacks 2026-09-18新闻提出'Will it Sustain?'的疑问，表明Installed Base增长的可持续性存疑"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对技术面的主观预测，涉及未来价格走势（$1,500-1,550），属于纯粹的技术分析判断，不涉及可核对的历史事实"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "这是对数据完整性和不确定性的元分析评论，属于分析框架的陈述而非可核对的事实。虽然确实缺少Q3数据，但这是对报告本身局限性的反思，而非关于ASML的具体事实论断"
+      }
+    ],
+    "claims": [
+      "Installed Base销售增长31.8%，AI需求驱动强劲（Zacks, 2026-09-18基于Q2财报）",
+      "EUV产能扩张至110台机器测试，制约从客户需求转向制造吞吐量（GuruFocus, 2026-09-17）",
+      "股价跌破MA20/MA50，近3月下跌12.81%，波动率39.73%高于市场整体风险水平，技术面调整压力明显（Yahoo Finance, 2026-09-18）",
+      "分析师强烈买入，16位分析师目标价$2,137.39，较现价上升27%，与技术面走弱形成矛盾（Yahoo Finance, 2026-09-18）",
+      "Canon/Nikon竞争威胁，市场份额威胁程度待观察；印度政府推动本土芯片制造可能分散需求（24/7 Wall St., 2026-09-17；AFP, 2026-09-17）",
+      "竞争加剧——Canon和Nikon在芯片制造领域布局，市场份额威胁程度待观察，Wall Street模型可能低估其影响",
+      "地缘政治——美国对华芯片出口管制可能影响客户需求，印度政府推动本土芯片制造可能分散需求，具体传导路径未明确",
+      "产能瓶颈——虽有EUV产能扩张至110台机器，但能否满足爆炸性AI需求存疑，制约已从客户需求转向制造吞吐量，产能释放时间表不确定",
+      "估值风险——Forward PE 28.32虽相对合理但仍需基本面持续支撑，若Installed Base增长无法持续（Q3数据待确认），估值可能承压",
+      "技术面——短期调整可能加深至$1,500-1,550，需确认支撑位",
+      "数据不完整性——缺少Q3实时销售数据，竞争威胁缺乏量化依据，地缘政治影响的客户需求传导路径未明确，这些不确定性限制了置信度"
+    ]
+  }
+}

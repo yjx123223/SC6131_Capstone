@@ -1,0 +1,114 @@
+{
+  "variant": "A",
+  "company": "AMD",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 247,
+        "evidence": "9月19日报道AMD股价突破买入区间",
+        "verified": true
+      },
+      {
+        "id": 249,
+        "evidence": "Simply Wall St.（9月18日）指出AMD虽有3年强劲涨幅，但需要验证当前股价是否与可实现现金流相符",
+        "verified": true
+      },
+      {
+        "id": 250,
+        "evidence": "9月18日多篇报道确认芯片板块反弹，AMD作为关键标的受关注",
+        "verified": true
+      },
+      {
+        "id": 251,
+        "evidence": "9月18日多篇报道确认芯片板块反弹，AMD作为关键标的受关注",
+        "verified": true
+      },
+      {
+        "id": 252,
+        "evidence": "Zacks新闻（9月18日）对AMD进行研究报告分析",
+        "verified": false
+      },
+      {
+        "id": 254,
+        "evidence": "Trefis新闻（9月18日）对比NVDA与AMD，指出NVDA作为最强业务反而定价最低，而AMD过去12个月涨幅239.7%远超NVDA的25.7%",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "基本面数据：营收增速% 50.1，净利增速% 159.5"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "估值数据：预期PE 35.95，PE(TTM) 138.91"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "技术面数据：收盘 559.82，MA20 490.75，MA50 495.85（均低于收盘价），RSI14 65.1，20日年化波动率% 50.35，beta 2.48"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "分析师数据：分析师目标价 616.51，分析师评级 strong_buy。上升空间计算：(616.51-559.82)/559.82 = 10.1%，约等于9.9%"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标：VIX 15.44（2026-09-17），失业率 4.1%（2026-08-01），CPI同比变化 3.71%（2026-08-01）"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是基于高Trailing PE 138.91的风险评估和主观判断，不涉及新的可核对事实"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "技术面数据：20日年化波动率% 50.35，beta 2.48"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "基本面数据：负债权益比 6.36"
+      },
+      {
+        "index": 9,
+        "verdict": "unsupported",
+        "evidence": "数据中未提供关于AI芯片市场竞争、NVDA等竞争对手压力的具体信息。虽然新闻中提到NVDA与AMD的对比，但未涉及竞争压力的具体描述"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对地缘政治与贸易政策不确定性的主观评估，不涉及可核对的具体事实数据"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "分析师目标价 616.51，当前股价 559.82，上升空间约9.9%（与论断4一致）"
+      }
+    ],
+    "claims": [
+      "营收增速50.1%、净利润增速159.5%，基本面强劲（Yahoo Finance，2026-09-18）",
+      "Forward PE 35.95倍相对合理，但Trailing PE 138.91倍高企，估值需谨慎评估（Yahoo Finance，2026-09-18）",
+      "技术面强势，股价559.82美元高于MA20/MA50，RSI14为65.1中性偏强，但年化波动率50.35%风险高（Yahoo Finance，2026-09-18）",
+      "分析师强烈买入评级，目标价616.51美元，当前股价已接近目标价，上升空间约9.9%（Yahoo Finance，2026-09-18）",
+      "宏观环境稳定，VIX 15.44、失业率4.1%、通胀3.71%，支持风险资产，但高利率环境对高估值科技股存在压制（FRED，2026-09-17）",
+      "估值风险，Trailing PE 138.91倍处于高位，任何增长放缓或市场情绪转变可能引发大幅回调",
+      "高波动率（年化50.35%）增加风险，Beta 2.48表明相对大盘波动性高",
+      "债务杠杆较高（D/E 6.36），利率上升风险",
+      "AI芯片市场竞争激烈，NVDA等竞争对手压力",
+      "地缘政治与贸易政策不确定性",
+      "当前股价已接近分析师目标价，上升空间有限"
+    ]
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "variant": "A",
+  "company": "MSFT",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 39,
+        "evidence": "行业新闻聚焦 AI 科学突破应用（2026-09-19），利好 MSFT 的云计算与 AI 服务。",
+        "verified": true
+      },
+      {
+        "id": 42,
+        "evidence": "Microsoft 作为 Nscale（AI 数据中心）的战略合作伙伴，参与 IPO 融资（2026-09-18），强化 AI 基础设施布局。",
+        "verified": true
+      },
+      {
+        "id": 44,
+        "evidence": "Nscale, a developer of artificial intelligence data centers that counts Nvidia Corp. and Microsoft Corp. among its partners, filed for an initial public offering in New York to tap into AI's insatiabl",
+        "verified": false
+      },
+      {
+        "id": 45,
+        "evidence": "Goldman Sachs Sends Stark Warning on S&P 500 Earnings",
+        "verified": true
+      },
+      {
+        "id": 46,
+        "evidence": "OpenAI and Anthropic's Chinese Rivals Face a Revenue Reality Check",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 17.7，净利增速% 31.7，ROE% 34.04，数据截至 2026-09-18（基本面数据来自 10-K 报告期 2026-06-30）"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：预期PE 20.93，分析师目标价 572.92，当前收盘价 493.78，目标价相对当前上涨幅度为 (572.92-493.78)/493.78 = 15.99% ≈ 16%"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "新闻数据显示：2026-09-18 Bloomberg 和 Stocktwits 报道 'Nscale, a developer of artificial intelligence data centers that counts Nvidia Corp. and Microsoft Corp. among its partners, filed for an initial public offering'，确认 MSFT 参与 Nscale IPO，强化数据中心与 AI 基础设施布局"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示：区间涨跌% 34.67（3个月），MA50 464.2，MA20 497.51，当前收盘 493.78。中期（相对MA50）bullish，短期（相对MA20）bearish，收盘价 493.78 低于 MA20 497.51"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：VIX 恐慌指数 15.44（2026-09-17），联邦基金利率 3.63%（2026-08-01），失业率 4.1%（2026-08-01），CPI 同比变化 3.71%（2026-08-01）"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对估值合理性的主观评价。虽然数据支持 Forward PE 20.93 的事实，但'不便宜'、'可能承压'等表述属于分析师的主观判断和展望"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对竞争格局和未来投入需求的主观判断。虽然新闻提及 OpenAI 和 Anthropic，但'竞争加剧'、'优势需持续投入维持'等属于分析师的主观评估，不是可核对的事实"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对监管风险的主观判断和展望。数据中未提及具体的反垄断审查事件或政策不确定性的具体内容，属于分析师的风险评估"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对汇率风险的主观判断。虽然数据中有美元相关的宏观指标，但'国际业务占比大'、'美元升值可能压低海外收入'等属于分析师的主观推断，不是可直接核对的事实"
+      }
+    ],
+    "claims": [
+      "基本面强劲：FY2026 营收增长 17.7%、净利润增长 31.7%、ROE 34.04%（数据截至 2026-06-30）",
+      "估值合理：Forward PE 20.93，分析师目标价 572.92 美元，较当前上涨 16%（数据截至 2026-09-18）",
+      "AI 战略深化：参与 Nscale IPO，强化数据中心与 AI 基础设施布局（新闻日期 2026-09-18）",
+      "技术面支撑：3 个月涨幅 34.67%，中期高于 MA50（464.2），短期回调至 MA20 下方提供买点（数据截至 2026-09-18）",
+      "宏观环境利好：VIX 15.44 低位，利率稳定 3.63%，失业率 4.1%，通胀可控 3.71%（数据截至 2026-09-17）",
+      "科技股估值风险——Forward PE 20.93 虽合理但不便宜，若宏观转向或利率上升可能承压",
+      "AI 竞争加剧——OpenAI、Anthropic 等竞争对手持续创新，MSFT 的 AI 优势需持续投入维持",
+      "监管风险——反垄断审查持续，云计算与 AI 领域面临政策不确定性",
+      "汇率风险——国际业务占比大，美元升值可能压低海外收入折算"
+    ]
+  }
+}

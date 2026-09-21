@@ -1,0 +1,109 @@
+{
+  "variant": "B",
+  "company": "AMD",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 247,
+        "evidence": "AMD被列为技术面\"买入区域\"股票（IBD 2026-09-19，指股价进入技术面买入区间），芯片板块整体反弹（SOX指数连续四日上涨）",
+        "verified": true
+      },
+      {
+        "id": 249,
+        "evidence": "Simply Wall St.（2026-09-18）指出AMD经历3年强势上涨后，当前股价是否仍与现金生成能力相符需要审视",
+        "verified": true
+      },
+      {
+        "id": 251,
+        "evidence": "芯片板块整体反弹（SOX指数连续四日上涨）",
+        "verified": true
+      },
+      {
+        "id": 254,
+        "evidence": "Trefis对比分析（2026-09-18）显示NVDA PE为27.5倍，而AMD PE为138.91倍，NVDA在估值上具有明显优势",
+        "verified": true
+      },
+      {
+        "id": 259,
+        "evidence": "TSM正在加速2nm产能商业化并提升资本支出（Simply Wall St. 2026-09-18），支持AMD先进工艺供应",
+        "verified": true
+      },
+      {
+        "id": 267,
+        "evidence": "根据Micron警告，全球芯片产能紧张可能延续至2027年，成本压力可能侵蚀利润",
+        "verified": true
+      }
+    ],
+    "dropped": [],
+    "repaired": "数组被返回成字符串且 JSON 非法，正则抽出 6 项"
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "AMD行情数据显示：营收增速% 50.1，净利增速% 159.5，与论断完全一致"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "AMD行情数据：PE(TTM) 138.91；NVDA行情数据：PE(TTM) 27.71，论断数值完全匹配"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "AMD行情数据：收盘 559.82，MA20 490.75，MA50 495.85，相对MA20 bullish，相对MA50 bullish，RSI14 65.1，RSI信号 neutral，5日涨跌% 8.46，所有数据均与论断相符"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "AMD行情数据：分析师目标价 616.51，分析师评级 strong_buy，分析师数量 50。上涨空间计算：(616.51-559.82)/559.82=10.1%，数据完全匹配"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "NVDA行情数据：净利率% 63.66，市值 5367153557504（约5.37万亿）；AMD行情数据：净利率% 15.58，市值 913892179968（约9139亿），PE(TTM) 138.91；NVDA PE(TTM) 27.71，所有数据均相符"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "论断涉及'估值压缩风险大'等主观判断，虽然PE 138.91的数据存在，但'历史高位'、'风险大'等属于主观评价"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "论断为主观判断，虽然数据支持NVDA相对优势明显，但'需持续创新以维持竞争力'属于展望性判断"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "新闻[INTC]中提到：'Micron Technology (NasdaqGS: MU) and Intel CEOs cautioned that memory chip shortages and higher prices could persist through 2027. Micron's leadership indicated on a recent call that supply constraints may only start to ease meaningfully from 2028 onward.'，支持Micron警告全球芯片产能紧张延续至2027年的论述"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "论断涉及地缘政治风险的主观判断，虽然台湾地缘政治不确定性是客观存在的，但'对TSM供应链构成潜在威胁'属于因果推断和风险评估"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "论断为主观判断，虽然AI芯片市场竞争加剧是事实，但'AMD需持续创新以维持竞争力'属于展望性建议"
+      }
+    ],
+    "claims": [
+      "营收增速50.1%、净利增速159.5%，AI需求强劲支撑（市场数据截至2026-09-18）",
+      "尾随PE 138.91远高于NVDA 27.71，估值溢价难以持续（市场数据截至2026-09-18）",
+      "技术面强势：股价559.82美元位于MA20/MA50上方，RSI14 65.1中性偏强，5日涨8.46%（截至2026-09-18）",
+      "分析师平均目标价616.51美元，50家分析师给出强烈买入，但上涨空间仅10.1%（市场数据截至2026-09-18）",
+      "NVDA 相对优势明显：净利率63.66% vs AMD 15.58%，市值5.37万亿 vs AMD 9139亿，估值PE 27.71 vs AMD 138.91（市场数据截至2026-09-18）",
+      "估值风险：尾随PE 138.91处于历史高位，若增长预期下修或市场风险偏好下降，估值压缩风险大",
+      "竞争风险：NVDA 在利润率和市值上具有相对优势，AMD 需持续创新以维持竞争力",
+      "供应链风险：虽TSM产能支持充足，但根据Micron警告，全球芯片产能紧张可能延续至2027年，成本压力可能侵蚀利润",
+      "地缘政治风险：台湾地缘政治不确定性对TSM供应链构成潜在威胁",
+      "技术风险：AI芯片市场竞争加剧，AMD 需持续创新以维持竞争力"
+    ]
+  }
+}

@@ -1,0 +1,92 @@
+{
+  "variant": "C",
+  "company": "TSM",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 218,
+        "evidence": "台积电将2nm工艺推进商业化生产，加大先进制造投资，提高资本支出目标以支持2nm推出",
+        "verified": true
+      },
+      {
+        "id": 220,
+        "evidence": "联发科选择台积电2纳米工艺用于新款Dimensity 9600 Pro芯片，3nm工艺用于9600M",
+        "verified": true
+      },
+      {
+        "id": 221,
+        "evidence": "MediaTek选择TSM 2nm工艺用于Dimensity 9600 Pro（2026-09-18），确认2nm商业化进展",
+        "verified": true
+      },
+      {
+        "id": 219,
+        "evidence": "芯片价格上涨与TSMC成本压力相关",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：营收增速% 36.0，净利增速% 77.4"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "Simply Wall St.新闻（2026-09-18）：'MediaTek chose its 2-nanometer process for the new Dimensity 9600 Pro'；知识图谱事件E2确认'联发科选择台积电2纳米工艺用于新款Dimensity 9600 Pro芯片'"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：分析师目标价 552.26，当前收盘价 434.67；上升空间计算：(552.26-434.67)/434.67 = 27.1%，约27%"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示PE(TTM) 32.06；FRED数据显示10年期国债收益率 4.94%（2026-09-17）"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance技术指标显示：MA20 421.53，MA50 416.33，相对MA20 bullish，相对MA50 bullish；RSI14 56.83，RSI信号 neutral；近10日收盘数据显示在416-437区间波动，无明显强势突破"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是基于P/E 32.06和宏观利率4.94%的风险评估，属于主观判断而非可核对的事实陈述"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对2nm产能爬坡、良率与成本控制影响的风险分析，属于主观判断，数据中未涉及具体的产能进度、良率或成本数据"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对地缘政治风险的主观评估，数据中未包含台湾地缘政治局势或美国芯片出口管制的具体事件信息"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对竞争对手进展的主观评估，数据中未提供三星、Intel等竞争对手的具体工艺进展信息"
+      }
+    ],
+    "claims": [
+      "营收同比增36%、净利润增77.4%，AI芯片需求强劲（Yahoo Finance市场数据，截至2026-09-18）",
+      "2nm工艺商业化推进，MediaTek确认2nm订单（Simply Wall St.新闻，2026-09-18）",
+      "分析师平均目标价552.26美元，较当前434.67美元有27%上升空间（Yahoo Finance，截至2026-09-18）",
+      "P/E 32.06处历史高位，宏观利率4.94%有估值压制（Yahoo Finance与FRED数据，截至2026-09-18）",
+      "技术面MA20/MA50向上，RSI14中性，近期企稳但缺乏强势突破（Yahoo Finance技术指标，截至2026-09-18）",
+      "估值风险——P/E 32.06相对历史高位，若增长不及预期或宏观利率上升，估值压缩空间大",
+      "产能风险——2nm产能爬坡进度、良率与成本控制直接影响利润率",
+      "地缘政治风险——台湾地缘政治局势、美国对华芯片出口管制可能冲击客户需求",
+      "竞争风险——三星、Intel等竞争对手先进工艺进展"
+    ]
+  }
+}

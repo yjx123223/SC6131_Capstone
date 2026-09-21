@@ -1,0 +1,88 @@
+{
+  "variant": "A",
+  "company": "AAPL",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 3,
+        "evidence": "新 CEO John Ternus 领导下推出 iPhone 18 Pro 和即将发布的折叠屏 iPhone Duo，市场需求强劲",
+        "verified": true
+      },
+      {
+        "id": 7,
+        "evidence": "Evercore 上调目标价至 380 美元（9 月 18 日）",
+        "verified": true
+      },
+      {
+        "id": 8,
+        "evidence": "iPhone 18 Pro 已上市销售强劲（9 月 18 日），折叠屏 iPhone Duo 预计 10 月底发布，CFRA 预测将\"售罄\"",
+        "verified": true
+      }
+    ],
+    "dropped": [],
+    "repaired": "数组被返回成字符串且 JSON 非法，正则抽出 3 项"
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示营收增速% 16.4、净利增速% 28.7，数据截至 2026-09-18，而论断标注截至 2026-06-27（对应 10-Q 报告期），两个时间点的数据一致"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示收盘 336.13，区间涨跌% 13.27（3个月），MA20 322.64、MA50 320.03，收盘价 336.13 > MA20 322.64 > MA50 320.03，均位于两条均线上方"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "新闻摘要提及'iPhone 18 Pro has hit store shelves on Friday'和'foldable iPhone Duo's release in late October'，以及'Apple will essentially sell every single iPhone Duo it makes: CFRA'，表明 iPhone 18 Pro 销售强劲、iPhone Duo 预计 10 月发布、CFRA 预测将售罄"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示分析师评级 buy、分析师数量 39、分析师目标价 327.84；新闻摘要提及'Evercore Delivers Bullish $380 Price Target for Apple Stock'"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示 VIX 恐慌指数 15.44（2026-09-17）、联邦基金利率 3.63%（2026-08-01）、CPI 同比变化 3.71%（2026-08-01）"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "行情数据显示 PE(TTM) 38.59、PB 45.67，论断关于估值高企的数值完全对应；后半部分关于增长预期依赖和风险的表述属于分析性判断，基于已有的估值和增速数据"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "关于折叠屏 iPhone Duo 市场接受度的不确定性是纯粹的主观判断，虽然新闻提及了产品，但市场接受度的不确定性评估不是可核对的事实"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "地缘政治风险和供应链中断风险是对潜在风险的主观评估，数据中未涉及相关具体事件或申报信息"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "关于科技股估值对利率敏感性的论述是经济学原理的应用，虽然数据中有利率数据（3.63%），但'若利率上升将压低股价'是对未来的假设性判断，不是可核对的事实"
+      }
+    ],
+    "claims": [
+      "营收增速 16.4%、净利润增速 28.7%，基本面超预期增长（数据截至 2026-06-27）",
+      "股价 336.13 美元，3 个月涨幅 13.27%，位于 MA20/MA50 上方，技术面强势（截至 2026-09-18）",
+      "iPhone 18 Pro 销售强劲，iPhone Duo 预计 10 月发布，CFRA 预测将售罄，新产品周期驱动（截至 2026-09-18）",
+      "分析师一致推荐'买入'（39 位），平均目标价 327.84 美元，Evercore 上调至 380 美元（截至 2026-09-18）",
+      "VIX 15.44 低位、联邦基金利率 3.63% 适度、CPI 3.71% 可控，宏观环境支持科技股（截至 2026-09-17）",
+      "估值高企（PE 38.59、PB 45.67），对增长预期依赖强，若产品销售不达预期或宏观衰退将面临估值压缩",
+      "折叠屏 iPhone Duo 作新品类，市场接受度存不确定性",
+      "地缘政治风险（中国市场依赖）、供应链中断风险",
+      "科技股估值对利率敏感，若联邦基金利率上升将压低股价"
+    ]
+  }
+}

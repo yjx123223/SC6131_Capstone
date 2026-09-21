@@ -1,0 +1,120 @@
+{
+  "variant": "C",
+  "company": "ASML",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 351,
+        "evidence": "Installed Base Management 销售增长 31.8%（基于新闻报道，待官方财报确认），反映 AI 芯片需求强劲",
+        "verified": true
+      },
+      {
+        "id": 352,
+        "evidence": "制造产能成为约束而非需求不足（2026-09-17），反映 AI 需求强劲",
+        "verified": true
+      },
+      {
+        "id": 353,
+        "evidence": "Canon 和 Nikon 在特定领域有所突破，竞争加剧（2026-09-17）",
+        "verified": true
+      },
+      {
+        "id": 350,
+        "evidence": "分析师观点认为 ASML 等设备供应商是 AI 产业链的真正赢家（2026-09-18 Eisman 观点）",
+        "verified": true
+      },
+      {
+        "id": 355,
+        "evidence": "印度推进芯片制造可能分散全球产能需求（2026-09-17 Modi 讲话）",
+        "verified": true
+      },
+      {
+        "id": 359,
+        "evidence": "主要客户 Intel 面临内存短缺压力（至 2027 年）",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻[ASML] 2026-09-18 Zacks: 'ASML's Installed Base Management sales surge 31.8%, fueled by upgrades and a growing EUV fleet'；知识图谱 E1 2026-09-18 positive PRODUCT：'ASML Installed Base Management销售额增长31.8%，受升级和EUV机器增加驱动'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻[ASML] 2026-09-17 GuruFocus.com: 'ASML Gains 1.5% as 110 EUV Machines Test Assembly Speed'；知识图谱 E2 2026-09-17 positive SUPPLY_CHAIN：'ASML制造产能成为主要约束，110台EUV机器测试组装速度，AI需求强劲'"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情[ASML] 技术面：区间涨跌% -12.81（近三月），相对MA20 bearish，相对MA50 bearish，RSI14 48.19（中性偏弱）；收盘 1679.92；基本面：营收增速% 21.3，净利增速% 28.5（向好）"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情[ASML] 基本面：PE(TTM) 55.55，预期PE 28.32，分析师目标价 2137.39，收盘 1679.92；计算：(2137.39-1679.92)/1679.92 = 27.2%"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "知识图谱 E3 需求风险（分数 0.68）2026-09-19 INTC：'Intel CEO警告内存芯片短缺和价格上升可能持续至2027年'；知识图谱邻居显示 INTC(客户)"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "宏观指标：VIX 恐慌指数 15.44（2026-09-17），联邦基金利率 3.63%（2026-08-01），失业率 4.1%（2026-08-01）；数据时效性：宏观指标确实截至2026-08-01，距报告日期2026-09-18已滞后约6周"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对未来风险的主观预测和假设性分析（'若增长预期下修或宏观环境恶化'），涉及'估值压缩'和'跌幅可能超过15.9%'等预期性判断，不是可核对的事实陈述"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "知识图谱 E3 需求风险（分数 0.68）：'Intel CEO警告内存芯片短缺和价格上升可能持续至2027年'；知识图谱邻居显示 INTC(客户)，确认Intel是ASML主要客户"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对产能风险的假设性分析（'若产能释放不及预期或客户需求下滑'），涉及'可能错失订单或面临库存压力'等推测性判断，不是可核对的事实陈述"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "新闻[ASML] 2026-09-17 AFP: 'Modi pitches India as global chipmaking hub'，'Prime Minister Narendra Modi pitched India as a new global hub for semiconductor production'；新闻中提及欧洲和印度推进本地芯片制造的事实"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "新闻[ASML] 2026-09-17 24/7 Wall St.: 'Canon and Nikon Are Doing Something The Market Misses'，'Canon and Nikon are quietly carving out a position in chip manufacturing'"
+      },
+      {
+        "index": 12,
+        "verdict": "supported",
+        "evidence": "宏观指标数据时间戳：联邦基金利率、CPI、失业率均为2026-08-01，距报告日期2026-09-18已滞后约6周；若最新数据显示变化将对科技股估值构成压力是合理的风险分析"
+      }
+    ],
+    "claims": [
+      "Installed Base Management 销售增长 31.8%，驱动 AI 需求强劲（E1，2026-09-18 新闻报道，待官方财报确认）",
+      "制造产能成为主要约束，110 台 EUV 机器测试组装速度，需求超供应（E2，2026-09-17）",
+      "股价近三月下跌 12.81%、技术面走弱（MA20/MA50 均呈熊市，RSI14 中性偏弱），与基本面向好形成矛盾，反映市场对增长可持续性的担忧（截至 2026-09-18）",
+      "PE 55.55 处于历史高位，Forward PE 28.32 反映市场对未来增长乐观预期，但分析师目标价 2137.39 美元距当前股价 1679.92 美元仍有 27.2% 上升空间，估值风险与增长预期并存",
+      "Intel CEO 警告内存芯片短缺至 2027 年（E3，风险分数 0.68），作为 ASML 主要客户，Intel 的投资计划可能受影响，客户需求风险不容忽视",
+      "宏观环境温和（VIX 15.44，利率 3.63%，失业率 4.1%），但宏观指标截至 2026-08-01 已滞后 6 周，最新数据待更新",
+      "估值风险：PE 55.55 处于历史高位，若增长预期下修或宏观环境恶化，将面临估值压缩，跌幅可能超过当前 15.9%",
+      "客户需求风险（高权重）：Intel CEO 警告内存短缺至 2027 年，作为 ASML 主要客户，Intel 的投资计划可能受到影响，直接威胁 ASML 订单与收入增长，这是当前最值得关注的风险",
+      "产能风险：虽然产能约束反映需求强劲，但若产能释放不及预期或客户需求下滑，可能错失订单或面临库存压力",
+      "地缘政治风险：印度、欧洲等地推进本地芯片制造，可能分散全球产能需求，长期冲击 ASML 市场份额",
+      "竞争加剧：Canon 和 Nikon 在特定领域有所突破，长期竞争压力上升",
+      "数据时效性风险：宏观指标已滞后 6 周，若最新数据显示利率上升或经济放缓，将对科技股估值构成压力"
+    ]
+  }
+}

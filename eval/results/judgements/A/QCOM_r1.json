@@ -1,0 +1,103 @@
+{
+  "variant": "A",
+  "company": "QCOM",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 326,
+        "evidence": "加入WEDA边缘AI生态（2026-09-19 Simply Wall St.）",
+        "verified": true
+      },
+      {
+        "id": 327,
+        "evidence": "9月18日单日跌6%打破上升势头",
+        "verified": true
+      },
+      {
+        "id": 329,
+        "evidence": "管理层在Q3 2026财报电话会议中表示Apple最近iPhone发布的芯片份额将'明显低于'之前20%的预期，同时将2029年非手机业务收入目标从$22B提升至$40B",
+        "verified": true
+      },
+      {
+        "id": 332,
+        "evidence": "CEO参加Trump-Xi峰会（9月24日）可能带来AI芯片政策信号",
+        "verified": true
+      },
+      {
+        "id": 333,
+        "evidence": "股价$177.72在MA20（$171.87）和MA50（$167.82）上方，显示短期上升趋势",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "Trefis 2026-09-18新闻：'Qualcomm (QCOM) told investors in its fiscal Q3 2026 call that its share of Apple's recent iPhone launch would be materially lower than its prior estimate of 20%'。行情数据显示营收增速-4.0%、净利增速-23.0%。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示预期PE 17.42倍。Trefis 2026-09-18新闻：'management raised its non-handset revenue target for fiscal 2029 to $40 billion—nearly doubling its prior $22 billion'。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘177.72，MA20 171.87，MA50 167.82，相对MA20 bullish，相对MA50 bullish，RSI14 53.79，RSI信号 neutral。近10个交易日数据显示2026-09-17收盘188.71，2026-09-18收盘177.72，跌幅为(177.72-188.71)/188.71=-5.82%，约6%。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "Stocktwits 2026-09-17报道：'Trump-Xi Dinner Next Week Brings AI Titans To The Table — OpenAI, NVDA, and QCOM CEOs To Attend, Says Report'，'Sam Altman, Jensen Huang and Cristiano Amon are reportedly expected at the September 24 summit as AI safety, development standards and chip access emerge as potential discussion points.'"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观数据显示：VIX 15.44（2026-09-17），失业率4.1%（2026-08-01）。"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "Trefis 2026-09-18新闻：'Qualcomm (QCOM) told investors in its fiscal Q3 2026 call that its share of Apple's recent iPhone launch would be materially lower than its prior estimate of 20%'，这反映了Apple减少芯片采购。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对未来的预期判断，不涉及可核对的历史事实。虽然数据显示非手机业务目标为2029年$40B，但'增长不及预期'是主观展望。"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对地缘政治风险的主观判断和展望，虽然Stocktwits报道提到Trump-Xi峰会和芯片访问讨论，但'可能影响'是推测性的因果关系，不是已发生的事实。"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "行情数据显示：20日年化波动率% 37.44，beta 1.68。"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对竞争格局的主观判断。虽然新闻提到ARM和NVIDIA在AI芯片领域的活动（ARM 2026-09-18新闻、NVIDIA 2026-09-18新闻），但'竞争加剧'是定性评价，不是可量化的事实。"
+      }
+    ],
+    "claims": [
+      "iPhone芯片份额预期下调（从20%预期大幅下降），导致营收-4%、净利润-23%（2026-09-18 Trefis新闻）",
+      "Forward PE 17.42倍相对合理，但需非手机业务2029年$40B目标兑现支撑估值（市场数据截至2026-09-18）",
+      "技术面在MA20/MA50上方但近期波动加大，RSI中性，9月18日单日跌6%打破上升势头，需突破确认（截至2026-09-18）",
+      "CEO参加Trump-Xi峰会（9月24日）可能带来AI芯片政策信号（2026-09-17 Stocktwits报道）",
+      "宏观环境温和（VIX 15.44、失业率4.1%），不存在系统性风险（2026-09-17宏观数据）",
+      "Apple进一步减少芯片采购，威胁核心收入",
+      "非手机业务增长不及预期，无法弥补iPhone下滑",
+      "地缘政治风险（Trump-Xi关系）可能影响AI芯片出口",
+      "高波动率（37.44%）和高Beta（1.68）放大市场波动",
+      "竞争加剧（ARM、NVIDIA在AI芯片领域）"
+    ]
+  }
+}

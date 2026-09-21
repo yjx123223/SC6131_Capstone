@@ -1,0 +1,79 @@
+{
+  "variant": "B",
+  "company": "ASML",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 351,
+        "evidence": "Q2 2026 Installed Base Management 业务增长 31.8%",
+        "verified": true
+      },
+      {
+        "id": 352,
+        "evidence": "110 台 EUV 机器在组装中，产能成为主要约束",
+        "verified": true
+      },
+      {
+        "id": 358,
+        "evidence": "UBS 预测 2026 年近 1 万亿美元，2027 年 1.4 万亿",
+        "verified": true
+      },
+      {
+        "id": 359,
+        "evidence": "Micron/Intel 警告芯片短缺延续至 2027",
+        "verified": true
+      },
+      {
+        "id": 366,
+        "evidence": "TSM 加速 2nm 商业化生产，提高资本支出",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻[ASML] 2026-09-18 Zacks: 'ASML's Installed Base Management sales surge 31.8%, fueled by upgrades and a growing EUV fleet'；新闻[ASML] 2026-09-17 GuruFocus: 'AI demand has moved ASML's constraint from customer interest to manufacturing throughput'，以及'110 EUV Machines Test Assembly Speed'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情[ASML] 区间涨跌% -12.81；技术面：相对MA20 bearish，相对MA50 bearish（双重熊市）；RSI14 48.19，RSI信号 neutral（中性偏弱）"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情[ASML] 基本面：PE(TTM) 55.55，预期PE 28.32"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻[TSM] 2026-09-18 Simply Wall St.: 'Taiwan Semiconductor Manufacturing (NYSE:TSM) moves its 2nm process into commercial production as part of a new advanced manufacturing push. The chip producer accelerates investment in cutting edge fabrication capacity and raises capital expenditure targets to support 2nm roll out'；新闻[INTC] 2026-09-18 TheStreet: 'A veteran tech analyst thinks Intel stock could gain seriously in two years if its foundry plan gets the right customers'（Intel Foundry获补助的信息在新闻中有提及）"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻[INTC] 2026-09-19 Investing.com: 'UBS now expects artificial intelligence capital expenditure to reach nearly $1 trillion in 2026'；新闻[INTC] 2026-09-19 Simply Wall St.: 'Micron Technology (NasdaqGS: MU) and Intel CEOs cautioned that memory chip shortages and higher prices could persist through 2027. Micron's leadership indicated on a recent call that supply constraints may only start to ease meaningfully from 2028 onward'"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "论断6包含多个子观点，其中：1) 估值风险、2) 产能瓶颈、3) 竞争加剧、4) 客户集中风险、5) 地缘政治——这些都是基于已有数据的风险分析和主观判断。虽然PE 55.55、110台EUV机器、Canon/Nikon竞争、TSM和Intel客户等事实在数据中有依据，但'可能引发大幅调整'、'可能失去市场份额'、'长期可能蚕食市场'、'可能限制中国市场'等都是纯粹的前瞻性判断，不是可核对的事实"
+      }
+    ],
+    "claims": [
+      "ASML Installed Base 业务 Q2 增长 31.8%，EUV 机器组装加速，产能成约束（新闻 2026-09-18）",
+      "股价 3 月跌 12.81%，技术面走弱（MA20/MA50 双重熊市），RSI 48.19 中性偏弱（市场数据 2026-09-18）",
+      "PE 55.55 处历史高位，Forward PE 28.32 仍高，估值风险突出（市场数据 2026-09-18）",
+      "TSM 加速 2nm 生产、提高资本支出，Intel Foundry 获补助，长期需求支撑（新闻 2026-09-18）",
+      "AI 资本支出预期强劲（UBS 预测 2026 年近 1 万亿美元），但 Micron/Intel 警告芯片短缺延续至 2027，客户需求可能波动（新闻 2026-09-19）",
+      "1) 估值风险：PE 55.55 处历史高位，任何增速放缓或客户需求波动都可能引发大幅调整。2) 产能瓶颈：110 台 EUV 机器组装中，若产能无法跟上订单，可能失去市场份额。3) 竞争加剧：Canon/Nikon 布局芯片制造，长期可能蚕食市场。4) 客户集中风险：TSM 和 Intel 占大部分订单，两者需求波动直接影响 ASML。5) 地缘政治：美国对华出口管制可能限制中国市场，影响长期增长"
+    ]
+  }
+}

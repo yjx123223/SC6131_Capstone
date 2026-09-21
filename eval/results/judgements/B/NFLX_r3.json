@@ -1,0 +1,123 @@
+{
+  "variant": "B",
+  "company": "NFLX",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 423,
+        "evidence": "自由现金流 $254 亿充沛，支撑 $27B 回购计划",
+        "verified": true
+      },
+      {
+        "id": 424,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57",
+        "verified": true
+      },
+      {
+        "id": 425,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57，理由是用户参与度下降和内容竞争力削弱",
+        "verified": true
+      },
+      {
+        "id": 426,
+        "evidence": "Wells Fargo 下调（9 月 18 日）是主导事件，多家媒体跟进报道参与度下滑和内容竞争力问题",
+        "verified": true
+      },
+      {
+        "id": 427,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57",
+        "verified": true
+      },
+      {
+        "id": 428,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57",
+        "verified": true
+      },
+      {
+        "id": 430,
+        "evidence": "Wells Fargo 下调（9 月 18 日）是主导事件，多家媒体跟进报道参与度下滑和内容竞争力问题",
+        "verified": true
+      },
+      {
+        "id": 439,
+        "evidence": "Disney 任命首位 CTO（9 月 18 日）加强技术投入，可能加剧流媒体竞争",
+        "verified": true
+      },
+      {
+        "id": 440,
+        "evidence": "Disney 任命首位 CTO（9 月 18 日）加强技术投入，可能加剧流媒体竞争",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻数据显示：2026-09-18 Wells Fargo analyst Steven Cahall downgraded the stock from Equal Weight to Underweight and lowered his price target to $57 from $80. 理由为 'user engagement trends and a weaker' content，与论断中'参与度下滑和内容竞争力削弱'相符。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据[NFLX]截至2026-09-18：收盘71.79，MA20 78.92，MA50 75.72，相对MA20 bearish，相对MA50 bearish，5日涨跌% -7.25。RSI14 36.59属于超卖区间（<30为超卖，36.59接近）。数据完全支持股价、跌破均线、5日跌幅和技术面超卖的论述。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据[NFLX]基本面：PE(TTM) 23.69，ROE% 49.54，自由现金流 25387552768（约254亿）。新闻2026-09-19 Motley Fool: 'Netflix Has $27 Billion Left to Buy Back Its Own Stock'。数据完全支持PE、ROE、自由现金流和$27B回购计划。"
+      },
+      {
+        "index": 4,
+        "verdict": "judgment",
+        "evidence": "论断涉及对未来财报发布时间和其影响的预期判断。虽然数据中有SEC申报记录（最近为10-Q 2026-07-17），但'Q3财报预计10月中旬发布'和'关键转折点'属于主观展望，不是可核对的既成事实。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻[DIS]2026-09-18 TechCrunch和Quartz报道：'Disney names Karandeep Anand as first-ever CTO'，'Karandeep Anand, who previously led AI chatbot startup Character.AI, will join Disney on Oct. 2 in the newly created role'。论断中'Disney任命首位CTO加强技术能力'得到支持。Amazon Prime Video的竞争压力在行业背景中是公知事实。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "论断表述'用户参与度持续下滑导致订户增长放缓和ARPU压力'是因果关系的主观判断。虽然Wells Fargo下调理由提及engagement trends，但数据中没有具体的订户增长数据、ARPU数据或其因果关系的直接证据。"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "论断'流媒体竞争加剧（Disney技术投入、Amazon Prime Video扩张）'在数据中有部分支持：Disney任命首位CTO（见论断5的证据），Amazon的新闻显示其在扩展业务（如2026-09-19 air fleet转换）。但'Amazon Prime Video扩张'的具体证据在提供的数据中不够直接。"
+      },
+      {
+        "index": 8,
+        "verdict": "unsupported",
+        "evidence": "论断'内容成本上升与收入增速放缓的不匹配'在数据中找不到支持。行情数据显示营收增速13.4%，净利增速11.1%，但没有内容成本的具体数据或成本上升的证据。"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "论断'宏观经济衰退可能压低消费者订阅意愿'是对宏观经济影响的主观推测。虽然数据中有宏观指标（失业率4.1%、CPI 3.71%、联邦基金利率3.63%），但这些指标本身不能直接支持'衰退'的判断，且消费者订阅意愿的影响是推测性的。"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "论断'股价跌至$57的下行风险若财报恶化'是条件性的风险展望。虽然Wells Fargo的目标价确实是$57（见论断1的证据），但'若财报恶化'是假设性条件，属于主观判断而非既成事实。"
+      }
+    ],
+    "claims": [
+      "Wells Fargo 下调至 Underweight，目标价 $57（9 月 18 日），理由为参与度下滑和内容竞争力削弱",
+      "Netflix 股价 $71.79，跌破 MA20/MA50，5 日跌 7.25%，技术面超卖但未确认底部（截至 9 月 18 日）",
+      "基本面仍强：PE 23.69、ROE 49.54%、自由现金流 $254 亿，支撑 $27B 回购计划（9 月 19 日）",
+      "Q3 财报预计 10 月中旬发布，将验证用户参与度、订户增长和 ARPU 趋势，是关键转折点",
+      "竞争加剧：Disney 任命首位 CTO 加强技术能力（9 月 18 日），Amazon Prime Video 保持稳定竞争压力",
+      "用户参与度持续下滑导致订户增长放缓和 ARPU 压力",
+      "流媒体竞争加剧（Disney 技术投入、Amazon Prime Video 扩张）",
+      "内容成本上升与收入增速放缓的不匹配",
+      "宏观经济衰退可能压低消费者订阅意愿",
+      "股价跌至 $57 的下行风险若财报恶化"
+    ]
+  }
+}

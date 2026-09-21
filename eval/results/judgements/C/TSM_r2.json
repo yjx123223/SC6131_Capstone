@@ -1,0 +1,87 @@
+{
+  "variant": "C",
+  "company": "TSM",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 218,
+        "evidence": "台积电将2nm工艺推进商业化生产，加大先进制造投资，提高资本支出目标以支持2nm推出",
+        "verified": true
+      },
+      {
+        "id": 220,
+        "evidence": "联发科选择台积电2纳米工艺用于新款Dimensity 9600 Pro芯片，3nm工艺用于9600M",
+        "verified": true
+      },
+      {
+        "id": 221,
+        "evidence": "2nm工艺商业化推进，MediaTek订单确认",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 36.0，净利增速% 77.4，数据截至2026-09-18"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "知识图谱事件E1（2026-09-18）：台积电将2nm工艺推进商业化生产；事件E2（2026-09-18）：联发科选择台积电2纳米工艺用于新款Dimensity 9600 Pro芯片"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：PE(TTM) 32.06，PB 88.95，区间涨跌% -6.81（近3月），数据截至2026-09-18。P/E和P/B数值可核对，近3月下跌6.81%为事实陈述"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘434.67 > MA20 421.53 > MA50 416.33（价格>MA20>MA50），相对MA20 bullish，相对MA50 bullish；RSI14 56.83，RSI信号 neutral；20日年化波动率% 28.61反映动能，数据截至2026-09-18"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：VIX恐慌指数 15.44（2026-09-17），联邦基金利率 3.63%（2026-08-01），10年期国债收益率 4.94%（2026-09-17）。VIX处于低位，利率环境数据可核对"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "新闻摘要提及'raises capital expenditure targets to support 2nm roll out'，但'可能压低短期利润率'是对未来影响的主观推断，不是可核对的事实"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "地缘政治风险（台湾地位、美国出口管制）是潜在风险因素，但数据中未涉及具体事件或申报，属于主观风险评估"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对未来估值调整风险的主观判断，不涉及可核对的历史事实或当前数据"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "竞争对手投资可能分流订单是对未来竞争格局的主观推断，数据中未包含Samsung、Intel具体投资计划或订单分流的事实"
+      }
+    ],
+    "claims": [
+      "营收增长36%、EPS增长77.4%，基本面强劲（数据截至2026-09-18）",
+      "2nm工艺商业化推进，MediaTek订单确认（E1、E2事件，2026-09-18）",
+      "P/E 32.06、P/B 88.95估值偏高，近3月下跌6.81%（数据截至2026-09-18）",
+      "技术面牛市排列（价格>MA20>MA50），RSI14中性，动能减弱（数据截至2026-09-18）",
+      "宏观环境温和，VIX 15.44低位，利率环境支持科技股（数据截至2026-09-17）",
+      "高资本支出计划（2nm投资）可能压低短期利润率",
+      "地缘政治风险（台湾地位、美国出口管制）",
+      "估值高企，增长不及预期时面临调整压力",
+      "竞争对手（Samsung、Intel）加大投资可能分流订单"
+    ]
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "variant": "B",
+  "company": "INTC",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 280,
+        "evidence": "Applied Materials 营收 91 亿美元、内存芯片短缺延至 2027 年",
+        "verified": true
+      },
+      {
+        "id": 281,
+        "evidence": "AI 资本支出预期（2026 年 1 万亿美元，2027 年 1.4 万亿美元）",
+        "verified": true
+      },
+      {
+        "id": 282,
+        "evidence": "内存芯片短缺延至 2027 年，成本压力可能进一步压低 Intel 毛利率",
+        "verified": true
+      },
+      {
+        "id": 286,
+        "evidence": "Intel 与 SK Hynix 探索合作",
+        "verified": true
+      },
+      {
+        "id": 287,
+        "evidence": "内存芯片短缺延至 2027 年，成本压力可能进一步压低 Intel 毛利率",
+        "verified": true
+      },
+      {
+        "id": 290,
+        "evidence": "ASML 强势（Forward PE 28.32、ROE 53.94%、EUV 产能扩张）",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "Intel 营收增速 25.4%（数据：营收增速% 25.4），净利润 -11288999936 美元（约 -112.9 亿美元）均来自行情数据"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "Intel Forward PE 52.67（数据：预期PE 52.67），NVDA 预期 PE 14.17（数据：预期PE 14.17），AMD 预期 PE 35.95（数据：预期PE 35.95）均来自行情数据"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "近 3 月股价跌 22.95%（数据：区间涨跌% -22.95），近 20 日涨 17.88%（数据：20日涨跌% 17.88），年化波动率 61.04%（数据：20日年化波动率% 61.04）均来自行情数据"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "AMD 营收增速 50.1%（数据：营收增速% 50.1），NVDA 增速 105.9%（数据：营收增速% 105.9），Intel 增速 25.4%（数据：营收增速% 25.4）均来自行情数据"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "内存芯片短缺延至 2027 年来自新闻：'Micron Technology (NasdaqGS: MU) and Intel CEOs cautioned that memory chip shortages and higher prices could persist through 2027'（2026-09-19）；成本压力来自新闻：'surging memory costs accounting for most of the increase'（2026-09-19）"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对估值风险的主观判断和展望，涉及'泡沫破裂风险'和'任何负面消息可能引发大幅回调'等预测性表述"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对未来毛利率走势的主观判断，虽然数据中存在内存成本上升和Foundry初期投资的信息，但'毛利率恶化'是对未来的预测性判断"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对Foundry战略前景的主观判断和假设性风险，涉及'若无法获得大客户'等条件性预测"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对竞争格局和市场份额变化的主观判断和展望，虽然数据显示AMD/NVDA增速更快，但'市场份额可能继续丧失'是预测性表述"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对宏观经济和AI产业周期的主观判断，涉及'AI资本支出可能过度'和'后续调整'等预测性表述，虽然新闻提及AI capex预期，但'过度'和'冲击需求'是主观评价"
+      }
+    ],
+    "claims": [
+      "Intel 营收增速 25.4% 强劲，但净利润亏损 112.9 亿美元，基本面与股价严重脱节（数据截至 2026-09-18）",
+      "Forward PE 52.67 远超 NVDA（预期 PE 14.17）和 AMD（预期 PE 35.95），估值处于历史高位，存在泡沫风险（数据截至 2026-09-18）",
+      "近 3 月股价跌 22.95%，但近 20 日涨 17.88%，高波动性（年化 61.04%）反映市场分歧（数据截至 2026-09-18）",
+      "竞争对手 AMD 营收增速 50.1%、NVDA 增速 105.9%，Intel 增速相对落后，市场份额压力大（数据截至 2026-09-18）",
+      "内存芯片短缺延至 2027 年，成本压力可能进一步压低 Intel 毛利率，Foundry 战略前景不确定（新闻截至 2026-09-19）",
+      "估值泡沫破裂风险——Forward PE 52.67 远超历史均值和竞争对手，任何负面消息可能引发大幅回调",
+      "毛利率恶化——内存芯片短缺推高成本，Foundry 初期投资回报率低",
+      "Foundry 战略失败——若无法获得大客户，战略投资可能成为包袱",
+      "竞争加剧——AMD/NVDA 增速更快，市场份额可能继续丧失",
+      "宏观风险——AI 资本支出可能过度，后续调整会冲击需求"
+    ]
+  }
+}

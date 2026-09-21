@@ -1,0 +1,104 @@
+{
+  "variant": "B",
+  "company": "AVGO",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 303,
+        "evidence": "Motley Fool指出AVGO营收在两年内翻倍，相比Applied Materials的温和增长表现更强",
+        "verified": true
+      },
+      {
+        "id": 304,
+        "evidence": "Jim Cramer指出AVGO作为少数能够设计定制AI芯片的公司之一，具有独特竞争力",
+        "verified": true
+      },
+      {
+        "id": 315,
+        "evidence": "供应商TSM基本面稳健（营收增速36%、净利润增速77.4%），正在推进2nm产能商业化生产",
+        "verified": true
+      },
+      {
+        "id": 318,
+        "evidence": "客户AAPL表现向好（营收增速16.4%、净利润增速28.7%），新CEO上任",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情[AVGO]基本面数据：营收增速% 85.5，净利增速% 215.3"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻[AVGO]2026-09-18 Insider Monkey：'It is among the few firms capable of designing custom AI chips'；新闻[AVGO]2026-09-19 Motley Fool：'Broadcom's revenue has more than doubled in two years while Applied Materials posted modest gains'"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情[AVGO]技术面：收盘 357.61，MA20 359.32，MA50 379.76，相对MA20 bearish，相对MA50 bearish；区间涨跌% -8.8"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情[AVGO]基本面：PE(TTM) 44.26，预期PE 18.45；股价357.61低于MA20和MA50反映技术面走弱"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "行情[TSM]基本面：营收增速% 36.0，净利增速% 77.4；行情[AAPL]基本面：营收增速% 16.4，净利增速% 28.7"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对估值风险的主观判断和展望，涉及'若增长预期下修或市场风险偏好下降'的假设性情景"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对增长可持续性风险的主观判断，涉及'若AI需求增速放缓'的假设性情景和对市场预期的推断"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "行情[AVGO]技术面：区间涨跌% -8.8（近3个月下跌8.8%）"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "行情[AVGO]基本面：负债权益比 59.6；宏观指标：联邦基金利率 (%)：3.63"
+      },
+      {
+        "index": 10,
+        "verdict": "unsupported",
+        "evidence": "数据中缺乏对AVGO主要客户依赖程度、客户集中度的具体数据。虽然提供了TSM和AAPL的基本面数据，但未能说明这两家公司在AVGO营收中的占比或依赖程度"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "这是对地缘政治风险的主观判断，涉及'可能影响'的假设性推断，不涉及可核对的具体事实"
+      }
+    ],
+    "claims": [
+      "营收增速85.5%、净利润增速215.3%，基本面数据强劲（Yahoo Finance，2026-09-18）",
+      "Jim Cramer指出AVGO作为少数能够设计定制AI芯片的公司之一，具有独特竞争力（Insider Monkey，2026-09-18）；Motley Fool指出AVGO营收在两年内翻倍，相比Applied Materials增速更快（Motley Fool，2026-09-19）",
+      "股价357.61美元低于MA20（359.32）和MA50（379.76），技术面走弱；近3个月跌8.8%，显示持续下行压力（Yahoo Finance，2026-09-18）",
+      "尾部PE 44.26处于高估，前向PE 18.45相对合理，估值存在压缩风险；基本面强劲与股价走弱的矛盾提示市场对增长可持续性存疑（Yahoo Finance，2026-09-18）",
+      "供应商TSM基本面稳健（营收增速36%、净利润增速77.4%），客户AAPL表现向好（营收增速16.4%、净利润增速28.7%），但缺乏对供应链韧性、客户集中度的深入分析（Yahoo Finance，2026-09-18）",
+      "估值风险——尾部PE 44.26处于历史高位，若增长预期下修或市场风险偏好下降，将面临估值压缩",
+      "增长可持续性风险——基本面强劲与股价走弱的矛盾提示市场对增长可持续性存疑，若AI需求增速放缓，高增长预期难以维持",
+      "技术面风险——近3个月下跌8.8%，短期可能继续调整",
+      "杠杆风险——债务率59.6%中等偏高，若利率上升将增加融资成本",
+      "客户集中度风险——缺乏对主要客户依赖程度的深入分析，客户需求波动可能对业绩造成重大影响",
+      "地缘政治风险——芯片行业面临地缘政治不确定性，可能影响供应链和客户需求"
+    ]
+  }
+}

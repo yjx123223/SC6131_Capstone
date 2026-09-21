@@ -1,0 +1,93 @@
+{
+  "variant": "C",
+  "company": "QCOM",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 326,
+        "evidence": "加入WEDA边缘AI生态（E1，2026-09-19），拓展工业/企业市场",
+        "verified": true
+      },
+      {
+        "id": 329,
+        "evidence": "高通在财报电话会议中表示，在苹果最新iPhone发布中的份额将远低于之前预期的20%",
+        "verified": true
+      },
+      {
+        "id": 332,
+        "evidence": "CEO参加Trump-Xi晚宴（2026-09-17），可能涉及芯片政策讨论",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-18 Trefis）：'Qualcomm (QCOM) told investors in its fiscal Q3 2026 call that its share of Apple's recent iPhone launch would be materially lower than its prior estimate of 20%'。知识图谱事件E2（2026-09-18）：高通在财报电话会议中表示，在苹果最新iPhone发布中的份额将远低于之前预期的20%。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-18 Trefis）：'management raised its non-handset revenue target for fiscal 2029 to $40 billion—nearly doubling its prior $22 billion'。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-19 Simply Wall St.）：'QUALCOMM (NasdaqGS:QCOM) has joined Advantech and other partners in the new WEDA edge AI ecosystem to support scalable deployments across varied hardware. The WEDA collaboration focuses on simplifying edge AI solutions by standardising tools and reference designs for industrial and enterprise use'。知识图谱事件E1（2026-09-19）：高通加入WEDA边缘AI生态系统，与Advantech等合作伙伴合作，支持工业和企业应用的可扩展部署。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据：预期PE 17.42，分析师目标价 194.13，现价 177.72。目标价194.13美元相对现价177.72美元有上升空间。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标：联邦基金利率3.63%，VIX恐慌指数15.44。行情数据：区间涨跌%（3个月）-19.47%。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "论断表述为'可能进一步压低'，属于对未来趋势的主观判断和展望，不涉及可核对的历史事实。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "论断表述为'增长不及预期、难以弥补'，属于对未来业绩的主观判断，不涉及可核对的历史事实或已公布数据。"
+      },
+      {
+        "index": 8,
+        "verdict": "unsupported",
+        "evidence": "数据中未提及台积电产能紧张或成本上升的信息。知识图谱显示TSM为供应商，但无相关产能或成本数据。"
+      },
+      {
+        "index": 9,
+        "verdict": "unsupported",
+        "evidence": "数据中未提及地缘政治风险或中美芯片竞争对高通出口的具体影响。新闻中提及Trump-Xi晚宴（2026-09-17）涉及AI芯片访问讨论，但未涉及对高通出口的具体影响。"
+      },
+      {
+        "index": 10,
+        "verdict": "unsupported",
+        "evidence": "数据中未提及ARM或NVIDIA在AI芯片领域加速蚕食高通市场份额的具体证据。新闻中提及ARM和NVIDIA的相关动态（2026-09-18），但未涉及对高通市场份额的具体影响数据。"
+      }
+    ],
+    "claims": [
+      "iPhone订单份额远低于预期20%（E2，2026-09-18），直接冲击2026-2027年收入与利润",
+      "非手机业务目标2029年达40亿美元（从22亿美元翻倍），但商业化进展需验证",
+      "WEDA边缘AI生态合作（E1，2026-09-19）拓展工业/企业市场，分散消费电子风险",
+      "前向PE 17.42相对合理，分析师目标价194.13美元较现价177.72美元有上升空间",
+      "宏观环境温和（利率3.63%、VIX 15.44），但技术面短期承压（3个月跌19.47%）",
+      "iPhone订单份额持续下滑，可能进一步压低2026-2027年盈利",
+      "非手机业务增长不及预期，难以弥补消费电子下滑",
+      "台积电产能紧张或成本上升，压低毛利率",
+      "地缘政治风险（中美芯片竞争）可能影响出口",
+      "竞争对手（ARM、NVIDIA）在AI芯片领域加速，蚕食市场份额"
+    ]
+  }
+}
