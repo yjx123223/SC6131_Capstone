@@ -7,6 +7,7 @@ report_store.py
 不含状态、不含网络调用，方便单独测试和复用。
 """
 
+import json
 import re
 from datetime import datetime
 from pathlib import Path
@@ -41,3 +42,12 @@ def save_report(entity: str, report_text: str, reports_dir: Optional[str | Path]
     filepath.write_text(report_text, encoding="utf-8")
     print(f"[Orchestrator] 报告已保存：{filepath}")
     return filepath
+
+
+def save_graph_json(report_path: str | Path, graph_dict: dict) -> Path:
+    """把知识图谱（节点 + 边）保存为与报告同名的 *_graph.json"""
+    report_path = Path(report_path)
+    out = report_path.with_name(report_path.stem + "_graph.json")
+    out.write_text(json.dumps(graph_dict, ensure_ascii=False, indent=2, default=str), encoding="utf-8")
+    print(f"[Orchestrator] 知识图谱已保存：{out}")
+    return out
