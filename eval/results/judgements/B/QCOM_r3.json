@@ -1,0 +1,115 @@
+{
+  "variant": "B",
+  "company": "QCOM",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 326,
+        "evidence": "QCOM加入WEDA边缘AI生态",
+        "verified": true
+      },
+      {
+        "id": 327,
+        "evidence": "股价当日下跌6%",
+        "verified": true
+      },
+      {
+        "id": 329,
+        "evidence": "管理层在Q3 2026财报电话会议中披露iPhone 18芯片份额将\"显著低于\"之前预期的20%",
+        "verified": true
+      },
+      {
+        "id": 332,
+        "evidence": "CEO Cristiano Amon将出席Trump-Xi AI峰会",
+        "verified": true
+      },
+      {
+        "id": 338,
+        "evidence": "Taiwan Semiconductor Manufacturing moves its 2nm process into commercial production",
+        "verified": true
+      },
+      {
+        "id": 341,
+        "evidence": "新CEO John Ternus上任",
+        "verified": true
+      }
+    ],
+    "dropped": [],
+    "repaired": "数组被返回成字符串且 JSON 非法，正则抽出 6 项"
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻[QCOM] 2026-09-18 Trefis: 'Qualcomm (QCOM) told investors in its fiscal Q3 2026 call that its share of Apple's recent iPhone launch would be materially lower than its prior estimate of 20%'；新闻[QCOM] 2026-09-18 24/7 Wall St.: 'Qualcomm Drops 6% as Past Month's Rally Unwinds'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻[QCOM] 2026-09-18 Trefis: 'management raised its non-handset revenue target for fiscal 2029 to $40 billion—nearly doubling its prior $22 billion'；行情[QCOM]基本面：营收增速% -4.0，净利增速% -23.0（TTM数据）"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情[QCOM]技术面：20日涨跌% 11.17，区间涨跌% -19.47（3月跌幅），5日涨跌% -2.34，RSI14 53.79，20日年化波动率% 37.44"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻[AAPL] 2026-09-18 Yahoo Finance Video: 'John Ternus has the 'Apple DNA' that will push company to the 'next level'...after the release of the new iPhone 18 Pro and unveiling of the foldable iPhone Duo'；新闻[AAPL] 2026-09-18 Barrons.com: 'designing the main chips for all its devices has been a priority for Apple'"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标：VIX 15.44（2026-09-17），失业率 4.1%（2026-08-01）；行情[QCOM]基本面：负债权益比 55.21"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "论断包含可核对的事实（Apple自研芯片战略、份额下滑），但'QCOM可能进一步失去份额'和'威胁营收基础'属于推测性判断，不是已发生的事实"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "新闻[QCOM] 2026-09-18 Trefis: 'management raised its non-handset revenue target for fiscal 2029 to $40 billion—nearly doubling its prior $22 billion'；行情[QCOM]基本面：营收增速% -4.0"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "行情[QCOM]基本面：负债权益比 55.21"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "论断涉及'TSM产能优先级可能向大客户倾斜'和'对QCOM的产能获取可能产生压力'，这是推测性判断。数据中无法找到TSM对QCOM产能分配的具体信息"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "论断涉及'ARM在AI芯片领域获得关注'（新闻中有提及）和'QCOM非手机业务追赶难度大'，后者属于主观评价，不是可核对的事实"
+      },
+      {
+        "index": 11,
+        "verdict": "unsupported",
+        "evidence": "缺失：iPhone新份额具体数值未在数据中公开（新闻仅说'materially lower than 20%'，未给出具体数值）；非手机业务当前基数未披露（仅知道2029年目标$40B，但当前营收基数未知）"
+      }
+    ],
+    "claims": [
+      "iPhone芯片份额将显著低于预期20%（具体新数值未公开），Q3财报披露后股价下跌6%（2026-09-18），反映市场对核心业务的担忧",
+      "非手机业务2029年目标翻倍至$40B，但当前营收同比下滑4%、净利润同比下滑23%（TTM数据），增长承诺与现状形成反差",
+      "技术面多时间尺度分化：20日涨11.17%相对强势，但3月跌19.47%、5日跌2.34%显示中期疲弱和近期回调，RSI 53.79中性，波动率高企（37.44%年化）",
+      "Apple自研芯片战略加速（新CEO John Ternus上任，2026-09-18确认），iPhone 18/Duo采用自研芯片，长期蚕食QCOM份额",
+      "宏观环境温和（VIX 15.44、失业率4.1%），但高杠杆（D/E 55.21）和竞争压力限制上升空间；数据缺口（iPhone新份额数值、非手机业务基数）降低置信度",
+      "iPhone份额持续下滑风险：Apple自研芯片战略已成定局，QCOM可能进一步失去份额，威胁营收基础。当前披露的份额数值未公开，实际下滑幅度存在不确定性",
+      "非手机业务增长不及预期：$40B目标需要3年实现，当前营收同比下滑4%，增长承诺与现状形成反差，市场对其可达性存疑",
+      "高杠杆风险：D/E 55.21处于较高水平，若利率上升或营收恶化，偿债压力加大",
+      "供应链风险：QCOM依赖TSM代工，TSM产能优先级可能向大客户（如Apple）倾斜，对QCOM的产能获取可能产生压力",
+      "竞争加剧：ARM在AI芯片领域获得关注，NVIDIA在AI领域优势明显，QCOM非手机业务追赶难度大",
+      "数据不完整风险：iPhone新份额具体数值未公开，非手机业务当前基数和增长路径未充分披露，影响对增长目标可达性的评估"
+    ]
+  }
+}

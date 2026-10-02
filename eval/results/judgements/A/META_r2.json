@@ -1,0 +1,105 @@
+{
+  "variant": "A",
+  "company": "META",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 195,
+        "evidence": "Meta's Muse AI应用首周增长接近ChatGPT速度，AI竞争力强，与Shopify深化合作拓展商业应用",
+        "verified": false
+      },
+      {
+        "id": 197,
+        "evidence": "Meta's Muse AI应用首周增长接近ChatGPT速度，AI竞争力强，与Shopify深化合作拓展商业应用",
+        "verified": false
+      },
+      {
+        "id": 193,
+        "evidence": "加州AI'杀死开关'行政令升温，AI监管政策不确定性升高，直接涉及Meta业务战略风险",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 28.0，净利增速% -13.4。论断准确反映了这两个数据。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻数据中有两条相关报道：(1) Motley Fool 2026-09-18：'Meta's New AI App Grew Almost as Fast as ChatGPT in Its First 5 Days'；(2) American Banker 2026-09-18：'How Shopify and Meta are diving deeper into banking'，涉及Meta与Shopify的合作。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：PE(TTM) 25.7，预期PE 19.04，净利增速% -13.4。论断准确引用了这些数据。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示：RSI14 66.13，20日涨跌% 21.97，收盘 665.75。论断准确反映了这些技术面数据。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻数据中 Barrons.com 2026-09-18 报道：'California to Reconsider AI 'Kill Switch' With Newsom's New Executive Order'，涉及加州AI监管政策。"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "宏观数据显示：联邦基金利率 3.63%，VIX 15.44。新闻中 GuruFocus.com 2026-09-18 报道：'Goldman Sachs Sends Stark Warning on S&P 500 Earnings'，涉及高盛警告。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是基于净利增速-13.4%的因果推断和展望，属于分析性判断而非可核对的事实陈述。"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对估值风险的主观评估和展望，属于分析性判断而非可核对的事实陈述。"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对AI监管政策长期影响的主观推断和展望，属于分析性判断而非可核对的事实陈述。"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对技术面调整风险的主观判断和展望，属于分析性判断而非可核对的事实陈述。"
+      },
+      {
+        "index": 11,
+        "verdict": "unsupported",
+        "evidence": "数据中未提及Reality Labs的亏损情况。虽然SEC申报文件存在（10-Q），但工具数据中未包含相关财务细节。"
+      },
+      {
+        "index": 12,
+        "verdict": "judgment",
+        "evidence": "这是对宏观风险和AI繁荣可持续性的主观推断和展望，属于分析性判断而非可核对的事实陈述。"
+      }
+    ],
+    "claims": [
+      "营收增速28%但盈利增速-13.4%，成本压力明显，利润增长动能减弱（市场数据，2026-09-18）",
+      "Meta Muse AI应用首周增长接近ChatGPT速度，AI竞争力强，与Shopify深化合作拓展商业应用（新闻，2026-09-18）",
+      "PE 25.7x处历史高位，前向PE 19.04x相对合理，估值存在调整风险，特别是在盈利增速转负背景下（市场数据，2026-09-18）",
+      "技术面RSI 66.13偏热，近20日涨幅21.97%，短期涨幅已大，9月18日出现回调至665.75，存在获利回吐压力（市场数据，2026-09-18）",
+      "加州AI'杀死开关'行政令升温，AI监管政策不确定性升高，直接涉及Meta业务战略风险（新闻，2026-09-18）",
+      "宏观环境温和，联邦基金利率3.63%、VIX 15.44，相对支持科技股估值，但高盛警告S&P 500盈利增长可能放缓（宏观数据，2026-09-17）",
+      "盈利增速-13.4%，AI投资和基础设施成本压力持续，可能进一步拖累利润增长",
+      "估值高企，PE 25.7x处历史高位，存在估值回归风险，特别是在盈利增速转负的背景下",
+      "AI监管升温，加州等地\"杀死开关\"政策不确定性，可能对Meta AI业务战略造成长期影响",
+      "技术面RSI 66.13偏热，近20日涨幅21.97%，短期调整风险较大，可能触发止损",
+      "Reality Labs持续亏损拖累整体利润，长期战略回报存疑",
+      "宏观风险：高盛警告S&P 500盈利增长可能放缓，AI繁荣难以持续，可能影响科技股整体估值"
+    ]
+  }
+}

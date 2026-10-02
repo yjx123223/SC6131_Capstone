@@ -1,0 +1,108 @@
+{
+  "variant": "B",
+  "company": "AMZN",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 115,
+        "evidence": "AMZN 宣布升级货机队伍，与 ATSG 合作引入 30 架 A330 货机（截至 2026-09-19），强化物流竞争力，属于战略利好。",
+        "verified": true
+      },
+      {
+        "id": 129,
+        "evidence": "竞争对手 NFLX 遭 Wells Fargo 下调评级（2026-09-18），用户参与度下滑，可能削弱其对 AMZN Prime Video 的竞争压力。",
+        "verified": true
+      },
+      {
+        "id": 130,
+        "evidence": "竞争对手 NFLX 遭 Wells Fargo 下调评级（2026-09-18），用户参与度下滑，可能削弱其对 AMZN Prime Video 的竞争压力。",
+        "verified": true
+      },
+      {
+        "id": 131,
+        "evidence": "竞争对手 NFLX 遭 Wells Fargo 下调评级（2026-09-18），用户参与度下滑，可能削弱其对 AMZN Prime Video 的竞争压力。",
+        "verified": true
+      },
+      {
+        "id": 132,
+        "evidence": "竞争对手 NFLX 遭 Wells Fargo 下调评级（2026-09-18），用户参与度下滑，可能削弱其对 AMZN Prime Video 的竞争压力。",
+        "verified": true
+      },
+      {
+        "id": 135,
+        "evidence": "GOOGL 获反垄断利好（2026-09-19），但同时面临 Gemini 黑客风险，整体中性。",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "AMZN 基本面数据显示净利增速% 242.3，与论断中的 EPS 增速 242.3% 一致。数据来源：行情[AMZN] 基本面指标"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "AMZN 行情数据显示：分析师评级 strong_buy（强烈买入），分析师目标价 328.22 美元，分析师数量 59 位。当前收盘价 253.71 美元，目标价相对涨幅为 (328.22-253.71)/253.71 = 29.3%。数据来源：行情[AMZN] 基本面指标"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "AMZN 技术面数据显示：收盘 253.71，MA20 256.13，MA50 255.84，相对MA20 bearish，相对MA50 bearish，RSI14 48.36，RSI信号 neutral。价格确实跌破两条均线，RSI处于中性。数据来源：行情[AMZN] 技术面指标"
+      },
+      {
+        "index": 4,
+        "verdict": "unsupported",
+        "evidence": "论断涉及多个部分：(1) NFLX 遭下调 - 新闻中确实有 Wells Fargo 下调 NFLX 的报道（2026-09-18），但未明确说明这如何'削弱竞争压力'；(2) NVDA 供应链稳定 - 数据中未提及 NVDA 供应链状况，仅有 EPS 增速 127.8% 和 ROE 117.21% 的数据可验证；(3) GOOGL 反垄断风险利好 AMZN 云计算 - 新闻中提到 GOOGL 获得反垄断裁决利好其广告业务，但未涉及云计算领域竞争或对 AMZN 的影响。缺少关键因果关系的支撑。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "AMZN 基本面数据显示：负债权益比 45.62%，自由现金流 3219124992 美元（约 32.19 亿美元）。宏观指标显示：VIX 15.44，失业率 4.1%。这些数值均与论断相符。数据来源：行情[AMZN] 基本面指标和宏观指标"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "AMZN 技术面数据显示价格 253.71 跌破 MA20 256.13 和 MA50 255.84，相对两条均线均为 bearish。近10个交易日最低点为 245.96（2026-09-16），支持'可能继续下探至 245 美元支撑'的技术面观察。数据来源：行情[AMZN] 技术面和近10日收盘数据"
+      },
+      {
+        "index": 7,
+        "verdict": "unsupported",
+        "evidence": "论断声称 GOOGL 反垄断风险可能转向云计算领域加剧竞争。新闻中提到 GOOGL 获得反垄断裁决（2026-09-19），但该裁决涉及广告业务，新闻摘要明确指出'ruling is huge for Google's parent company and its stock'与广告业务相关。数据中未提及反垄断风险转向云计算领域的信息。"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对未来宏观环境变化的假设性判断，不涉及可核对的历史事实或当前数据。属于展望性观点。"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对未来投资影响的推测性判断。虽然新闻中提到 Amazon 计划采购 30 架 A330 货机（2026-09-19），但论断中'可能压低自由现金流增速'是对未来影响的主观预测，不是可核对的事实。"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对市场方向的主观判断，表述'短期方向不确定'属于分析结论而非可核对的事实。"
+      }
+    ],
+    "claims": [
+      "EPS 增速 242.3% 远超行业平均，基本面强劲（截至 2026-09-18）",
+      "分析师一致评级'强烈买入'，平均目标价 328.22 美元，较当前价格有 29.3% 上升空间（59 位分析师）",
+      "技术面走弱：价格 253.71 美元跌破 MA20 256.13/MA50 255.84，RSI14 中性，短期调整风险存在",
+      "NFLX 遭下调削弱竞争压力，NVDA 供应链稳定（EPS 增速 127.8%、ROE 117.21%），GOOGL 反垄断风险可能利好 AMZN 云计算",
+      "负债权益比 45.62%，处于可控水平；自由现金流 32.19 亿美元充足，能支撑物流升级投资；宏观环境温和（VIX 15.44、失业率 4.1%）；基本面与技术面信号冲突导致置信度为 medium",
+      "技术面短期走弱，价格跌破 MA20/MA50，可能继续下探至 245 美元支撑",
+      "竞争对手 GOOGL 反垄断风险可能转向云计算领域，加剧竞争",
+      "宏观利率若上升，高估值科技股承压",
+      "物流升级（A330 货机）需投入巨资，可能压低自由现金流增速",
+      "基本面与技术面信号冲突，短期方向不确定"
+    ]
+  }
+}

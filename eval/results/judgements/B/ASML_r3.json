@@ -1,0 +1,119 @@
+{
+  "variant": "B",
+  "company": "ASML",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 351,
+        "evidence": "Q2 2026 Installed Base Management 业务增长 31.8%，110 台 EUV 机器在组装中，产能成为主要约束",
+        "verified": true
+      },
+      {
+        "id": 352,
+        "evidence": "110 台 EUV 机器在组装中，产能成为约束",
+        "verified": true
+      },
+      {
+        "id": 358,
+        "evidence": "UBS 预计 2026 年 1 万亿美元，2027 年 1.4 万亿",
+        "verified": true
+      },
+      {
+        "id": 359,
+        "evidence": "Micron 和 INTC 警告芯片短缺可能持续至 2027 年",
+        "verified": true
+      },
+      {
+        "id": 360,
+        "evidence": "INTC 亏损（净利润 -112.9 亿美元）",
+        "verified": true
+      },
+      {
+        "id": 362,
+        "evidence": "TSM 营收增速 36%、净利增速 77.4%、2nm 产能扩张",
+        "verified": false
+      },
+      {
+        "id": 366,
+        "evidence": "Taiwan Semiconductor Manufacturing (NYSE:TSM) moves its 2nm process into commercial production as part of a new advanced manufacturing push",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻[ASML] 2026-09-18 Zacks: 'ASML's Installed Base Management sales surge 31.8%, fueled by upgrades and a growing EUV fleet'；2026-09-17 GuruFocus: '110 EUV Machines Test Assembly Speed'；2026-09-17 GuruFocus: 'AI demand has moved ASML's constraint from customer interest to manufacturing throughput'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻[INTC] 2026-09-19 Investing.com: 'UBS now expects artificial intelligence capital expenditure to reach nearly $1 trillion in 2026 before climbing to around $1.4 trillion by 2027'；新闻[INTC] 2026-09-19 Simply Wall St.: 'Micron Technology (NasdaqGS: MU) and Intel CEOs cautioned that memory chip shortages and higher prices could persist through 2027'"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情[ASML] 区间涨跌% -12.81；技术面：收盘 1679.92，MA20 1689.4，MA50 1721.6，相对MA20 bearish，相对MA50 bearish，RSI14 48.19，RSI信号 neutral；分析师目标价 2137.39，当前股价 1679.92，上升空间 (2137.39-1679.92)/1679.92 = 27.2%"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情[ASML] PE(TTM) 55.55，PB 1432.06；行情[TSM] PE(TTM) 32.06；行情[ASML] 营收增速% 21.3，净利增速% 28.5，ROE% 53.94；分析师评级 strong_buy"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "行情[INTC] 净利润 -11288999936（约-112.9亿美元）；行情[TSM] 营收增速% 36.0"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对估值风险的主观评估和展望，涉及'可能引发大幅调整'等预测性判断"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "行情[INTC] 净利润 -11288999936（约-112.9亿美元）；新闻[ASML]中未明确说明INTC占ASML客户基数的具体比例，但INTC财务困难的事实成立"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "新闻[INTC] 2026-09-19 Simply Wall St.: 'Micron Technology (NasdaqGS: MU) and Intel CEOs cautioned that memory chip shortages and higher prices could persist through 2027'"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "新闻[ASML] 2026-09-17 24/7 Wall St.: 'Canon and Nikon are quietly carving out a position in chip manufacturing'"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对地缘政治风险的主观评估，涉及'可能限制市场'等预测性判断，数据中未提供具体的出口管制影响数据"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "这是对数据缺失的主观评估和置信度判断，属于分析框架的反思而非可核对的事实陈述"
+      }
+    ],
+    "claims": [
+      "E1: ASML Installed Base Management 增长 31.8%，110 台 EUV 机器在组装中，产能成为约束——反映 AI 需求旺盛，但产能限制可能成为增长瓶颈（来源：2026-07-15 6-K 申报）",
+      "E2: AI 资本支出预期强劲（UBS 预计 2026 年 1 万亿美元，2027 年 1.4 万亿）——为 ASML 长期需求提供支撑，但短期芯片短缺预期（Micron/INTC 警告至 2027 年）可能延缓采购节奏（来源：2026-09-19 Investing.com、Simply Wall St.）",
+      "E3: 股价 3 个月跌 12.81%，技术面走弱（价格低于 MA20/MA50），RSI 中性，分析师目标价 2137.39 仅暗示 27% 上升空间——宏观 AI 支出利好已提前反映，短期技术面走弱可能反映获利回吐或估值重新定价（来源：Yahoo Finance 行情数据）",
+      "E4: PE 55.55、PB 1432.06 处历史高位，相比 TSM PE 32.06 溢价明显，但分析师评级 strong_buy——估值溢价反映垄断地位和长期增长预期（营收增速 21.3%、净利增速 28.5%、ROE 53.94%），但可持续性取决于客户需求（来源：Yahoo Finance 基本面数据）",
+      "E5: INTC 净利润负 112.9 亿美元、财务困难，TSM 营收增速 36% 强劲——客户端风险与机遇并存，INTC 采购能力削弱可能影响 ASML 订单，但 TSM 需求稳定提供支撑（来源：Yahoo Finance 行情数据）",
+      "估值风险——PE 55.55 处历史高位，任何增长放缓都可能引发大幅调整，当前股价已接近分析师目标价，上升空间有限",
+      "客户风险——INTC 财务困难（净利润 -112.9 亿美元），可能削弱采购能力，占 ASML 客户基数的重要部分",
+      "需求风险——Micron 和 INTC 警告芯片短缺至 2027 年，可能延缓设备采购节奏，与 AI 资本支出预期形成短期错配",
+      "竞争风险——Canon/Nikon 在芯片制造领域扩张，虽短期威胁有限但长期需关注",
+      "地缘政治风险——ASML 荷兰公司，面临美国对华出口管制，可能限制市场",
+      "数据缺失风险——缺少 Q3 2026 订单指引、客户资本支出计划等关键信息，置信度无法提升至 high"
+    ]
+  }
+}

@@ -1,0 +1,88 @@
+{
+  "variant": "A",
+  "company": "NVDA",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 158,
+        "evidence": "UBS 预测 2026 年近 $1 万亿、2027 年 $1.4 万亿",
+        "verified": false
+      },
+      {
+        "id": 159,
+        "evidence": "CEO Jensen Huang 在 Dreamforce 展示领导力获投资者认可",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示营收增速% 105.9，净利增速% 127.8，与论断完全一致"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示分析师目标价 328.49，分析师评级 strong_buy（强烈买入），分析师数量 58"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "新闻数据（2026-09-19 Investing.com）：'UBS now expects artificial intelligence capital expenditure to reach nearly $1 trillion in 2026 before climbing to around $1.4 trillion by 2027'"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示收盘 222.27，MA20 218.72，MA50 214.07，RSI14 54.24；相对MA20 bullish，相对MA50 bullish，RSI信号 neutral（中性）"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观数据显示VIX 15.44（2026-09-17），联邦基金利率 3.63%（2026-08-01），CPI 3.71%（2026-08-01），与论断数值完全一致"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "行情数据显示20日年化波动率% 46.45，与论断中的'46.45% 年化波动率'一致"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "行情数据显示负债权益比 16.97，与论断中的'债务权益比 16.97'一致"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对竞争格局的主观判断，涉及AMD、Intel等竞争对手的市场动向，不是可核对的具体事实陈述"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对地缘政治风险的主观评估和展望，不是可核对的具体事实陈述"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对估值风险的主观判断和条件性展望，不是可核对的具体事实陈述"
+      }
+    ],
+    "claims": [
+      "营收增速 105.9%、净利增速 127.8%，远超行业平均（市场数据 2026-09-18）",
+      "分析师目标价 $328.49，强烈买入评级，58 位分析师共识（市场数据 2026-09-18）",
+      "AI 资本支出预期 2026 年近 $1 万亿、2027 年 $1.4 万亿，直接驱动芯片需求（新闻 2026-09-19）",
+      "技术面看涨：股价 $222.27 高于 MA20 $218.72 和 MA50 $214.07，RSI 54.24 中性偏强（市场数据 2026-09-18）",
+      "宏观环境支持：VIX 15.44 低位、联邦基金利率 3.63% 温和、CPI 3.71% 可控（宏观数据 2026-09-17）",
+      "高波动性（46.45% 年化波动率）可能导致短期回调",
+      "债务权益比 16.97 偏高，利率上升可能增加融资成本",
+      "AI 芯片市场竞争加剧（AMD、Intel 追赶），市场份额可能受压",
+      "地缘政治风险（中国出口管制）可能影响收入",
+      "估值依赖 AI 需求持续，若周期放缓则估值面临压力"
+    ]
+  }
+}

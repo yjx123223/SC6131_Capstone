@@ -1,0 +1,99 @@
+{
+  "variant": "B",
+  "company": "ORCL",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 367,
+        "evidence": "Jim Cramer 9月17日称Oracle强势为\"积极信号\"，股价当日涨5%",
+        "verified": true
+      },
+      {
+        "id": 368,
+        "evidence": "9月18日Business Insider报道co-CEO Clay Magouyrk在内部会议称公司曾难以将生成式AI应用于自身业务，引发3.4%跌幅",
+        "verified": true
+      },
+      {
+        "id": 370,
+        "evidence": "Oracle Slides 3.4% as Buy Call Meets a Capital Burden",
+        "verified": true
+      },
+      {
+        "id": 371,
+        "evidence": "Oracle Falls 3% While Cloud Rivals Hold Their Ground; Microsoft Dips, Amazon Nudges Higher",
+        "verified": true
+      }
+    ],
+    "dropped": [],
+    "repaired": "数组被返回成字符串且 JSON 非法，正则抽出 4 项"
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "10-K报告期2026-05-31，营收增速29.6%、净利润增速54.5%均来自行情数据基本面部分。截至2026-09-18已有3个多月滞后（5月31日至9月18日约3.5个月）。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示区间涨跌%-15.39（3个月），MA20 149.41（看跌相对MA20），MA50 141.0（支撑），收盘147.61。若跌破141美元即跌破MA50。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "新闻显示2026-09-18 StockStory报道：'Shares of enterprise software giant Oracle fell 3.4% in the afternoon session after Business Insider reported that co-CEO Clay Magouyrk stated during an internal town hall that the company previously struggled to make generative artificial intelligence useful'。MSFT 3个月涨34.67%（行情数据区间涨跌%），ORCL跌15.39%。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示分析师目标价239.0，现价147.61，上升空间为(239-147.61)/147.61=61.8%。需下季财报确认是主观判断。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "行情数据显示ORCL自由现金流-45853626368（约-45.9亿美元），负债权益比251.72。NVDA负债权益比16.97，MSFT负债权益比29.12。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对AI实现困难可能影响的推断和展望，属于主观判断而非可核对的事实。"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "自由现金流-45853626368（约-45.9亿美元）数据来自行情基本面。负数可能反映投资的推断属于合理解释，但需下季财报确认是主观判断。"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "行情数据显示ORCL负债权益比251.72，NVDA 16.97，MSFT 29.12。宏观指标显示联邦基金利率3.63%（2026-08-01），融资成本增加的推断属于合理分析。"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "MSFT 3个月涨34.67% vs ORCL跌15.39%的数据可核对，但'可能蚕食Oracle的市场份额'是基于股价表现的推断，属于主观判断。"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "行情数据显示MA50 141.0，收盘147.61。技术面相对MA50 bullish但相对MA20 bearish。跌破MA50（141美元）的技术面分析可核对。"
+      }
+    ],
+    "claims": [
+      "营收增速29.6%、净利润增速54.5%，基本面强劲，但数据基于10-K（截至2026-05-31），已有3个多月滞后",
+      "3个月跌15.39%，技术面短期走弱，MA20看跌但MA50支撑，若跌破141美元可能触发进一步抛售（截至2026-09-18）",
+      "9月18日内部AI应用困难传言引发3.4%跌幅，与MSFT（3个月涨34.67%）表现分化，市场对Oracle AI战略信心不足",
+      "分析师平均目标价239美元，较现价147.61美元有61.8%上升空间，但需下季财报确认AI战略可行性与云业务增速",
+      "自由现金流-45.9亿美元为负，负债权益比251.72%远高于NVDA（16.97%）和MSFT（29.12%），财务杠杆风险需关注，需确认下季资本支出计划",
+      "AI实现困难可能削弱企业客户对Oracle AI产品的信心，影响云业务增长，这是当前最大的不确定性",
+      "自由现金流-45.9亿美元为负，虽可能反映AI基础设施投资，但需在下季财报中确认资本支出计划与现金流趋势",
+      "负债权益比251.72%远高于NVDA（16.97%）和MSFT（29.12%），在利率上升环境下融资成本增加，债务偿付压力较大",
+      "MSFT在AI云服务的竞争优势（3个月涨34.67% vs ORCL跌15.39%）可能蚕食Oracle的市场份额",
+      "技术面短期走弱，若跌破MA50（141美元）可能触发进一步抛售，加剧市场悲观情绪"
+    ]
+  }
+}

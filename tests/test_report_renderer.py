@@ -1,8 +1,7 @@
 """
 tests/test_report_renderer.py
 --------------------------------
-report_renderer.render_report 是纯函数（拆分自 orchestrator.py 的
-OrchestratorAgent._render_report），给定同样的 draft/critique/tool_log
+report_renderer.render_report 是纯函数，给定同样的 draft/critique/tool_log
 输入，断言输出的 Markdown 包含预期的段落。
 """
 
@@ -57,12 +56,12 @@ def test_render_report_shows_critic_conflicts_when_present():
 
 def test_render_report_shows_tool_call_trajectory():
     tool_log = [
-        {"tool": "query_kg_signals", "input": {"entity": "Apple Inc.", "weeks": 12}, "result": {}},
+        {"tool": "query_market_data", "input": {"entity": "Apple Inc.", "period": "3mo"}, "result": {}},
         {"tool": "query_macro", "input": {}, "result": {}},
     ]
     md = render_report("Apple Inc.", _DRAFT, critique={}, tool_log=tool_log, model_name="m")
 
-    assert "query_kg_signals" in md
+    assert "query_market_data" in md
     assert "query_macro" in md
     assert "Tool Call Trajectory" in md
 
@@ -79,7 +78,6 @@ def test_render_report_includes_new_analysis_sections():
     assert "## 技术面" in md and "RSI 61" in md
     assert "## 新闻舆情（整体情绪：偏正面）" in md
     assert "## 监管申报（SEC EDGAR）" in md and "10-Q" in md
-    assert "个股信号分析（FinDKG" not in md
     assert "（本次未调用任何数据工具）" in md
 
 

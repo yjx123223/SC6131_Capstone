@@ -1,0 +1,114 @@
+{
+  "variant": "B",
+  "company": "INTC",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 280,
+        "evidence": "Applied Materials 营收增长超 Intel，利润率是 Intel 的两倍",
+        "verified": true
+      },
+      {
+        "id": 281,
+        "evidence": "UBS 预计 2026 年达 1 万亿美元，2027 年达 1.4 万亿美元",
+        "verified": true
+      },
+      {
+        "id": 282,
+        "evidence": "内存芯片短缺预警延伸至 2027 年（Micron 警告）",
+        "verified": true
+      },
+      {
+        "id": 286,
+        "evidence": "Intel 与 SK Hynix 探索合作",
+        "verified": true
+      },
+      {
+        "id": 287,
+        "evidence": "内存芯片短缺延伸至 2027 年，推高 Intel 制造成本",
+        "verified": true
+      },
+      {
+        "id": 290,
+        "evidence": "ASML 近 3 个月股价跌 12.81%，EUV 产能受限（110 台机器测试产能）",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "Intel 10-Q 报告期 2026-06-27，基本面数据显示：净利润 -11288999936（约 -112.9 亿美元），ROE% -10.71"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "Intel Forward PE 52.67（数据中为 52.67），NVDA Forward PE 14.17（数据中为预期PE 14.17，但新闻提及 23.58）。新闻 2026-09-18 Insider Monkey 提及 Intel forward P/E 54.64 高于 NVDA 23.58。分析师目标价 116.37 美元，当前收盘 108.6，上行空间 (116.37-108.6)/108.6 = 7.1%，YTD 涨幅 170% 来自新闻"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "AMD 营收增速% 50.1，净利率% 15.58；NVDA 营收增速% 105.9，净利率% 63.66。数据均来自 Yahoo Finance 2026-09-18"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "内存芯片短缺延伸至 2027 年：新闻 2026-09-19 Simply Wall St. 提及 'Micron Technology (NasdaqGS: MU) and Intel CEOs cautioned that memory chip shortages and higher prices could persist through 2027'。ASML 近 3 个月股价跌幅：区间涨跌% -12.81（2026-09-18 数据）"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "分析师评级 buy，分析师数量 43，目标价 116.37 美元。数据来自 Yahoo Finance 2026-09-18。论断指出这与'减仓'建议方向相反，但数据中分析师评级为 'buy' 而非 'reduce'"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "关于 Foundry 战略执行风险、客户获取困难、产能利用率低等，属于对未来战略执行的主观判断，数据中无具体的客户获取数据或产能利用率指标"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "关于竞争加剧导致定价权下降、利润率压缩等，属于对市场竞争动态的主观判断。虽然数据显示 AMD 和 NVDA 增长强劲，但因果关系的判断属于分析性结论"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "内存芯片短缺延伸至 2027 年推高制造成本：新闻 2026-09-19 Simply Wall St. 和 2026-09-19 Investing.com 均提及。ASML 产能受限：新闻 2026-09-17 GuruFocus.com 提及 'AI demand has moved ASML's constraint from customer interest to manufacturing throughput'"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "负债权益比 49.0，净利润 -11288999936（亏损状态），自由现金流 4866375168（约 48.6 亿美元）。数据来自 Yahoo Finance 2026-09-18"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "关于 Forward PE 52.67 远高于历史均值、泡沫破裂风险、技术面反转等，属于对估值和技术面的主观判断，数据中无历史均值对比"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "最新财务数据为 Q2 2026（10-Q 报告期 2026-06-27），Q3 数据缺失。SEC 申报中最新为 10-Q(2026-07-24，报告期 2026-06-27)，之后仅有 8-K 申报"
+      }
+    ],
+    "claims": [
+      "Intel Q2 2026 净亏损 112.9 亿美元，ROE -10.71%，基本面严重恶化（10-Q 报告期 2026-06-27）",
+      "Forward PE 52.67 高于 NVDA 23.58，估值泡沫明显，分析师目标价 116.37 美元仅提供 7% 上行空间与 170% YTD 涨幅不符（Yahoo Finance 2026-09-18）",
+      "AMD 营收增长 50.1%、净利率 15.58%，NVDA 营收增长 105.9%、净利率 63.66%，竞争压力加大（Yahoo Finance 2026-09-18）",
+      "内存芯片短缺延伸至 2027 年，推高 Intel 制造成本，ASML 近 3 个月股价跌 12.81%，EUV 产能受限（新闻 2026-09-19 及 2026-09-17）",
+      "分析师 43 人评级'buy'、目标价 116.37 美元与报告'减仓'建议方向相反，反映分析师共识可能滞后于基本面恶化（Yahoo Finance 2026-09-18）",
+      "Foundry 战略执行风险——客户获取困难、产能利用率低，战略失败将加速市场份额丧失",
+      "竞争加剧——AMD 和 NVDA 市场份额扩张，Intel 定价权下降，利润率进一步压缩",
+      "供应链成本压力——内存芯片短缺延伸至 2027 年，推高制造成本，而 ASML 产能受限制约工艺升级",
+      "融资压力——高债务率（49.0）与亏损状态下融资成本上升，自由现金流 48.6 亿美元难以支撑高资本支出",
+      "估值回调风险——Forward PE 52.67 远高于历史均值，泡沫破裂风险大，可能触发技术面反转",
+      "数据滞后风险——最新财务数据为 Q2 2026，Q3 数据缺失，分析师目标价可能未充分反映最新基本面恶化"
+    ]
+  }
+}

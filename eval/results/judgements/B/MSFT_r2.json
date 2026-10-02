@@ -1,0 +1,110 @@
+{
+  "variant": "B",
+  "company": "MSFT",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 39,
+        "evidence": "MSFT 近 14 天仅 1 条直接新闻（2026-09-19 Investing.com 关于 AI 科学应用浪潮）",
+        "verified": true
+      },
+      {
+        "id": 42,
+        "evidence": "Nscale 数据中心 IPO（2026-09-18）体现 AI 基础设施投资热度，为云计算和 AI 平台提供长期增长动力",
+        "verified": true
+      },
+      {
+        "id": 44,
+        "evidence": "Nscale IPO 体现 MSFT 在 AI 基础设施的核心地位",
+        "verified": true
+      },
+      {
+        "id": 58,
+        "evidence": "竞争对手 ORCL 在 2026-09-18 下午交易中因 AI 实用化困难下跌 3.4%",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "基本面数据来自行情[MSFT]：净利增速% 31.7、ROE% 34.04、净利率% 40.3，数据截至 2026-06-30（10-K报告期）"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情[MSFT]显示：预期PE 20.93、分析师目标价 572.92、收盘 493.78。上升空间计算：(572.92-493.78)/493.78 = 15.96% ≈ 15.9%"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "新闻[MSFT]中2026-09-18 Bloomberg和Stocktwits报道：'Nscale, a developer of artificial intelligence data centers that counts Nvidia Corp. and Microsoft Corp. among its partners, filed for an initial public offering'。新闻[ORCL]中2026-09-18 StockStory报道：'Shares of enterprise software giant Oracle (NYSE:ORCL) fell 3.4% in the afternoon session after Business Insider reported that co-CEO Clay Magouyrk stated during an internal town hall that the company previously struggled to make generative artificial intelligence useful'"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情[MSFT]技术面数据：收盘 493.78、MA20 497.51（差异0.75%）、RSI14 53.6（neutral）、5日涨跌% -0.37、区间涨跌% 34.67（3个月）"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据：联邦基金利率 3.63%（2026-08-01）、10年期国债收益率 4.94%（2026-09-17）、VIX恐慌指数 15.44（2026-09-17）"
+      },
+      {
+        "index": 6,
+        "verdict": "unsupported",
+        "evidence": "新闻[MSFT]显示近14天共8条新闻，但论断称'仅1条直接新闻'。实际数据中8条新闻中至少有2条直接涉及MSFT：2026-09-18 Stocktwits关于Nscale IPO提及MSFT、2026-09-18 Bloomberg关于Nscale IPO提及MSFT为合作伙伴。其余6条为行业新闻。论断的'仅1条'与数据不符"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对技术面走势的主观判断和展望，不涉及可核对的具体事实"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对未来AI投资回报率的预期判断，属于主观展望，数据中无相关信息支持或反驳"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "行情[NVDA]：5日涨跌% 1.82、区间涨跌% 6.65（3个月）显示增速放缓。行情[AMD]：5日涨跌% 8.46、RSI14 65.1（接近超买）、区间涨跌% 1.48显示短期涨幅大但3个月涨幅小，符合'超买'特征"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对竞争对手AI战略调整可能性的主观判断，数据中无具体的战略调整事实"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "这是对宏观衰退风险的假设性判断，属于主观展望，不涉及当前可核对的事实"
+      },
+      {
+        "index": 12,
+        "verdict": "judgment",
+        "evidence": "这是对长期监管风险的主观判断，数据中无具体的反垄断事件或监管行动"
+      }
+    ],
+    "claims": [
+      "基本面强劲：净利润增速 31.7%、ROE 34.04%、利润率 40.3%（数据截至 2026-06-30）",
+      "估值合理：Forward PE 20.93、分析师目标价 572.92 美元较当前 493.78 美元有 15.9% 上升空间",
+      "AI 生态优势：Nscale IPO 体现 MSFT 在 AI 基础设施的核心地位，但 ORCL 因 AI 实用化困难在 2026-09-18 下跌 3.4%（单日波动）",
+      "技术面短期震荡：价格 493.78 美元低于 MA20（497.51）仅 0.75%，RSI 53.6 中性，5 日跌幅 -0.37%，缺乏明确调整信号；3 个月涨 34.67% 显示中期强势",
+      "宏观环境温和：联邦基金利率 3.63%、10 年期国债收益率 4.94%、VIX 15.44 均支持科技股（数据截至 2026-09-17）",
+      "新闻覆盖不足：MSFT 近 14 天仅 1 条直接新闻，其余均为行业新闻，信息透明度有限，置信度调整为 medium",
+      "短期技术面在 MA20 附近震荡，缺乏明确方向，可能继续在 490-500 美元区间波动",
+      "AI 投资回报率预期可能下调，影响云计算增速",
+      "芯片供应商（NVDA、AMD）近期涨幅分化，NVDA 增速放缓、AMD 超买，可能影响 MSFT 的 AI 基础设施成本",
+      "竞争对手（ORCL、AAPL）AI 战略调整可能分流市场",
+      "宏观衰退风险若升温，高估值科技股首当其冲",
+      "监管风险（反垄断）长期存在"
+    ]
+  }
+}

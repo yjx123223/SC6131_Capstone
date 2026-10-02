@@ -1,0 +1,92 @@
+{
+  "variant": "C",
+  "company": "GOOGL",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 77,
+        "evidence": "新闻报道假设 Google Gemini 可能具备自主黑客能力，引发网络保险行业关注",
+        "verified": true
+      },
+      {
+        "id": 78,
+        "evidence": "AI 科学研究应用前景广阔",
+        "verified": true
+      },
+      {
+        "id": 79,
+        "evidence": "9/19 谷歌获得关键反垄断裁决，有利于广告业务，结束十多年最长下跌周期",
+        "verified": true
+      },
+      {
+        "id": 84,
+        "evidence": "9/18 谷歌开始销售自主研发 AI 芯片，形成新产品线",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：净利增速% 294.0，营收增速% 24.2（截至2026-09-18，来源Yahoo Finance）"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "知识图谱目标事件E1：2026-09-19 positive REGULATORY「谷歌获得关键反垄断裁决，有利于其广告业务，结束了十多年来最长的下跌周期」；新闻Motley Fool 2026-09-19标题确认此事"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "知识图谱目标事件E2：2026-09-18 positive PRODUCT「谷歌开始销售自主研发的AI芯片，形成新的产品线」；新闻Motley Fool 2026-09-18标题「2 Stocks to Buy as Google Starts Selling Its AI Chips」确认此事"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘349.54，MA20 341.68，MA50 345.4，相对MA20 bullish，相对MA50 bullish（截至2026-09-18，来源Yahoo Finance）"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "行情数据显示：分析师评级 strong_buy，分析师目标价 428.41，分析师数量 53（截至2026-09-18，来源Yahoo Finance）"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "虽然数据中存在反垄断裁决（E1）和相关监管新闻，但'未来政策环境仍存变数'是对未来的主观预测，不是可核对的事实"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "知识图谱中E3、E5分别记录：E3 2026-09-18 AAPL新CEO John Ternus将推动公司发展；E5 2026-09-18 META推出AI应用Muse增长突出，均涉及竞争对手AI投入增加"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对宏观经济变化的假设性风险描述。虽然数据中有宏观指标（联邦基金利率3.63%、失业率4.1%等），但'若利率上升或经济衰退'是条件假设，不是已发生的事实"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "新闻Simply Wall St. 2026-09-19：「When news breaks that Google's Gemini can autonomously hack real companies」；新闻Barrons.com 2026-09-18：「Fears of AI running amok have increased over the past week」，确认Gemini自主黑客能力报道存在且引发安全关注"
+      }
+    ],
+    "claims": [
+      "Q2 2026 净利润同比增长 294%，营收增长 24.2%（Yahoo Finance，9/18）",
+      "反垄断裁决利好广告业务，结束十多年最长下跌周期（Motley Fool，9/19，E1）",
+      "自主 AI 芯片销售启动，形成新产品线（Motley Fool，9/18，E2）",
+      "股价 349.54 美元高于 MA20/MA50，技术面上升趋势（Yahoo Finance，9/18）",
+      "分析师一致评级'强烈买入'，平均目标价 428.41 美元（Yahoo Finance，9/18）",
+      "监管风险——虽已获得关键反垄断裁决，但未来政策环境仍存变数，可能影响广告业务",
+      "AI 竞争加剧——Meta、Microsoft 等竞争对手 AI 投入增加（E3、E5），可能分流用户",
+      "宏观风险——若利率上升或经济衰退，广告支出可能下降",
+      "技术风险——Gemini 自主黑客能力相关报道引发安全与伦理关注，可能招致监管审查"
+    ]
+  }
+}

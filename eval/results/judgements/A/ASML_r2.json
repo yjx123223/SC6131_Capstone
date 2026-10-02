@@ -1,0 +1,88 @@
+{
+  "variant": "A",
+  "company": "ASML",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 351,
+        "evidence": "ASML Installed Base Management销售增长31.8%（2026-09-18），110台EUV机器产能测试显示制造能力提升（2026-09-17）",
+        "verified": true
+      },
+      {
+        "id": 352,
+        "evidence": "110台EUV机器产能测试显示制造能力提升（2026-09-17）",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻 2026-09-18 Zacks: 'ASML Rides on Strength in Installed Base Business: Will it Sustain?' 摘要明确指出 'ASML's Installed Base Management sales surge 31.8%, fueled by upgrades and a growing EUV fleet'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：净利增速% 28.5，ROE% 53.94。两项数据均与论断完全一致"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：分析师目标价 2137.39，分析师评级 strong_buy，当前收盘价 1679.92。目标价相对当前价上涨幅度为 (2137.39-1679.92)/1679.92 = 27.2%，约等于27%"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘 1679.92，MA20 1689.4，MA50 1721.6，相对MA20 bearish，相对MA50 bearish；区间涨跌% -12.81（3个月区间）。所有技术面指标均与论断相符"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：VIX 恐慌指数 15.44（2026-09-17），失业率 4.1%（2026-08-01），CPI 同比变化 3.71%（2026-08-01）。所有数据均与论断一致"
+      },
+      {
+        "index": 6,
+        "verdict": "unsupported",
+        "evidence": "数据中未提及美国对华芯片出口管制的具体信息，也未提及该政策对ASML客户需求的影响。这是一个外部政策风险，不在提供的工具数据范围内"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "论断涉及对产能瓶颈的主观评估和对未来需求满足能力的推测。虽然新闻提到'AI demand has moved ASML's constraint from customer interest to manufacturing throughput'（2026-09-17），但'能否满足爆炸性AI需求存疑'属于对未来的不确定性判断，而非可核对的事实"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "论断包含对估值水平的主观评价（'处高位'）和对未来情景的条件性推测（'若增长放缓或宏观转向'）。虽然PE 55.55可在数据中找到，但'估值风险'和'面临估值压缩'属于主观判断，不是可核对的事实"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "新闻 2026-09-17 24/7 Wall St.: 'Chasing ASML's Dominance: Canon and Nikon Are Doing Something The Market Misses' 摘要指出 'Canon and Nikon are quietly carving out a position in chip manufacturing'，证实竞争对手存在，但论断中'虽弱但长期威胁'的评价属于主观判断"
+      },
+      {
+        "index": 10,
+        "verdict": "unsupported",
+        "evidence": "数据中未提及ASML下一代光刻技术研发失败的任何信息。这是一个假设性的技术风险，不在提供的工具数据范围内"
+      }
+    ],
+    "claims": [
+      "Installed Base Management销售增长31.8%，AI需求驱动强劲（2026-09-18新闻）",
+      "净利润增长28.5%，ROE 53.94%，基本面卓越（市场数据截至2026-09-18）",
+      "分析师目标价$2,137.39，评级强烈买入，较当前上涨27%（市场数据）",
+      "技术面短期走弱：价格低于MA20/MA50，近3月跌12.81%，需确认支撑（技术指标截至2026-09-18）",
+      "宏观环境温和，VIX 15.44、失业率4.1%、通胀3.71%均支持科技股（宏观数据截至2026-09-17）",
+      "地缘政治风险——美国对华芯片出口管制可能影响客户需求",
+      "产能瓶颈——虽在扩产但能否满足爆炸性AI需求存疑",
+      "估值风险——Trailing PE 55.55处高位，若增长放缓或宏观转向将面临估值压缩",
+      "竞争加剧——Canon/Nikon虽弱但长期威胁",
+      "技术风险——下一代光刻技术研发失败"
+    ]
+  }
+}

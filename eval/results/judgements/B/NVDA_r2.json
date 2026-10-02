@@ -1,0 +1,79 @@
+{
+  "variant": "B",
+  "company": "NVDA",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 158,
+        "evidence": "UBS 预期 AI 资本支出 2026 年达 1 万亿美元、2027 年 1.4 万亿美元",
+        "verified": true
+      },
+      {
+        "id": 159,
+        "evidence": "CEO Jensen Huang 在 Dreamforce 获投资者认可",
+        "verified": true
+      },
+      {
+        "id": 165,
+        "evidence": "TSM 加速 2nm 产能投放，支撑 NVDA 芯片供应",
+        "verified": true
+      },
+      {
+        "id": 188,
+        "evidence": "ASML EUV 产能瓶颈缓解",
+        "verified": true
+      },
+      {
+        "id": 189,
+        "evidence": "110 台机器测试组装速度",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情[NVDA]数据显示：营收增速% 105.9，净利增速% 127.8，数据截至 2026-09-18"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情[NVDA]数据显示：分析师数量 58，分析师目标价 328.49，分析师评级 strong_buy；当前收盘价 222.27；上升空间计算：(328.49-222.27)/222.27 = 47.8%"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "新闻[ASML]中2026-09-19 Investing.com报道：'UBS now expects artificial intelligence capital expenditure to reach nearly $1 trillion in 2026 before climbing to around $1.4 trillion in 2027'，与论断中'2026年达1万亿美元、2027年1.4万亿美元'一致"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻[TSM]中2026-09-18 Simply Wall St.报道：'Taiwan Semiconductor Manufacturing (NYSE:TSM) moves its 2nm process into commercial production...accelerates investment in cutting edge fabrication capacity'；新闻[ASML]中2026-09-17 GuruFocus.com报道：'110 EUV Machines Test Assembly Speed'，以及2026-09-18 Zacks报道：'ASML's Installed Base Management sales surge 31.8%, fueled by upgrades and a growing EUV fleet'"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "行情[NVDA]数据显示：MA20 218.72，MA50 214.07，相对MA20 bullish，相对MA50 bullish，RSI14 54.24，RSI信号 neutral；近10个交易日收盘显示从2026-09-14的210.96低点回升至2026-09-18的222.27，体现回调后企稳"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对风险因素的主观评估和展望，包括估值压缩空间、毛利率压低可能性、地缘政治风险、竞争加剧、宏观衰退风险等，均属于条件性的风险判断而非可核对的事实陈述"
+      }
+    ],
+    "claims": [
+      "营收增速 105.9%、净利润增速 127.8%，基本面超预期增长（数据截至 2026-09-18）",
+      "分析师一致看好，58 位分析师平均目标价 328.49 美元，较当前 222.27 美元有 47.8% 上升空间",
+      "AI 资本支出预期强劲，UBS 预期 2026 年达 1 万亿美元、2027 年 1.4 万亿美元（2026-09-19）",
+      "供应链支撑充分，TSM 加速 2nm 产能投放、ASML EUV 产能瓶颈缓解（2026-09-18）",
+      "技术面保持上升趋势，MA20/MA50 均线向上，近期回调后企稳，RSI 中性无超买（数据截至 2026-09-18）",
+      "估值风险：PE 27.71 相对高企，若增长预期下修或宏观环境恶化，估值压缩空间大。内存成本上升：HBM 等高端内存价格上升，可能压低整体芯片毛利率。地缘政治风险：TSM 台湾地缘政治风险、美国对华芯片出口管制可能影响供应链。竞争加剧：AMD、Intel 等竞争对手加大 AI 芯片投入，市场份额可能受压。宏观衰退风险：若经济衰退导致企业 AI 资本支出延缓，需求可能下滑"
+    ]
+  }
+}

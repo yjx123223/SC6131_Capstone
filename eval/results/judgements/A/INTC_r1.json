@@ -1,0 +1,114 @@
+{
+  "variant": "A",
+  "company": "INTC",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 280,
+        "evidence": "与Applied Materials对比显示Intel竞争力弱（AMAT连续三季度增长、Intel利润率仅其一半）",
+        "verified": true
+      },
+      {
+        "id": 281,
+        "evidence": "AI芯片需求强劲（UBS AI capex预期）",
+        "verified": true
+      },
+      {
+        "id": 281,
+        "evidence": "UBS预期2027年AI capex达$1.4T",
+        "verified": true
+      },
+      {
+        "id": 282,
+        "evidence": "内存短缺延续至2027年支持价格",
+        "verified": false
+      },
+      {
+        "id": 283,
+        "evidence": "NVIDIA对比凸显Intel估值过高（Forward P/E 52.67 vs NVIDIA 23.58）",
+        "verified": true
+      },
+      {
+        "id": 286,
+        "evidence": "SK Hynix合作传言提振情绪",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "数据显示预期PE 52.67，与论断中的Forward P/E 52.67完全一致。数据来源为Yahoo Finance 2026-09-18。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "数据显示净利润 -11288999936（约-$112.9亿），净利率% -19.79，与论断中的净利润-$112.9亿、利润率-19.79%完全一致。数据来源为Yahoo Finance 2026-09-18。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "数据显示负债权益比 49.0，与论断中的债务/权益49.0完全一致。数据来源为Yahoo Finance 2026-09-18。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻数据（2026-09-19 Investing.com）明确指出：'UBS now expects artificial intelligence capital expenditure to reach nearly $1 trillion in 2026 before climbing to around $1.4 trillion by 2027'，与论断中UBS预期2027年AI capex达$1.4T完全一致。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "数据显示：收盘108.6高于MA20 95.87和MA50 97.09（bullish），3个月区间涨跌% -22.95，20日年化波动率% 61.04。与论断中的技术面短期看涨、3个月跌幅-22.95%、波动率61%完全一致。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对基本面状况的主观判断和展望，涉及'恢复时间不确定'的预测性表述，不是可核对的事实。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对估值风险的主观判断和展望，'任何负面消息可能引发大幅回调'属于预测性表述，不是可核对的事实。"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "数据显示负债权益比 49.0，论断中提到的高杠杆（债务/权益49.0）与数据一致。"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "论断涉及对竞争格局和'foundry战略成功不确定'的主观判断。虽然新闻中提到AMAT、NVIDIA等竞争对手，但'成功不确定'属于预测性判断，不是可核对的事实。"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "数据显示20日年化波动率% 61.04，与论断中的高波动率（61%）一致。"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "这是对宏观因素影响的主观判断和展望。虽然数据中包含宏观指标（10年期国债收益率4.94%等），但'利率环境变化可能压低科技股估值'属于预测性表述，不是可核对的事实。"
+      }
+    ],
+    "claims": [
+      "Forward P/E 52.67极高，估值泡沫明显（数据源：Yahoo Finance 2026-09-18）",
+      "净利润-$112.9亿、利润率-19.79%，基本面仍在亏损（数据源：Yahoo Finance 2026-09-18）",
+      "债务/权益49.0处于高位，财务杠杆风险大（数据源：Yahoo Finance 2026-09-18）",
+      "AI芯片需求强劲，UBS预期2027年AI capex达$1.4T（数据源：Investing.com 2026-09-19）",
+      "技术面短期看涨（价格高于MA20/MA50），但3个月跌幅-22.95%、波动率61%（数据源：Yahoo Finance 2026-09-18）",
+      "基本面仍在亏损，盈利能力恢复时间不确定",
+      "估值极高，任何负面消息可能引发大幅回调",
+      "高杠杆（债务/权益49.0）限制财务灵活性",
+      "竞争加剧（AMAT、NVIDIA、台积电），foundry战略成功不确定",
+      "高波动率（61%）增加风险",
+      "宏观利率环境变化可能压低科技股估值"
+    ]
+  }
+}

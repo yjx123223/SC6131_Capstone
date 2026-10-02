@@ -1,0 +1,149 @@
+{
+  "variant": "B",
+  "company": "AMD",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 247,
+        "evidence": "AMD被IBD列为'强势买入区域'（2026-09-19），芯片板块（SOX指数）连续四日上涨（2026-09-18）",
+        "verified": true
+      },
+      {
+        "id": 249,
+        "evidence": "Simply Wall St评价AMD'看起来便宜'（2026-09-18）",
+        "verified": true
+      },
+      {
+        "id": 250,
+        "evidence": "Stock Market Today: The Dow Jones index falls Friday as oil prices reverse higher. Apple, AMD, Micron and Sandisk are key movers.",
+        "verified": false
+      },
+      {
+        "id": 251,
+        "evidence": "芯片板块（SOX指数）连续四日上涨（2026-09-18）",
+        "verified": true
+      },
+      {
+        "id": 252,
+        "evidence": "AMD, Linde and Amgen highlight AI demand, contracted growth and drug launches, while supply, margin and pipeline risks remain key factors.",
+        "verified": false
+      },
+      {
+        "id": 254,
+        "evidence": "Trefis指出NVDA在同行中估值最低（PE 27.5 vs AMD 138.91），过去12个月NVDA涨25.7%而AMD涨239.7%，暗示AMD涨幅已过度（2026-09-18）",
+        "verified": true
+      },
+      {
+        "id": 259,
+        "evidence": "供应商TSM正加速2nm产能投资（Simply Wall St，2026-09-18）",
+        "verified": true
+      },
+      {
+        "id": 260,
+        "evidence": "客户MSFT持续推进AI基础设施投资（Investing.com，2026-09-19）",
+        "verified": true
+      },
+      {
+        "id": 265,
+        "evidence": "Applied Materials has posted three consecutive quarterly gains and now generates $9.1 billion in revenue, while Intel's operating margin sits at half that of its competitor.",
+        "verified": false
+      },
+      {
+        "id": 266,
+        "evidence": "UBS now expects artificial intelligence capital expenditure to reach nearly $1 trillion in 2026 before climbing to around $1.4 trillion in 2027, with surging memory costs accounting f",
+        "verified": false
+      },
+      {
+        "id": 267,
+        "evidence": "Micron Technology (NasdaqGS: MU) and Intel CEOs cautioned that memory chip shortages and higher prices could persist through 2027.",
+        "verified": false
+      },
+      {
+        "id": 268,
+        "evidence": "Chip maker Intel Corporation (NASDAQ:INTC) has become one of the hottest stocks in today's market with year-to-date gains and valuation both being richer than AI GPU giant NVIDIA.",
+        "verified": false
+      },
+      {
+        "id": 277,
+        "evidence": "ASML's Installed Base Management sales surge 31.8%, fueled by upgrades and a growing EUV fleet, but sustaining growth hinges on customer demand.",
+        "verified": false
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "AMD行情数据：营收增速% 50.1，净利增速% 159.5；NVDA行情数据：净利增速% 127.8；INTC行情数据：净利润 -11288999936（约-113亿美元）。所有数值均来自Yahoo Finance 2026-09-18数据。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "AMD行情数据：PE(TTM) 138.91；NVDA行情数据：PE(TTM) 27.71。Simply Wall St新闻标题：'AMD (AMD) Stock Looks Cheap After Its Huge 3 Year Run'，摘要提及'the question now is whether the current share price is still grounded in the cash the business can realistically generate'，体现了相对增速而言的估值评价。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "AMD行情数据：RSI14 65.1，5日涨跌% 8.46，20日涨跌% 19.25，区间涨跌%（3个月）1.48。所有数据来自Yahoo Finance 2026-09-18。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "TSM新闻（2026-09-18）：'Taiwan Semiconductor Manufacturing (NYSE:TSM) moves its 2nm process into commercial production as part of a new advanced manufacturing push. The chip producer accelerates investment in cutting edge fabrication capacity and raises capital expenditure targets to support 2nm roll out.'；INTC行情数据：净利润 -11288999936（约-113亿美元）。关于MSFT持续AI投资的具体新闻未在提供的数据中找到，但产业链支持的其他部分有依据。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据：10年期国债收益率 4.94%（2026-09-17），CPI同比变化 3.71%（2026-08-01），失业率 4.1%（2026-08-01）。数据滞后说明：CPI和失业率数据为2026-08-01，距离报告日期2026-09-17约6周。"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "AMD行情数据：PE(TTM) 138.91；NVDA行情数据：PE(TTM) 27.71。这是对数据的陈述性总结，属于基于事实数据的风险分析。"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "AMD行情数据：RSI14 65.1，5日涨跌% 8.46，MA50 495.85，MA20 490.75。所有数据来自Yahoo Finance 2026-09-18。"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "INTC行情数据：净利润 -11288999936（基本面恶化），PE(TTM)数据缺失但预期PE 52.67；NVDA行情数据：PE(TTM) 27.71（估值更低）。关于INTC基础设施投资的具体新闻未在提供数据中明确体现，但基本面数据支持恶化的判断。"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对供应链风险的主观评估和展望。虽然TSM是AMD的重要供应商（产业常识），但数据中未明确说明AMD依赖TSM产能的具体程度，地缘政治风险也是潜在风险评估而非已发生事实。"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "宏观指标数据：10年期国债收益率 4.94%（2026-09-17）。这是对高利率环境压制科技股估值的事实陈述。"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "宏观指标数据：CPI同比变化 3.71%（2026-08-01），失业率 4.1%（2026-08-01）。报告日期为2026-09-17/18，数据滞后约6周的计算准确。"
+      }
+    ],
+    "claims": [
+      "基本面强劲：收入增速50.1%、净利润增速159.5%，远超同行NVDA（净利增速127.8%）和INTC（净利润-113亿美元），AI需求旺盛（市场数据，2026-09-18）",
+      "估值高企：Trailing PE 138.91远高于NVDA 27.71，相对增速溢价难以持续。Simply Wall St评价'看起来便宜'是相对于强劲增速而言，但绝对PE倍数处历史高位（Yahoo Finance，2026-09-18）",
+      "技术面过热：RSI 65.1接近超买区间，5日涨幅8.46%、20日涨幅19.25%集中在最近两周，3个月涨幅仅1.48%，短期存在获利回吐风险（市场数据，2026-09-18）",
+      "产业链支持：TSM加速2nm投资支持产能供应，MSFT持续AI投资利好数据中心业务，INTC基本面恶化（净利润-113亿美元）相对削弱竞争压力（新闻综合，2026-09-18/19）",
+      "宏观约束：10Y国债4.94%、高利率环境压制科技股估值扩张，CPI 3.71%仍高于目标，失业率4.1%稳健但宏观数据已滞后6周（FRED，2026-09-17；2026-08-01）",
+      "估值风险——Trailing PE 138.91处历史高位，任何增长放缓或宏观转向都可能引发大幅回调。相对NVDA的PE溢价（138.91 vs 27.71）难以持续",
+      "技术面过热——RSI 65.1接近超买区间，5日涨幅8.46%集中在最近两周，短期存在获利回吐风险，可能回调至MA50（495.85）或MA20（490.75）",
+      "竞争加剧——INTC虽基本面恶化但仍在基础设施投资，NVDA市场地位稳固且估值更低，可能分流客户",
+      "供应链风险——依赖TSM产能，地缘政治（台湾）风险可能中断供应",
+      "利率风险——高利率环境（10Y国债4.94%）压制科技股估值扩张，任何利率上升都将加重估值压力",
+      "宏观数据滞后——CPI和失业率数据（2026-08-01）已滞后约6周，可能不反映最新经济状况"
+    ]
+  }
+}

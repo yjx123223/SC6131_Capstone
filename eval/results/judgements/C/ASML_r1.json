@@ -1,0 +1,94 @@
+{
+  "variant": "C",
+  "company": "ASML",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 351,
+        "evidence": "Installed Base Management销售增长31.8%反映现有客户升级需求旺盛",
+        "verified": true
+      },
+      {
+        "id": 352,
+        "evidence": "EUV产能成为主要约束，110台EUV机器测试组装速度，AI需求强劲",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻[ASML] 2026-09-18 Zacks: 'ASML's Installed Base Management sales surge 31.8%, fueled by upgrades and a growing EUV fleet'；知识图谱E1确认该数据来自2026-09-18新闻报道而非财报"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "知识图谱E2 2026-09-17：'ASML制造产能成为主要约束，110台EUV机器测试组装速度，AI需求强劲'；新闻[ASML] 2026-09-17 GuruFocus: 'ASML Gains 1.5% as 110 EUV Machines Test Assembly Speed' 和 'AI demand has moved ASML's constraint from customer interest to manufacturing throughput'"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情[ASML]基本面数据：分析师目标价 2137.39，当前收盘 1679.92，上升幅度 (2137.39-1679.92)/1679.92 = 27.2% ≈ 27%；分析师数量 16，分析师评级 strong_buy"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情[ASML]基本面数据：ROE% 53.94，净利率% 30.11，营收增速% 21.3，净利增速% 28.5；SEC申报显示最新财报为2026-07-15（Q2季报）"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "行情[ASML]技术面数据：收盘 1679.92，MA20 1689.4，MA50 1721.6，相对MA20 bearish，相对MA50 bearish；RSI14 48.19，RSI信号 neutral；区间涨跌% -12.81（3月跌幅）"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "SEC申报最新为2026-07-15（距2026-09-18共52天）；Installed Base Management等关键增长数据确实来自2026-09-18新闻报道（E1）而非官方财报，需等待Q3申报"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "行情[ASML]技术面：股价1679.92跌破MA20 1689.4和MA50 1721.6；区间涨跌% -12.81；基本面：ROE 53.94%、净利增速28.5%等指标强劲，形成冲突"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "知识图谱E3显示'INTC：Intel CEO警告内存芯片短缺和价格上升可能持续到2027年'，但这是对Intel自身挑战的描述，将其转化为'可能影响ASML需求'是推断性判断，数据中未直接说明因果关系"
+      },
+      {
+        "index": 9,
+        "verdict": "unsupported",
+        "evidence": "数据中未提及ASML对中国出口受限的具体信息，也未在新闻、SEC申报或知识图谱中出现相关内容"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "'估值风险'和'若增长放缓将面临估值压缩'属于主观判断和展望，虽然PE 55.55倍的数据可核对，但压缩风险是纯粹的条件性推断"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "新闻[ASML] 2026-09-17 24/7 Wall St.: 'Canon and Nikon are quietly carving out a position in chip manufacturing that Wall Street's models barely account for'；知识图谱中也提及Canon/Nikon的竞争"
+      }
+    ],
+    "claims": [
+      "Installed Base Management销售增长31.8%，反映现有客户升级需求强劲，但该数据来自2026-09-18新闻报道而非最新财报（E1）",
+      "EUV产能成为主要约束，110台EUV机器测试组装速度，AI需求强劲，表明需求超预期（E2，2026-09-17）",
+      "分析师平均目标价2137.39美元，较当前价格上升27%，16家分析师一致强烈看好，但需等待财报确认",
+      "ROE 53.94%、利润率30.11%、营收增速21.3%、净利增速28.5%，基本面行业领先，基于2026-07-15 Q2季报",
+      "技术面短期走弱（股价跌破MA20/MA50，RSI48.19中性偏弱，3月跌幅-12.81%），与基本面形成冲突，需关注短期调整风险",
+      "数据时效性风险：最新SEC申报为2026-07-15（距今52天），Installed Base Management等关键增长数据来自新闻报道而非官方财报，需等待Q3申报确认增长持续性",
+      "技术面与基本面冲突：股价跌破MA20/MA50，3月跌幅-12.81%，与基本面强劲形成矛盾，短期存在进一步调整风险",
+      "客户资本支出周期变化风险：Intel面临内存芯片短缺，可能影响其资本支出计划，进而对ASML需求产生风险",
+      "地缘政治风险：ASML对中国出口受限，可能影响长期增长",
+      "估值风险：PE 55.55倍反映高期望，若增长放缓将面临估值压缩",
+      "竞争加剧风险：Canon/Nikon在芯片制造领域开拓地位，虽短期威胁有限但需长期关注"
+    ]
+  }
+}

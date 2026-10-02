@@ -1,0 +1,104 @@
+{
+  "variant": "B",
+  "company": "GOOGL",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 79,
+        "evidence": "反垄断裁决支撑广告业务（2026-09-19 Motley Fool），被评为\"对Google母公司及其股票意义重大\"",
+        "verified": true
+      },
+      {
+        "id": 77,
+        "evidence": "Gemini黑客能力的新闻报道引发AI安全监管风险（2026-09-19 Simply Wall St.）",
+        "verified": true
+      },
+      {
+        "id": 78,
+        "evidence": "AI科学突破投资机会（2026-09-19 Investing.com）",
+        "verified": true
+      },
+      {
+        "id": 84,
+        "evidence": "Google开始销售自研AI芯片（2026-09-18 Motley Fool），拓展收入来源",
+        "verified": true
+      },
+      {
+        "id": 82,
+        "evidence": "加州AI\"杀死开关\"监管动向（2026-09-18 Barron's），可能影响AI产品部署",
+        "verified": true
+      }
+    ],
+    "dropped": [],
+    "repaired": "数组被返回成字符串且 JSON 非法，正则抽出 5 项"
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "2026-09-19 Motley Fool新闻标题：'Alphabet's Ad Business Got a Lift From a Key Antitrust Ruling, Helping End Google's Worst Losing Streak in Over a Decade. Is Sundar Pichai's Alphabet Stock a Buy Now?'，摘要：'Whether investors realize it or not, the ruling is huge for Google's parent company and its stock.'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据[GOOGL]基本面：营收增速% 24.2，净利增速% 294.0（截至2026-09-18，数据来自TTM）"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "2026-09-18 Motley Fool新闻标题：'2 Stocks to Buy as Google Starts Selling Its AI Chips'，摘要：'The search giant's in-house AI chip is now a product line.'"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "2026-09-19 Simply Wall St.新闻标题：'3 Cyber Insurance Stocks Retail Investors May Want To Watch After Gemini Hacking News'，摘要：'When news breaks that Google's Gemini can autonomously hack real companies, the story quickly shifts from science fiction to balance sheet risk.'"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "行情数据[GOOGL]基本面：分析师目标价 428.41，分析师评级 strong_buy，分析师数量 53"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "Gemini黑客能力新闻见论断4的证据；加州'杀死开关'监管动向见2026-09-18 Barrons.com新闻：'California to Reconsider AI 'Kill Switch' With Newsom's New Executive Order'"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "行情数据[GOOGL]基本面：预期PE 23.53；宏观指标：10年期国债收益率 (%)：4.94（2026-09-17）"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对竞争对手投入加大可能蚕食市场份额的主观判断，不涉及可核对的具体事实数据"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "宏观指标：10年期国债收益率 (%)：4.94（2026-09-17）"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "SEC申报数据显示最新财报为10-Q(2026-07-23，报告期 2026-06-30)，报告日期为2026-09-19，时间差超过2个月"
+      }
+    ],
+    "claims": [
+      "反垄断裁决支撑广告业务，被评为对Google母公司及其股票意义重大（2026-09-19 Motley Fool）",
+      "TTM营收增速24.2%、TTM净利增速294%，基本面强劲（截至2026-06-30）",
+      "AI芯片销售启动新收入来源（2026-09-18 Motley Fool）",
+      "Gemini黑客能力的新闻报道引发AI安全监管风险（2026-09-19 Simply Wall St.）",
+      "分析师平均目标价428.41美元，一致评级强烈买入（53位分析师）",
+      "AI监管升级——Gemini黑客能力的新闻报道和加州\"杀死开关\"监管动向可能导致AI产品部署受限，影响增长预期",
+      "估值风险——Forward PE 23.53处于高位，若增长不及预期或利率上升可能面临估值压缩",
+      "竞争加剧——MSFT/AAPL等竞争对手AI投入加大，可能蚕食市场份额",
+      "宏观风险——长端利率上升（当前4.94%）可能制约科技股估值",
+      "数据时效性——最新财报为Q2（截至2026-06-30），距报告日期已超2个月，后续业绩可能存在变化"
+    ]
+  }
+}

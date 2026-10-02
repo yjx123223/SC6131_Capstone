@@ -1,0 +1,109 @@
+{
+  "variant": "B",
+  "company": "AAPL",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 3,
+        "evidence": "新 CEO John Ternus 获得分析师认可，被评为具有\"Apple DNA\"",
+        "verified": true
+      },
+      {
+        "id": 7,
+        "evidence": "Evercore 上调目标价至 380 美元（截至 2026-09-18）",
+        "verified": true
+      },
+      {
+        "id": 8,
+        "evidence": "CFRA 分析师预测 iPhone Duo 将\"essentially sell every single iPhone Duo it makes\"（截至 2026-09-18）",
+        "verified": true
+      },
+      {
+        "id": 17,
+        "evidence": "QCOM 在其财报电话会议中披露在 Apple iPhone 新品中的份额预期下降（从 20% 降至更低）",
+        "verified": true
+      },
+      {
+        "id": 23,
+        "evidence": "TSMC 基本面强劲（营收增速 36%、净利润增速 77.4%），正加速 2nm 产能投资",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻[AAPL]中2026-09-18 Yahoo Finance Video标题：'Apple will essentially sell 'every single' iPhone Duo it makes: CFRA'，摘要提及'CFRA Research senior vice president and equity analyst Angelo Zino comes on Market Domination to discuss his forecast surrounding demand for the foldable iPhone'。同时新闻中2026-09-18 Yahoo Finance Video提及'iPhone 18 Pro has hit store shelves on Friday'和'foldable iPhone Duo's release in late October'。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情[AAPL]基本面数据显示：营收增速% 16.4，净利增速% 28.7（截至2026-09-18）。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情[AAPL]技术面数据显示：收盘336.13，MA20 322.64，MA50 320.03，相对MA20 bullish，相对MA50 bullish；区间涨跌% 13.27（3个月）。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻[AAPL]中2026-09-18 GuruFocus.com：'Evercore Delivers Bullish $380 Price Target for Apple Stock'。行情[AAPL]基本面数据显示：分析师目标价327.84，分析师评级buy，分析师数量39。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "行情[TSM]基本面数据显示：营收增速% 36.0，净利增速% 77.4（截至2026-09-18）。新闻[TSM]中2026-09-18 Simply Wall St.：'Taiwan Semiconductor Manufacturing (NYSE:TSM) moves its 2nm process into commercial production as part of a new advanced manufacturing push. The chip producer accelerates investment in cutting edge fabrication capacity and raises capital expenditure targets to support 2nm roll out.'。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "PE 38.59处于历史高位是对数据的解读和评价，属于主观判断。虽然数据中显示PE(TTM) 38.59，但'高位'、'风险'等是分析师的主观评估，不是可直接核对的事实。"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：10年期国债收益率(%) 4.94（2026-09-17）。"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "关于MSFT在AI与云计算领域加速投入可能蚕食Apple企业市场份额，这是对未来竞争格局的主观预测和判断，不是可核对的历史事实或已发生的事件。虽然新闻中提及AI相关内容，但没有具体证据表明MSFT正在蚕食Apple的企业市场份额。"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "虽然TSMC基本面强的数据可以支持（营收增速36%、净利增速77.4%），但'地缘政治（台湾）风险长期存在'是对未来风险的主观判断，不是可核对的事实陈述。"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对未来可能情景的假设性判断：'若iPhone Duo需求预期未达预期，可能引发股价调整'。这是条件性的预测，属于主观判断而非可核对的事实。"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "这是对预测风险的主观评估：'若实际需求低于预期，可能引发股价调整'。这是条件性的假设和判断，属于风险提示而非可核对的事实。"
+      }
+    ],
+    "claims": [
+      "iPhone 18 Pro 上市反应良好，iPhone Duo 需求预期强劲（CFRA 分析师预测将 essentially sell every single iPhone Duo it makes，截至 2026-09-18）",
+      "净利润增速 28.7%、营收增速 16.4%，基本面加速增长（截至 2026-09-18）",
+      "股价 336.13 美元处于 MA20/MA50 上方，3 个月涨幅 13.27%，技术面强势（截至 2026-09-18）",
+      "Evercore 上调目标价至 380 美元，分析师平均目标 327.84 美元，39 家分析师一致 Buy 评级（截至 2026-09-18）",
+      "TSMC 营收增速 36%、净利润增速 77.4%，2nm 产能投资加速，供应链支撑充足（截至 2026-09-18）",
+      "估值风险——PE 38.59 处于历史高位，若增长预期下修或利率上升，估值压缩风险大",
+      "宏观风险——10 年期国债收益率 4.94% 对高估值股压力持续，且宏观数据滞后，最新情况需关注",
+      "竞争风险——MSFT 在 AI 与云计算领域加速投入，可能蚕食 Apple 企业市场份额",
+      "供应链风险——虽 TSMC 基本面强，但地缘政治（台湾）风险长期存在",
+      "产品周期风险——iPhone Duo 需求预期若未达预期，可能引发股价调整",
+      "预测风险——iPhone Duo 需求预期基于分析师观点，若实际需求低于预期，可能引发股价调整"
+    ]
+  }
+}

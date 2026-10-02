@@ -3,8 +3,8 @@ tools/ticker_map.py
 --------------------
 实体名 → 股票代码（ticker）解析。
 
-背景：Orchestrator 收到的是 "Apple Inc." 这类公司名（沿用 FinDKG 的实体
-命名习惯），而 yfinance / SEC EDGAR 需要的是 "AAPL" 这类 ticker。
+背景：用户和 LLM 常用 "Apple Inc." 这类公司名，而 yfinance / SEC EDGAR
+需要的是 "AAPL" 这类 ticker。
 
 解析策略（按顺序）：
   1. 规范化后查内置映射表（大小写、标点、Inc./Corp. 等后缀不敏感）

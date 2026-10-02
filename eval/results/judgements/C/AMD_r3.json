@@ -1,0 +1,114 @@
+{
+  "variant": "C",
+  "company": "AMD",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 247,
+        "evidence": "AMD被列入买入区域（2026-09-19 IBD），芯片板块反弹（SOX连续4日上涨）",
+        "verified": true
+      },
+      {
+        "id": 249,
+        "evidence": "分析师认为AMD经过3年大幅上涨后股价可能被高估，需评估其现金生成能力",
+        "verified": true
+      },
+      {
+        "id": 250,
+        "evidence": "Stock Market Today: The Dow Jones index falls Friday as oil prices reverse higher. Apple, AMD, Micron and Sandisk are key movers.",
+        "verified": false
+      },
+      {
+        "id": 251,
+        "evidence": "The Philadelphia semiconductor index, known as SOX, rose for a fourth consecutive day on Friday, with a new batch of chip stocks leading the charge.",
+        "verified": false
+      },
+      {
+        "id": 252,
+        "evidence": "AMD, Linde and Amgen highlight AI demand, contracted growth and drug launches, while supply, margin and pipeline risks remain key factors.",
+        "verified": false
+      },
+      {
+        "id": 267,
+        "evidence": "Micron Technology (NasdaqGS: MU) and Intel CEOs cautioned that memory chip shortages and higher prices could persist through 2027. Micron's leadership indicated on a recent call that supply constraint",
+        "verified": false
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "基本面数据：营收增速% 50.1，净利增速% 159.5（来自Yahoo Finance行情数据，截至2026-09-18）"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "估值数据：PE(TTM) 138.91，预期PE 35.95（来自Yahoo Finance行情数据，截至2026-09-18）"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "技术面数据：收盘559.82，MA20 490.75，MA50 495.85（相对MA20/MA50均bullish），5日涨跌% 8.46，20日涨跌% 19.25，RSI14 65.1（来自Yahoo Finance行情数据，截至2026-09-18）"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "分析师数据：分析师目标价 616.51，分析师评级 strong_buy，分析师数量 50（来自Yahoo Finance行情数据，截至2026-09-18）"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "Intel供应约束：E4事件显示'Intel CEO警告内存芯片短缺和价格上升可能持续至2027年，供应约束最早2028年才能缓解'；Intel代工计划：E5事件显示'资深科技分析师看好Intel代工计划前景，若获得合适客户，两年内股价有望大幅上涨'，事件分数0.45；长端收益率：10年期国债收益率 4.94%（截至2026-09-17）"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对估值风险的主观判断和展望，涉及'任何增长放缓或宏观转向都可能引发大幅回调'的预测性表述"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对利率风险的主观判断，涉及'对高估值科技股构成压力'和'不排除快速上升'的预测性表述"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "NVDA竞争地位：知识图谱显示NVDA为竞争对手；Intel代工计划风险：E5事件显示'资深科技分析师看好Intel代工计划前景，若获得合适客户，两年内股价有望大幅上涨'，事件分数0.45（中等偏低）"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "供应链依赖：知识图谱显示TSM为供应商，ASML为上游供应商（经TSM）；地缘政治风险虽未在数据中明确量化，但供应链高度依赖TSM的事实已确认"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "杠杆数据：负债权益比 6.36（来自Yahoo Finance行情数据，截至2026-09-18）；利率环境：联邦基金利率 3.63%（2026-08-01）"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "技术面风险数据：RSI14 65.1（来自Yahoo Finance行情数据，截至2026-09-18）；RSI信号为neutral，接近超买区域"
+      }
+    ],
+    "claims": [
+      "营收增速50.1%、净利增速159.5%，基本面强劲（Yahoo Finance，截至2026-09-18）",
+      "Trailing PE 138.91极高处历史高位，Forward PE 35.95仍偏高，估值存在泡沫风险（Yahoo Finance，截至2026-09-18）",
+      "技术面强势：股价559.82美元高于MA20/MA50，5日涨8.46%，20日涨19.25%，但RSI 65.1接近超买（Yahoo Finance，截至2026-09-18）",
+      "分析师平均目标价616.51美元，50家分析师强烈买入评级，但需警惕高估值下的风险（Yahoo Finance，截至2026-09-18）",
+      "Intel供应约束至2028年缓解可能利好AMD（E4），但Intel代工计划若成功将增加竞争压力（E5，事件分数0.45）；长端收益率4.94%对高估值科技股有压力（宏观指标，截至2026-09-17）",
+      "估值风险——Trailing PE 138.91处历史高位，任何增长放缓或宏观转向都可能引发大幅回调",
+      "利率风险——长端收益率4.94%对高估值科技股构成压力，VIX虽低但不排除快速上升",
+      "竞争风险——NVDA保持领先地位，Intel代工计划若成功将增加竞争压力（事件分数0.45，中等偏低）",
+      "供应链风险——高度依赖TSM产能，地缘政治风险不容忽视",
+      "杠杆风险——D/E 6.36较高，利率上升压力",
+      "技术面风险——RSI 65.1接近超买，短期回调风险"
+    ]
+  }
+}

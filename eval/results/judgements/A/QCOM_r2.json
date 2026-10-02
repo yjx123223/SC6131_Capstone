@@ -1,0 +1,103 @@
+{
+  "variant": "A",
+  "company": "QCOM",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 326,
+        "evidence": "加入WEDA边缘AI生态",
+        "verified": true
+      },
+      {
+        "id": 327,
+        "evidence": "9月18日股价跳水-6%",
+        "verified": false
+      },
+      {
+        "id": 329,
+        "evidence": "Qualcomm (QCOM) told investors in its fiscal Q3 2026 call that its share of Apple's recent iPhone launch would be materially lower than its prior estimate of 20%",
+        "verified": false
+      },
+      {
+        "id": 332,
+        "evidence": "CEO参加Trump-Xi峰会（9月24日召开）",
+        "verified": false
+      },
+      {
+        "id": 333,
+        "evidence": "Qualcomm (QCOM) reached $188.94 at the closing of the latest trading day, reflecting a +2.22% change compared to its last close",
+        "verified": false
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "10-Q财报数据显示：净利增速% -23.0（Q3净利同比下降23%）；新闻数据（2026-09-18 Trefis）明确指出'Qualcomm told investors in its fiscal Q3 2026 call that its share of Apple's recent iPhone launch would be materially lower than its prior estimate of 20%'，证实iPhone份额从20%下降至更低。基本面恶化确认。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻数据（2026-09-18 Trefis）明确披露：'management raised its non-handset revenue target for fiscal 2029 to $40 billion—nearly doubling its prior $22 billion'，证实非手机业务2029年目标提升至$40B。该信息来自10-Q财报披露。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "技术面数据：收盘177.72，MA20 171.87，MA50 167.82，价格>MA20/50确实显示短期bullish；区间涨跌% -19.47（3个月区间）形成长期下行趋势；近10日数据显示2026-09-17收盘188.71，2026-09-18收盘177.72，跌幅为(177.72-188.71)/188.71=-5.82%，约-6%跳水。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "市场数据显示：分析师目标价194.13、分析师评级hold；Forward PE 17.42倍；净利增速% -23.0表明下降盈利基数。这些数据都在行情数据中找到。"
+      },
+      {
+        "index": 5,
+        "verdict": "unsupported",
+        "evidence": "新闻数据显示：2026-09-19发布WEDA正面新闻（但标题日期为09-19，内容未明确说明发布时间），2026-09-17发布Trump-Xi峰会新闻。但数据中9月18日的新闻标题为'Qualcomm Drops 6% as Past Month's Rally Unwinds'，未明确说明这些正面新闻是否发布于9月18日-6%跳水之后或同日。无法确认'正面新闻发布于9月18日-6%跳水之后或同日'这一时间顺序关系。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对未来趋势的主观判断。虽然新闻数据（2026-09-18 Barrons.com）提到'Apple's Chip Strategy'和'designing the main chips'，但这是对Apple自研芯片战略的描述，不是对iPhone业务'可能继续恶化'的可核对事实。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对芯片行业周期性的主观判断和展望，数据中没有关于行业周期性下行的具体信息，也没有对未来营收/利润的预测数据。"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "行情数据显示：负债权益比55.21%（即D/E 55.21%）；宏观指标显示10年期国债收益率4.94%（2026-09-17）。两个数据都能找到。"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对未来不确定性的主观判断。虽然$40B目标在数据中有记录，但'能否实现存在不确定性'是纯粹的展望性判断，不是可核对的事实。"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对未来政策风险的主观判断。新闻数据（2026-09-17 Stocktwits）提到'September 24 summit'和'chip access emerge as potential discussion points'，但'可能影响中国市场准入或出口管制'是推测性的因果判断，'当前无具体政策信号'本身就说明这是不确定性而非确定风险，属于主观展望。"
+      }
+    ],
+    "claims": [
+      "iPhone份额下降（从20%降至更低）导致Q3净利-23%，基本面恶化明确（10-Q财报+市场数据截至2026-09-18）",
+      "非手机业务2029年目标提升至$40B，显示战略转向但执行风险高（10-Q披露），需Q4财报验证",
+      "技术面短期反弹（价格>MA20/50）但近3月-19.47%形成长期下行趋势，9月18日-6%跳水可能预示反弹结束（市场数据2026-06-18至2026-09-18）",
+      "分析师目标价$194.13、评级'持有'反映市场观望，Forward PE 17.42倍基于下降盈利基数，隐含预期可能过乐观（市场数据截至2026-09-18）",
+      "市场对iPhone风险定价充分：9月17-19日正面新闻（WEDA、Trump-Xi峰会）发布于9月18日-6%跳水之后或同日，未能扭转跌势，说明市场权重iPhone风险>AI机遇（新闻数据2026-09-17至2026-09-19）",
+      "Apple自研芯片持续蚕食市场份额，iPhone业务可能继续恶化",
+      "芯片行业周期性下行，营收/利润可能继续下滑",
+      "高杠杆（D/E 55.21%）在利率环境（10年期国债4.94%）下增加财务压力",
+      "非手机业务$40B目标（2029年）能否实现存在不确定性，需Q4财报验证",
+      "Trump-Xi峰会（9月24日）涉及芯片政策讨论，可能影响中国市场准入或出口管制，但当前无具体政策信号，属于不确定性而非确定风险"
+    ]
+  }
+}

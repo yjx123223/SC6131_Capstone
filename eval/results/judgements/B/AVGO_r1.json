@@ -1,0 +1,108 @@
+{
+  "variant": "B",
+  "company": "AVGO",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 303,
+        "evidence": "Motley Fool 报道 AVGO 营收增速超过 Applied Materials，AI 芯片设计优势明显",
+        "verified": true
+      },
+      {
+        "id": 304,
+        "evidence": "Jim Cramer 称 AVGO 订单量仅次于 NVIDIA，强化 AI 芯片设计优势",
+        "verified": true
+      },
+      {
+        "id": 315,
+        "evidence": "供应商 TSM 强劲（营收增速 36%、净利润增速 77.4%，技术面向上），正加速 2nm 产能投资，支撑 AVGO 芯片制造",
+        "verified": true
+      },
+      {
+        "id": 318,
+        "evidence": "客户 AAPL 稳健（营收增速 16.4%、净利润增速 28.7%，技术面向上），iPhone 18 Pro 和折叠屏新品需求支撑",
+        "verified": true
+      },
+      {
+        "id": 323,
+        "evidence": "ASML 面临制造吞吐量约束（根据新闻，AI 需求已将其约束从客户需求转向制造吞吐量）",
+        "verified": true
+      },
+      {
+        "id": 324,
+        "evidence": "AI 需求已将其约束从客户需求转向制造吞吐量",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情[AVGO]基本面数据：营收增速% 85.5，净利增速% 215.3"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻[AVGO]2026-09-18 Insider Monkey: 'Jim Cramer Said This AI Firm Has More Orders Than \"Almost Anybody\" Other Than NVIDIA'，摘要提及Broadcom为custom chip designer，能设计custom AI chips"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情[AVGO]技术面：收盘357.61，MA20 359.32，MA50 379.76，相对MA20 bearish，相对MA50 bearish；区间涨跌% -8.8（3个月）；近10个交易日显示近期反弹（2026-09-17 347.3→2026-09-18 357.61）但未突破MA20 359.32和MA50 379.76"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情[AVGO]基本面：分析师目标价 531.85，分析师评级 strong_buy；PE(TTM) 44.26；上升空间计算：(531.85-357.61)/357.61=48.7%≈49%"
+      },
+      {
+        "index": 5,
+        "verdict": "partially_supported",
+        "evidence": "新闻[TSM]2026-09-18 Simply Wall St.提及'Taiwan Semiconductor Manufacturing moves its 2nm process into commercial production...accelerates investment in cutting edge fabrication capacity'，支持TSM 2nm产能投资；新闻[ASML]2026-09-17 GuruFocus.com:'AI demand has moved ASML's constraint from customer interest to manufacturing throughput'，支持ASML制造吞吐量面临约束。但数据中未明确提及'产业链延缓风险'"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是基于技术面走弱的主观预测，不涉及可核对的历史事实或已公布数据"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对未来需求和竞争的主观判断，不涉及可核对的历史事实。虽然数据中存在AMD、Intel等竞争对手的信息，但'需求可能过度预期'是纯粹的展望"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对地缘政治风险的主观评估和展望，数据中未涉及具体的地缘政治事件或风险量化"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "行情[AVGO]基本面：PE(TTM) 44.26；宏观指标：10年期国债收益率 4.94%（2026-09-17），显示利率水平。但'利率上升风险'是对未来的判断"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "新闻[ASML]2026-09-17 GuruFocus.com:'AI demand has moved ASML's constraint from customer interest to manufacturing throughput'，支持ASML制造吞吐量约束可能延缓产能释放的观点"
+      }
+    ],
+    "claims": [
+      "营收增速 85.5%、净利润增速 215.3%，AI 芯片需求旺盛（市场数据，2026-09-18）",
+      "Jim Cramer 称 AVGO 订单量仅次于 NVIDIA，强化 AI 芯片设计优势（新闻，2026-09-18）",
+      "技术面明确走弱：价格 357.61 跌破 MA20 359.32 和 MA50 379.76，3 月跌幅 8.8%，近期单日反弹未突破均线（技术指标，2026-09-18）",
+      "分析师平均目标价 531.85 美元，强烈买入评级，上升空间 49%，但尾随 PE 44.26 倍高企（市场数据，2026-09-18）",
+      "供应商 TSM 2nm 产能加速投资支撑，但 ASML 制造吞吐量面临约束，产业链延缓风险需关注（产业链分析，2026-09-18）",
+      "技术面走弱，短期可能继续下探至 330-340 美元支撑位",
+      "AI 芯片需求可能过度预期，竞争加剧（AMD、Intel 等）",
+      "地缘政治风险（台湾、中国），影响 TSM 供应链",
+      "估值高企（尾随 PE 44.26 倍），利率上升风险",
+      "ASML 制造吞吐量约束可能延缓产业链产能释放，间接影响 AVGO 供应"
+    ]
+  }
+}

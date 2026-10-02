@@ -13,23 +13,11 @@ OrchestratorLoop：Orchestrator Agent 的 agentic tool-use 循环。
   - revise()：Critic 审查不通过时，以"金融研究员"人格根据审查意见
     修订草稿（复用同一份 emit_report schema 强制结构化输出）
 
-feat/market 变更：
-  - 新增 query_market_data / query_news / query_sec_filings 三个实时数据工具
-  - query_kg_signals 已注释停用：FinDKG 数据截止 2023-01-01，与实时行情
-    存在时间错位。tools/kg_tools.py 本身保留未删除，需要恢复时取消下方
-    注释即可
-  - emit_report 字段改为基本面 / 技术面 / 新闻舆情 / 监管申报（见 report_fields.py）
-  - 新增 query_company_graph：现场构建实时知识图谱并做风险传导推理
-    （live_kg/ + tools/kg_live_tools.py）。工具结果中以 "_" 开头的字段
-    （完整图谱等）只保留在 tool_log 里，发给模型前剔除
-  - get_feedback_stats 已注释停用：它按 KG 关系类型聚合历史评分，图谱工具
-    停用后新报告不再含关系类型，统计结果只会反映旧的 KG 信号，容易误导模型。
-    评分仍照常写入 FeedbackStore，待按新维度重新设计统计后再接回
+工具结果中以 "_" 开头的字段（如知识图谱的完整节点/边）只保留在 tool_log 里，
+发给模型前由 llm_view() 剔除。
 
 不包含：Critic 审查逻辑（见 critic.CriticAgent）、报告渲染
 （见 report_renderer.render_report）、报告保存（见 report_store.save_report）。
-
-从 orchestrator.py 的 OrchestratorAgent 拆分出来。
 """
 
 import json
@@ -38,39 +26,13 @@ from typing import Optional
 import config
 from report_fields import CONFIDENCE_ENUM, RECOMMENDATION_ENUM, SENTIMENT_ENUM, format_draft
 from tool_log_summary import summarize_tool_log
-from tools import macro_tools, market_tools, news_tools, sec_tools, kg_live_tools
 from live_kg.event_extractor import EventExtractor
-# from tools import feedback_tools   # 历史评分工具已停用，见模块说明
-# from tools import kg_tools   # FinDKG 图谱工具已停用，见模块说明
+from tools import kg_live_tools, macro_tools, market_tools, news_tools, sec_tools
 
 
 # ── Tool 定义 ────────────────────────────────────────────────────
 
 TOOL_DEFINITIONS = [
-    # ── FinDKG 图谱工具（已停用：数据截止 2023-01-01，与实时数据时间错位）──
-    # {
-    #     "name": "query_kg_signals",
-    #     "description": (
-    #         "查询目标实体在 FinDKG 知识图谱中的历史事件信号，"
-    #         "包括正面影响事件（Positive_Impact_On / Raise / Invests_In）、"
-    #         "负面影响事件（Negative_Impact_On / Decrease）、其他关联事件。"
-    #     ),
-    #     "input_schema": {
-    #         "type": "object",
-    #         "properties": {
-    #             "entity": {
-    #                 "type": "string",
-    #                 "description": "实体名称，如 'Apple Inc.'",
-    #             },
-    #             "weeks": {
-    #                 "type": "integer",
-    #                 "description": "查询最近 N 周，默认 12",
-    #                 "default": 12,
-    #             },
-    #         },
-    #         "required": ["entity"],
-    #     },
-    # },
     {
         "name": "query_market_data",
         "description": (
@@ -181,28 +143,6 @@ TOOL_DEFINITIONS = [
             "required": [],
         },
     },
-    # ── 历史评分工具（已停用：按 KG 关系类型统计，图谱停用后会误导模型）──
-    # {
-    #     "name": "get_feedback_stats",
-    #     "description": (
-    #         "获取历史建议的用户评分统计，了解哪类 KG 信号关系类型"
-    #         "在过去的建议中表现更好（平均评分更高）。"
-    #         "可按具体关系类型过滤，或不传参数获取全部统计。"
-    #     ),
-    #     "input_schema": {
-    #         "type": "object",
-    #         "properties": {
-    #             "relation_type": {
-    #                 "type": "string",
-    #                 "description": (
-    #                     "关系类型，如 'Positive_Impact_On'，"
-    #                     "留空则返回所有关系类型的统计"
-    #                 ),
-    #             },
-    #         },
-    #         "required": [],
-    #     },
-    # },
     {
         "name": "emit_report",
         "description": (
@@ -344,29 +284,52 @@ class OrchestratorLoop:
     --------
     >>> import anthropic
     >>> client = anthropic.Anthropic(api_key="...")
-    >>> loop = OrchestratorLoop(client, model="claude-haiku-4-5", max_tokens=2048, fred_api_key="...")
-    >>> draft, tool_log = loop.run("Apple Inc.", feedback_store=store)
+    >>> loop = OrchestratorLoop(client, model="claude-haiku-4-5", max_tokens=8192, fred_api_key="...")
+    >>> draft, tool_log = loop.run("Apple Inc.")
+
+    可选注入（默认全部沿用本模块的常量，行为不变；消融实验用来切换变体，
+    见 docs/eval-design.md）：
+      tool_definitions : 覆盖工具 schema 列表（如去掉知识图谱工具）
+      system_prompt    : 覆盖 system prompt
+      tool_impls       : {工具名: callable(tool_input, tool_log) -> dict}，
+                         覆盖或新增工具实现（如从快照回放数据）
+      temperature      : 传给 messages.create；None 表示不传（保持 API 默认）
     """
 
     MAX_ITERATIONS = 10   # agentic loop 最大轮次（防止无限循环）
 
-    def __init__(self, client, model: str, max_tokens: int, fred_api_key: Optional[str] = None):
+    def __init__(
+        self,
+        client,
+        model: str,
+        max_tokens: int,
+        fred_api_key: Optional[str] = None,
+        *,
+        tool_definitions: Optional[list] = None,
+        system_prompt: Optional[str] = None,
+        tool_impls: Optional[dict] = None,
+        temperature: Optional[float] = None,
+    ):
         self.client = client
         self.model = model
         self.max_tokens = max_tokens
         self.fred_api_key = fred_api_key
+        self.tool_definitions = tool_definitions if tool_definitions is not None else TOOL_DEFINITIONS
+        self.system_prompt = system_prompt if system_prompt is not None else SYSTEM_PROMPT
+        self.tool_impls = dict(tool_impls or {})
+        self.temperature = temperature
         self.last_stop_reason: Optional[str] = None   # 最近一次模型调用的 stop_reason，便于排查
-        self.extractor = EventExtractor(client)        # 知识图谱事件抽取与 Orchestrator 共用 client
+        self.extractor = EventExtractor(client, temperature=temperature)   # 与 Orchestrator 共用 client
+
+    def _create_kwargs(self, **kwargs) -> dict:
+        """统一补上 temperature（未配置时不传，保持 API 默认行为）"""
+        if self.temperature is not None:
+            kwargs["temperature"] = self.temperature
+        return kwargs
 
     # ── 主入口 ──────────────────────────────────────────────────────
 
-    def run(
-        self,
-        entity: str,
-        weeks: int = config.DEFAULT_WEEKS,
-        graph=None,
-        feedback_store=None,
-    ) -> tuple[Optional[dict], list]:
+    def run(self, entity: str) -> tuple[Optional[dict], list]:
         """
         跑一次完整的 agentic loop，直到调用 emit_report 或耗尽 MAX_ITERATIONS。
 
@@ -374,24 +337,15 @@ class OrchestratorLoop:
         截断 / 模型用纯文本作答 / 迭代耗尽），用 tool_choice 强制再调用一次
         emit_report，避免已收集的数据白白浪费。
 
-        weeks / graph 是 FinDKG 图谱工具的参数，图谱工具停用后不再使用，
-        保留参数只为兼容现有调用方（恢复图谱工具时无需改签名）。
-
         Returns
         -------
         (draft_dict_or_None, tool_call_log)
         """
         tool_log = []
-        context = {
-            "graph": graph,
-            "feedback_store": feedback_store,
-            "default_weeks": weeks,
-            "tool_log": tool_log,     # 供知识图谱工具复用本轮已获取的数据
-        }
 
         print(f"\n[Orchestrator] 启动 Agent Loop — 目标实体：{entity}")
 
-        system_prompt = SYSTEM_PROMPT
+        system_prompt = self.system_prompt
         today = self._today()
         initial_message = (
             f"今天是 {today}。请为 [{entity}] 生成投资建议报告，"
@@ -404,13 +358,13 @@ class OrchestratorLoop:
         for iteration in range(self.MAX_ITERATIONS):
             print(f"[Orchestrator] 第 {iteration + 1} 轮推理...")
 
-            response = self.client.messages.create(
+            response = self.client.messages.create(**self._create_kwargs(
                 model=self.model,
                 max_tokens=self.max_tokens,
                 system=system_prompt,
-                tools=TOOL_DEFINITIONS,
+                tools=self.tool_definitions,
                 messages=messages,
-            )
+            ))
 
             self.last_stop_reason = response.stop_reason
 
@@ -454,7 +408,7 @@ class OrchestratorLoop:
                     })
                 else:
                     print(f"[Orchestrator] 工具调用：{tool_name}({tool_input})")
-                    result = self._execute_tool(tool_name, tool_input, context)
+                    result = self._execute_tool(tool_name, tool_input, tool_log)
                     tool_log.append({
                         "tool":   tool_name,
                         "input":  tool_input,
@@ -499,14 +453,14 @@ class OrchestratorLoop:
             msgs.append({"role": "user", "content": [nudge]})
 
         try:
-            response = self.client.messages.create(
+            response = self.client.messages.create(**self._create_kwargs(
                 model=self.model,
                 max_tokens=self.max_tokens,
                 system=system_prompt,
-                tools=TOOL_DEFINITIONS,
+                tools=self.tool_definitions,
                 tool_choice={"type": "tool", "name": "emit_report"},
                 messages=msgs,
-            )
+            ))
         except Exception as e:
             print(f"[Orchestrator] 强制生成失败：{e}")
             return None
@@ -529,23 +483,22 @@ class OrchestratorLoop:
         from tools.yf_client import utc_now
         return utc_now().date().isoformat()
 
-    def _execute_tool(self, name: str, tool_input: dict, context: dict) -> dict:
+    def _execute_tool(self, name: str, tool_input: dict, tool_log: list) -> dict:
         """根据工具名分发执行（实际业务逻辑在 tools/ 模块）"""
         handlers = {
-            # "query_kg_signals": lambda: self._tool_query_kg(tool_input, context),   # 图谱工具已停用
-            "query_market_data":  lambda: self._tool_query_market(tool_input),
-            "query_news":         lambda: self._tool_query_news(tool_input),
-            "query_sec_filings":  lambda: self._tool_query_sec(tool_input),
-            "query_macro":        lambda: self._tool_query_macro(tool_input),
-            "query_company_graph": lambda: self._tool_query_graph(tool_input, context),
-            # "get_feedback_stats": lambda: self._tool_feedback_stats(tool_input, context),   # 已停用
+            "query_market_data":   lambda ti, tl: self._tool_query_market(ti),
+            "query_news":          lambda ti, tl: self._tool_query_news(ti),
+            "query_sec_filings":   lambda ti, tl: self._tool_query_sec(ti),
+            "query_macro":         lambda ti, tl: self._tool_query_macro(ti),
+            "query_company_graph": lambda ti, tl: self._tool_query_graph(ti, tl),
         }
+        handlers.update(self.tool_impls)      # 注入的实现覆盖默认实现
         handler = handlers.get(name)
         if handler is None:
             result = {"error": f"未知工具：{name}"}
         else:
             try:
-                result = handler()
+                result = handler(tool_input, tool_log)
             except Exception as e:   # 工具层约定不抛异常，这里兜底防止整个 loop 崩溃
                 result = {"error": f"{name} 执行异常：{e}"}
 
@@ -553,13 +506,6 @@ class OrchestratorLoop:
             print(f"[Orchestrator] ⚠️  {name} 错误：{result['error']}")
 
         return result
-
-    # FinDKG 图谱工具已停用（数据截止 2023-01-01，与实时数据时间错位）
-    # def _tool_query_kg(self, tool_input: dict, context: dict) -> dict:
-    #     graph  = context["graph"]
-    #     entity = tool_input.get("entity", "")
-    #     weeks  = tool_input.get("weeks", context.get("default_weeks", config.DEFAULT_WEEKS))
-    #     return kg_tools.query_kg_signals(entity, weeks=weeks, graph=graph)
 
     def _tool_query_market(self, tool_input: dict) -> dict:
         return market_tools.query_market_data(
@@ -579,9 +525,10 @@ class OrchestratorLoop:
             form_types=tool_input.get("form_types"),
         )
 
-    def _tool_query_graph(self, tool_input: dict, context: dict) -> dict:
+    def _tool_query_graph(self, tool_input: dict, tool_log: list) -> dict:
+        """复用本轮已获取的目标公司数据（后出现的成功结果覆盖先前的）"""
         prior = {}
-        for entry in context.get("tool_log", []):      # 后出现的成功结果覆盖先前的
+        for entry in tool_log:
             result = entry.get("result") or {}
             if entry.get("tool") in ("query_market_data", "query_news", "query_sec_filings") \
                     and "error" not in result:
@@ -595,16 +542,6 @@ class OrchestratorLoop:
     def _tool_query_macro(self, tool_input: dict) -> dict:
         return macro_tools.query_macro(self.fred_api_key, indicators=tool_input.get("indicators"))
 
-    # 历史评分工具已停用（按 KG 关系类型统计，图谱停用后会误导模型）
-    # def _tool_feedback_stats(self, tool_input: dict, context: dict) -> dict:
-    #     store = context.get("feedback_store")
-    #     if store is None:
-    #         return {"error": "未配置 FeedbackStore，历史评分不可用"}
-    #
-    #     return feedback_tools.get_feedback_stats(
-    #         relation_type=tool_input.get("relation_type", ""), store=store
-    #     )
-
     # ── 修订（以 Orchestrator/金融研究员人格进行）────────────────────
 
     def revise(self, entity: str, draft: dict, critique: dict, tool_log: list) -> dict:
@@ -616,7 +553,7 @@ class OrchestratorLoop:
         conflicts_text = "\n".join(f"- {c}" for c in critique.get("conflicts", []))
         suggestions    = critique.get("suggestions", "")
 
-        emit_tool = next(t for t in TOOL_DEFINITIONS if t["name"] == "emit_report")
+        emit_tool = next(t for t in self.tool_definitions if t["name"] == "emit_report")
 
         system_prompt = "你是一位专业的金融研究员，正在修订一份投资建议报告。修订完成后必须调用 emit_report 输出结果。"
         user_prompt = f"""以下报告草稿被 Critic Agent 标记为需要修订：
@@ -636,14 +573,14 @@ class OrchestratorLoop:
 请根据以上问题修订报告（只能使用原始数据摘要中的信息，不要编造），然后调用 emit_report 输出修订后的完整版本。"""
 
         try:
-            response = self.client.messages.create(
+            response = self.client.messages.create(**self._create_kwargs(
                 model=self.model,
                 max_tokens=self.max_tokens,
                 system=system_prompt,
                 tools=[emit_tool],
                 tool_choice={"type": "tool", "name": "emit_report"},
                 messages=[{"role": "user", "content": user_prompt}],
-            )
+            ))
             for block in response.content:
                 if block.type == "tool_use" and block.name == "emit_report":
                     print("[Orchestrator] 修订完成")

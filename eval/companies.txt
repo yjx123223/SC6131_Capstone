@@ -1,0 +1,17 @@
+# 消融实验的目标公司（每行一个 ticker，# 开头为注释）
+# 选取标准：在 live_kg/seed_relations.csv 中有邻居关系，覆盖不同邻居规模
+AAPL
+MSFT
+GOOGL
+AMZN
+NVDA
+META
+TSM
+AMD
+INTC
+AVGO
+QCOM
+ASML
+ORCL
+TSLA
+NFLX

@@ -1,0 +1,94 @@
+{
+  "variant": "A",
+  "company": "META",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 195,
+        "evidence": "Meta Muse AI首5天增长接近ChatGPT，展现AI竞争力突破",
+        "verified": true
+      },
+      {
+        "id": 197,
+        "evidence": "Meta与Shopify合作深化AI代理战略",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "SEC 10-Q(2026-07-30)数据显示：营收增速28.0%，营业收入228246994944（约228.2亿美元），净利增速-13.4%"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "Motley Fool 2026-09-18新闻摘要：'Meta's New AI App Grew Almost as Fast as ChatGPT in Its First 5 Days'"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：分析师数量56，分析师评级strong_buy，分析师目标价755.28美元，现价665.75美元，上升幅度(755.28-665.75)/665.75=13.4%"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：收盘665.75，MA20 614.61，MA50 607.38（均低于现价），RSI14 66.13，区间涨跌%（3个月）18.07%"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：VIX 15.44（2026-09-17），联邦基金利率3.63%（2026-08-01），CPI同比3.71%（2026-08-01）"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：营收增速28.0%，净利增速-13.4%，净利率29.83%。营收增长但净利润同比下滑的事实在数据中得到确认"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：PE(TTM) 25.7x，净利增速-13.4%。论断指出在净利润同比下滑背景下PE风险上升，这是基于数据的合理分析"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance数据显示：RSI14 66.13，接近70的超买水平。论断关于短期回调风险是基于RSI指标的技术分析"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "Barrons.com 2026-09-18新闻：'California to Reconsider AI 'Kill Switch' With Newsom's New Executive Order'，确认加州AI'杀死开关'政策存在"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "OpenAI、Google等竞争对手持续创新是行业常识性判断，数据中未涉及具体竞争动态，属于主观评估"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "这是对宏观风险的假设性展望（'若...则...'），虽然基于现有宏观数据（联邦基金利率3.63%、CPI 3.71%），但'利率上升或通胀反弹'是未来假设，不是已发生的事实"
+      }
+    ],
+    "claims": [
+      "Q2营收增长28%至228.2亿美元，但净利润同比下滑13.4%，利润质量承压（SEC 10-Q 2026-07-30）",
+      "Meta Muse AI首5天增长接近ChatGPT，展现AI竞争力突破（Motley Fool 2026-09-18）",
+      "分析师56人一致强烈买入，目标价755美元较现价上升13.4%，但在盈利质量恶化背景下可靠性打折扣（Yahoo Finance 2026-09-18）",
+      "技术面看涨：股价665.75高于MA20/MA50，近3月涨幅18.07%，但RSI 66.13接近超买，短期回调风险（Yahoo Finance 2026-09-18）",
+      "宏观环境支持：VIX 15.44低位、联邦基金利率3.63%温和、CPI 3.71%可控（FRED 2026-09-17）",
+      "盈利质量恶化风险——净利润同比下滑13.4%意味着增长质量下降，营收增长28%但净利润反而下滑，反映利润率压力或成本上升，这是首要风险",
+      "估值风险——PE 25.7x在净利润同比下滑背景下，风险程度上升，若增长放缓或宏观转向可能承压",
+      "技术面过热——RSI 66.13接近超买，短期回调风险",
+      "AI监管风险——加州AI\"杀死开关\"等政策可能影响AI投资",
+      "竞争加剧——OpenAI、Google等AI竞争对手持续创新",
+      "宏观风险——若联邦基金利率上升或通胀反弹，科技股可能承压"
+    ]
+  }
+}

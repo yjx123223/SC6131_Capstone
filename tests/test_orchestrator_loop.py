@@ -1,8 +1,7 @@
 """
 tests/test_orchestrator_loop.py
 ----------------------------------
-OrchestratorLoop 的行为测试（拆分自 orchestrator.py 的
-OrchestratorAgent._run_orchestrator_loop / _execute_tool / revise）。
+OrchestratorLoop 的行为测试。
 
 多轮 tool-use 循环什么时候终止、工具调用怎么分发（含同轮并行调用、
 失败工具的 is_error 标记、已停用的图谱工具）、revise 修订。
@@ -153,10 +152,9 @@ def test_parallel_tool_calls_in_one_turn_and_error_flag(fake_tools):
     assert "is_error" not in blocks["t1"]
 
 
-def test_kg_tool_is_disabled_and_not_dispatched():
-    """图谱工具已停用：schema 中不再暴露，模型若仍调用则得到 error 而不是真的查询图谱"""
+def test_unknown_tool_returns_error():
     loop = OrchestratorLoop(_FakeClient([]), model="m", max_tokens=100)
-    result = loop._execute_tool("query_kg_signals", {"entity": "Apple Inc."}, context={"graph": object()})
+    result = loop._execute_tool("query_kg_signals", {"entity": "Apple Inc."}, tool_log=[])
     assert "未知工具" in result["error"]
 
 
@@ -167,7 +165,7 @@ def test_tool_exception_is_converted_to_error(monkeypatch):
     monkeypatch.setattr(orchestrator_loop.market_tools, "query_market_data", boom)
     loop = OrchestratorLoop(_FakeClient([]), model="m", max_tokens=100)
 
-    result = loop._execute_tool("query_market_data", {"entity": "AAPL"}, context={})
+    result = loop._execute_tool("query_market_data", {"entity": "AAPL"}, tool_log=[])
     assert "unexpected" in result["error"]
 
 
@@ -220,13 +218,6 @@ def test_query_macro_tool_uses_configured_fred_key():
     loop = OrchestratorLoop(_FakeClient([]), model="m", max_tokens=100, fred_api_key=None)
     result = loop._tool_query_macro({})
     assert "error" in result  # 没配置 FRED_API_KEY，应该报错而不是抛异常
-
-
-@pytest.mark.parametrize("disabled_tool", ["query_kg_signals", "get_feedback_stats"])
-def test_disabled_tools_return_unknown_tool_error(disabled_tool):
-    loop = OrchestratorLoop(_FakeClient([]), model="m", max_tokens=100)
-    result = loop._execute_tool(disabled_tool, {}, context={"feedback_store": object()})
-    assert "未知工具" in result["error"]
 
 
 def test_tool_definitions_expose_realtime_tools_only():
@@ -420,3 +411,70 @@ def test_llm_view_strips_private_keys():
 def test_system_prompt_mentions_graph_workflow_and_event_ids():
     assert "query_company_graph" in SYSTEM_PROMPT
     assert "cited_event_ids" in SYSTEM_PROMPT
+
+
+# ── 可注入配置（消融实验用；默认行为不变）────────────────────────
+
+def test_defaults_use_module_constants():
+    loop = OrchestratorLoop(_FakeClient([]), model="m", max_tokens=100)
+    assert loop.tool_definitions is TOOL_DEFINITIONS
+    assert loop.system_prompt is SYSTEM_PROMPT
+    assert loop.tool_impls == {}
+    assert loop.temperature is None
+
+
+def test_injected_tool_definitions_and_system_prompt(fake_tools):
+    tools = [t for t in TOOL_DEFINITIONS if t["name"] in ("query_market_data", "emit_report")]
+    client = _FakeClient([
+        _FakeResponse(content=[_FakeToolUseBlock("query_market_data", {"entity": "AAPL"}, "t1")], stop_reason="tool_use"),
+        _FakeResponse(content=[_FakeToolUseBlock("emit_report", _EMIT_INPUT, "t2")], stop_reason="tool_use"),
+    ])
+    loop = OrchestratorLoop(client, model="m", max_tokens=100,
+                            tool_definitions=tools, system_prompt="你是基线 Agent")
+    loop.run("AAPL")
+
+    call = client.messages.calls[0]
+    assert [t["name"] for t in call["tools"]] == ["query_market_data", "emit_report"]
+    assert call["system"] == "你是基线 Agent"
+    assert "temperature" not in call            # 未配置时不传
+
+
+def test_injected_tool_impl_overrides_and_adds_tools():
+    seen = []
+
+    def fake_market(tool_input, tool_log):
+        seen.append(("market", tool_input, len(tool_log)))
+        return {"ticker": "AAPL", "from": "snapshot"}
+
+    def extra_tool(tool_input, tool_log):
+        return {"ok": True}
+
+    loop = OrchestratorLoop(_FakeClient([]), model="m", max_tokens=100,
+                            tool_impls={"query_market_data": fake_market, "query_peers": extra_tool})
+
+    assert loop._execute_tool("query_market_data", {"entity": "AAPL"}, tool_log=[]) == \
+        {"ticker": "AAPL", "from": "snapshot"}
+    assert seen == [("market", {"entity": "AAPL"}, 0)]
+    assert loop._execute_tool("query_peers", {}, tool_log=[]) == {"ok": True}
+
+
+def test_injected_tool_impl_exception_is_contained():
+    def boom(tool_input, tool_log):
+        raise RuntimeError("replay miss")
+
+    loop = OrchestratorLoop(_FakeClient([]), model="m", max_tokens=100, tool_impls={"query_news": boom})
+    assert "replay miss" in loop._execute_tool("query_news", {}, tool_log=[])["error"]
+
+
+def test_temperature_is_passed_to_every_call(fake_tools):
+    client = _FakeClient([
+        _FakeResponse(content=[_FakeToolUseBlock("query_market_data", {"entity": "AAPL"}, "t1")], stop_reason="tool_use"),
+        _truncated_emit_response(),
+        _FakeResponse(content=[_FakeToolUseBlock("emit_report", _EMIT_INPUT, "forced")], stop_reason="tool_use"),
+    ])
+    loop = OrchestratorLoop(client, model="m", max_tokens=100, temperature=0)
+    loop.run("AAPL")
+    loop.revise("AAPL", _EMIT_INPUT, {}, [])
+
+    assert loop.extractor.temperature == 0
+    assert all(c["temperature"] == 0 for c in client.messages.calls)

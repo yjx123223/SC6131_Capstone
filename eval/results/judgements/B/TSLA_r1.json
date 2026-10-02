@@ -1,0 +1,119 @@
+{
+  "variant": "B",
+  "company": "TSLA",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 395,
+        "evidence": "Robotaxi 推出进展顺利但面临监管障碍",
+        "verified": true
+      },
+      {
+        "id": 396,
+        "evidence": "竞争对手 F、GM 虽衰退但在软件和混动领域改进，竞争格局演变",
+        "verified": true
+      },
+      {
+        "id": 397,
+        "evidence": "市场宽幅下跌（2026-09-18）中 TSLA 受关注，反映其在高利率环境下的脆弱性",
+        "verified": true
+      },
+      {
+        "id": 398,
+        "evidence": "欧洲 Semi 扩张计划（2026-09-18）展示多元化增长潜力",
+        "verified": true
+      },
+      {
+        "id": 408,
+        "evidence": "竞争对手 F、GM 虽衰退但在软件和混动领域改进，竞争格局演变",
+        "verified": true
+      },
+      {
+        "id": 415,
+        "evidence": "竞争对手 F、GM 虽衰退但在软件和混动领域改进，竞争格局演变",
+        "verified": true
+      },
+      {
+        "id": 417,
+        "evidence": "竞争对手 F、GM 虽衰退但在软件和混动领域改进，竞争格局演变",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情[TSLA]基本面数据：营收增速% 25.5，净利增速% -3.0，净利率% 3.67。数据完全匹配论断中的营收增速25.5%和盈利增速-3.0%。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情[TSLA]基本面数据：PE(TTM) 343.65，预期PE 165.76。数据完全匹配论断中的PE 343.65和Forward PE 165.76。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "宏观指标数据：10年期国债收益率 (%)：4.94（2026-09-17）。数据完全匹配论断中的10Y国债收益率4.94%。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻[TSLA]2026-09-19 Motley Fool摘要：'The robotaxi/Cybercab rollout is on track, but investors need to be patient and understand there are regulatory and operational hurdles to cross.'论断中'推出进展顺利但面临监管障碍'与此相符。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻[GM]2026-09-18 Insider Monkey摘要：'General Motors Company (NYSE:GM) is introducing a redesigned software experience on the 2027 Chevrolet Silverado 1500'表明GM在软件领域改进。新闻[F]2026-09-18 Motley Fool摘要提及Ford的财务状况。新闻[GM]2026-09-19 Stocktwits摘要提及'GM's Hybrid Gap'。数据支持竞争对手在软件和混动领域改进的论述。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对未来风险的主观判断和展望，涉及'可能引发大幅调整'等预测性表述，属于纯粹的分析判断而非可核对的事实。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对未来风险的主观判断，涉及'商业化延迟或失败'等假设性情景和'将打击增长故事'等预测，属于纯粹的分析判断而非可核对的事实。"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "行情[TSLA]基本面数据：净利增速% -3.0，净利率% 3.67。数据完全匹配论断中的盈利增速转负-3.0%和利润率压力3.67%。"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "新闻[GM]2026-09-18 Insider Monkey摘要提及GM在软件领域的改进。新闻[GM]2026-09-19 Stocktwits摘要提及'GM's Hybrid Gap'。行情[GM]基本面数据显示营收增速% 1.9，净利增速% -26.2，行情[F]基本面数据显示营收增速% -3.8，净利增速数据为负利润，表明两家传统车企衰退但在特定领域改进。"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "行情[TSLA]基本面数据：负债权益比 18.37，ROE% 4.67。数据完全匹配论断中的高杠杆D/E 18.37和低ROE 4.67%。"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "这是对宏观经济未来走势的主观判断，涉及'高利率延续'、'通胀粘性'、'经济衰退风险'等预测性表述，属于纯粹的分析判断而非可核对的事实。虽然数据中有当前的利率和通胀数据，但论断是对未来的预测。"
+      }
+    ],
+    "claims": [
+      "营收增速 25.5% 但盈利增速 -3.0%，增长与盈利脱节，利润率压力加大（市场数据 2026-09-18）",
+      "PE 343.65 极度高估，Forward PE 165.76 仍远高行业均值，估值风险突出（市场数据 2026-09-18）",
+      "10Y 国债收益率 4.94%，高利率环境压制高估值成长股吸引力（宏观数据 2026-09-17）",
+      "Robotaxi 推出进展顺利但面临监管障碍，商业化时间表不确定（新闻 2026-09-19）",
+      "竞争对手 F、GM 虽衰退但在软件和混动领域改进，竞争格局演变（新闻 2026-09-18）",
+      "极度高估（PE 343.65）在利率上升时脆弱，任何增长放缓可能引发大幅调整",
+      "Robotaxi 监管不确定性，商业化延迟或失败将打击增长故事",
+      "盈利增速转负（-3.0%），利润率压力（3.67%）可能持续",
+      "竞争加剧，传统车企（GM、F）虽衰退但在软件和混动领域改进",
+      "高杠杆（D/E 18.37）和低 ROE（4.67%）表明资本效率下降",
+      "宏观风险：高利率延续、通胀粘性、经济衰退风险"
+    ]
+  }
+}

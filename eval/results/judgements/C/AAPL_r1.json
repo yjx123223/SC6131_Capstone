@@ -1,0 +1,92 @@
+{
+  "variant": "C",
+  "company": "AAPL",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 3,
+        "evidence": "新CEO John Ternus上任、iPhone 18 Pro热销、Evercore上调目标价至380美元支撑股价",
+        "verified": true
+      },
+      {
+        "id": 7,
+        "evidence": "Evercore上调目标价至380美元",
+        "verified": true
+      },
+      {
+        "id": 8,
+        "evidence": "iPhone 18 Pro热销、新CEO John Ternus获分析师认可",
+        "verified": true
+      },
+      {
+        "id": 17,
+        "evidence": "高通在iPhone 18供应份额远低于预期20%",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻中提及'iPhone 18 Pro has hit store shelves'和'foldable iPhone Duo's release in late October'；知识图谱E1显示'John Ternus成为Apple新CEO，分析师认为其具有Apple DNA，将推动公司发展到新水平'；新闻标题'John Ternus has the Apple DNA that will push company to the next level'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "知识图谱E2显示'Evercore将Apple股票目标价上调至380美元，基于iPhone需求强劲'；行情数据显示'分析师评级 buy，分析师数量 39'"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "知识图谱E5显示'高通在财报电话会议中表示，在苹果最新iPhone发布中的份额将远低于之前预期的20%'，反映供应链多元化和竞争加剧"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示'PE(TTM) 38.59'（约38.6）；宏观指标显示'10年期国债收益率 (%)：4.94'"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "行情数据显示'RSI14 64.28'，'相对MA20 bullish，相对MA50 bullish'表示技术面强势；RSI 64.28接近超买区域（通常70为超买）"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "行情数据显示'PE(TTM) 38.59'（38.6）；宏观指标显示'10年期国债收益率 (%)：4.94'；这些数据支持高估值与高利率环境的论述"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "知识图谱E5显示'高通在财报电话会议中表示，在苹果最新iPhone发布中的份额将远低于之前预期的20%'，反映供应链竞争加剧"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "行情数据显示'RSI14 64.28'，接近超买区域（通常70为超买），存在短期回调风险"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对未来宏观情景的假设性判断（'若通胀反弹或利率进一步上升'），不涉及当前可核对的事实"
+      }
+    ],
+    "claims": [
+      "iPhone 18 Pro热销+iPhone Duo预期强劲，新CEO John Ternus获分析师认可（E1），支撑增长前景",
+      "Evercore上调目标价至380美元（E2），39位分析师买入评级，机构看好",
+      "高通在iPhone 18供应份额远低于预期20%（E5），反映Apple芯片采购多元化，供应链竞争加剧",
+      "PE 38.6处历史高位，10年期国债收益率4.94%处于相对高位，高利率环境对估值形成压力",
+      "技术面强势但RSI 64.28接近超买，短期调整风险存在",
+      "高估值与利率压力——PE 38.6远高于历史均值，10年期国债收益率4.94%处于相对高位，高利率环境对科技股估值倍数形成压制，若利率继续上升将加重估值压力",
+      "供应链风险——高通在iPhone 18供应份额远低于预期20%，反映竞争加剧，芯片供应稳定性需监控",
+      "技术面超买——RSI 64.28接近超买区域，短期回调风险明显",
+      "宏观风险——若通胀反弹或利率进一步上升，科技股承压加重"
+    ]
+  }
+}

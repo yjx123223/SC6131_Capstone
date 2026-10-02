@@ -5,8 +5,6 @@ Critic Agent：独立审查 Orchestrator 生成的报告草稿，检查信号冲
 过度自信、引用准确性。只负责"挑错"，不负责改稿——根据审查意见
 修订草稿是 Orchestrator（金融研究员人格）的职责，见
 orchestrator_loop.OrchestratorLoop.revise()。
-
-从 orchestrator.py 的 OrchestratorAgent._run_critic 拆分出来。
 """
 
 import json
@@ -27,10 +25,11 @@ class CriticAgent:
     >>> critique = critic.review(entity, draft, tool_log)
     """
 
-    def __init__(self, client, model: str, max_tokens: int):
+    def __init__(self, client, model: str, max_tokens: int, temperature=None):
         self.client = client
         self.model = model
         self.max_tokens = max_tokens
+        self.temperature = temperature    # None 表示不传，保持 API 默认
 
     def review(self, entity: str, draft: dict, tool_log: list) -> dict:
         """
@@ -47,9 +46,7 @@ class CriticAgent:
 
         Claude 返回非 JSON 内容或调用异常时，当前策略是默认放行
         （approved=True, conflicts=[]）。这是一个已知的取舍：审查失败
-        约等于"没审查"，如果要收紧，可以把默认值改成
-        approved=False + confidence_adjustment="lower"，让下游至少
-        知道这次审查不可信。目前保留原有行为，未改动。
+        约等于"没审查"。置信度的最终兜底由 compliance.ComplianceChecker 负责。
         """
         context_summary = summarize_tool_log(tool_log)
 
@@ -60,6 +57,9 @@ class CriticAgent:
 1. 信号冲突：宏观、基本面/估值、技术面、新闻情绪之间方向是否矛盾？若有冲突，报告是否明确标注并说明取舍？
 2. 过度自信：置信度（high/medium/low）是否与数据完整度匹配？有工具返回"数据不可用"时不应标为 high。
 3. 引用准确性：报告中的数值、新闻、申报是否都能在原始数据摘要中找到？是否存在编造或无依据的推断？
+   摘要已包含工具返回的全部字段（基本面逐项、每条新闻的标题与正文摘要）。指控"编造"前必须
+   逐字核对：数值要在"基本面"一行里找，新闻论据要在对应新闻的"摘要："里找。能找到就不算编造，
+   哪怕报告换了说法或换算了单位（如 331839012864 写成 3318 亿）。
 4. 数据时效：报告是否基于摘要中的最新数据日期，有没有把旧信息当成最新情况？
 5. 知识图谱引用：报告引用的事件编号（E1、E2…）是否都出现在摘要中？对传导风险的描述是否与路径一致？是否把基于规则的推断说成了确定事实？
 
@@ -80,12 +80,15 @@ class CriticAgent:
 请输出 JSON 格式的审查结果。"""
 
         try:
-            response = self.client.messages.create(
+            kwargs = dict(
                 model=self.model,
                 max_tokens=self.max_tokens,
                 system=system_prompt,
                 messages=[{"role": "user", "content": user_prompt}],
             )
+            if self.temperature is not None:
+                kwargs["temperature"] = self.temperature
+            response = self.client.messages.create(**kwargs)
             raw = response.content[0].text.strip()
             start = raw.find("{")
             end   = raw.rfind("}") + 1
@@ -101,8 +104,3 @@ class CriticAgent:
                 "confidence_adjustment": "maintain",
                 "suggestions": "",
             }
-
-    @staticmethod
-    def _summarize_tool_log(tool_log: list) -> str:
-        """兼容旧调用方：实现已移至 tool_log_summary.summarize_tool_log"""
-        return summarize_tool_log(tool_log)

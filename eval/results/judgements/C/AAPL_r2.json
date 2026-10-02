@@ -1,0 +1,74 @@
+{
+  "variant": "C",
+  "company": "AAPL",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 3,
+        "evidence": "新CEO John Ternus获分析师认可，CFRA Research认为其具有Apple DNA将推动公司发展",
+        "verified": true
+      },
+      {
+        "id": 7,
+        "evidence": "Evercore上调目标价至380美元",
+        "verified": true
+      },
+      {
+        "id": 8,
+        "evidence": "iPhone 18 Pro已于2026-09-18上市，CFRA预测Apple将售出所有产量",
+        "verified": true
+      },
+      {
+        "id": 17,
+        "evidence": "高通在iPhone 18中供应份额远低于预期20%",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻摘要显示：'Apple's (AAPL) iPhone 18 Pro has hit store shelves on Friday'（2026-09-18），'foldable iPhone Duo's release in late October'。知识图谱E1事件确认John Ternus为新CEO，分析师认可其具有Apple DNA。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "知识图谱E2事件：'Evercore将Apple股票目标价上调至380美元'。当前股价336.13美元，(380-336.13)/336.13 = 13.06%，约13%上升空间。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "新闻摘要：'John Ternus has the 'Apple DNA' that will push company to the 'next level''，知识图谱E1事件确认分析师认可新CEO John Ternus具有Apple DNA推动公司发展。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "知识图谱E5传导风险：'高通在财报电话会议中表示，在苹果最新iPhone发布中的份额将远低于之前预期的20%'，反映供应链多元化趋势。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "行情数据显示：区间涨跌% 13.27（3个月），MA20 322.64、MA50 320.03、收盘336.13，相对MA20 bullish、相对MA50 bullish（牛市排列），RSI14 64.28、RSI信号 neutral（中性区域）。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "论断包含多个主观判断和展望：'高估值风险'、'估值压缩空间大'、'若增长放缓或宏观转向'、'需监控'、'若iPhone 18/Duo需求不及预期'等均为条件性的风险评估和主观判断，不是可核对的事实陈述。虽然引用了PE 38.6倍（数据中PE(TTM) 38.59）、10年期国债收益率4.94%、CPI 3.71%等事实数据，但整体论述是对这些数据的风险解读和展望，属于分析师的主观判断。"
+      }
+    ],
+    "claims": [
+      "iPhone 18 Pro已于2026-09-18上市，CFRA预测Apple将售出所有产量；iPhone Duo预期10月底发布（E1，2026-09-18）",
+      "Evercore上调目标价至380美元，较当前股价336.13美元有13%上升空间（E2，2026-09-18）",
+      "新CEO John Ternus获分析师认可，具有Apple DNA推动公司发展（E1，2026-09-18）",
+      "高通iPhone 18供应份额远低于预期20%，反映供应链多元化趋势（E5，2026-09-18）",
+      "技术面强劲：3个月涨13.27%，MA20/MA50牛市排列，RSI 64.28处中性区域（截至2026-09-18）",
+      "高估值风险：PE 38.6倍处历史高位，若增长放缓或宏观转向，估值压缩空间大。宏观风险：10年期国债收益率4.94%处高位，CPI 3.71%高于目标，若美联储继续维持高利率，科技股估值承压。供应链风险：高通份额下降（E5）反映供应商地位变化，需监控代工成本与产能对毛利率的影响。iPhone销售集中风险：新品销售预期高，若iPhone 18/Duo需求不及预期，股价回调幅度大"
+    ]
+  }
+}

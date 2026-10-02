@@ -1,0 +1,104 @@
+{
+  "variant": "C",
+  "company": "INTC",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 282,
+        "evidence": "Micron和Intel的CEO联合警告内存芯片短缺延续至2027年，供应约束增加成本压力",
+        "verified": true
+      },
+      {
+        "id": 286,
+        "evidence": "Intel与SK Hynix探索合作机会，引发投资者关注",
+        "verified": true
+      },
+      {
+        "id": 281,
+        "evidence": "AI资本支出预期达1.4万亿美元",
+        "verified": true
+      },
+      {
+        "id": 280,
+        "evidence": "Intel相对Applied Materials竞争力下降",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "数据显示Forward PE 52.67（Yahoo Finance，2026-09-18），与历史均值对比的具体数据虽未提供，但52.67的估值倍数确实较高。新闻中提及'forward P/E ratio of 54.64 is also higher than NVIDIA's 23.58'，说明Intel估值远高于同行。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "数据显示净利润 -11288999936（约-112.89亿美元），净利率% -19.79%，完全对应论断中的'净亏损112.89亿美元，利润率-19.79%'。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "Simply Wall St.新闻（2026-09-19）明确指出：'Micron Technology (NasdaqGS: MU) and Intel CEOs cautioned that memory chip shortages and higher prices could persist through 2027'，知识图谱中目标事件E1也记录了'Intel CEO警告内存芯片短缺和价格上升可能持续至2027年'。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "数据显示营收增速% 25.4，自由现金流 4866375168（约4.87亿美元），均为正值。新闻中TheStreet提及'A veteran tech analyst thinks Intel stock could gain seriously in two years if its foundry plan gets the right customers'，说明foundry业务前景存在希望。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "数据显示RSI14 61.06，相对MA20 bullish，相对MA50 bullish，区间涨跌% -22.95（3个月跌幅）。论断完全对应这些技术指标。"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "数据显示净利润 -11288999936（持续亏损），负债权益比 49.0（高杠杆），完全支持'持续亏损与高杠杆'的论断。"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "Simply Wall St.新闻（2026-09-19）和知识图谱事件E1均确认'内存芯片短缺和价格上升可能持续至2027年'，供应约束延续至2027年的事实成立。"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "数据显示Forward PE 52.67，这是客观的估值指标。新闻中提及Intel的forward P/E ratio高于NVIDIA，说明估值过高是基于数据的判断。"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "知识图谱明确列出AMD和NVDA为竞争对手。新闻中Insider Monkey（2026-09-18）提及'Chip maker Intel Corporation (NASDAQ:INTC) has become one of the hottest stocks in today's market with year-to-date gains and valuation both being richer than AI GPU giant NVIDIA'，说明竞争对手在AI领域的领先地位。"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "Foundry业务客户获取与产能利用率是对未来的不确定性判断，不涉及可核对的历史事实。新闻中TheStreet提及'if its foundry plan gets the right customers'，体现了这种不确定性，但这是展望而非已发生的事实。"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "数据显示20日年化波动率% 61.04，完全对应论断中的'高波动率（61.04%年化）'。"
+      }
+    ],
+    "claims": [
+      "Forward PE 52.67远高于历史均值，估值风险突出（Yahoo Finance，2026-09-18）",
+      "净亏损112.89亿美元，利润率-19.79%，基本面严重恶化（Yahoo Finance，2026-09-18）",
+      "Micron和Intel的CEO联合警告内存芯片短缺延续至2027年，供应约束增加成本压力（Simply Wall St.，2026-09-19）",
+      "营收增长25.4%，自由现金流4.87亿美元为正，foundry业务前景存希望（Yahoo Finance，2026-09-18）",
+      "技术面短期强势（RSI 61.06，价格高于MA20/MA50），但3个月跌幅22.95%，反弹可能不可持续（Yahoo Finance，2026-09-18）",
+      "持续亏损与高杠杆（债务权益比49.0），财务压力突出",
+      "芯片供应短缺延续至2027年，成本压力难以缓解",
+      "估值过高（Forward PE 52.67），反弹空间有限",
+      "竞争对手（AMD、NVIDIA）在AI领域领先，市场份额压力",
+      "Foundry业务客户获取与产能利用率不确定",
+      "高波动率（61.04%年化）增加风险"
+    ]
+  }
+}

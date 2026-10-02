@@ -1,0 +1,109 @@
+{
+  "variant": "B",
+  "company": "NVDA",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 158,
+        "evidence": "UBS 预测 AI 资本支出 2026 年达 1 万亿美元、2027 年 1.4 万亿美元（2026-09-19），显示 AI 基础设施投资持续强劲",
+        "verified": true
+      },
+      {
+        "id": 159,
+        "evidence": "CEO Jensen Huang 在 Salesforce Dreamforce 2026 获投资者认可（2026-09-19）",
+        "verified": true
+      },
+      {
+        "id": 165,
+        "evidence": "TSM 2nm 产能商用化推进（2026-09-18）",
+        "verified": true
+      },
+      {
+        "id": 188,
+        "evidence": "ASML EUV 机台产能扩张至 110 台（2026-09-17）",
+        "verified": true
+      },
+      {
+        "id": 189,
+        "evidence": "ASML 新闻同时提及 Canon 和 Nikon 在芯片制造中的地位，暗示上游设备供应商竞争加剧",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻[NVDA]中2026-09-19 Investing.com报道：'UBS now expects artificial intelligence capital expenditure to reach nearly $1 trillion in 2026 before climbing to around $1.4 trillion in 2027'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情[NVDA]基本面数据：净利增速% 127.8，营收增速% 105.9，ROE% 117.21，均与论断数值完全一致"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情[NVDA]基本面数据：分析师目标价 328.49，当前收盘 222.27，涨幅为(328.49-222.27)/222.27=47.8%，分析师数量 58，分析师评级 strong_buy，均与论断一致"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻[TSM]2026-09-18 Simply Wall St.报道：'Taiwan Semiconductor Manufacturing (NYSE:TSM) moves its 2nm process into commercial production'；新闻[ASML]2026-09-17 GuruFocus.com报道：'ASML Gains 1.5% as 110 EUV Machines Test Assembly Speed'；新闻[ASML]2026-09-17 24/7 Wall St.报道：'Canon and Nikon are quietly carving out a position in chip manufacturing'"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "行情[NVDA]技术面数据：收盘 222.27，MA20 218.72，MA50 214.07，相对MA20 bullish，相对MA50 bullish，RSI14 54.24，RSI信号 neutral，区间涨跌% 6.65，均与论断一致"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "论断涉及'估值压缩空间大'等主观判断。虽然数据显示PE(TTM) 27.71，但'高位'和'压缩空间大'属于主观评价，不是可核对的事实"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "论断涉及'地缘政治可能中断供应'和'可能影响长期供应链稳定性'等假设性风险，属于主观判断而非已发生的事实。数据中未见相关地缘政治事件的具体报道"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "论断'AMD、Intel等竞争对手加大AI芯片投入，市场份额可能受压'属于主观判断和展望。数据中未提供AMD、Intel具体的AI芯片投入数据或市场份额变化的证据"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "论断'若其AI投资放缓，需求下滑'属于假设性风险判断。虽然数据中提及MSFT、GOOGL、META、AMZN等公司的新闻，但未见其AI投资放缓的具体证据或客户采购计划变化"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "论断'若联邦基金利率上升或经济衰退，科技股估值承压'属于假设性宏观风险判断。虽然数据显示联邦基金利率3.63%，但未涉及利率上升或经济衰退的具体事实"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "论断'缺乏客户端明确的NVDA芯片采购计划确认'属于对新闻舆情的主观评价。虽然数据中新闻主要为宏观信号，但'缺乏'本身是相对判断，不是可核对的具体事实"
+      }
+    ],
+    "claims": [
+      "AI 资本支出预期强劲：UBS 预测 2027 年达 1.4 万亿美元，支撑 NVDA 长期需求（2026-09-19）",
+      "基本面增长超预期：净利润增速 127.8%、营收增速 105.9%、ROE 117.21%，行业领先（截至 2026-09-18）",
+      "分析师一致看好：58 家分析师平均目标价 328.49 美元，较当前 222.27 美元上升 47.8%（截至 2026-09-18）",
+      "供应链相对稳定：TSM 2nm 商用化、ASML EUV 产能扩张至 110 台，产能约束缓解，但上游竞争加剧（Canon/Nikon）需关注（2026-09-18）",
+      "技术面温和上升：股价高于 MA20/MA50，RSI 54.24 中性无超买，近 3 月涨幅 6.65%，信号强度有限（截至 2026-09-18）",
+      "估值风险——Trailing PE 27.71 处高位，若增长放缓或市场情绪转向，估值压缩空间大",
+      "供应链风险——虽 TSM/ASML 产能充足，但地缘政治（台湾、荷兰出口管制）可能中断供应，且上游设备供应商（Canon、Nikon）竞争加剧可能影响长期供应链稳定性",
+      "竞争加剧——AMD、Intel 等竞争对手加大 AI 芯片投入，市场份额可能受压",
+      "客户集中风险——主要客户为 MSFT、GOOGL、META、AMZN，若其 AI 投资放缓，需求下滑",
+      "宏观风险——若联邦基金利率上升或经济衰退，科技股估值承压",
+      "需求确认风险——当前新闻舆情主要为行业宏观信号（AI 资本支出预期），缺乏客户端明确的 NVDA 芯片采购计划确认"
+    ]
+  }
+}

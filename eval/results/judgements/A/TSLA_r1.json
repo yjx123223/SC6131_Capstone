@@ -1,0 +1,105 @@
+{
+  "variant": "A",
+  "company": "TSLA",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 395,
+        "evidence": "Robotaxi/Cybercab推出进展（2026-09-19，Motley Fool报道\"rollout on track\"）和欧洲电动卡车扩张（2026-09-18，Reuters报道Tesla准备进入欧洲电动卡车市场），体现长期增长潜力，但均强调监管和运营障碍需要克服",
+        "verified": true
+      },
+      {
+        "id": 396,
+        "evidence": "EV市场销售下滑（2026-09-19，Cox Automotive数据显示8月新增电动车销售同比-46.9%，环比+2.5%）",
+        "verified": true
+      },
+      {
+        "id": 397,
+        "evidence": "利率上升和油价上升压力（2026-09-18，Stocktwits报道\"elevated yields\"和\"soaring energy costs\"对股市的拖累）",
+        "verified": true
+      },
+      {
+        "id": 398,
+        "evidence": "欧洲电动卡车扩张（2026-09-18，Reuters报道Tesla准备进入欧洲电动卡车市场）",
+        "verified": true
+      }
+    ],
+    "dropped": [],
+    "repaired": "数组被返回成字符串且 JSON 非法，正则抽出 4 项"
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "营收增速25.5%、净利增速-3.0%、净利率3.67%均来自行情数据。数据显示营收增长但净利润反而下降，利润率低，反映成本压力。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "PE(TTM) 343.65、预期PE 165.76、分析师目标价396.94均来自行情数据。当前价364.27，目标价396.94相比上升空间为(396.94-364.27)/364.27=8.98%≈8.9%。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "10年期国债收益率4.94%（2026-09-17）、CPI同比3.71%（2026-08-01）均来自宏观数据。高利率和高CPI环境确实可能压低高估值股估值和消费需求。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "EV市场销售8月同比下滑46.9%来自2026-09-19新闻：'Dealers sold an estimated 78,895 new battery-electric vehicles last month, up 2.5% from July yet down 46.9% from August 2025'。Robotaxi/Cybercab推出进展来自2026-09-19新闻摘要：'The robotaxi/Cybercab rollout is on track, but investors need to be patient and understand there are regulatory and operational hurdles to cross'。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "技术面数据来自行情：相对MA20 bullish、相对MA50 bullish、RSI14 53.73、RSI信号neutral、20日年化波动率49.18%。短期看涨信号（均线上方）与RSI中性、高波动率相符。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对估值风险的主观评估和展望，虽然引用了PE 343.65、目标价396.94、8.9%上升空间等具体数据，但'任何增长预期下修将引发大幅调整'、'下行风险远大于上行空间'是基于数据的主观判断，不是可直接核对的事实。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对利率风险的主观分析和因果推断。虽然引用了10年期国债收益率4.94%的具体数据，但'高利率环境压低科技股估值'、'融资成本上升和消费需求压低进一步恶化利润增速'是基于经济学逻辑的主观判断，不是可直接核对的事实。"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对竞争与需求风险的主观分析。虽然引用了EV市场销售8月同比下滑46.9%的具体数据，但'竞争加剧压低利润率'、'营收增速25.5%的可持续性存疑'是基于数据的主观推断，不是可直接核对的事实。"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对Robotaxi商业化风险的主观评估。虽然新闻提到'regulatory and operational hurdles'，但'监管和技术障碍可能延迟盈利'、'商业化时间表不确定'、'近期难以贡献利润'都是基于现有信息的主观推断，不是可直接核对的事实。"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "20日波动率49.18%来自行情数据。市场对Tesla前景存在重大分歧是对高波动率的合理解释。"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "负债权益比18.37、ROE4.67%均来自行情数据。高杠杆在利率上升环境下（10年期国债收益率4.94%）风险突出是合理的财务分析。"
+      }
+    ],
+    "claims": [
+      "营收增长25.5%但净利润增速-3.0%，利润率仅3.67%，增长未能转化为利润增长，反映成本压力和竞争加剧（市场数据，2026-09-18）",
+      "PE 343.65、Forward PE 165.76处历史极高，分析师目标价$396.94仅提供8.9%上升空间，估值风险突出且上升空间有限（市场数据，2026-09-18）",
+      "10年期国债收益率4.94%上升，CPI同比3.71%高企，高利率环境压低高估值股估值，可能压低消费需求进而影响营收增速（宏观数据，2026-09-17和2026-08-01）",
+      "EV市场销售8月同比下滑46.9%，反映市场需求疲弱；Robotaxi/Cybercab推出进展积极但商业化时间表不确定，长期潜力与近期压力形成对比（新闻，2026-09-19）",
+      "技术面在均线上方但RSI中性、波动率49.18%高企，短期看涨信号不足以对冲估值极高和宏观风险，市场对前景存重大分歧（市场数据，2026-09-18）",
+      "估值风险——PE 343.65处历史极高，任何增长预期下修将引发大幅调整，分析师目标价$396.94仅提供8.9%上升空间，下行风险远大于上行空间",
+      "利率风险——10年期国债收益率升至4.94%，高利率环境压低科技股估值，同时可能通过融资成本上升和消费需求压低进一步恶化利润增速",
+      "竞争与需求风险——EV市场销售8月同比下滑46.9%，反映市场需求疲弱，竞争加剧压低利润率，营收增速25.5%的可持续性存疑",
+      "Robotaxi商业化风险——监管和技术障碍可能延迟盈利，商业化时间表不确定，该项目为长期潜力但近期难以贡献利润",
+      "高波动率风险——20日波动率49.18%，短期风险大，市场对Tesla前景存在重大分歧",
+      "财务杠杆风险——债务权益比18.37倍高企，ROE仅4.67%，高杠杆在利率上升环境下风险突出"
+    ]
+  }
+}

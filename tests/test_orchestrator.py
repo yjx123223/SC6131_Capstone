@@ -3,7 +3,7 @@ tests/test_orchestrator.py
 ----------------------------
 OrchestratorAgent 协调层的行为测试：
   - 生成报告后记录 session 并返回 session_id（支持事后评分）
-  - 反馈存储里保存的是实时数据快照（图谱工具已停用）
+  - 反馈存储里保存的是实时数据快照
   - Critic 不通过时触发修订
 
 用假的 loop / critic 替身注入，不发真实 API 请求。
@@ -65,7 +65,7 @@ class _FakeLoop:
         self._tool_log = _TOOL_LOG if tool_log is None else tool_log
         self.model = "fake-model"
 
-    def run(self, entity, weeks=12, graph=None, feedback_store=None):
+    def run(self, entity):
         return self._draft, self._tool_log
 
     def revise(self, entity, draft, critique, tool_log):
@@ -119,21 +119,17 @@ def test_generate_report_logs_advice_into_store(orch, store, monkeypatch, tmp_pa
     assert history[0]["id"] == session_id
     assert history[0]["period"] == "行情截至 2026-09-15"   # period 列存行情截至日期
     assert history[0]["total_events"] == 3                 # total_events 列存新闻条数
-    assert history[0]["kg_summary"]["ticker"] == "AAPL"
+    assert history[0]["snapshot"]["ticker"] == "AAPL"
     assert history[0]["rating"] is None    # 尚未评分
 
 
-def test_rating_new_style_session_does_not_break_accuracy_report(orch, store, monkeypatch, tmp_path):
-    """新快照里没有 KG 关系字段，signal_accuracy_report 应正常返回而不是报错"""
+def test_rating_logged_session(orch, store, monkeypatch, tmp_path):
     _reports_dir(monkeypatch, tmp_path)
 
     session_id, _ = orch.generate_report("Apple Inc.", feedback_store=store)
     store.rate(session_id, rating=1, note="判断准确")
 
-    report = store.signal_accuracy_report()
-    assert report["total_rated"] == 1
-    assert report["positive_rate"] == 1.0
-    assert report["signal_stats"] == {}
+    assert store.get_history("Apple Inc.")[0]["rating"] == 1
 
 
 def test_generate_report_without_store_returns_none_session(orch, monkeypatch, tmp_path):
@@ -145,8 +141,7 @@ def test_generate_report_without_store_returns_none_session(orch, monkeypatch, t
     assert "投资建议报告" in report_md
 
 
-def test_generate_report_graph_is_optional(orch, monkeypatch, tmp_path):
-    """图谱工具停用后，generate_report 不再要求传入 graph"""
+def test_generate_report_without_arguments_besides_entity(orch, monkeypatch, tmp_path):
     _reports_dir(monkeypatch, tmp_path)
     session_id, report_md = orch.generate_report("Apple Inc.")
     assert "投资建议报告：Apple Inc." in report_md
@@ -206,7 +201,7 @@ def test_generate_report_applies_compliance_confidence_cap(orch, store, monkeypa
     assert "## 合规检查" in report_md
     assert "原为高，已按审查/合规规则下调" in report_md
     assert "## 免责声明" in report_md
-    snap = store.get_history("Apple Inc.")[0]["kg_summary"]
+    snap = store.get_history("Apple Inc.")[0]["snapshot"]
     assert snap["confidence"] == "medium"
     assert snap["confidence_original"] == "high"
     assert isinstance(snap["compliance_score"], int)
@@ -274,7 +269,7 @@ def test_graph_json_saved_and_snapshot_includes_graph(orch, store, monkeypatch, 
     assert len(graphs) == 1
     assert json.loads(graphs[0].read_text(encoding="utf-8"))["nodes"][0]["id"] == "company:AAPL"
 
-    kg = store.get_history("Apple Inc.")[0]["kg_summary"]["knowledge_graph"]
+    kg = store.get_history("Apple Inc.")[0]["snapshot"]["knowledge_graph"]
     assert kg == {
         "neighbors": ["TSM"],
         "event_count": 2,
@@ -282,7 +277,7 @@ def test_graph_json_saved_and_snapshot_includes_graph(orch, store, monkeypatch, 
         "cited_event_ids": ["E2"],
     }
     # 完整图谱不应写进反馈库
-    dumped = json.dumps(store.get_history("Apple Inc.")[0]["kg_summary"])
+    dumped = json.dumps(store.get_history("Apple Inc.")[0]["snapshot"])
     assert '"_graph"' not in dumped and '"_mermaid"' not in dumped
 
 
@@ -290,3 +285,102 @@ def test_no_graph_json_when_graph_tool_not_used(orch, monkeypatch, tmp_path):
     _reports_dir(monkeypatch, tmp_path)
     orch.generate_report("Apple Inc.")
     assert list((tmp_path / "reports").glob("*_graph.json")) == []
+
+
+# ── usage 统计与可注入配置 ──────────────────────────────────────
+
+def _usage(i, o):
+    return type("U", (), {"input_tokens": i, "output_tokens": o})()
+
+
+def _record_during_run(orch, *pairs):
+    """让假 loop 在 run() 期间记账（generate_report 开头会先 reset）"""
+    original = orch.loop.run
+
+    def run(entity):
+        for i, o in pairs:
+            orch.usage.record("claude-haiku-4-5", _usage(i, o), 1.0)
+        return original(entity)
+
+    orch.loop.run = run
+
+
+def test_snapshot_includes_usage_totals(orch, store, monkeypatch, tmp_path):
+    _reports_dir(monkeypatch, tmp_path)
+    _record_during_run(orch, (1000, 200), (500, 100))
+
+    orch.generate_report("Apple Inc.", feedback_store=store)
+
+    usage = store.get_history("Apple Inc.")[0]["snapshot"]["usage"]
+    assert usage["calls"] == 2 and usage["failed_calls"] == 0
+    assert usage["input_tokens"] == 1500 and usage["output_tokens"] == 300
+
+
+def test_usage_is_reset_between_reports(orch, store, monkeypatch, tmp_path):
+    """第二份报告的统计不应累计第一份的调用"""
+    _reports_dir(monkeypatch, tmp_path)
+    _record_during_run(orch, (1000, 200))
+
+    orch.generate_report("Apple Inc.", feedback_store=store)
+    orch.generate_report("Apple Inc.", feedback_store=store)
+
+    history = store.get_history("Apple Inc.")
+    assert [h["snapshot"]["usage"]["input_tokens"] for h in history] == [1000, 1000]
+
+
+def test_agent_forwards_injections_to_loop(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "fake-key")
+    monkeypatch.setattr("anthropic.Anthropic", lambda **kwargs: object())
+    impls = {"query_news": lambda ti, tl: {"ok": True}}
+
+    agent = OrchestratorAgent(tool_definitions=[{"name": "emit_report"}],
+                              system_prompt="基线 prompt", tool_impls=impls, temperature=0)
+
+    assert agent.loop.tool_definitions == [{"name": "emit_report"}]
+    assert agent.loop.system_prompt == "基线 prompt"
+    assert agent.loop.tool_impls == impls
+    assert agent.loop.temperature == 0
+    assert agent.critic.temperature == 0
+    assert agent.loop.extractor.temperature == 0
+    assert agent.loop.client is agent.client and agent.client.usage is agent.usage
+
+
+# ── 最近一次运行的中间结果（供评估脚本与调试读取）──────────────────
+
+def test_last_attributes_default_to_empty(monkeypatch):
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "fake-key")
+    monkeypatch.setattr("anthropic.Anthropic", lambda **kwargs: object())
+
+    agent = OrchestratorAgent()
+    assert agent.last_draft is None
+    assert agent.last_tool_log == []
+    assert agent.last_critique is None
+    assert agent.last_compliance is None
+
+
+def test_last_attributes_record_pipeline_intermediates(orch, monkeypatch, tmp_path):
+    _reports_dir(monkeypatch, tmp_path)
+
+    _, report_md = orch.generate_report("Apple Inc.")
+
+    assert orch.last_tool_log == _TOOL_LOG
+    assert orch.last_draft is not None
+    assert orch.last_draft["recommendation"] == _DRAFT["recommendation"]
+    assert orch.last_critique["approved"] is True
+    assert {"score", "issues", "is_compliant"} <= set(orch.last_compliance)
+    # 记录的是合规处理之后的草稿，与最终报告一致
+    assert orch.last_draft is orch.last_compliance["draft"]
+
+
+def test_last_attributes_reset_on_failed_draft(orch, monkeypatch, tmp_path):
+    _reports_dir(monkeypatch, tmp_path)
+    orch.generate_report("Apple Inc.")
+    assert orch.last_draft is not None
+
+    orch.loop = _FakeLoop(draft=None)
+    orch.generate_report("Apple Inc.")
+
+    assert orch.last_draft is None
+    assert orch.last_critique is None
+    assert orch.last_compliance is None
+    assert orch.last_tool_log == _TOOL_LOG          # 工具日志仍保留，便于排查

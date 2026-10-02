@@ -1,8 +1,7 @@
 """
 tests/test_critic.py
 -----------------------
-critic.CriticAgent.review 的行为测试（拆分自 orchestrator.py 的
-OrchestratorAgent._run_critic）。用 stub 的 anthropic client 驱动，
+critic.CriticAgent.review 的行为测试。用 stub 的 anthropic client 驱动，
 不发真实网络请求。
 """
 
@@ -96,12 +95,12 @@ def test_review_uses_configured_model_and_max_tokens():
     assert client.messages.last_call_kwargs["max_tokens"] == 999
 
 
-def test_summarize_tool_log_includes_kg_and_macro_signals():
+def test_review_prompt_uses_tool_log_summary():
     tool_log = [
         {
-            "tool": "query_kg_signals",
+            "tool": "query_market_data",
             "input": {},
-            "result": {"entity": "Apple Inc.", "total_events": 4, "positive_impacts": [1], "negative_impacts": []},
+            "result": {"ticker": "AAPL", "data_as_of": "2026-09-15", "technicals": {}, "fundamentals": {}},
         },
         {
             "tool": "query_macro",
@@ -109,9 +108,10 @@ def test_summarize_tool_log_includes_kg_and_macro_signals():
             "result": {"summary_text": "VIX: 13.2"},
         },
     ]
-    summary = CriticAgent._summarize_tool_log(tool_log)
+    from tool_log_summary import summarize_tool_log
+    summary = summarize_tool_log(tool_log)
 
-    assert "Apple Inc." in summary
+    assert "AAPL" in summary
     assert "VIX: 13.2" in summary
 
 
@@ -129,3 +129,14 @@ def test_review_prompt_contains_new_draft_fields_and_tool_errors():
     assert "数据时效" in client.messages.last_call_kwargs["system"]
     assert "知识图谱引用" in client.messages.last_call_kwargs["system"]
     assert "引用的图谱事件：无" in prompt
+
+
+def test_temperature_is_optional_and_passed_through():
+    reply = '{"approved": true, "conflicts": [], "confidence_adjustment": "maintain", "suggestions": ""}'
+    client = _FakeClient(reply)
+    CriticAgent(client, model="m", max_tokens=100).review("Apple Inc.", _DRAFT, [])
+    assert "temperature" not in client.messages.last_call_kwargs
+
+    client = _FakeClient(reply)
+    CriticAgent(client, model="m", max_tokens=100, temperature=0).review("Apple Inc.", _DRAFT, [])
+    assert client.messages.last_call_kwargs["temperature"] == 0

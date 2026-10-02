@@ -1,0 +1,69 @@
+{
+  "variant": "C",
+  "company": "NVDA",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 158,
+        "evidence": "UBS 预计 2026 年近 1 万亿美元，2027 年 1.4 万亿美元",
+        "verified": true
+      },
+      {
+        "id": 159,
+        "evidence": "CEO Jensen Huang 在 Salesforce Dreamforce 大会获得投资者认可",
+        "verified": true
+      },
+      {
+        "id": 160,
+        "evidence": "NVIDIA 和 SK Hynix 向美光投资者发出行业压力信号",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻数据显示：'UBS now expects artificial intelligence capital expenditure to reach nearly $1 trillion in 2026'，与论断'UBS 预计 2026 年近 1 万亿美元'完全对应。知识图谱中 E1 事件也确认了这一预测。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 105.9、净利增速% 127.8、ROE% 117.21，与论断数值完全一致。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘 222.27，MA20 218.72，MA50 214.07（222.27 > 218.72 > 214.07），RSI14 54.24 对应 RSI 中性，区间涨跌% 6.65（3个月涨幅），与论断完全对应。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示：分析师目标价 328.49、分析师评级 strong_buy、分析师数量 58，与论断'58 位分析师平均目标价 328.49 美元，给予强烈买入评级'完全对应。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻数据显示：'Nvidia, SK Hynix send strong signal to Micron investors'，知识图谱中 E2 事件确认'NVIDIA和SK海力士向美光投资者发出强信号，反映行业共同面临的压力'，与论断'NVIDIA 和 SK Hynix 向美光发出行业压力信号'对应。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "该论断包含多个纯粹的主观判断和风险展望：(1)'估值风险'、'估值压缩风险大'是对未来的主观评估；(2)'若增长放缓或宏观环境恶化'是假设性条件；(3)'竞争加剧可能压低毛利率'是因果推断；(4)'地缘政治风险需关注'是风险提示；(5)'若 AI 资本支出增速低于预期'是假设性展望。这些都不涉及可核对的历史事实或已发生的事件。"
+      }
+    ],
+    "claims": [
+      "AI 资本支出强劲增长预期：UBS 预计 2026 年近 1 万亿美元（E1），直接驱动 NVDA 芯片需求",
+      "基本面超预期：营收增速 105.9%、净利润增速 127.8%、ROE 117.21%，行业领先",
+      "技术面上升趋势：价格 222.27 美元高于 MA20/MA50，3 个月涨幅 6.65%，RSI 中性无超买",
+      "分析师强烈看好：58 位分析师平均目标价 328.49 美元，给予强烈买入评级",
+      "存储竞争压力：NVIDIA 和 SK Hynix 向美光发出行业压力信号（E2），毛利率面临压力",
+      "估值风险：Trailing PE 27.71 处于历史高位，若增长放缓或宏观环境恶化，估值压缩风险大。竞争加剧：存储芯片价格竞争信号（E2）可能压低毛利率。供应链风险：依赖 TSM 代工，地缘政治风险（台湾）需关注。宏观风险：若 AI 资本支出增速低于预期，需求可能不及预期"
+    ]
+  }
+}

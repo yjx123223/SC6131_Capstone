@@ -1,0 +1,119 @@
+{
+  "variant": "B",
+  "company": "NFLX",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 423,
+        "evidence": "$27 亿回购计划（Motley Fool 9 月 19 日）",
+        "verified": true
+      },
+      {
+        "id": 424,
+        "evidence": "Wells Fargo 分析师 Steven Cahall 于 9 月 18 日下调评级至 Underweight",
+        "verified": true
+      },
+      {
+        "id": 425,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57",
+        "verified": true
+      },
+      {
+        "id": 426,
+        "evidence": "Wells Fargo 分析师 Steven Cahall 于 9 月 18 日下调评级至 Underweight，引用\"用户参与度趋势令人担忧\"和内容制作成本问题",
+        "verified": true
+      },
+      {
+        "id": 427,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57",
+        "verified": true
+      },
+      {
+        "id": 428,
+        "evidence": "Wells Fargo 于 9 月 18 日下调评级至 Underweight，目标价从 $80 降至 $57",
+        "verified": true
+      },
+      {
+        "id": 430,
+        "evidence": "Wells Fargo 分析师 Steven Cahall 于 9 月 18 日下调评级至 Underweight",
+        "verified": true
+      },
+      {
+        "id": 440,
+        "evidence": "DIS 于 2026-09-18 任命首位 CTO Karandeep Anand",
+        "verified": true
+      }
+    ],
+    "dropped": [],
+    "repaired": "数组被返回成字符串且 JSON 非法，正则抽出 8 项"
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻数据显示 Wells Fargo 分析师 Steven Cahall 于 2026-09-18 将评级从 Equal Weight 下调至 Underweight，目标价从 $80 下调至 $57。行情数据显示分析师目标价 $93.88，分析师评级 buy，分析师数量 45 位。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘价 $71.79，MA20 $78.92，MA50 $75.72，5日涨跌% -7.25，相对MA20 bearish，相对MA50 bearish。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：ROE% 49.54，自由现金流 25387552768（约 $253.88 亿），净利率% 28.22。SEC 申报显示最新 10-Q 为 2026-07-17（报告期 2026-06-30），距离 2026-09-18 约 2.5 个月。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：VIX 恐慌指数 15.44（2026-09-17），失业率 4.1%（2026-08-01），CPI 同比变化 3.71%（2026-08-01）。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻数据显示 Disney 于 2026-09-18 任命 Karandeep Anand 为首位 CTO（Chief Technology Officer），将于 2026-10-02 加入公司。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对未来趋势的推测性判断，涉及因果关系的预测（参与度下滑→订阅增速放缓），不是可核对的事实陈述。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对未来可能性的推测性判断，涉及因果关系的预测（成本上升→利润率压低），不是可核对的事实陈述。虽然数据显示当前财务指标，但'可能压低'是推测。"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对竞争影响的推测性判断，涉及因果关系的预测（竞争对手投资→分流用户→参与度下滑），不是可核对的事实陈述。"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对宏观经济影响的推测性判断，涉及因果关系的预测（经济放缓→削弱订阅意愿），不是可核对的事实陈述。虽然宏观数据可核对，但'可能削弱'是推测。"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "行情数据显示 RSI14 36.59，未触及极端超卖水平（通常超卖定义为 RSI < 30）。"
+      }
+    ],
+    "claims": [
+      "Wells Fargo 下调评级至 Underweight，目标价 $57（2026-09-18），但基于定性评估而非最新财务数据，分析师多数仍维持买入评级（45 位分析师目标价 $93.88）",
+      "股价 $71.79 跌破 MA20 $78.92 和 MA50 $75.72，5 日跌幅 -7.25%（截至 2026-09-18），可能为技术性调整而非基本面恶化",
+      "ROE 49.54%、自由现金流 $253.88 亿、净利率 28.22%，基本面指标仍强，但最新 10-Q 已 2.5 个月未更新，参与度趋势缺乏最新量化证据",
+      "VIX 15.44、失业率 4.1%、CPI 3.71%，宏观环境温和不支持系统性风险，消费科技股面临估值压力但无衰退信号",
+      "DIS 任命首位 CTO 强化技术投资（2026-09-18），可能长期加剧竞争，但与当前参与度下滑的直接关联需进一步验证",
+      "用户参与度持续下滑可能导致订阅增速放缓，但该趋势的最新量化证据缺乏，需等待下一季度财报确认",
+      "内容制作成本上升可能压低利润率，但当前财务数据未显示重大恶化",
+      "竞争对手（DIS、AMZN）加大投资可能分流用户，但与当前参与度下滑的直接关联需进一步验证",
+      "宏观经济放缓可能削弱消费者订阅意愿，但当前宏观环境温和，失业率 4.1%、VIX 15.44 不支持系统性风险",
+      "股价进一步下跌可能触发技术性卖盘，但 RSI 36.59 未触及极端超卖"
+    ]
+  }
+}

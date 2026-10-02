@@ -1,0 +1,87 @@
+{
+  "variant": "C",
+  "company": "META",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 195,
+        "evidence": "Meta Muse AI 应用首 5 天增长接近 ChatGPT，表现突出",
+        "verified": true
+      },
+      {
+        "id": 197,
+        "evidence": "与 Shopify 深化合作，利用 Meta AI 代理推进嵌入式金融战略",
+        "verified": true
+      },
+      {
+        "id": 206,
+        "evidence": "知识图谱显示 GOOGL 获得关键反垄断裁决，有利其广告业务",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 28.0，净利率% 29.83，ROE% 29.85。这些数据来自 2026-09-18 的行情数据，对应 Q2 2026 财报（10-Q 2026-07-30，报告期 2026-06-30）"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-18 Motley Fool）：'Meta's New AI App Grew Almost as Fast as ChatGPT in Its First 5 Days'。知识图谱事件 E1 也确认：'Meta推出AI应用Muse，首5天增长速度接近ChatGPT，表现突出'"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：分析师评级 strong_buy（强烈买入），分析师目标价 755.28，分析师数量 56。当前股价 665.75，目标价相对上升幅度为 (755.28-665.75)/665.75 = 13.4%"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘 665.75，MA20 614.61，MA50 607.38，相对MA20 bullish，相对MA50 bullish，RSI14 66.13，区间涨跌% 18.07（3个月区间）。665.75 > 614.61 > 607.38，RSI 66 处于中性偏强"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：VIX 恐慌指数 15.44（2026-09-17），10年期国债收益率 4.94%（2026-09-17）。VIX 15.44 处于低位，利率环境温和"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "知识图谱传导风险 E3 记录：'谷歌获得关键反垄断裁决，有利于其广告业务'。这支持了 Google 反垄断裁决有利其广告业务的论述，但关于'可能压低 Meta 广告价格'是推理而非直接事实"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "新闻（2026-09-18 Barrons.com）：'California to Reconsider AI 'Kill Switch' With Newsom's New Executive Order'，确认了加州 AI Kill Switch 等 AI 监管政策的存在和不确定性"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "论断包含可核对的事实部分：Forward PE 19.04（行情数据预期PE 19.04），股价上升 18%（区间涨跌% 18.07）。但'虽合理但不便宜'、'存在回调风险'是主观判断，不是可核对的事实"
+      },
+      {
+        "index": 9,
+        "verdict": "unsupported",
+        "evidence": "论断声称'利率 3.63% 仍处高位'。数据显示联邦基金利率 3.63%（2026-08-01），但数据中没有历史利率对比信息来支持'仍处高位'的判断。此外，论断关于'若进一步上升将压低科技股估值'是假设性推理，不是事实陈述"
+      }
+    ],
+    "claims": [
+      "营收增长 28%，净利润率 29.83%，ROE 29.85%（Q2 2026 财报）",
+      "Muse AI 应用首 5 天增长接近 ChatGPT，产品创新动力强（9/18 新闻）",
+      "分析师一致评级'强烈买入'，平均目标价 755.28 美元，较当前价格上升 13.4%",
+      "技术面：股价 665.75 高于 MA20/MA50，3 月涨幅 18.07%，RSI 66 处于中性偏强",
+      "VIX 15.44 低位，宏观风险偏好稳定，利率环境温和（10Y 国债 4.94%）",
+      "竞争加剧：Google 反垄断裁决有利其广告业务，可能压低 Meta 广告价格",
+      "监管风险：AI 监管政策不确定性（加州 AI Kill Switch 等），可能影响 Muse 等 AI 产品",
+      "估值风险：Forward PE 19.04 虽合理但不便宜，股价上升 18% 后存在回调风险",
+      "宏观风险：利率 3.63% 仍处高位，若进一步上升将压低科技股估值"
+    ]
+  }
+}

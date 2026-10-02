@@ -1,0 +1,98 @@
+{
+  "variant": "B",
+  "company": "META",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 195,
+        "evidence": "Meta Muse AI应用首5天增长接近ChatGPT速度",
+        "verified": true
+      },
+      {
+        "id": 197,
+        "evidence": "与Shopify合作拓展AI代理应用",
+        "verified": true
+      },
+      {
+        "id": 193,
+        "evidence": "加州AI监管政策（Kill Switch）仍存不确定性",
+        "verified": true
+      },
+      {
+        "id": 206,
+        "evidence": "Google获得关键反垄断裁决，该裁决对Google广告业务有利",
+        "verified": false
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻[META]中Motley Fool 2026-09-18报道：'Meta's New AI App Grew Almost as Fast as ChatGPT in Its First 5 Days'，与论断'Meta Muse首5天增长接近ChatGPT'相符。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情[META]基本面数据：营收增速% 28.0（同比增28%），净利率% 29.83（利润率29.83%），ROE% 29.85（ROE 29.85%），数据完全匹配。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情[META]基本面数据：分析师目标价 755.28，收盘 665.75。上升空间计算：(755.28-665.75)/665.75 = 13.44%，约等于13.5%。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情[META]技术面数据：RSI14 66.13，RSI信号 neutral。66.13接近但未达70的超买阈值，RSI官方信号确实为neutral，短期回调风险表述合理。"
+      },
+      {
+        "index": 5,
+        "verdict": "judgment",
+        "evidence": "新闻中提及Google反垄断利好（Motley Fool 2026-09-19关于Alphabet反垄断裁决）和Meta Muse AI产品，但'强化广告市场地位'、'差异化优势'、'新竞争维度'等为分析性判断，非可核对的事实。"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "行情[META]技术面数据：RSI14 66.13，接近但未达70的超买阈值，存在获利回吐压力的技术面依据。"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "新闻[META] 2026-09-18 Barrons.com报道：'California to Reconsider AI Kill Switch With Newsom's New Executive Order'，证实加州AI Kill Switch政策存在，AI监管政策不确定性有依据。"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "新闻[GOOGL] 2026-09-19 Motley Fool报道：'Alphabet's Ad Business Got a Lift From a Key Antitrust Ruling'，证实Google获反垄断利好，可能强化其广告市场地位。"
+      },
+      {
+        "index": 9,
+        "verdict": "unsupported",
+        "evidence": "数据中未提供Reality Labs的财务数据或亏损信息。虽然这是Meta的已知事实，但在提供的工具数据中找不到相关证据。"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "宏观指标中显示失业率4.1%、VIX 15.44等，但'宏观衰退风险若升温'是假设性判断，'广告支出可能下滑'是推导性结论，属于主观展望而非可核对的事实。"
+      }
+    ],
+    "claims": [
+      "Meta Muse首5天增长接近ChatGPT，AI商业化进展明显（Motley Fool, 2026-09-18）",
+      "营收同比增28%、利润率29.83%、ROE 29.85%，基本面强劲（Yahoo Finance, 2026-09-18）",
+      "分析师平均目标价755.28美元，较当前665.75美元有13.5%上升空间（Yahoo Finance, 2026-09-18）",
+      "RSI14为66.13接近但未达超买阈值，官方信号neutral，短期回调风险有限（Yahoo Finance, 2026-09-18）",
+      "Google获反垄断利好可能强化广告市场地位，但Meta AI差异化优势（Muse）提供新竞争维度（Motley Fool, 2026-09-19）",
+      "技术面RSI接近超买，短期获利回吐压力存在",
+      "AI监管政策不确定性（加州AI Kill Switch），可能增加合规成本",
+      "Google获反垄断利好可能强化其广告市场地位，加剧竞争",
+      "Reality Labs持续亏损拖累利润",
+      "宏观衰退风险若升温，广告支出可能下滑"
+    ]
+  }
+}

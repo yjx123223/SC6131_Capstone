@@ -1,0 +1,89 @@
+{
+  "variant": "B",
+  "company": "ASML",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 351,
+        "evidence": "ASML Installed Base Management 业务增长 31.8%，110 台 EUV 机器在组装中，产能成为主要约束而非需求问题",
+        "verified": true
+      },
+      {
+        "id": 352,
+        "evidence": "110 台 EUV 机器在组装中，产能成为约束而非需求问题",
+        "verified": true
+      },
+      {
+        "id": 353,
+        "evidence": "Canon 和 Nikon 在芯片制造领域悄然布局，可能长期威胁 ASML 垄断地位",
+        "verified": true
+      },
+      {
+        "id": 358,
+        "evidence": "UBS 预计 2026 年近 1 万亿美元，2027 年 1.4 万亿美元",
+        "verified": true
+      },
+      {
+        "id": 359,
+        "evidence": "Micron Technology (NasdaqGS: MU) 和 Intel CEOs 警告称内存芯片短缺和更高价格可能持续到 2027 年",
+        "verified": false
+      },
+      {
+        "id": 360,
+        "evidence": "Chip maker Intel Corporation (NASDAQ:INTC) 已成为当今市场上最热门的股票之一，年初至今涨幅和估值都比 AI GPU 巨头 NVIDIA 更高",
+        "verified": false
+      },
+      {
+        "id": 366,
+        "evidence": "Taiwan Semiconductor Manufacturing (NYSE:TSM) 将其 2nm 工艺推进到商业生产，作为新高级制造推动的一部分",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻[ASML] 2026-09-18 Zacks: 'ASML's Installed Base Management sales surge 31.8%'；新闻[ASML] 2026-09-17 GuruFocus: '110 EUV Machines Test Assembly Speed' 和 'AI demand has moved ASML's constraint from customer interest to manufacturing throughput'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻[INTC] 2026-09-19 Investing.com: 'UBS now expects artificial intelligence capital expenditure to reach nearly $1 trillion in 2026 before climbing to around $1.4 trillion by 2027'"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "新闻[TSM] 2026-09-18 Simply Wall St.: 'Taiwan Semiconductor Manufacturing (NYSE:TSM) moves its 2nm process into commercial production as part of a new advanced manufacturing push. The chip producer accelerates investment in cutting edge fabrication capacity and raises capital expenditure targets to support 2nm roll out'"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情[ASML] 技术面：收盘 1679.92，MA20 1689.4，MA50 1721.6，相对MA20 bearish，相对MA50 bearish，RSI14 48.19，RSI信号 neutral；区间涨跌% -12.81（3个月）"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻[ASML] 2026-09-17 24/7 Wall St.: 'Canon and Nikon are quietly carving out a position in chip manufacturing'；行情[INTC] 基本面：净利润 -11288999936（负数），预期PE 52.67"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "该论断包含多个纯粹的主观判断和风险评估：1) '估值与技术面背离风险'、'建议设置止损点位'是主观建议；2) '可能威胁'、'可能削弱'是推测性因果；3) '若失败将削弱需求'是假设性判断；4) '库存积压与产能利用率下降风险存在'是潜在风险评估；5) '可能影响'、'进而削弱'是推测性因果；6) '可能抑制'是推测性判断。虽然涉及的具体数据（PE 55.55、110台EUV机器、INTC净利润为负、10年期国债收益率4.94%）都能在数据中找到，但整体论述是基于这些数据的风险分析和主观判断，而非可核对的事实陈述"
+      }
+    ],
+    "claims": [
+      "ASML Installed Base Management 业务 Q2 增长 31.8%，110 台 EUV 机器在组装中，产能成为约束而非需求问题（2026-09-18）",
+      "AI 资本支出预期强劲：UBS 预计 2026 年近 1 万亿美元，2027 年 1.4 万亿美元（2026-09-19）",
+      "TSM 加速 2nm 商业化生产，提高资本支出目标，强劲支撑 ASML 需求（2026-09-18）",
+      "技术面走弱与基本面背离：股价 1679.92 美元，低于 MA20/MA50，3 个月跌 12.81%，RSI14 中性偏弱 48.19，与基本面强劲形成矛盾（2026-09-18）",
+      "竞争风险浮现：Canon 和 Nikon 在芯片制造领域布局，可能威胁长期垄断地位；INTC foundry 计划前景不确定（净利润为负），可能削弱需求增速（2026-09-17、2026-09-18）",
+      "1) 估值与技术面背离风险：PE 55.55 处历史高位，若技术面继续走弱而基本面未见恶化，可能预示市场对增长预期的悲观修正，建议设置止损点位（如跌破 1600 美元）。2) 竞争风险：Canon 和 Nikon 在芯片制造领域布局，可能长期威胁 ASML 垄断地位，若竞争对手取得实质性进展，ASML 订单与毛利率可能受压。3) 客户风险：INTC foundry 计划前景不确定（当前净利润为负），若失败将削弱需求；TSM 依赖度高（主要客户），地缘政治风险（台湾）不容忽视。4) 产能风险：虽然产能约束当前有利（110 台 EUV 机器在组装），但若需求突然下降，库存积压与产能利用率下降风险存在。5) 地缘政治：美国对华芯片出口管制可能影响中国客户需求，进而削弱 ASML 的全球市场规模。6) 利率风险：高利率环境（10 年期国债收益率 4.94%）可能抑制客户的长期资本支出增速，与 AI capex 强劲预期形成对冲"
+    ]
+  }
+}

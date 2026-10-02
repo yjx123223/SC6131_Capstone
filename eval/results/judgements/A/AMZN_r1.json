@@ -1,0 +1,89 @@
+{
+  "variant": "A",
+  "company": "AMZN",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 115,
+        "evidence": "2026-09-19报道Amazon计划升级空运舰队，与ATSG合作引入30架A330货机至2027年，强化物流竞争力。",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "数据显示：净利增速% 242.3，ROE% 30.56，营收增速% 19.6，均与论断一致"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "数据显示：PE(TTM) 20.2，分析师目标价 328.22，分析师评级 strong_buy，分析师数量 59。现价253.71，目标价较现价上升幅度为(328.22-253.71)/253.71=29.3%"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "数据显示：收盘 253.71，MA20 256.13，MA50 255.84，相对MA20 bearish，相对MA50 bearish，RSI14 48.36，RSI信号 neutral，20日涨跌% -2.46"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：联邦基金利率 3.63%，10年期国债收益率 4.94%，CPI 3.71%，失业率 4.1%，VIX 15.44"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻数据显示：2026-09-19 Simply Wall St.报道'Amazon.com plans to transition its air cargo fleet from Boeing 767 aircraft to Airbus A330 freighters. Air Transport Services Group will acquire and convert 30 Airbus A330 jets into freighters to support Amazon's air network'，与论断内容一致"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对技术面走弱和基本面强劲矛盾现象的主观分析和风险判断，涉及'价值陷阱'风险评估和投资建议，属于分析师的主观判断而非可核对的事实"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "数据显示：预期PE 24.45，论断准确引用了这一数据"
+      },
+      {
+        "index": 8,
+        "verdict": "unsupported",
+        "evidence": "数据显示自由现金流 3219124992（约32.19亿），净利润 135281000448（约1352.81亿，不是1353亿）。但论断中说'自由现金流$32.19亿相对净利润$1353亿偏低'，这里的因果判断（'偏低'）是主观评价，且数据中没有关于现金转化效率的具体指标或对标数据来支持'偏低'的结论"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "数据显示：负债权益比 45.62%，与论断一致。论断关于利率上升增加融资成本的因果关系是合理的经济学推论"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：10年期国债收益率 4.94%，与论断一致。论断关于高收益率对科技股估值的压制作用是合理的经济学推论"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "这是对未来竞争态势和其可能影响的主观预测和判断，数据中没有关于竞争加剧的具体事实或事件记录，属于前瞻性的分析判断而非可核对的事实"
+      }
+    ],
+    "claims": [
+      "基本面强劲：净利润增长242.3%，ROE 30.56%，营收增长19.6%（Yahoo Finance，2026-09-18）",
+      "估值合理且分析师看好：PE 20.2，59位分析师平均目标价$328.22较现价上升29.3%，一致评级强烈买入（Yahoo Finance，2026-09-18）",
+      "技术面短期走弱：股价$253.71低于MA20（$256.13）和MA50（$255.84），RSI 48.36中性，近20日跌2.46%（Yahoo Finance，2026-09-18）",
+      "宏观环境利率压力：联邦基金利率3.63%，10年期国债收益率4.94%处相对高位，CPI 3.71%，失业率4.1%，VIX 15.44低位稳定（FRED，2026-09-17）",
+      "战略投资计划：2026-09-19报道Amazon计划与ATSG合作升级空运舰队，引入30架A330货机至2027年（Yahoo Finance News，2026-09-19）",
+      "技术面短期承压，股价低于均线，可能继续下探，形成'价值陷阱'风险——基本面强劲但技术面走弱可能导致短期继续下跌，投资者需谨慎判断介入时机",
+      "Forward PE 24.45反映高增长预期，若业绩不达预期存在估值压力",
+      "自由现金流$32.19亿相对净利润$1353亿偏低，现金转化效率需关注",
+      "债务率45.62%相对较高，若联邦基金利率继续上升将增加融资成本",
+      "10年期国债收益率4.94%处于相对高位，对科技股估值形成压制",
+      "竞争加剧（电商、云计算领域）可能侵蚀利润率"
+    ]
+  }
+}

@@ -1,0 +1,103 @@
+{
+  "variant": "A",
+  "company": "AMD",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 247,
+        "evidence": "9月19日报道AMD股价突破买入区间",
+        "verified": true
+      },
+      {
+        "id": 249,
+        "evidence": "9月18日多篇报道关注AMD AI需求强劲",
+        "verified": true
+      },
+      {
+        "id": 250,
+        "evidence": "9月18日多篇报道关注AMD AI需求强劲",
+        "verified": true
+      },
+      {
+        "id": 251,
+        "evidence": "9月18日多篇报道关注AMD AI需求强劲",
+        "verified": true
+      },
+      {
+        "id": 252,
+        "evidence": "9月18日多篇报道关注AMD AI需求强劲",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 50.1，净利增速% 159.5"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：PE(TTM) 138.91，预期PE 35.95"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘 559.82，MA20 490.75，MA50 495.85，相对MA20 bullish，相对MA50 bullish，RSI14 65.1，RSI信号 neutral"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示：分析师评级 strong_buy，分析师目标价 616.51，分析师数量 50"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：VIX 15.44（2026-09-17），失业率 4.1%（2026-08-01），CPI 3.71%（2026-08-01），10年期国债收益率 4.94%（2026-09-17）"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "论断涉及对估值风险的主观评估和对未来市场反应的预测，虽然PE数据可验证，但'任何增长放缓或市场情绪转变可能引发大幅回调'是主观判断"
+      },
+      {
+        "index": 7,
+        "verdict": "unsupported",
+        "evidence": "数据中未提供NVIDIA等竞争对手的具体信息，也未提供AMD市场份额压力的相关数据"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：10年期国债收益率 4.94%（2026-09-17），这是可验证的事实基础，虽然'可能压制高估值科技股'是推论"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "行情数据显示：负债权益比 6.36。论断中的D/E 6.36与数据相符，虽然'利率上升将增加融资成本'是推论，但基础数据可验证"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "论断涉及对芯片行业周期性的主观判断和对AI需求可持续性的预测，这是行业分析意见而非可核对的事实"
+      }
+    ],
+    "claims": [
+      "收入增速50.1%、净利润增速159.5%，AI需求强劲（市场数据，9月18日）",
+      "Trailing PE 138.91倍，Forward PE 35.95倍，估值高企存在回调风险（市场数据，9月18日）",
+      "股价559.82美元，高于MA20/MA50，技术面强势但RSI 65.1处中性（市场数据，9月18日）",
+      "分析师普遍强烈买入，目标价616.51美元，上升空间有限（市场数据，9月18日）",
+      "VIX 15.44、失业率4.1%、CPI 3.71%，宏观环境稳定但长端收益率4.94%仍高（宏观数据，9月17日）",
+      "估值风险——Trailing PE 138.91处历史高位，任何增长放缓或市场情绪转变可能引发大幅回调",
+      "竞争风险——NVIDIA等竞争对手持续创新，市场份额存在压力",
+      "宏观风险——长端利率4.94%仍高，可能压制高估值科技股",
+      "债务风险——D/E 6.36较高，利率上升将增加融资成本",
+      "技术风险——芯片行业周期性强，AI需求可能不可持续"
+    ]
+  }
+}

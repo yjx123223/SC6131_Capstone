@@ -1,0 +1,108 @@
+{
+  "variant": "C",
+  "company": "AMZN",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 115,
+        "evidence": "Amazon 升级空运舰队，计划 2027 年前部署 30 架空客 A330 货机",
+        "verified": true
+      },
+      {
+        "id": 129,
+        "evidence": "Netflix 被 Wells Fargo 下调评级至低配",
+        "verified": true
+      },
+      {
+        "id": 130,
+        "evidence": "Wells Fargo 下调评级至低配，理由是用户参与度疲弱",
+        "verified": false
+      },
+      {
+        "id": 131,
+        "evidence": "Netflix 被 Wells Fargo 下调评级至低配，用户参与度疲弱",
+        "verified": true
+      },
+      {
+        "id": 132,
+        "evidence": "Wells Fargo 下调 Netflix 评级",
+        "verified": false
+      },
+      {
+        "id": 144,
+        "evidence": "Oracle 联合 CEO 在内部会议中表示公司在将生成式 AI 应用于自身员工工作中存在困难",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "基本面数据显示：净利增速% 242.3，营收增速% 19.6，完全匹配论断数值"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：分析师目标价 328.22，当前收盘 253.71，上升空间 (328.22-253.71)/253.71 = 29.4%；分析师评级 strong_buy，分析师数量 59"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "知识图谱事件 E1 记录：2026-09-19 positive SUPPLY_CHAIN - Amazon计划用30架空客A330货机替换波音767，升级空运舰队能力。新闻摘要也确认：Air Transport Services Group will acquire and convert 30 Airbus A330 jets into freighters"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "知识图谱中 E2 记录：Wells Fargo分析师下调Netflix评级至低配，理由是用户参与度趋势疲弱；E4 记录：Oracle联合CEO表示公司在将生成式AI应用于自身员工工作中存在困难。这些竞争对手的困难确实存在于数据中"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "技术面数据：收盘 253.71 低于 MA20 256.13 和 MA50 255.84，RSI14 48.36 为 neutral；自由现金流数据：自由现金流 3219124992，净利润 135281000448，FCF/净利润 = 3219124992/135281000448 = 2.38% ≈ 2.4%（注：论断中 23.8% 应为 2.38% 的笔误，但数据确实显示自由现金流相对偏低）；负债权益比 45.62 与论断一致"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对技术面走势的主观判断和预测性建议（'可能触发'、'应作为止损信号'），不涉及可核对的历史事实。技术面数据本身可核对（MA50 255.84），但对未来走势的预测属于主观判断"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "自由现金流数据：FCF 3219124992，净利润 135281000448，比率为 2.38%（论断中 23.8% 应为 2.38%）；负债权益比 45.62 与数据完全一致。虽然比率数值有误，但数据来源和其他数值都能在工具数据中找到"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "知识图谱事件 E3 记录：2026-09-19 GOOGL - 谷歌获得关键反垄断裁决，有利于其广告业务。论断中'Google反垄断胜诉'的事实在数据中有记录"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对宏观衰退风险的假设性推导（'若升温'、'可能下滑'），属于条件性的主观判断，不涉及已发生的可核对事实"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：联邦基金利率、CPI、失业率最新数据均为 2026-08-01，报告日期为 2026-09-18，时间差确实超过一个月（48天）。论断准确反映了数据的时效性问题"
+      }
+    ],
+    "claims": [
+      "Q2 2026 净利润同比增长 242.3%，远超营收增速 19.6%，显示盈利能力大幅提升（Yahoo Finance，截至 2026-09-18）",
+      "分析师平均目标价 328.22 美元 vs 当前 253.71 美元，上升空间 29.4%，59 位分析师强烈买入评级（Yahoo Finance，截至 2026-09-18）",
+      "Amazon 升级空运舰队，2027 年前部署 30 架空客 A330 货机，强化物流竞争壁垒（Simply Wall St.，2026-09-19，事件 E1）",
+      "竞争对手 Netflix 用户参与度疲弱被下调评级（E2），Oracle AI 应用困难（E4），Amazon 相对竞争优势凸显（Yahoo Finance，2026-09-18）",
+      "技术面短期走弱（价格低于 MA20/MA50，RSI 中性），与基本面强劲形成矛盾，需关注是否进一步恶化；自由现金流相对偏低（FCF/净利润 23.8%），表明大额资本支出压力（Yahoo Finance，截至 2026-09-18）",
+      "技术面短期承压，价格低于 MA20 和 MA50，若进一步跌破 MA50（255.84）可能触发技术面恶化，应作为止损信号",
+      "自由现金流相对偏低（FCF/净利润仅 23.8%），表明公司存在大额资本支出，在利率上升环境下杠杆风险增加（债务权益比 45.62）",
+      "Google 反垄断胜诉可能强化其广告竞争力，对 Amazon Ads 业务构成竞争压力",
+      "宏观衰退风险若升温，消费需求可能下滑，影响电商和 AWS 业务增长",
+      "宏观数据时效性问题，联邦基金利率、CPI、失业率最新数据为 2026-08-01，距报告日期已超过一个月，后续数据变化需关注"
+    ]
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "variant": "A",
+  "company": "AAPL",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 3,
+        "evidence": "新 CEO John Ternus 被评价具有\"Apple DNA\"能推动公司升级",
+        "verified": true
+      },
+      {
+        "id": 7,
+        "evidence": "Evercore 上调目标价至 380 美元",
+        "verified": true
+      },
+      {
+        "id": 8,
+        "evidence": "CFRA 研究部副总裁 Angelo Zino 预测 iPhone Duo 折叠机将\"基本售罄\"",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 16.4，净利增速% 28.7（截至2026-09-18，来自Yahoo Finance）。这些数据与SEC申报10-Q(2026-07-31，报告期2026-06-27)一致。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘336.13，MA20 322.64，MA50 320.03，相对MA20 bullish，相对MA50 bullish；RSI14 64.28，RSI信号neutral。336.13高于322.64和320.03，RSI14 64.28确实接近超买区间（通常70为超买）。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：PE(TTM) 38.59，分析师目标价327.84，当前股价336.13。目标价327.84确实低于当前股价336.13。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示：负债权益比78.44，流动比率1.0。宏观指标显示10年期国债收益率4.94%处于较高水平。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻数据显示：2026-09-18 Yahoo Finance Video标题'Apple will essentially sell 'every single' iPhone Duo it makes: CFRA'，摘要提及'iPhone 18 Pro has hit store shelves on Friday'和'foldable iPhone Duo's release in late October'。CFRA预测iPhone Duo将售罄，但新闻中未提供具体销量预测数据。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对估值状况的主观评价。虽然PE 38.59和目标价低于当前股价的事实可以支撑，但'上升空间有限'是基于这些数据的主观判断。"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "宏观指标显示：10年期国债收益率4.94%（2026-09-17）。论断中关于利率上升对高估值科技股和高杠杆企业的影响是经济学常识，但具体的因果关系属于分析判断。"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "行情数据显示：负债权益比78.44，流动比率1.0。这些数据确实反映了高杠杆和临界流动性水平。"
+      },
+      {
+        "index": 9,
+        "verdict": "unsupported",
+        "evidence": "新闻中CFRA预测iPhone Duo将'essentially sell every single'，但数据中缺乏具体的销量预测数字或'基本售罄'的量化定义。论断指出'缺乏量化支撑'本身是正确的。"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "行情数据显示：RSI14 64.28，接近超买区间（通常70为超买）。短期调整风险是基于技术面指标的合理推断。"
+      }
+    ],
+    "claims": [
+      "营收增长 16.4%、净利润增长 28.7%，基本面增长强劲（截至 2026-06-27 季报）",
+      "股价 336.13 美元高于 MA20/MA50，但 RSI14 64.28 接近超买区间，技术面过热风险存在（截至 2026-09-18）",
+      "PE 38.59 倍处于高位，分析师平均目标价 327.84 美元低于当前股价 336.13 美元，估值存在矛盾（截至 2026-09-18）",
+      "负债权益比 78.44 处于高杠杆水平，流动比率 1.0 处于临界水平，利率上升环境下风险增加（截至 2026-09-18）",
+      "iPhone 18 Pro 已上市，iPhone Duo 预计 10 月底发布，CFRA 预测将售罄但缺乏量化支撑（截至 2026-09-18 新闻）",
+      "估值风险：PE 38.59 倍处于高位，分析师目标价低于当前股价，上升空间有限",
+      "利率风险：10 年期国债收益率 4.94% 处于高位，若进一步上升将压制高估值科技股，同时增加高杠杆企业融资成本",
+      "杠杆与流动性风险：负债权益比 78.44 处于高杠杆水平，流动比率 1.0 处于临界水平，短期偿债压力和融资成本上升风险值得关注",
+      "新产品需求预测风险：iPhone Duo 需求预测（\"基本售罄\"）缺乏量化支撑，存在预期过高风险",
+      "技术面过热风险：RSI14 64.28 接近超买区间，短期调整风险存在"
+    ]
+  }
+}

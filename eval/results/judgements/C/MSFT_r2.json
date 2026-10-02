@@ -1,0 +1,119 @@
+{
+  "variant": "C",
+  "company": "MSFT",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 39,
+        "evidence": "行业新闻聚焦AI科学应用前景（Investing.com 2026-09-19），利好微软云计算与AI服务",
+        "verified": true
+      },
+      {
+        "id": 42,
+        "evidence": "Nscale IPO新闻（2026-09-18，Bloomberg、Stocktwits）突出微软在AI数据中心的战略地位，与NVDA合作强化基础设施优势",
+        "verified": true
+      },
+      {
+        "id": 44,
+        "evidence": "Nscale与微软合作（E1，2026-09-18），强化AI基础设施地位",
+        "verified": true
+      },
+      {
+        "id": 45,
+        "evidence": "Goldman Sachs Sends Stark Warning on S&P 500 Earnings",
+        "verified": true
+      },
+      {
+        "id": 57,
+        "evidence": "Jim Cramer Said The Strength In Oracle (ORCL)'s Shares Was A \"Positive Sign\"",
+        "verified": false
+      },
+      {
+        "id": 58,
+        "evidence": "Oracle联合CEO在内部会议上表示公司在将生成式AI应用于自身员工方面存在困难",
+        "verified": true
+      },
+      {
+        "id": 67,
+        "evidence": "Amazon.com (NasdaqGS:AMZN) plans to transition its air cargo fleet from Boeing 767 aircraft to Airbus A330 freighters",
+        "verified": false
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "基本面数据显示：营收增速% 17.7，净利增速% 31.7，净利率% 40.3。财报日期为10-K(2026-07-29，报告期 2026-06-30)"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "基本面数据显示：预期PE 20.93，分析师目标价 572.92，分析师数量 52。当前收盘价493.78，(572.92-493.78)/493.78=15.9%上升空间"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "知识图谱目标事件 E1 2026-09-18 positive PARTNERSHIP：Nscale与微软和英伟达建立合作伙伴关系，共同开发AI数据中心基础设施。新闻来源Bloomberg和Stocktwits均确认此事件"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "技术面数据显示：收盘 493.78，MA20 497.51（低于MA20为bearish），MA50 464.2（高于MA50为bullish），区间涨跌% 34.67（3个月涨幅）"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：VIX 恐慌指数 15.44（2026-09-17），联邦基金利率 3.63%（2026-08-01），10年期国债收益率 4.94%（2026-09-17）"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "技术面数据显示：MA50 464.2，当前收盘 493.78，高于MA50。若跌破464.2则低于MA50"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对AI投资特性的主观判断，涉及未来不确定性的评估，不涉及可核对的历史事实或数据"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "知识图谱显示AMZN为竞争对手，传导风险 E3 2026-09-19记录：亚马逊计划用30架空客A330货机替换波音767，升级空运舰队能力"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对宏观因素影响的主观推断，属于假设性判断而非可核对的事实"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "知识图谱显示NVDA和AMD为供应商。数据中确认芯片供应链依赖关系，但地缘政治风险本身未在数据中明确记录"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "SEC申报显示最新财报为10-K(2026-07-29，报告期 2026-06-30)，截至报告日期已相对滞后。最新季度10-Q为(2026-04-29，报告期 2026-03-31)，后续增长数据确实未发布"
+      }
+    ],
+    "claims": [
+      "营收增速17.7%、净利润增速31.7%，净利率40.3%行业领先（2026-06-30财报，数据相对滞后）",
+      "Forward PE 20.93低于历史均值，分析师目标价572.92美元（52位分析师）暗示15.9%上升空间",
+      "Nscale与微软合作AI数据中心（E1，2026-09-18），强化基础设施竞争优势",
+      "技术面短期弱势（低于MA20 497.51）但中期向上（高于MA50 464.2），3个月涨幅34.67%",
+      "VIX 15.44、联邦基金利率3.63%、10年期国债收益率4.94%宏观环境温和支持科技股",
+      "技术面短期承压，若跌破MA50（464.2）需重新评估",
+      "AI投资回报周期长，盈利转化存在不确定性",
+      "竞争对手AMZN云计算与AI能力持续提升",
+      "宏观利率若上升可能压低科技股估值",
+      "芯片供应链依赖NVDA、AMD，地缘政治风险需关注",
+      "基本面数据相对滞后（截至2026-06-30），最新季度业绩未发布，后续增长可能存在变数"
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "variant": "A",
+  "company": "TSM",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 214,
+        "evidence": "截至 2026-09-18，收盘价 434.67 元，高于 MA20（421.53）和 MA50（416.33）",
+        "verified": true
+      },
+      {
+        "id": 218,
+        "evidence": "2nm 工艺商业化推进（2026-09-18），MediaTek Dimensity 9600 Pro 采用 2nm 工艺（2026-09-18），TSMC 提升资本支出以支持 2nm 产能",
+        "verified": true
+      },
+      {
+        "id": 220,
+        "evidence": "MediaTek Dimensity 9600 Pro 采用 2nm，确认产能需求",
+        "verified": true
+      },
+      {
+        "id": 221,
+        "evidence": "2nm 工艺商业化推进，MediaTek Dimensity 9600 Pro 采用 2nm 工艺",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 36.0，净利增速% 77.4，ROE% 39.97，数据截至 2026-09-18"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻数据显示：2026-09-18 Simply Wall St. 报道'Taiwan Semiconductor Manufacturing (TSM) just picked up fresh attention after MediaTek chose its 2-nanometer process for the new Dimensity 9600 Pro'，同日 GuruFocus 报道'MediaTek's dual-node launch turns TSMC's newest process into a consumer product'，确认2nm工艺商业化推进和MediaTek Dimensity 9600 Pro采用2nm"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：分析师评级 strong_buy（强烈买入），分析师目标价 552.26，当前收盘价 434.67，上升空间 (552.26-434.67)/434.67 = 27.1%，约27%"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘 434.67，MA20 421.53，MA50 416.33，相对MA20 bullish，相对MA50 bullish，20日涨跌% 4.77，数据截至 2026-09-18"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：VIX 恐慌指数 15.44（2026-09-17），联邦基金利率 3.63%（2026-08-01），数据截至 2026-09-17"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对地缘政治风险的主观判断和展望，不涉及可核对的具体事实"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对估值风险的主观判断和展望，虽然PE 32.06数据可核对，但'估值可能压缩'是纯粹的主观预测"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对产能风险的主观判断和展望，不涉及可核对的具体事实"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对客户集中风险的主观判断和展望，不涉及可核对的具体事实"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对汇率风险的主观判断和展望，不涉及可核对的具体事实"
+      }
+    ],
+    "claims": [
+      "营收增速 36%、净利润增速 77.4%，ROE 39.97%，基本面强劲（数据截至 2026-09-18）",
+      "2nm 工艺商业化推进，MediaTek Dimensity 9600 Pro 采用 2nm，确认产能需求（新闻截至 2026-09-18）",
+      "分析师一致评级'强烈买入'，平均目标价 552.26 元，较当前价格 434.67 元有 27% 上升空间",
+      "技术面：价格高于 MA20/MA50，近 20 日涨 4.77%，反弹势头良好（数据截至 2026-09-18）",
+      "宏观环境温和，VIX 15.44 处低位，联邦基金利率 3.63%，利率环境对科技股友好（数据截至 2026-09-17）",
+      "地缘政治风险——台湾地缘政治局势可能影响供应链",
+      "估值风险——PE 32.06 处于历史高位，若增长放缓或宏观恶化，估值可能压缩",
+      "产能风险——2nm 产能爬坡不及预期可能拖累增长",
+      "客户集中风险——AI 芯片需求若出现周期性调整，收入可能波动",
+      "汇率风险——新台币升值可能压低美元收入"
+    ]
+  }
+}

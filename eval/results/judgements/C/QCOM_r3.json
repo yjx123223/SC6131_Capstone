@@ -1,0 +1,92 @@
+{
+  "variant": "C",
+  "company": "QCOM",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 326,
+        "evidence": "高通加入WEDA边缘AI生态系统，与Advantech等合作伙伴合作，支持工业和企业应用的可扩展部署",
+        "verified": true
+      },
+      {
+        "id": 327,
+        "evidence": "股价应声下跌6%",
+        "verified": true
+      },
+      {
+        "id": 329,
+        "evidence": "高通在财报电话会议中表示，在苹果最新iPhone发布中的份额将远低于之前预期的20%",
+        "verified": true
+      },
+      {
+        "id": 332,
+        "evidence": "CEO将出席Trump-Xi峰会（9月24日），可能涉及芯片政策讨论",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-18 Trefis）：'Qualcomm (QCOM) told investors in its fiscal Q3 2026 call that its share of Apple's recent iPhone launch would be materially lower than its prior estimate of 20%'。知识图谱事件E2（2026-09-18 negative GUIDANCE）：高通在财报电话会议中表示，在苹果最新iPhone发布中的份额将远低于之前预期的20%。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-18 Trefis）：'management raised its non-handset revenue target for fiscal 2029 to $40 billion—nearly doubling its prior $22 billion'。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-19 Simply Wall St.）：'QUALCOMM (NasdaqGS:QCOM) has joined Advantech and other partners in the new WEDA edge AI ecosystem to support scalable deployments across varied hardware. The WEDA collaboration focuses on simplifying edge AI solutions by standardising tools and reference designs for industrial and enterprise use'。知识图谱事件E1（2026-09-19 positive PARTNERSHIP）：高通加入WEDA边缘AI生态系统，与Advantech等合作伙伴合作，支持工业和企业应用的可扩展部署。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据（截至2026-09-18）：区间涨跌% -19.47，MA20 171.87，MA50 167.82，收盘 177.72。收盘价177.72 > MA20 171.87 > MA50 167.82，符合'MA20/MA50上方'的描述。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标（截至2026-09-17）：VIX恐慌指数 15.44，失业率 4.1%。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "虽然数据显示iPhone芯片份额下滑（E2），但'Apple自研芯片加速'是对Apple战略的推断，数据中仅提及新闻标题'Apple's Chip Strategy Keeps Paying Dividends'，未提供具体加速的量化证据。'手机芯片收入持续下滑'是对未来的展望。"
+      },
+      {
+        "index": 7,
+        "verdict": "unsupported",
+        "evidence": "数据中未提及中美芯片政策变化的具体内容，也未提及其对台积电代工能力的影响。知识图谱中显示TSM为供应商，但无相关政策变化的信息。"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对未来业务增长的预测性判断。虽然数据显示非手机收入目标提升至40亿美元，但'增长不及预期'和'难以弥补手机缺口'是对未来的主观评估，不是已发生的事实。"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "行情数据（截至2026-09-18）：负债权益比 55.21。宏观指标显示联邦基金利率 3.63%（2026-08-01），10年期国债收益率 4.94%（2026-09-17），处于相对较高水平。"
+      }
+    ],
+    "claims": [
+      "iPhone芯片份额从预期20%大幅下滑，直接冲击核心收益（E2，9月18日）",
+      "非手机收入目标2029年达40亿美元，较前期22亿翻倍增长，显示战略转向（新闻，9月18日）",
+      "加入WEDA边缘AI生态，拓展工业/企业市场，分散客户依赖（E1，9月19日）",
+      "股价3个月跌19.47%，但MA20/MA50上方，技术面仍有支撑（市场数据，截至9月18日）",
+      "宏观环境温和（VIX 15.44、失业率4.1%），但科技股估值压力存在（宏观数据，截至9月17日）",
+      "Apple自研芯片加速，手机芯片收入持续下滑",
+      "中美芯片政策变化影响台积电代工能力",
+      "非手机业务增长不及预期，难以弥补手机缺口",
+      "高杠杆（D/E 55.21）在利率上升环境下增加财务压力"
+    ]
+  }
+}

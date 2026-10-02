@@ -104,10 +104,11 @@ class EventExtractor:
     """
 
     def __init__(self, client, model: str = config.KG_EXTRACT_MODEL,
-                 max_tokens: int = config.KG_EXTRACT_MAX_TOKENS):
+                 max_tokens: int = config.KG_EXTRACT_MAX_TOKENS, temperature=None):
         self.client = client
         self.model = model
         self.max_tokens = max_tokens
+        self.temperature = temperature    # None 表示不传，保持 API 默认
 
     def extract(self, focus_ticker: str, articles: list[dict],
                 known_companies: Optional[dict[str, str]] = None) -> dict:
@@ -140,7 +141,7 @@ class EventExtractor:
         )
 
         try:
-            response = self.client.messages.create(
+            kwargs = dict(
                 model=self.model,
                 max_tokens=self.max_tokens,
                 system=SYSTEM_PROMPT,
@@ -148,6 +149,9 @@ class EventExtractor:
                 tool_choice={"type": "tool", "name": "record_events"},
                 messages=[{"role": "user", "content": user_prompt}],
             )
+            if self.temperature is not None:
+                kwargs["temperature"] = self.temperature
+            response = self.client.messages.create(**kwargs)
         except Exception as e:
             return {"events": [], "dropped": dropped, "error": f"事件抽取调用失败（{focus_ticker}）：{e}"}
 

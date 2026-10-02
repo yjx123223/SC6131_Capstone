@@ -168,3 +168,13 @@ def test_truncated_output_returns_error():
 def test_missing_structured_output_returns_error(content):
     result = EventExtractor(_Client(_Resp(content))).extract("TSM", ARTICLES, KNOWN)
     assert result["events"] == [] and "未返回结构化结果" in result["error"]
+
+
+def test_temperature_is_optional_and_passed_through():
+    client = _Client(_tool_resp([]))
+    EventExtractor(client).extract("TSM", ARTICLES, KNOWN)
+    assert "temperature" not in client.calls[0]
+
+    client = _Client(_tool_resp([]))
+    EventExtractor(client, temperature=0).extract("TSM", ARTICLES, KNOWN)
+    assert client.calls[0]["temperature"] == 0

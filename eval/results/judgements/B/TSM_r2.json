@@ -1,0 +1,119 @@
+{
+  "variant": "B",
+  "company": "TSM",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 214,
+        "evidence": "股价434.67美元，高于MA20（421.53）与MA50（416.33）",
+        "verified": true
+      },
+      {
+        "id": 218,
+        "evidence": "Taiwan Semiconductor Manufacturing (NYSE:TSM) moves its 2nm process into commercial production as part of a new advanced manufacturing push",
+        "verified": true
+      },
+      {
+        "id": 219,
+        "evidence": "Rising AI infrastructure costs are putting pressure on chip and cloud pricing",
+        "verified": true
+      },
+      {
+        "id": 220,
+        "evidence": "Taiwan Semiconductor Manufacturing (NYSE:TSM) just picked up fresh attention after MediaTek chose its 2-nanometer process for the new Dimensity 9600 Pro",
+        "verified": true
+      },
+      {
+        "id": 221,
+        "evidence": "MediaTek Dimensity 9600 Pro采用2nm、Apple新品采用2nm，验证需求",
+        "verified": true
+      },
+      {
+        "id": 224,
+        "evidence": "ASML's Installed Base Management sales surge 31.8%, fueled by upgrades and a growing EUV fleet",
+        "verified": false
+      },
+      {
+        "id": 225,
+        "evidence": "AI demand has moved ASML's constraint from customer interest to manufacturing throughput",
+        "verified": false
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻[TSM]中2026-09-18 Simply Wall St.提及'MediaTek chose its 2-nanometer process for the new Dimensity 9600 Pro'；2026-09-17 GuruFocus.com提及'MediaTek's dual-node launch turns TSMC's newest process into a consumer product'；2026-09-18 Simply Wall St.提及'Taiwan Semiconductor Manufacturing (NYSE:TSM) moves its 2nm process into commercial production'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情[TSM]基本面数据：营收增速% 36.0、净利增速% 77.4、净利率% 49.92"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情[TSM]技术面数据：收盘434.67高于MA20 421.53和MA50 416.33（相对MA20 bullish、相对MA50 bullish）；RSI14 56.83（RSI信号neutral，但数值在中性偏强范围）；20日涨跌% 4.77"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻[ASML]2026-09-17 GuruFocus.com：'110 EUV Machines Test Assembly Speed'表明ASML产能充足；行情[NVDA]基本面：营收增速% 105.9；行情[AMD]基本面：营收增速% 50.1"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻[TSM]2026-09-18 Stocktwits：'Rising AI infrastructure costs are putting pressure on chip and cloud pricing'"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "论断包含可核对的事实（PE 32.06、营收增速36%、PEG比率0.89），但'若营收增速从当前36%放缓至个位数，当前估值将面临显著压缩'是基于假设的主观判断，不是已发生的事实"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "虽然AMD报道'Rising AI infrastructure costs are putting pressure on chip and cloud pricing'是事实（新闻[TSM]2026-09-18 Stocktwits），但'若成本压力传导至TSM客户端定价能力，将压制TSM的毛利率与净利率'是基于假设的因果推断，不是已发生的事实"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "台湾地缘政治不确定性、美国对华芯片出口管制是客观存在的风险因素，但论断'可能影响客户需求与产能规划'是对未来的推测，不是已发生的事实"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "虽然数据显示ASML EUV产能相关信息（新闻提及110台EUV机器），但'ASML EUV产能瓶颈'和'荷兰出口管制可能延缓TSM产能扩张'是对未来的推测和风险判断，不是已发生的事实"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "论断涉及对客户集中度风险的主观评估，虽然Apple、NVDA等是TSM的大客户（可从新闻推断），但'虽多元化改善，但...风险仍存'是对风险的主观判断"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "论断'Samsung、Intel等竞争对手加大投资，可能侵蚀市场份额'是对竞争风险的主观推测，数据中未提供Samsung和Intel的具体投资信息或市场份额变化数据"
+      }
+    ],
+    "claims": [
+      "2nm商业化推进：MediaTek Dimensity 9600 Pro采用2nm、Apple新品采用2nm，验证需求（新闻2026-09-18）",
+      "营收与利润强劲增长：营收同比增36%、净利同比增77.4%、利润率49.92%（市场数据截至2026-09-18）",
+      "技术面上升：股价434.67美元高于MA20/MA50、RSI14 56.83中性偏强、近20日回报4.77%（市场数据截至2026-09-18）",
+      "产业链景气：ASML产能充足（110台EUV机器测试，2026-09-17）、NVDA需求旺盛（营收增105.9%）、AMD需求强劲（营收增50.1%）",
+      "成本压力信号：AMD报道提及'Rising AI infrastructure costs are putting pressure on chip and cloud pricing'（2026-09-18 Stocktwits），需关注对TSM利润率的传导风险",
+      "估值高企风险：PE 32.06处历史高位，若营收增速从当前36%放缓至个位数，当前估值将面临显著压缩。PEG比率0.89虽相对合理，但前提是增速可持续，若不可持续，估值压缩风险极高",
+      "成本压力传导风险：AMD报道（2026-09-18）明确指出\"Rising AI infrastructure costs are putting pressure on chip and cloud pricing\"，表明成本压力可能传导至产业链。若成本压力传导至TSM客户端定价能力，将压制TSM的毛利率与净利率，影响当前49.92%净利率的可持续性，进而影响77.4%净利增速的可持续性",
+      "地缘政治风险：台湾地缘政治不确定性、美国对华芯片出口管制可能影响客户需求与产能规划",
+      "供应链风险：ASML EUV产能瓶颈、荷兰出口管制可能延缓TSM产能扩张，影响2nm商业化进度",
+      "客户集中度风险：虽多元化改善，但Apple、NVDA等大客户需求波动风险仍存",
+      "竞争加剧风险：Samsung、Intel等竞争对手加大投资，可能侵蚀市场份额"
+    ]
+  }
+}

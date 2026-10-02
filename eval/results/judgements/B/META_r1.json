@@ -1,0 +1,76 @@
+{
+  "variant": "B",
+  "company": "META",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 195,
+        "evidence": "Meta Muse AI应用首5天增速接近ChatGPT（9月18日Motley Fool报道）",
+        "verified": true
+      },
+      {
+        "id": 197,
+        "evidence": "与Shopify合作拓展AI代理业务（9月18日American Banker报道）",
+        "verified": true
+      },
+      {
+        "id": 193,
+        "evidence": "加州AI监管动向（9月18日Barrons.com报道\"California to Reconsider AI 'Kill Switch' With Newsom's New Executive Order\"）",
+        "verified": true
+      },
+      {
+        "id": 206,
+        "evidence": "竞争对手GOOGL获得反垄断利好（9月19日Investing.com报道\"Alphabet's Ad Business Got a Lift From a Key Antitrust Ruling\"）",
+        "verified": true
+      }
+    ],
+    "dropped": [],
+    "repaired": "数组被返回成字符串且 JSON 非法，正则抽出 4 项"
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "Motley Fool 2026-09-18报道标题：'Meta's Muse Just Had a Breakout Launch. Is It a Game Changer for the Stock?' 摘要：'Meta's New AI App Grew Almost as Fast as ChatGPT in Its First 5 Days.'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据[META]显示：营收增速% 28.0、净利率% 29.83、ROE% 29.85、净利增速% -13.4。这些数据来自10-Q(2026-07-30，报告期 2026-06-30)的Q2财报。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据[META]显示：分析师目标价 755.28、当前收盘 665.75、分析师评级 strong_buy、分析师数量 56。上升空间计算：(755.28-665.75)/665.75=13.4%，约13.5%。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据[META]显示：RSI14 66.13、MA20 614.61、MA50 607.38、相对MA20 bullish、相对MA50 bullish、区间涨跌% 18.07（3个月内从3月低点上升）。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标显示：VIX 15.44（2026-09-17）、失业率 4.1%（2026-08-01）、10年期国债收益率 4.94%（2026-09-17）。行情数据[META]显示：PE(TTM) 25.7。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对风险的主观评估和展望，包含'可能'、'若...则'等条件性判断。虽然引用的具体数据（EPS增速-13.4%、RSI 66.13、利率4.94%、PE 25.7）都有依据，但对这些数据的风险解读属于分析师的主观判断。"
+      }
+    ],
+    "claims": [
+      "Meta Muse首5天增速接近ChatGPT，AI产品商业化加速（9月18日Motley Fool报道）",
+      "Q2营收增28%、利润率29.83%、ROE 29.85%，基本面强劲，但EPS增速-13.4%与营收增速严重背离，原因未明确（7月30日10-Q）",
+      "分析师平均目标价755.28美元，较当前665.75美元有13.5%上升空间，56人强烈买入（截至9月18日）",
+      "技术面RSI 66.13接近超买区域（70为超买），短期面临明显回调压力，MA20/MA50均线看涨但获利了结风险不容忽视（截至9月18日）",
+      "宏观VIX 15.44低位、失业率4.1%健康，但长端利率4.94%对PE 25.7高估值构成压力，利率上升可能触发估值压缩（截至9月17日）",
+      "主要风险：\n\n1. EPS增速-13.4%与营收增速28%背离，原因未明确。虽然净利润绝对值增长，但EPS下降可能反映股份稀释、税率变化或一次性项目，需在Q3财报中确认其可持续性。若EPS持续下降，将严重削弱增长故事的可信度。\n\n2. 技术面超买风险。RSI 66.13接近70的超买阈值，短期面临明显回调压力。股价已较3月低点上升18.07%，获利了结可能触发快速调整。\n\n3. 长端利率压力。10年期国债收益率4.94%对PE 25.7的高估值构成压力。若联邦储备委员会维持高利率或进一步加息，估值压缩风险显著。\n\n4. 竞争对手GOOGL获反垄断利好。广告业务受益，与META在广告市场的竞争加剧，可能分流META的广告客户。\n\n5. AI监管政策不确定性。加州AI Kill Switch政策（9月18日报道）若最终落地，可能对META的AI业务部署、数据处理和模型训练造成潜在限制"
+    ],
+    "repaired": "丢弃了 5 条编号无法解析的判定"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "variant": "B",
+  "company": "META",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 195,
+        "evidence": "Meta Muse AI应用获得突破性增长",
+        "verified": true
+      },
+      {
+        "id": 195,
+        "evidence": "Meta Muse AI应用首5天增长接近ChatGPT初期速度，被评为\"游戏改变者\"",
+        "verified": true
+      },
+      {
+        "id": 195,
+        "evidence": "Meta Muse AI首5天增长接近ChatGPT初期速度，代表AI产品突破",
+        "verified": true
+      },
+      {
+        "id": 197,
+        "evidence": "与Shopify合作拓展AI代理业务",
+        "verified": true
+      },
+      {
+        "id": 197,
+        "evidence": "与Shopify合作拓展AI代理与嵌入式金融业务",
+        "verified": true
+      },
+      {
+        "id": 206,
+        "evidence": "竞争对手GOOGL获得关键反垄断裁决利好",
+        "verified": true
+      },
+      {
+        "id": 193,
+        "evidence": "加州AI监管动向",
+        "verified": true
+      }
+    ],
+    "dropped": [],
+    "repaired": "数组被返回成字符串且 JSON 非法，正则抽出 7 项"
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "Motley Fool 2026-09-18 新闻标题：'Meta's Muse Just Had a Breakout Launch. Is It a Game Changer for the Stock?' 摘要：'Meta's New AI App Grew Almost as Fast as ChatGPT in Its First 5 Days.'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance 行情数据显示：预期PE 19.04，分析师目标价 755.28，当前收盘价 665.75，上升空间 = (755.28-665.75)/665.75 = 13.44%，约等于13.5%"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance 行情数据显示：营收增速% 28.0，净利率% 29.83，ROE% 29.85，净利增速% -13.4"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "FRED宏观指标数据显示：VIX恐慌指数 15.44（2026-09-17），联邦基金利率 3.63%（2026-08-01）"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "Yahoo Finance 行情数据显示：RSI14 66.13，RSI信号 neutral。66.13接近但未达70的超买阈值"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "综合多个数据源：(1)技术面RSI 66.13来自Yahoo Finance；(2)净利润同比下降13.4%来自Yahoo Finance；(3)加州AI监管动向来自Barron's 2026-09-18新闻'California to Reconsider AI Kill Switch With Newsom's New Executive Order'；(4)GOOGL获反垄断利好来自Motley Fool 2026-09-19新闻'Alphabet's Ad Business Got a Lift From a Key Antitrust Ruling'；(5)宏观利率环境数据来自FRED（联邦基金利率3.63%，10年期国债收益率4.94%）"
+      }
+    ],
+    "claims": [
+      "Meta Muse AI首5天增长接近ChatGPT初期速度，代表AI产品突破（Motley Fool，2026-09-18）",
+      "Forward PE 19.04相对合理，分析师平均目标价755.28美元，上升空间13.5%（Yahoo Finance，2026-09-18）",
+      "营收增速28%、利润率29.83%、ROE 29.85%，基本面质量优秀，但净利润同比下降13.4%需关注（Yahoo Finance，2026-09-18）",
+      "VIX 15.44低位、联邦基金利率3.63%稳定，宏观环境支持风险资产（FRED，2026-09-17）",
+      "RSI14 66.13接近超买区域但未达70阈值，RSI信号neutral，短期面临温和回调压力但不改长期趋势（Yahoo Finance，2026-09-18）",
+      "短期技术面RSI 66.13接近超买区域，可能面临温和回调压力。净利润同比下降13.4%与营收增速形成反差，反映利润率压力需关注。加州AI监管动向（Barron's，2026-09-18）存在政策不确定性。竞争对手GOOGL获反垄断利好，可能加剧广告市场竞争。宏观利率环境若上升，可能压低科技股估值"
+    ]
+  }
+}

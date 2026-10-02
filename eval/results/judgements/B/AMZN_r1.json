@@ -1,0 +1,115 @@
+{
+  "variant": "B",
+  "company": "AMZN",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 115,
+        "evidence": "宣布与ATSG合作，计划2027年前部署30架A330货机，升级空运物流能力",
+        "verified": true
+      },
+      {
+        "id": 129,
+        "evidence": "竞争对手NFLX遭Wells Fargo下调至\"减持\"",
+        "verified": true
+      },
+      {
+        "id": 130,
+        "evidence": "Wells Fargo cut its rating and price target, citing weaker engagement and content concerns",
+        "verified": false
+      },
+      {
+        "id": 131,
+        "evidence": "Netflix Stock Gets Downgraded by Wells Fargo on 'Worrying' Engagement Trends",
+        "verified": true
+      },
+      {
+        "id": 132,
+        "evidence": "Wells Fargo Brutally Revamps Netflix Stock Price Target",
+        "verified": true
+      },
+      {
+        "id": 135,
+        "evidence": "Alphabet's Ad Business Got a Lift From a Key Antitrust Ruling, Helping End Google's Worst Losing Streak in Over a Decade",
+        "verified": true
+      }
+    ],
+    "dropped": [],
+    "repaired": "数组被返回成字符串且 JSON 非法，正则抽出 6 项"
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情[AMZN]数据显示：净利增速% 242.3，ROE% 30.56"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情[AMZN]数据显示：收盘 253.71，MA20 256.13，MA50 255.84，相对MA20 bearish，相对MA50 bearish，RSI14 48.36，RSI信号 neutral"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情[AMZN]数据显示：分析师目标价 328.22，分析师评级 strong_buy，分析师数量 59"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻[NFLX]中2026-09-18多条新闻确认Wells Fargo下调Netflix评级至Underweight，理由包括'user engagement trends'和'weaker engagement'。但数据中确实缺乏NFLX用户参与度下滑对AWS的具体量化影响数据"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻[AMZN]中2026-09-19报道：'Amazon.com plans to transition its air cargo fleet from Boeing 767 aircraft to Airbus A330 freighters. Air Transport Services Group will acquire and convert 30 Airbus A330 jets into freighters'。论断关于短期催化有限属于judgment性质"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是基于技术面数据的预测性判断。数据支持当前技术面走弱（价格跌破MA20和MA50），但'可能继续下探'和'触发止损'是对未来走势的主观预测"
+      },
+      {
+        "index": 7,
+        "verdict": "unsupported",
+        "evidence": "缺乏NFLX用户参与度下滑对AWS增长的量化数据。虽然新闻确认NFLX用户参与度下滑，但数据中完全没有AWS相关的财务数据或NFLX与AWS关联性的分析"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "行情[AMZN]数据显示：负债权益比 45.62。宏观指标显示：联邦基金利率 3.63%（2026-08-01），10年期国债收益率 4.94%（2026-09-17）。论断关于'若利率继续上升'属于条件性判断"
+      },
+      {
+        "index": 9,
+        "verdict": "unsupported",
+        "evidence": "新闻[GOOGL]中2026-09-19提到'Alphabet's Ad Business Got a Lift From a Key Antitrust Ruling'，但数据中完全没有关于GOOGL反垄断利好对AWS的直接影响的任何信息或分析"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "宏观指标显示失业率 4.1%（2026-08-01），VIX 15.44（2026-09-17），这些数据支持当前宏观风险相对可控。但'宏观衰退风险虽低但不可忽视'和'若失业率上升可能拖累'是对未来风险的主观评估和条件性判断"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "这是对未来Q3财报的预测性判断。数据中没有Q3财报预期或相关指引信息，论断属于纯粹的假设性风险评估"
+      }
+    ],
+    "claims": [
+      "EPS增速242.3%、ROE 30.56%，基本面强劲（Yahoo Finance，截至2026-09-18）",
+      "技术面走弱：价格253.71美元跌破MA20 256.13和MA50 255.84，RSI14 48.36中性（Yahoo Finance，截至2026-09-18）",
+      "分析师平均目标价328.22美元，59位分析师给予强烈买入评级，市场共识强劲（Yahoo Finance，截至2026-09-18）",
+      "NFLX遭Wells Fargo下调至减持，用户参与度下滑为潜在风险，但对AWS的实际影响程度需进一步验证（2026-09-18）",
+      "A330货机升级计划体现长期战略投资，但短期对股价催化有限（2026-09-19）",
+      "技术面走弱，短期可能继续下探至MA50下方，触发止损",
+      "NFLX用户参与度下滑可能传导至AWS增长放缓，但当前缺乏量化数据支撑该风险的严重程度",
+      "负债权益比45.62%处于中等水平，若利率继续上升可能增加融资成本",
+      "竞争对手GOOGL反垄断利好可能加剧广告业竞争，但对AWS的直接影响有限",
+      "宏观衰退风险虽低但不可忽视，若失业率上升可能拖累消费和云服务需求",
+      "Q3财报若未达预期可能引发技术面进一步下行"
+    ]
+  }
+}

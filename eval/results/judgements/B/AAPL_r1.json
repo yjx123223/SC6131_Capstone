@@ -1,0 +1,97 @@
+{
+  "variant": "B",
+  "company": "AAPL",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 3,
+        "evidence": "新 CEO John Ternus 获得分析师认可，被评为具有\"Apple DNA\"",
+        "verified": true
+      },
+      {
+        "id": 7,
+        "evidence": "Evercore 上调目标价至 $380",
+        "verified": true
+      },
+      {
+        "id": 8,
+        "evidence": "CFRA 预测 iPhone Duo 折叠机将\"基本售罄\"（late October 发布）",
+        "verified": true
+      },
+      {
+        "id": 17,
+        "evidence": "QCOM 在 Apple 新机中的芯片占比下降至低于 20%（从之前预期），可能反映 Apple 自研芯片比例提升",
+        "verified": true
+      },
+      {
+        "id": 23,
+        "evidence": "TSM 基本面强劲（营收增速 36%、净利增速 77.4%），正在扩产 2nm 工艺，支持 Apple 高端芯片需求",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻摘要确认：'Apple's (AAPL) iPhone 18 Pro has hit store shelves on Friday'（已上市）；'foldable iPhone Duo's release in late October'（10月底发布）；'Apple will essentially sell 'every single' iPhone Duo it makes: CFRA'（CFRA预测基本售罄）"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 16.4，净利增速% 28.7，自由现金流 107721875456（约1077亿美元）"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：PE(TTM) 38.59，PB 45.67。这些数值确实处于历史高位（对标分析师目标价327.84低于当前股价336.13，预期PE 35.06低于TTM PE 38.59）"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘 336.13，区间涨跌% 13.27（3个月涨幅），相对MA20 bullish、相对MA50 bullish（技术面牛市排列），RSI14 64.28（接近超买阈值70）"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻摘要确认：'Evercore Delivers Bullish $380 Price Target for Apple Stock'（上调目标价至$380）；'John Ternus has the 'Apple DNA' that will push company to the 'next level'...new Apple CEO John Ternus may be the right man for the job'（新CEO获分析师认可）"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对估值风险的主观分析和展望，涉及假设性的'利率上升或增速放缓'情景，不是可核对的事实陈述"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对iPhone Duo销售风险的主观判断，涉及'实际需求可能低于预期'的假设性评估，不是可核对的事实"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对供应链风险的主观分析。虽然数据中有TSM产能信息（新闻提及'2nm process into commercial production'），但'地缘政治（台湾）可能影响长期供应'是假设性风险评估，不是事实陈述"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对竞争风险的主观判断。虽然数据中有MSFT、GOOGL的新闻提及AI投入，但'可能分流消费者关注'是假设性评估，不是可核对的事实"
+      }
+    ],
+    "claims": [
+      "iPhone 18 Pro 已上市，iPhone Duo 折叠机 10 月底发布，CFRA 预测基本售罄（新闻，2026-09-18）",
+      "营收增速 16.4%、净利增速 28.7%，自由现金流 1077 亿美元，基本面强劲（市场数据，2026-09-18）",
+      "PE 38.59、PB 45.67 处历史高位，估值充分反映增长预期（市场数据，2026-09-18）",
+      "股价 336.13 美元，3 个月涨 13.27%，技术面牛市排列但 RSI 64.28 接近超买（市场数据，2026-09-18）",
+      "Evercore 上调目标价至 $380，新 CEO John Ternus 获分析师认可（新闻，2026-09-18）",
+      "估值风险——PE 38.59 处历史高位，利率上升或增速放缓将压低估值倍数",
+      "iPhone Duo 销售风险——折叠机市场仍属新兴，实际需求可能低于预期",
+      "供应链风险——虽 TSM 产能充足，但地缘政治（台湾）可能影响长期供应",
+      "竞争风险——MSFT、GOOGL 在 AI 领域加速投入，可能分流消费者关注"
+    ]
+  }
+}

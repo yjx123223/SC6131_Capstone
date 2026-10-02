@@ -1,0 +1,110 @@
+{
+  "variant": "C",
+  "company": "META",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 195,
+        "evidence": "Meta Muse AI 应用首 5 天增长接近 ChatGPT，表现突出（9/18 Motley Fool）",
+        "verified": true
+      },
+      {
+        "id": 197,
+        "evidence": "与 Shopify 深化合作，推进嵌入式金融战略（9/18 American Banker）",
+        "verified": true
+      },
+      {
+        "id": 206,
+        "evidence": "谷歌获得反垄断裁决利好其广告业务（9/19）",
+        "verified": true
+      },
+      {
+        "id": 193,
+        "evidence": "加州 AI \"杀死开关\"行政令引发关注（9/18 Barrons.com），可能影响 AI 应用部署",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "基本面数据显示：营收增速% 28.0，净利增速% -13.4。净利率% 29.83，反映利润率压缩。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "技术面数据：收盘 665.75，MA20 614.61，MA50 607.38，相对MA20 bullish，相对MA50 bullish；区间涨跌% 18.07（3个月）；PE(TTM) 25.7；52周高 785.73，当前价格低于52周高，处于历史高位区间。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "新闻数据：2026-09-18 Motley Fool报道'Meta's Muse Just Had a Breakout Launch'，摘要'Meta's New AI App Grew Almost as Fast as ChatGPT in Its First 5 Days'；2026-09-18 American Banker报道'How Shopify and Meta are diving deeper into banking'，摘要'The commerce company has made major inroads into embedded finance, a strategy that could get a boost from partnering with the social media giant's new AI agent'。知识图谱确认E1和E2事件。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "基本面数据：分析师目标价 755.28，分析师评级 strong_buy，分析师数量 56。但'基于对未来增长的乐观预期而非当前基本面'属于judgment性质的解读。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据：VIX 恐慌指数 15.44（2026-09-17），联邦基金利率 3.63%（2026-08-01），均处于相对温和水平。"
+      },
+      {
+        "index": 6,
+        "verdict": "supported",
+        "evidence": "SEC申报数据显示最新财务报告为10-Q(2026-07-30，报告期 2026-06-30)，距报告日期2026-09-18已约3个月。近14天新闻均为产品层面（Muse AI、Shopify合作）而非财务层面。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "这是对风险的主观分类和优先级排序，不涉及可核对的事实。"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "基本面数据：净利增速% -13.4，净利率% 29.83。论断中'净利润同比下降13.4%'与数据完全对应。'利润率压缩'可从净利增速为负而营收增速为正推导。'需在Q3 2026财报中确认趋势'是合理的后续观察。"
+      },
+      {
+        "index": 9,
+        "verdict": "supported",
+        "evidence": "基本面数据：PE(TTM) 25.7，52周高 785.73，当前价格 665.75 处于历史高位区间。净利增速% -13.4 确实显示利润下滑。PE倍数扩张与利润下滑并存的现象在数据中可见。"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "SEC申报数据：最新财务报告为10-Q(2026-07-30，报告期 2026-06-30)，距报告日期2026-09-18已约3个月。近14天新闻为产品层面而非财务层面。"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "知识图谱传导风险E3：'竞争压力（分数 0.51）2026-09-19 GOOGL：谷歌获得关键反垄断裁决，有利于其广告业务'。论断中'谷歌反垄断裁决可能强化其广告竞争力'与此对应。"
+      },
+      {
+        "index": 12,
+        "verdict": "supported",
+        "evidence": "新闻数据：2026-09-18 Barrons.com报道'California to Reconsider AI 'Kill Switch' With Newsom's New Executive Order'，摘要'Fears of AI running amok have increased over the past week'。论断中'加州AI\"杀死开关\"行政令可能影响AI应用部署'与此新闻对应。"
+      }
+    ],
+    "claims": [
+      "营收增长 28% 但净利润同比下降 13.4%，反映利润率压缩（Q2 2026 财报，6 月 30 日）",
+      "股价 665.75 美元高于 MA20/MA50，3 个月涨幅 18.07%，技术面上升趋势，但 Trailing PE 25.7 处于历史高位（截至 9/18）",
+      "Meta Muse AI 首 5 天增长接近 ChatGPT，与 Shopify 深化金融合作，产品层面利好（9/18 新闻）",
+      "分析师平均目标价 755.28 美元，给予强烈买入评级（56 位分析师），但基于对未来增长的乐观预期而非当前基本面",
+      "VIX 15.44 低位，联邦基金利率 3.63%，宏观环境温和，但不足以抵消基本面恶化风险（截至 9/17）",
+      "最新财务数据为 Q2 2026（6 月 30 日），距报告日期已 3 个月，期间新闻为产品层面而非财务层面，数据滞后性明显",
+      "主要风险（按优先级排序）：",
+      "利润增速恶化 - 净利润同比下降 13.4%，反映利润率压缩，可能源于 AI 投资支出增加或成本上升，这是当前最重要的基本面风险信号，需在 Q3 2026 财报中确认趋势",
+      "估值风险 - Trailing PE 25.7 处于历史高位，在利润下滑背景下 PE 倍数扩张反映市场对未来增长的乐观预期，若增长放缓或宏观转向，估值承压风险高",
+      "数据滞后性 - 最新财务数据为 Q2 2026（6 月 30 日），距报告日期已 3 个月，期间新闻为产品层面而非财务层面，投资者缺乏最新财务验证",
+      "竞争加剧 - 谷歌反垄断裁决可能强化其广告竞争力，虽短期冲击有限，但长期需关注",
+      "AI 监管 - 加州 AI \"杀死开关\"行政令可能影响 AI 应用部署，Muse AI 等新产品面临监管风险"
+    ]
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "variant": "B",
+  "company": "NFLX",
+  "repeat": 2,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 423,
+        "evidence": "支撑 $27 亿股票回购计划（9 月 19 日公告）",
+        "verified": true
+      },
+      {
+        "id": 424,
+        "evidence": "9 月 18 日 Wells Fargo 分析师 Steven Cahall 将评级从 Equal Weight 下调至 Underweight，目标价从 $80 降至 $57",
+        "verified": true
+      },
+      {
+        "id": 425,
+        "evidence": "Wells Fargo 下调评级至 Underweight，目标价 $57（9 月 18 日），直接触发股价下跌 5%+",
+        "verified": true
+      },
+      {
+        "id": 426,
+        "evidence": "Wells Fargo 下调评级反映市场对用户参与度的担忧",
+        "verified": true
+      },
+      {
+        "id": 427,
+        "evidence": "Wells Fargo 下调评级至 Underweight，目标价 $57（9 月 18 日）",
+        "verified": true
+      },
+      {
+        "id": 428,
+        "evidence": "Wells Fargo 下调评级至 Underweight，目标价 $57（9 月 18 日）",
+        "verified": true
+      },
+      {
+        "id": 430,
+        "evidence": "Wells Fargo 分析师 Steven Cahall 将评级从 Equal Weight 下调至 Underweight",
+        "verified": true
+      },
+      {
+        "id": 440,
+        "evidence": "Disney 任命首位 CTO Karandeep Anand（9 月 18 日），加强技术能力和 AI 投入",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻数据显示：2026-09-18 Wells Fargo analyst Steven Cahall downgraded the stock from Equal Weight to Underweight and lowered his price target to $57 from $80。股价数据显示：2026-09-17 收盘 75.31，2026-09-18 收盘 71.79，跌幅为 (75.31-71.79)/75.31 = 4.67%，约 5%。"
+      },
+      {
+        "index": 2,
+        "verdict": "unsupported",
+        "evidence": "数据中未包含 Q3 财报预期发布时间、Q3 用户增长数据、参与度数据或内容成本数据。虽然 SEC 申报中有 10-Q(2026-07-17，报告期 2026-06-30)，但这是 Q2 财报，不是 Q3。报告中提及的 Q3 财报预期 10 月中旬发布及其首次披露的数据在工具数据中完全缺失。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "技术面数据：RSI14 36.59（接近超卖），收盘 71.79 低于 MA20 78.92 和 MA50 75.72（跌破两条均线），52 周低点 65.08，当前价格 71.79 距离低点空间为 (71.79-65.08)/65.08 = 10.4%，约 10%。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "基本面数据：自由现金流 25387552768 = 约 $254 亿，ROE 49.54%，净利增速 11.1%。新闻数据：2026-09-19 Motley Fool 报道 'Netflix Has $27 Billion Left to Buy Back Its Own Stock'，与论断中 $27 亿回购计划相符。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据：VIX 15.44（2026-09-17），失业率 4.1%（2026-08-01），10 年期国债收益率 4.94%（2026-09-17）。基本面数据：Netflix beta 1.53。所有数值均在工具数据中找到。"
+      },
+      {
+        "index": 6,
+        "verdict": "unsupported",
+        "evidence": "论断声称'用户参与度持续下滑，导致订阅增速放缓，触发基本面恶化（净利增速跌破 5%、ROE 下降超 5 个百分点）'。但工具数据显示：净利增速 11.1%（未跌破 5%），ROE 49.54%（无历史对比数据显示下降超 5 个百分点）。用户参与度、订阅增速等具体数据在工具数据中完全缺失。"
+      },
+      {
+        "index": 7,
+        "verdict": "judgment",
+        "evidence": "论断涉及因果推断和预测。虽然新闻中提及 Disney CTO 任命（Karandeep Anand 将于 Oct. 2 加入 Disney），但'内容成本上升与竞争加剧压低利润率'是对未来的推断，不是可核对的事实。"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "论断为对未来宏观经济的推断：'宏观经济衰退可能削弱消费者订阅意愿，失业率上升至 5%+ 将显著冲击'。这是假设性的预测，不是当前可核对的事实。当前失业率为 4.1%。"
+      },
+      {
+        "index": 9,
+        "verdict": "unsupported",
+        "evidence": "论断声称'汇率波动（国际收入占比高）在美元升值周期中压低海外收入'。工具数据中不包含 Netflix 的国际收入占比、汇率数据或美元升值周期的具体信息。"
+      },
+      {
+        "index": 10,
+        "verdict": "unsupported",
+        "evidence": "论断列举'监管风险（内容审查、数据隐私）'。工具数据中完全没有关于 Netflix 面临的具体监管风险、内容审查或数据隐私问题的信息。"
+      },
+      {
+        "index": 11,
+        "verdict": "judgment",
+        "evidence": "论断为对未来估值压力的推断：'高 beta 1.53 在利率上升周期中面临估值倍数压缩，若国债收益率突破 5.5%，科技股估值压力加大'。虽然 beta 1.53 和当前国债收益率 4.94% 是事实，但'若国债收益率突破 5.5% 将如何影响估值'是假设性推断。"
+      }
+    ],
+    "claims": [
+      "Wells Fargo 下调评级至 Underweight，目标价 $57（9 月 18 日），直接触发股价下跌 5%+，反映市场对用户参与度恶化的担忧",
+      "用户参与度下降是核心担忧，需 Q3 财报（预期 10 月中旬）确认，该财报将首次披露 Q3 用户增长、参与度和内容成本数据，是决策关键",
+      "技术面 RSI14 36.59 接近超卖，股价跌破 MA20/MA50，但未确认底部反转，距 52 周低点 $65.08 仅 10% 空间，反弹空间有限",
+      "自由现金流 $254 亿、ROE 49.54%、净利增速 11.1% 基本面强劲，支撑 $27 亿回购计划（9 月 19 日公告），显示管理层信心，但增长前景不确定",
+      "宏观环境温和（VIX 15.44、失业率 4.1%）不构成系统性风险，但 Netflix beta 1.53 在 4.94% 国债收益率下面临相对收益压力，高增长科技股估值倍数存在压缩风险",
+      "用户参与度持续下滑，导致订阅增速放缓，触发基本面恶化（净利增速跌破 5%、ROE 下降超 5 个百分点）",
+      "内容成本上升与竞争加剧（Disney CTO 任命强化技术投入、Amazon Prime Video 扩张）压低利润率",
+      "宏观经济衰退可能削弱消费者订阅意愿，失业率上升至 5%+ 将显著冲击",
+      "汇率波动（国际收入占比高）在美元升值周期中压低海外收入",
+      "监管风险（内容审查、数据隐私）",
+      "高 beta 1.53 在利率上升周期中面临估值倍数压缩，若国债收益率突破 5.5%，科技股估值压力加大"
+    ]
+  }
+}

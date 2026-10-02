@@ -1,0 +1,114 @@
+{
+  "variant": "A",
+  "company": "AMD",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 247,
+        "evidence": "AMD被列为\"买入区域\"股票（Investor's Business Daily，2026-09-19），芯片板块连续四日上涨",
+        "verified": true
+      },
+      {
+        "id": 249,
+        "evidence": "Simply Wall St.（2026-09-18）指出\"需关注股价是否仍与现金生成能力相符\"",
+        "verified": true
+      },
+      {
+        "id": 250,
+        "evidence": "Stock Market Today: The Dow Jones index falls Friday as oil prices reverse higher. Apple, AMD, Micron and Sandisk are key movers.",
+        "verified": false
+      },
+      {
+        "id": 251,
+        "evidence": "The Philadelphia semiconductor index, known as SOX, rose for a fourth consecutive day on Friday, with a new batch of chip stocks leading the charge.",
+        "verified": false
+      },
+      {
+        "id": 252,
+        "evidence": "AMD, Linde and Amgen highlight AI demand, contracted growth and drug launches, while supply, margin and pipeline risks remain key factors.",
+        "verified": false
+      },
+      {
+        "id": 254,
+        "evidence": "AMD过去12个月涨幅239.7%远超NVDA 25.7%，而NVDA作为\"最强业务\"反而估值更低（27.5倍PE），暗示AMD存在估值透支风险",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "数据显示营收增速% 50.1，净利增速% 159.5，与论断完全一致"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "数据显示PE(TTM) 138.91，预期PE 35.95，与论断数值完全一致"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "数据显示20日涨跌% 19.25，RSI14 65.1，52周高 584.73，当前收盘 559.82（接近但未达52周高），与论断数据一致"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "数据显示分析师目标价 616.51，当前收盘 559.82，上升空间为(616.51-559.82)/559.82=10.1%，与论断一致"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "新闻摘要中Trefis报道指出：'NVDA returned 25.7% while AMD returned 239.7%'，'NVIDIA...is priced...at 27.5 times earnings'，与论断数据完全一致"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对估值风险的主观评估和展望，涉及'若增长放缓或市场情绪转变'等假设性条件，属于分析性判断而非可核对的事实"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "数据显示20日涨跌% 19.25，RSI14 65.1，52周高 584.73，当前收盘 559.82，这些数据支持'近期20日涨幅19.25%、RSI 65.1偏热、股价接近52周高点'的描述"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "关于'NVIDIA等竞争对手实力强劲'和'市场份额存在压力'是对竞争格局的主观判断，数据中未包含市场份额或竞争对手对比信息"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "关于'芯片行业周期性强'、'AI需求可能面临波动'、'高增长难以持续'都是对行业前景的主观预测和判断，不涉及可核对的历史事实"
+      },
+      {
+        "index": 10,
+        "verdict": "supported",
+        "evidence": "数据显示负债权益比 6.36，与论断一致。但'利率上升或经济放缓时风险加大'是条件性判断，当前数据显示联邦基金利率 3.63%，10年期国债收益率 4.94%"
+      },
+      {
+        "index": 11,
+        "verdict": "supported",
+        "evidence": "新闻摘要中Trefis报道指出：'over the past twelve months NVDA returned 25.7% while AMD returned 239.7%'，与论断数据一致。但'可能存在估值透支'是主观判断"
+      }
+    ],
+    "claims": [
+      "营收增长50.1%、净利润增长159.5%，基本面强劲（Yahoo Finance，2026-09-18）",
+      "Trailing PE 138.91处历史极端高位，Forward PE 35.95相对合理，估值分化极端（Yahoo Finance，2026-09-18）",
+      "近20日涨幅19.25%，RSI 65.1偏热，股价接近52周高点，短期过热风险明显（Yahoo Finance，2026-09-18）",
+      "分析师目标价$616.51仅较当前股价高10.1%，上升空间有限，与极高估值风险不匹配（Yahoo Finance，2026-09-18）",
+      "AMD过去12个月涨幅239.7%远超NVDA 25.7%，而NVDA估值反而更低（27.5倍PE），暗示AMD存在估值透支风险（Trefis，2026-09-18）",
+      "估值风险——Trailing PE 138.91处于历史极端高位，若增长放缓或市场情绪转变，估值压缩空间巨大，下行风险远超上升空间",
+      "短期过热风险——近期20日涨幅19.25%、RSI 65.1偏热、股价接近52周高点，存在明显回调风险",
+      "竞争风险——NVIDIA等竞争对手实力强劲，市场份额存在压力，且NVDA当前估值反而更低",
+      "周期风险——芯片行业周期性强，AI需求可能面临波动，高增长难以持续",
+      "高杠杆风险——负债权益比6.36倍，利率上升或经济放缓时风险加大",
+      "估值泡沫风险——过去12个月涨幅239.7%远超NVDA 25.7%，可能存在估值透支"
+    ]
+  }
+}

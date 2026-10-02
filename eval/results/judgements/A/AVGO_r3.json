@@ -1,0 +1,94 @@
+{
+  "variant": "A",
+  "company": "AVGO",
+  "repeat": 3,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 303,
+        "evidence": "9月19日Motley Fool报道Broadcom收入两年翻倍，超过Applied Materials",
+        "verified": true
+      },
+      {
+        "id": 304,
+        "evidence": "9月18日Insider Monkey引述Jim Cramer评价Broadcom订单充足，仅次于NVIDIA，强调其作为AI芯片设计商的核心地位",
+        "verified": true
+      },
+      {
+        "id": 306,
+        "evidence": "同日24/7 Wall St.文章暗示Broadcom作为\"安静的皇家税收收集者\"",
+        "verified": true
+      }
+    ],
+    "dropped": [],
+    "repaired": "数组被返回成字符串且 JSON 非法，正则抽出 3 项"
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 85.5，净利增速% 215.3。AI芯片需求强劲的判断基于这些增速数据。"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：分析师目标价 531.85，当前收盘 357.61，上升幅度 (531.85-357.61)/357.61 = 48.6%；分析师评级 strong_buy，分析师数量 47。"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘 357.61，MA20 359.32，MA50 379.76，相对MA20 bearish，相对MA50 bearish；RSI14 45.46，RSI信号 neutral；区间涨跌% -8.8（3个月区间）。"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻数据显示：2026-09-18 Insider Monkey报道'Jim Cramer Said This AI Firm Has More Orders Than \"Almost Anybody\" Other Than NVIDIA'，指Broadcom Inc.订单充足仅次NVIDIA；2026-09-19 Motley Fool报道'Broadcom's revenue has more than doubled in two years'，体现其AI芯片设计龙头地位。"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观数据显示：VIX 恐慌指数 15.44（2026-09-17），处于低位；联邦基金利率 3.63%（2026-08-01），10年期国债收益率 4.94%（2026-09-17），CPI同比 3.71%（2026-08-01），失业率 4.1%（2026-08-01），整体宏观环境温和可控。"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对未来可能风险的主观判断，不涉及可核对的历史事实或当前数据。"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "行情数据显示：负债权益比 59.6。这是可核查的财务指标，高杠杆在利率上升环境下增加融资成本是合理的财务分析。"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "行情数据显示：PE(TTM) 44.26倍。估值偏高和股价存在回调风险是基于该估值数据的主观判断，但估值数据本身可核查。"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对技术面后续走势的主观预测，不涉及可核对的历史事实。"
+      },
+      {
+        "index": 10,
+        "verdict": "judgment",
+        "evidence": "这是对竞争格局和毛利率未来变化的主观判断，不涉及当前可核查的事实数据。"
+      }
+    ],
+    "claims": [
+      "收入增速85.5%、净利增速215.3%，AI芯片需求强劲（市场数据截至2026-09-18）",
+      "分析师平均目标价531.85美元，较当前357.61美元上升48.6%，47家分析师给出强烈买入（市场数据截至2026-09-18）",
+      "技术面走弱：股价跌破MA20/MA50，3月跌8.8%，RSI14中性偏弱（市场数据截至2026-09-18）",
+      "近期新闻正面：Broadcom订单充足仅次NVIDIA，作为AI芯片设计龙头地位稳固（新闻截至2026-09-19）",
+      "宏观环境温和：VIX 15.44低位稳定，利率和通胀可控，无系统性风险（宏观数据截至2026-09-17）",
+      "AI需求可能不及预期，导致订单下滑",
+      "高杠杆（D/E 59.6）在利率上升环境下增加融资成本压力",
+      "估值偏高（Trailing PE 44.26倍），股价存在回调风险",
+      "技术面短期走弱，可能继续下探",
+      "竞争加剧（NVIDIA、AMD等）可能压低毛利率"
+    ]
+  }
+}

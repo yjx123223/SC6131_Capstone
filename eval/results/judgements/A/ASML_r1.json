@@ -1,0 +1,93 @@
+{
+  "variant": "A",
+  "company": "ASML",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 351,
+        "evidence": "Installed Base Management销售增长31.8%，EUV产能扩张至110台机器",
+        "verified": true
+      },
+      {
+        "id": 352,
+        "evidence": "EUV产能扩张至110台机器，AI需求强劲",
+        "verified": true
+      },
+      {
+        "id": 353,
+        "evidence": "竞争方面，Canon和Nikon在芯片制造领域的进展被市场低估",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-18）：'ASML's Installed Base Management sales surge 31.8%, fueled by upgrades and a growing EUV fleet'；另一条新闻（2026-09-17）：'110 EUV Machines Test Assembly Speed'，AI需求强劲体现在'AI demand has moved ASML's constraint from customer interest to manufacturing throughput'"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据（2026-09-18）：净利增速% 28.5、ROE% 53.94、净利率% 30.11，完全匹配论断数值"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据（2026-09-18）：区间涨跌% -12.81（近3月下跌）；收盘 1679.92，MA20 1689.4，MA50 1721.6，相对MA20 bearish，相对MA50 bearish，确认价格低于两条均线"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "行情数据（2026-09-18）：分析师评级 strong_buy（强烈买入）、分析师目标价 2137.39、当前收盘 1679.92，上涨幅度 (2137.39-1679.92)/1679.92 = 27.2%，完全匹配"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标：VIX 恐慌指数 15.44（2026-09-17）、失业率 4.1%（2026-08-01）、CPI 同比变化 3.71%（2026-08-01）；行情数据：PE(TTM) 55.55，所有数值完全匹配"
+      },
+      {
+        "index": 6,
+        "verdict": "unsupported",
+        "evidence": "数据中未提及美国对华芯片出口管制的具体信息，也未提及该管制对ASML客户需求的影响。这是一个外部假设，不在提供的工具数据范围内"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "新闻摘要（2026-09-17）：'Canon and Nikon are quietly carving out a position in chip manufacturing that Wall Street's models barely account for'，确认竞争对手在DUV领域的进展"
+      },
+      {
+        "index": 8,
+        "verdict": "judgment",
+        "evidence": "这是对估值风险的主观判断和展望。虽然数据中有Trailing PE 55.55的事实，但'若增长放缓或宏观恶化易触发估值压缩'是假设性的推论，不是可核对的事实"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是对产能瓶颈风险的主观判断。虽然数据显示产能在扩张（110台EUV机器），但'交付延迟风险仍存'是推测性表述，数据中未提及交付延迟的具体事实"
+      },
+      {
+        "index": 10,
+        "verdict": "unsupported",
+        "evidence": "数据中未提及EUV-High NA等下一代光刻技术的研发进展信息。这是关于未来技术发展的假设，不在提供的工具数据范围内"
+      }
+    ],
+    "claims": [
+      "Installed Base Management销售增长31.8%，EUV产能扩张至110台机器，AI需求强劲（新闻，2026-09-18）",
+      "EPS增速28.5%、ROE 53.94%、利润率30.11%，基本面优异（市场数据，2026-09-18）",
+      "股价近3月下跌12.81%，技术面走弱（价格低于MA20/MA50），与基本面形成背离（市场数据，2026-09-18）",
+      "分析师强烈买入，目标价$2,137.39较当前上涨27.2%，但需等待技术面修复（市场数据，2026-09-18）",
+      "宏观环境温和支持（VIX 15.44、失业率4.1%、CPI 3.71%），但高估值（Trailing PE 55.55）对科技股存在压制（宏观数据，2026-09-17）",
+      "地缘政治风险——美国对华芯片出口管制可能影响客户需求",
+      "竞争加剧——Canon和Nikon在DUV领域的进展可能蚕食市场份额",
+      "估值风险——Trailing PE 55.55处高位，若增长放缓或宏观恶化易触发估值压缩",
+      "产能瓶颈——虽然产能扩张中，但交付延迟风险仍存",
+      "技术风险——下一代光刻技术（如EUV-High NA）的研发进展不确定"
+    ]
+  }
+}

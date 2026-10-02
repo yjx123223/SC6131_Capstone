@@ -1,0 +1,88 @@
+{
+  "variant": "A",
+  "company": "AVGO",
+  "repeat": 1,
+  "run_git_commit": "547117e",
+  "judge_model": "claude-haiku-4-5",
+  "mentions": {
+    "mentioned": [
+      {
+        "id": 303,
+        "evidence": "Broadcom收入两年翻倍，超过Applied Materials",
+        "verified": true
+      },
+      {
+        "id": 304,
+        "evidence": "Broadcom是少数能设计定制AI芯片的公司之一",
+        "verified": true
+      }
+    ],
+    "dropped": []
+  },
+  "citations": {
+    "verdicts": [
+      {
+        "index": 1,
+        "verdict": "supported",
+        "evidence": "行情数据显示：营收增速% 85.5，净利增速% 215.3"
+      },
+      {
+        "index": 2,
+        "verdict": "supported",
+        "evidence": "行情数据显示：分析师目标价 531.85，分析师评级 strong_buy，分析师数量 47"
+      },
+      {
+        "index": 3,
+        "verdict": "supported",
+        "evidence": "行情数据显示：收盘 357.61，MA20 359.32，MA50 379.76，相对MA20 bearish，相对MA50 bearish，RSI14 45.46"
+      },
+      {
+        "index": 4,
+        "verdict": "supported",
+        "evidence": "新闻摘要（Insider Monkey，2026-09-18）：'It is among the few firms capable of designing custom AI chips that big technology firms rely on to supplement NVIDIA's high-power and expensive AI chips'，且'Jim Cramer Said This AI Firm Has More Orders Than \"Almost Anybody\" Other Than NVIDIA'"
+      },
+      {
+        "index": 5,
+        "verdict": "supported",
+        "evidence": "宏观指标数据显示：VIX 恐慌指数 15.44（2026-09-17），联邦基金利率 3.63%（2026-08-01），10年期国债收益率 4.94%（2026-09-17），均处于相对稳定水平"
+      },
+      {
+        "index": 6,
+        "verdict": "judgment",
+        "evidence": "这是对未来风险的主观判断和展望，不涉及可核对的历史事实或数据"
+      },
+      {
+        "index": 7,
+        "verdict": "supported",
+        "evidence": "行情数据显示：PE(TTM) 44.26，预期PE 18.45。论断准确反映了这两个估值指标的对比关系"
+      },
+      {
+        "index": 8,
+        "verdict": "supported",
+        "evidence": "行情数据显示：负债权益比 59.6%"
+      },
+      {
+        "index": 9,
+        "verdict": "judgment",
+        "evidence": "这是基于技术面数据的主观预测和展望，属于投资建议性质的判断，不是可核对的事实陈述"
+      },
+      {
+        "index": 10,
+        "verdict": "unsupported",
+        "evidence": "数据中未提供关于NVIDIA、AMD等竞争对手的具体创新信息或定制芯片市场竞争激烈程度的量化数据。新闻中提到NVIDIA和AMD，但未涉及与Broadcom的直接竞争对比"
+      }
+    ],
+    "claims": [
+      "收入增速85.5%、净利润增速215.3%，AI需求强劲（Yahoo Finance，2026-09-18）",
+      "分析师目标价531.85美元，47家机构给出强烈买入评级（Yahoo Finance，2026-09-18）",
+      "股价357.61美元跌破MA20/MA50，RSI14为45.46，技术面短期走弱（Yahoo Finance，2026-09-18）",
+      "Broadcom是少数能设计定制AI芯片的公司之一，订单充足（Insider Monkey，2026-09-18）",
+      "宏观环境温和，VIX 15.44低位，利率稳定，无重大压力（FRED，2026-09-17）",
+      "AI芯片需求可能过热，存在库存调整风险",
+      "TTM PE 44.26处于高位，对利空消息敏感，但Forward PE 18.45显示市场预期增长可支撑估值",
+      "债务率59.6%需关注，高杠杆限制财务灵活性",
+      "技术面短期走弱，股价已跌破均线，可能继续调整至MA50支撑位",
+      "竞争加剧，NVIDIA、AMD等对手持续创新，定制芯片市场竞争激烈"
+    ]
+  }
+}
